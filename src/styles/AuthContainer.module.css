@@ -1,0 +1,18 @@
+.whole_box{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url("/images/Banner.png") no-repeat 50%;
+    background-size: 100%;
+    background-color: #EBEBEB;
+}
+
+.main_box{
+    height: fit-content;
+    width: fit-content;
+    background-color: white;
+    border-radius: 20px;
+    color: black;
+}
