@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import styles from "../styles/AuthContainer.module.css";
+import styles from "../styles/Auth.module.css";
 
 function AuthContainer() {
   return (
