@@ -15,8 +15,19 @@ const Landing = () => {
                             <img src="/images/logoWordMark.png" alt="Logo-WordMark"/>
                         </div>
                     </div>
-                    <div className={Style.menu}></div>
-                    <div className={Style.loginContainer}></div>
+                    <div className={Style.menu}>
+                        <div className={Style.menuItem}>خانه</div>
+                        <div className={Style.menuItem}>دوره ها</div>
+                        <div className={Style.menuItem}>اساتید</div>
+                        <div className={Style.menuItem}>اخبار و مقالات</div>
+                        <div className={Style.menuItem}>ارتباط با ما</div>
+                    </div>
+                    <div className={Style.loginContainer}>
+                        <div className={Style.darkModeSwitch}>
+                            <img src="/images/darkMode.png" alt="DarkMode"/>
+                        </div>
+                        <div className={Style.account}>ورود یا ثبت نام</div>
+                    </div>
                 </div>
             </div>
             <main>

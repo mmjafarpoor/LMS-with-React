@@ -13,3 +13,7 @@ image{
   width: fit-content;
   height: fit-content;
 }
+@font-face {
+  font-family: IranSans;
+  src: url(/fonts/persian-fonts/iran-sans/IRANSans_Bold.ttf);
+}
