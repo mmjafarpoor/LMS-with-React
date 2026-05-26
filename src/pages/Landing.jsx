@@ -33,7 +33,20 @@ const Landing = () => {
             <main>
                 <Outlet/>
             </main>
-            <div className={Style.bottom}></div>
+            <div className={Style.bottom}>
+                <div className={Style.bottomMain}>
+                    <div className={Style.knowMoreAboutAcademy}>
+                        <div className={Style.academyLogoContainer}>
+                            <div className={Style.academyLogo}></div>
+                            <div className={Style.academyLogoWordMark}></div>
+                        </div>
+                        <span className={Style.academyPresentation}>گروه بازرگانی آهن یک با بیش از یک دهه سابقه ، با نگاهی متفاوت پاسخگوی نیاز تمامی مشتریان در زمینه تامین و توزیع انواع مقاطع و ورق فولادی ، اتصالات ، شیرآلات صنعتی و سایر تجهیزات در صنایع نفت و گاز و پتروشیمی ، ساختمانی و آبرسانی با دو شعبه فعال در بازار آهن شاد آباد و پونک ، به دو صورت آنلاین و حضوری ، امکان تامین کالاهای مورد نیاز صنایع مطابق با استاندارد های روز دنیا را فراهم نموده است.</span>
+                    </div>
+                    <div className={Style.bottomItemsContainer}></div>
+                    <div className={Style.trustBadge}></div>
+                </div>
+                <div className={Style.copyRightReservedContainer}></div>
+            </div>
         </div>
     )
 }

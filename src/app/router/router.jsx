@@ -7,7 +7,13 @@ import SignUp from "../../components/AuthContainer/SignUp/SignUp";
 import ForgetPassword from "../../components/AuthContainer/ForgetPassword/ForgetPassword";
 
 const router = createBrowserRouter([
-    { path: "/", element: <Landing/> },
+    { path: "/", element: <Landing/> , children:[
+        { path: "Home", element: <Login /> },
+        { path: "Courses", element: <Login /> },
+        { path: "Instructors", element: <Login /> },
+        { path: "WebLog", element: <Login /> },
+        { path: "Contact", element: <Login /> },
+    ]},
     {
         path: "/Auth",
         element: <Auth/>,
