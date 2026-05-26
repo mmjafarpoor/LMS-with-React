@@ -109,6 +109,26 @@
     flex-wrap: nowrap;
     align-items: center;
     justify-content: space-around;
+    position: relative;
+}
+.landingContainer > .bottom > .navigateTopContainer{
+    position: absolute;
+    top: 0;
+    left: 90px;
+    width: 68px;
+    height: 64px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    background-color: #ffffff;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+}
+.landingContainer > .bottom > .navigateTopContainer > .navigateTop{
+    width: 56px;
+    height: 52px;
+    background-color: #5CD3EC;
+    border-radius: 10px;
 }
 .landingContainer > .bottom > .bottomMain{
     width: 86%;
@@ -208,7 +228,8 @@
     justify-content: space-between;
 }
 .landingContainer > .bottom > .copyRightReservedContainer > .copyRightReserved{
-    width: 510px;
+    width: max-content;
+    margin-right: 15px;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -217,9 +238,19 @@
     border: 1px solid blue;
 }
 .landingContainer > .bottom > .copyRightReservedContainer > .copyRightReserved > .copyRightOwnerShip{
-    display: inline-block;
-    line-height: 3;
     white-space: nowrap;
     font-family: IranSans;
     font-weight: 500;
+    font-size: 0.9rem;
+    user-select: none;
+    color: #FFFFFF;
+}
+.landingContainer > .bottom > .copyRightReservedContainer > .socialMediasLink{
+    width: 224px;
+    height: 32px;
+    margin-left: 15px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
 }

@@ -34,6 +34,9 @@ const Landing = () => {
                 <Outlet/>
             </main>
             <div className={Style.bottom}>
+                <div className={Style.navigateTopContainer}>
+                    <div className={Style.navigateTop}></div>
+                </div>
                 <div className={Style.bottomMain}>
                     <div className={Style.knowMoreAboutAcademy}>
                         <div className={Style.academyLogoContainer}>
@@ -75,7 +78,23 @@ const Landing = () => {
                         <img src="/images/copyright.png" alt="CopyRight" className="copyRightReservedImage"/>
                         <span className={Style.copyRightOwnerShip}>تمام حقوق مادی و معنوی این طراحی متعلق به امیر محمد خیرابادی میباشد</span>
                     </div>
-                    <div className={Style.socialMediasLink}></div>
+                    <div className={Style.socialMediasLink}>
+                        <div className={Style.socialMedia}>
+                            <img src="" alt="LinkedIn" />
+                        </div>
+                        <div className={Style.socialMedia}>
+                            <img src="" alt="WhatsApp" />
+                        </div>
+                        <div className={Style.socialMedia}>
+                            <img src="" alt="FaceBook" />
+                        </div>
+                        <div className={Style.socialMedia}>
+                            <img src="" alt="Twitter" />
+                        </div>
+                        <div className={Style.socialMedia}>
+                            <img src="" alt="Instagram" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
