@@ -208,5 +208,18 @@
     justify-content: space-between;
 }
 .landingContainer > .bottom > .copyRightReservedContainer > .copyRightReserved{
-    
+    width: 510px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid blue;
+}
+.landingContainer > .bottom > .copyRightReservedContainer > .copyRightReserved > .copyRightOwnerShip{
+    display: inline-block;
+    line-height: 3;
+    white-space: nowrap;
+    font-family: IranSans;
+    font-weight: 500;
 }

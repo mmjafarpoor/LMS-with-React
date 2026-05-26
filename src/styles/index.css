@@ -1,13 +1,15 @@
 @import "tailwindcss";
 
-html, body, * , #root{
-  height: 100%;
-  width: 100%;
-  margin: 0;
+*{
   box-sizing: border-box;
   direction: rtl;
   line-height: 1.5;
   font-weight: 400;
+}
+html, body, #root{
+  height: 100%;
+  width: 100%;
+  margin: 0;
 }
 img{
   width: fit-content;

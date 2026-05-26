@@ -72,7 +72,8 @@ const Landing = () => {
                 </div>
                 <div className={Style.copyRightReservedContainer}>
                     <div className={Style.copyRightReserved}>
-                        <img src="/images/copyright.png" alt="" className="copyRightReservedImage"/>
+                        <img src="/images/copyright.png" alt="CopyRight" className="copyRightReservedImage"/>
+                        <span className={Style.copyRightOwnerShip}>تمام حقوق مادی و معنوی این طراحی متعلق به امیر محمد خیرابادی میباشد</span>
                     </div>
                     <div className={Style.socialMediasLink}></div>
                 </div>
