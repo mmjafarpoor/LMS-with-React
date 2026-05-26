@@ -42,7 +42,32 @@ const Landing = () => {
                         </div>
                         <span className={Style.academyPresentation}>گروه بازرگانی آهن یک با بیش از یک دهه سابقه ، با نگاهی متفاوت پاسخگوی نیاز تمامی مشتریان در زمینه تامین و توزیع انواع مقاطع و ورق فولادی ، اتصالات ، شیرآلات صنعتی و سایر تجهیزات در صنایع نفت و گاز و پتروشیمی ، ساختمانی و آبرسانی با دو شعبه فعال در بازار آهن شاد آباد و پونک ، به دو صورت آنلاین و حضوری ، امکان تامین کالاهای مورد نیاز صنایع مطابق با استاندارد های روز دنیا را فراهم نموده است.</span>
                     </div>
-                    <div className={Style.bottomItemsContainer}></div>
+                    <div className={Style.bottomItemsContainer}>
+                        <div className={Style.bottomItem}>
+                            <span className={Style.footerItemTitle}>لینک های مفید</span>
+                            <div className={Style.footerItemSeparator}></div>
+                            <span className={Style.footerLink}>ارزش های ما</span>
+                            <span className={Style.footerLink}>هیئت مشاوران ما</span>
+                            <span className={Style.footerLink}>شرکای ما</span>
+                            <span className={Style.footerLink}>شریک شدن</span>
+                            <span className={Style.footerLink}>در  پژوهشگاه کار کنید</span>
+                        </div>
+                        <div className={Style.bottomItem}>
+                            <span className={Style.footerItemTitle}>شرکت ما</span>
+                            <div className={Style.footerItemSeparator}></div>
+                            <span className={Style.footerLink}>با ما تماس بگیرید</span>
+                            <span className={Style.footerLink}>معلم شوید</span>
+                            <span className={Style.footerLink}>وبلاگ</span>
+                            <span className={Style.footerLink}>مربی</span>
+                            <span className={Style.footerLink}>مناسبت ها</span>
+                        </div>
+                        <div className={Style.bottomItem}>
+                            <span className={Style.footerItemTitle}>در تماس باشید</span>
+                            <div className={Style.footerItemSeparator}></div>
+                            <span className={Style.footerLink}>09109098222</span>
+                            <span className={Style.footerLink}>09931227310</span>
+                        </div>
+                    </div>
                     <div className={Style.trustBadge}></div>
                 </div>
                 <div className={Style.copyRightReservedContainer}></div>

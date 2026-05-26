@@ -159,9 +159,37 @@
 }
 .landingContainer > .bottom > .bottomMain > .bottomItemsContainer{
     max-width: 50%;
-    width: fit-content;
+    width: 42%;
     height: fit-content;
     border: 1px solid brown;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.landingContainer > .bottom > .bottomMain > .bottomItemsContainer > .bottomItem{
+    width: max-content;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.landingContainer > .bottom > .bottomMain > .bottomItemsContainer > .bottomItem > .footerItemTitle{
+    font-family: IranSans;
+    font-weight: 600;
+    font-size: 1.35rem;
+    user-select: none;
+}
+.landingContainer > .bottom > .bottomMain > .bottomItemsContainer > .bottomItem > .footerItemSeparator{
+    width: 40px;
+    border: 2px solid #0CBDE2;
+    border-radius: 2px;
+}
+.landingContainer > .bottom > .bottomMain > .bottomItemsContainer > .bottomItem > .footerLink{
+    font-family: IranSans;
+    font-weight: 400;
+    color: #838383;
+    user-select: none;
+    cursor: pointer;
 }
 .landingContainer > .bottom > .bottomMain > .trustBadge{
     width: 111px;
