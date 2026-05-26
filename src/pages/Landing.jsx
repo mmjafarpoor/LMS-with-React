@@ -1,5 +1,6 @@
 import React from 'react'
 import Style from "../styles/Landing.module.css";
+import clsx from 'clsx';
 import { Outlet } from 'react-router-dom';
 
 const Landing = () => {
@@ -45,8 +46,9 @@ const Landing = () => {
                         </div>
                         <span className={Style.academyPresentation}>گروه بازرگانی آهن یک با بیش از یک دهه سابقه ، با نگاهی متفاوت پاسخگوی نیاز تمامی مشتریان در زمینه تامین و توزیع انواع مقاطع و ورق فولادی ، اتصالات ، شیرآلات صنعتی و سایر تجهیزات در صنایع نفت و گاز و پتروشیمی ، ساختمانی و آبرسانی با دو شعبه فعال در بازار آهن شاد آباد و پونک ، به دو صورت آنلاین و حضوری ، امکان تامین کالاهای مورد نیاز صنایع مطابق با استاندارد های روز دنیا را فراهم نموده است.</span>
                     </div>
+                    
                     <div className={Style.bottomItemsContainer}>
-                        <div className={Style.bottomItem}>
+                        <div className={clsx(Style.bottomItem,Style.disappearBottomItem)}>
                             <span className={Style.footerItemTitle}>لینک های مفید</span>
                             <div className={Style.footerItemSeparator}></div>
                             <span className={Style.footerLink}>ارزش های ما</span>
@@ -55,7 +57,7 @@ const Landing = () => {
                             <span className={Style.footerLink}>شریک شدن</span>
                             <span className={Style.footerLink}>در  پژوهشگاه کار کنید</span>
                         </div>
-                        <div className={Style.bottomItem}>
+                        <div className={clsx(Style.bottomItem,Style.disappearBottomItem)}>
                             <span className={Style.footerItemTitle}>شرکت ما</span>
                             <div className={Style.footerItemSeparator}></div>
                             <span className={Style.footerLink}>با ما تماس بگیرید</span>
@@ -80,7 +82,7 @@ const Landing = () => {
                     </div>
                     <div className={Style.socialMediasLink}>
                         <div className={Style.socialMedia}>
-                            <img src="" alt="LinkedIn" />
+                            <img src="/images/linkedIn.png" alt="LinkedIn" />
                         </div>
                         <div className={Style.socialMedia}>
                             <img src="" alt="WhatsApp" />

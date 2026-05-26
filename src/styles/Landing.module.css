@@ -26,8 +26,8 @@
     justify-content: space-between;
 }
 .landingContainer > .headerContainer > .header >.logoContainer{
-    width: fit-content;
-    height: fit-content;
+    width: max-content;
+    height: max-content;
     /* border: 1px solid blue; */
     display: flex;
     flex-direction: row;
@@ -108,7 +108,7 @@
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
-    justify-content: space-around;
+    gap: 40px;
     position: relative;
 }
 .landingContainer > .bottom > .navigateTopContainer{
@@ -128,15 +128,16 @@
     width: 56px;
     height: 52px;
     background-color: #5CD3EC;
-    border-radius: 10px;
+    border-radius: 12px;
 }
 .landingContainer > .bottom > .bottomMain{
+    margin-top: 60px;
     width: 86%;
     height: fit-content;
     border: 1px solid red;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: space-between;
 }
@@ -176,7 +177,7 @@
     font-weight: 400;
     color: #838383;
     user-select: none;
-    font-size: clamp(0.93rem,0.9vw,1.2rem);
+    font-size: clamp(0.92rem,0.88vw,1.2rem);
 }
 .landingContainer > .bottom > .bottomMain > .bottomItemsContainer{
     width: clamp(360px,42%,50%);
@@ -193,6 +194,9 @@
     flex-direction: column;
     gap: 8px;
 }
+.landingContainer > .bottom > .bottomMain > .bottomItemsContainer > .disappearBottomItem{
+    display: flex;
+}
 .landingContainer > .bottom > .bottomMain > .bottomItemsContainer > .bottomItem > .footerItemTitle{
     font-family: IranSans;
     font-weight: 600;
@@ -207,7 +211,7 @@
 .landingContainer > .bottom > .bottomMain > .bottomItemsContainer > .bottomItem > .footerLink{
     font-family: IranSans;
     font-weight: 400;
-    font-size: clamp(0.94rem,0.90vw,1.1rem);
+    font-size: clamp(0.92rem,0.88vw,1.1rem);
     color: #838383;
     user-select: none;
     cursor: pointer;
@@ -218,6 +222,7 @@
     background: url(/public/images/trustBadge.png) no-repeat;
 }
 .landingContainer > .bottom > .copyRightReservedContainer{
+    margin-bottom: 32px;
     width: 92%;
     height: 56px;
     background-color: #6A6A7A;
@@ -253,4 +258,66 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: nowrap;
+}
+.landingContainer > .bottom > .copyRightReservedContainer > .socialMediasLink > .socialMedia{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+
+
+
+
+
+@media (max-width: 1000px) {
+    .logoWordMark{
+        display: none;
+    }
+}
+@media (max-width: 900px) {
+    .landingContainer > .bottom > .bottomMain{
+        width: 95%;
+    }
+}
+@media (max-width: 800px) {
+    .landingContainer > .headerContainer{
+        width: 96%;
+    }
+    .landingContainer > .bottom > .bottomMain{
+        flex-direction: column;
+        gap: 33px;
+        width: 100%;
+    }
+    .landingContainer > .bottom > .bottomMain > .knowMoreAboutAcademy{
+        max-width: 80%;
+    }
+    .landingContainer > .bottom > .bottomMain > .knowMoreAboutAcademy > .academyPresentation{
+        font-size: 1.15rem;
+    }
+    .landingContainer > .bottom > .bottomMain > .bottomItemsContainer{
+        width: max-content;
+    }
+    .landingContainer > .bottom > .bottomMain > .bottomItemsContainer > .disappearBottomItem{
+        display: none;
+    }
+    .landingContainer > .bottom > .bottomMain > .bottomItemsContainer > .bottomItem > .footerItemTitle{
+        font-size: 1.5rem;
+    }
+    .landingContainer > .bottom > .bottomMain > .bottomItemsContainer > .bottomItem > .footerLink{
+        font-size: 1.12rem;
+        color: blue;
+        font-weight: 900;
+    }
+    .landingContainer > .bottom > .copyRightReservedContainer{
+        justify-content: center;
+        width: 256px;
+        height: 56px;
+    }
+    .landingContainer > .bottom > .copyRightReservedContainer > .copyRightReserved{
+        display: none;
+    }
+}
+@media (max-width: 700px) {
+
 }
