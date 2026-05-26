@@ -70,7 +70,12 @@ const Landing = () => {
                     </div>
                     <div className={Style.trustBadge}></div>
                 </div>
-                <div className={Style.copyRightReservedContainer}></div>
+                <div className={Style.copyRightReservedContainer}>
+                    <div className={Style.copyRightReserved}>
+                        <img src="/images/copyright.png" alt="" className="copyRightReservedImage"/>
+                    </div>
+                    <div className={Style.socialMediasLink}></div>
+                </div>
             </div>
         </div>
     )
