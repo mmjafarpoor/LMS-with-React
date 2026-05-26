@@ -1,11 +1,54 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Style from "../styles/Landing.module.css";
 import clsx from 'clsx';
 import { Outlet } from 'react-router-dom';
 
 const Landing = () => {
+
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const toggleMenu  = () =>{
+        setIsMenuOpen(prevState => !prevState);
+        console.log("Menu Status =",isMenuOpen)
+    }
+    useEffect(() => {
+        const handleResize = () =>{
+            if (window.innerWidth > 700 && isMenuOpen) {
+                setIsMenuOpen(false);
+            }
+        }
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+
+    },[isMenuOpen]);
     return (
         <div className={Style.landingContainer}>
+            {isMenuOpen &&(
+                <nav className={Style.mobileMenu}>
+                    <div className={Style.mobileMenuHolder}>
+                        <div className={Style.closeTheMobileMenu} onClick={toggleMenu}></div>
+                        <div className={Style.screenLightMode}>
+                            <div className={Style.mobileLightMode}></div>
+                            <div className={Style.mobileDarkMode}></div>
+                        </div>
+                        <div className={Style.mobileMenuItemsContainer}>
+                            <div className={Style.mobileMenuItem}>خانه</div>
+                            <div className={Style.mobileMenuItem}>دوره ها</div>
+                            <div className={Style.mobileMenuItem}>اساتید</div>
+                            <div className={Style.mobileMenuItem}>اخبار و مقالات</div>
+                            <div className={Style.mobileMenuItem}>ارتباط باما</div>
+                        </div>
+                        <div className={Style.mobileMenuSeparator}></div>
+                        <div className={Style.academyLogoInMobileMenu}>
+                            <img src="/images/Logo.png" alt="Logo"/>
+                            <img src="/images/logoWordMark.png" alt="Logo-Word-Mark"/>
+                        </div>
+                    </div>
+                </nav>
+            )}
             <div className={Style.headerContainer}>
                 <div className={Style.header}>
                     <div className={Style.logoContainer}>
@@ -28,7 +71,7 @@ const Landing = () => {
                             <img src="/images/darkMode.png" alt="DarkMode"/>
                         </div>
                         <div className={Style.account}>ورود یا ثبت نام</div>
-                        <div className={Style.headerShowMoreButton}>
+                        <div className={Style.headerShowMoreButton} onClick={toggleMenu}>
                             <img src="/images/headerMore.png" alt="Header-Show-More-Button"/>
                         </div>
                     </div>

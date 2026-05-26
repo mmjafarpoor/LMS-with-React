@@ -22,7 +22,7 @@ img{
 }
 @font-face {
   font-family: IranSans;
-  src: url(/public/fonts/persian-fonts/iran-sans/IRANSans.ttf);
+  src: url(/fonts/persian-fonts/iran-sans/IRANSans.ttf);
   font-weight: 600;
 }
 @font-face {

@@ -61,6 +61,84 @@
     user-select: none;
     cursor: pointer;
 }
+.landingContainer > .mobileMenu{
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: start;
+}
+.landingContainer > .mobileMenu > .mobileMenuHolder{
+    width: 80%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.landingContainer > .mobileMenu > .mobileMenuHolder > .closeTheMobileMenu{
+    width: 50px;
+    height: 50px;
+    background: url(/images/mobileMenuClose.svg) no-repeat;
+    background-size: contain;
+    cursor: pointer;
+}
+.landingContainer > .mobileMenu > .mobileMenuHolder > .screenLightMode{
+    width: 70%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+.landingContainer > .mobileMenu > .mobileMenuHolder > .screenLightMode > .mobileLightMode{
+    width: 40px;
+    height: 40px;
+    background: url(/images/lightMode.png) no-repeat;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.landingContainer > .mobileMenu > .mobileMenuHolder > .screenLightMode > .mobileDarkMode{
+    width: 40px;
+    height: 40px;
+    background: url(/images/darkMode.png) no-repeat;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.landingContainer > .mobileMenu > .mobileMenuHolder > .mobileMenuItemsContainer{
+    height: max-content;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+.landingContainer > .mobileMenu > .mobileMenuHolder > .mobileMenuItemsContainer > .mobileMenuItem{
+    font-family: IranSans;
+    font-weight: 900;
+    font-size: 1.3rem;
+    user-select: none;
+    cursor: pointer;
+}
+.landingContainer > .mobileMenu > .mobileMenuHolder > .mobileMenuSeparator{
+    width: 90%;
+    border: 1.5px solid #B5B5B5;
+}
+.landingContainer > .mobileMenu > .mobileMenuHolder > .academyLogoInMobileMenu{
+    width: max-content;
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
 .landingContainer > .headerContainer > .header >.loginContainer{
     width: 14.5%;
     min-width: 210px;
