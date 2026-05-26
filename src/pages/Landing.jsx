@@ -115,8 +115,8 @@ const Landing = () => {
                         <div className={Style.bottomItem}>
                             <span className={Style.footerItemTitle}>در تماس باشید</span>
                             <div className={Style.footerItemSeparator}></div>
-                            <span className={Style.footerLink}>09109098222</span>
-                            <span className={Style.footerLink}>09931227310</span>
+                            <a  href="tel:09109098222" className={Style.footerLink} style={{color:"blue"}}>09109098222</a>
+                            <a  href="tel:09931227310" className={Style.footerLink} style={{color:"blue"}}>09931227310</a>
                         </div>
                     </div>
                     <div className={Style.trustBadge}></div>
