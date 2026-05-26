@@ -28,6 +28,9 @@ const Landing = () => {
                             <img src="/images/darkMode.png" alt="DarkMode"/>
                         </div>
                         <div className={Style.account}>ورود یا ثبت نام</div>
+                        <div className={Style.headerShowMoreButton}>
+                            <img src="/images/headerMore.png" alt="Header-Show-More-Button"/>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -82,19 +85,19 @@ const Landing = () => {
                     </div>
                     <div className={Style.socialMediasLink}>
                         <div className={Style.socialMedia}>
-                            <img src="/images/linkedIn.png" alt="LinkedIn" />
+                            <img src="/images/linkedIn.png" alt="LinkedIn"/>
                         </div>
                         <div className={Style.socialMedia}>
-                            <img src="" alt="WhatsApp" />
+                            <img src="/images/whatsApp.png" alt="WhatsApp"/>
                         </div>
                         <div className={Style.socialMedia}>
-                            <img src="" alt="FaceBook" />
+                            <img src="/images/faceBook.png" alt="FaceBook"/>
                         </div>
                         <div className={Style.socialMedia}>
-                            <img src="" alt="Twitter" />
+                            <img src="/images/twitter.png" alt="Twitter"/>
                         </div>
                         <div className={Style.socialMedia}>
-                            <img src="" alt="Instagram" />
+                            <img src="/images/instagram.png" alt="Instagram"/>
                         </div>
                     </div>
                 </div>
