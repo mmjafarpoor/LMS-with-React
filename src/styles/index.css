@@ -11,6 +11,18 @@ html, body, #root{
   width: 100%;
   margin: 0;
 }
+:root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --header-bg: #FFFFFF; 
+    --bottom-bg: #F4F4F4; 
+}
+.dark-theme {
+    --bg-color: #212121;
+    --text-color: #FFFFFF;
+    --header-bg: #2E2E2E;
+    --bottom-bg: #2E2E2E;
+}
 img{
   width: fit-content;
   height: fit-content;

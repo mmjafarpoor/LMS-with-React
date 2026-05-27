@@ -7,6 +7,26 @@ const Landing = () => {
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+    const [isDarkMode, setIsDarkMode] = useState(() => {
+        const savedTheme = localStorage.getItem('theme');
+        return savedTheme === 'dark';
+    });
+    const toggleDarkMode = () => {
+        setIsDarkMode(prevMode => {
+            const newMode = !prevMode;
+            localStorage.setItem('theme', newMode ? 'dark' : 'light');
+            return newMode;
+        });
+    };
+    useEffect(() => {
+        if(isDarkMode){
+            document.body.classList.add('dark-theme');
+        }
+        else{
+            document.body.classList.remove('dark-theme');
+        }
+    },[isDarkMode]);
+
     const toggleMenu  = () =>{
         setIsMenuOpen(prevState => !prevState);
         console.log("Menu Status =",isMenuOpen)
@@ -22,8 +42,8 @@ const Landing = () => {
         return () => {
             window.removeEventListener('resize', handleResize);
         };
-
     },[isMenuOpen]);
+    
     return (
         <div className={Style.landingContainer}>
             {isMenuOpen &&(
@@ -67,8 +87,8 @@ const Landing = () => {
                         <div className={Style.menuItem}>ارتباط با ما</div>
                     </div>
                     <div className={Style.loginContainer}>
-                        <div className={Style.darkModeSwitch}>
-                            <img src="/images/darkMode.png" alt="DarkMode"/>
+                        <div className={Style.darkModeSwitch} onClick={toggleDarkMode}  title={isDarkMode ? "حالت روشن" : "حالت تاریک"}>
+                            <img src={isDarkMode ? "/images/lightMode.png" : "/images/darkMode.png"} alt={isDarkMode ? "Light Mode" : "Dark Mode"} />
                         </div>
                         <div className={Style.account}>ورود یا ثبت نام</div>
                         <div className={Style.headerShowMoreButton} onClick={toggleMenu}>
@@ -115,8 +135,8 @@ const Landing = () => {
                         <div className={Style.bottomItem}>
                             <span className={Style.footerItemTitle}>در تماس باشید</span>
                             <div className={Style.footerItemSeparator}></div>
-                            <a  href="tel:09109098222" className={Style.footerLink} style={{color:"blue"}}>09109098222</a>
-                            <a  href="tel:09931227310" className={Style.footerLink} style={{color:"blue"}}>09931227310</a>
+                            <a  href="tel:09109098222" className={Style.footerLink} style={{color:"#1B75D0"}}>09109098222</a>
+                            <a  href="tel:09931227310" className={Style.footerLink} style={{color:"#1B75D0"}}>09931227310</a>
                         </div>
                     </div>
                     <div className={Style.trustBadge}></div>
@@ -127,21 +147,16 @@ const Landing = () => {
                         <span className={Style.copyRightOwnerShip}>تمام حقوق مادی و معنوی این طراحی متعلق به امیر محمد خیرابادی میباشد</span>
                     </div>
                     <div className={Style.socialMediasLink}>
-                        <div className={Style.socialMedia}>
-                            <img src="/images/linkedIn.png" alt="LinkedIn"/>
-                        </div>
-                        <div className={Style.socialMedia}>
-                            <img src="/images/whatsApp.png" alt="WhatsApp"/>
-                        </div>
-                        <div className={Style.socialMedia}>
-                            <img src="/images/faceBook.png" alt="FaceBook"/>
-                        </div>
-                        <div className={Style.socialMedia}>
-                            <img src="/images/twitter.png" alt="Twitter"/>
-                        </div>
-                        <div className={Style.socialMedia}>
-                            <img src="/images/instagram.png" alt="Instagram"/>
-                        </div>
+                        {[  { src: '/images/linkedIn.png', alt: 'LinkedIn' }, 
+                            { src: '/images/whatsApp.png', alt: 'WhatsApp' },
+                            { src: '/images/faceBook.png', alt: 'FaceBook' },
+                            { src: '/images/twitter.png', alt: 'Twitter' },
+                            { src: '/images/instagram.png', alt: 'Instagram' }
+                        ].map((social,index) =>(
+                            <a key={index} href="#" className={Style.socialMedia}>
+                                <img src={social.src} alt={social.alt}/>
+                            </a>
+                        ))}
                     </div>
                 </div>
             </div>
