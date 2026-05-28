@@ -11,8 +11,11 @@
 
 .main_box{
     height: fit-content;
-    width: fit-content;
+    width: 500px;
     background-color: white;
     border-radius: 20px;
     color: black;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Style from "../styles/Landing.module.css";
 import clsx from 'clsx';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 const Landing = () => {
 
@@ -44,6 +44,11 @@ const Landing = () => {
         };
     },[isMenuOpen]);
     
+    const navigate = useNavigate()
+    const GoToAuth = () => {
+        navigate("/login")
+    }
+
     return (
         <div className={Style.landingContainer}>
             {isMenuOpen &&(
@@ -73,7 +78,7 @@ const Landing = () => {
                 <div className={Style.header}>
                     <div className={Style.logoContainer}>
                         <div className={Style.logo}>
-                            <img src="/images/Logo.png" alt="Site-Logo"/>
+                            <img src="/images/logo1.png" alt="Site-Logo"/>
                         </div>
                         <div className={Style.logoWordMark}>
                             <img src="/images/logoWordMark.png" alt="Logo-WordMark"/>
@@ -90,7 +95,7 @@ const Landing = () => {
                         <div className={Style.darkModeSwitch} onClick={toggleDarkMode}  title={isDarkMode ? "حالت روشن" : "حالت تاریک"}>
                             <img src={isDarkMode ? "/images/lightMode.png" : "/images/darkMode.png"} alt={isDarkMode ? "Light Mode" : "Dark Mode"} />
                         </div>
-                        <div className={Style.account}>ورود یا ثبت نام</div>
+                        <div className={Style.account} onClick={GoToAuth}>ورود یا ثبت نام</div>
                         <div className={Style.headerShowMoreButton} onClick={toggleMenu}>
                             <img src="/images/headerMore.png" alt="Header-Show-More-Button"/>
                         </div>
