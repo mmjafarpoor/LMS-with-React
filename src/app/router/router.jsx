@@ -5,10 +5,12 @@ import Auth from "../../pages/Auth";
 import Login from "../../components/AuthContainer/Login/Login";
 import SignUp from "../../components/AuthContainer/SignUp/SignUp";
 import ForgetPassword from "../../components/AuthContainer/ForgetPassword/ForgetPassword";
+import Home from "../../pages/Home";
 
 const router = createBrowserRouter([
     { path: "/", element: <Landing/> , children:[
-        { path: "Home", element: <Login /> },
+        {index: true, element: <Home/> },
+        { path: "Home", element: <Home/> },
         { path: "Courses", element: <Login /> },
         { path: "Instructors", element: <Login /> },
         { path: "WebLog", element: <Login /> },

@@ -96,7 +96,7 @@ const Landing = () => {
                     </div>
                 </div>
             </div>
-            <main>
+            <main className={Style.outlet}>
                 <Outlet/>
             </main>
             <div className={Style.bottom}>
