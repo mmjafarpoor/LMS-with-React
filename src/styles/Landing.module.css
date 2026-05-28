@@ -89,14 +89,7 @@
     align-items: center;
     gap: 20px;
 }
-.landingContainer > .mobileMenu > .mobileMenuHolder > .closeTheMobileMenu{
-    width: 50px;
-    height: 50px;
-    background: url(/images/mobileMenuClose.svg) no-repeat;
-    background-size: contain;
-    cursor: pointer;
-}
-.landingContainer > .mobileMenu > .mobileMenuHolder > .screenLightMode{
+.landingContainer > .mobileMenu > .mobileMenuHolder > .closeAndScreenMode{
     width: 70%;
     height: 40px;
     display: flex;
@@ -104,14 +97,21 @@
     flex-wrap: nowrap;
     justify-content: space-between;
 }
-.landingContainer > .mobileMenu > .mobileMenuHolder > .screenLightMode > .mobileLightMode{
+.landingContainer > .mobileMenu > .mobileMenuHolder > .closeAndScreenMode > .closeTheMobileMenu{
+    width: 50px;
+    height: 50px;
+    background: url(/images/mobileMenuClose.svg) no-repeat;
+    background-size: contain;
+    cursor: pointer;
+}
+.landingContainer > .mobileMenu > .mobileMenuHolder > .closeAndScreenMode > .mobileLightMode{
     width: 40px;
     height: 40px;
     background: url(/images/lightMode.png) no-repeat;
     border-radius: 50%;
     cursor: pointer;
 }
-.landingContainer > .mobileMenu > .mobileMenuHolder > .screenLightMode > .mobileDarkMode{
+.landingContainer > .mobileMenu > .mobileMenuHolder > .closeAndScreenMode > .mobileDarkMode{
     width: 40px;
     height: 40px;
     background: url(/images/darkMode.png) no-repeat;
@@ -444,7 +444,13 @@
     }
 }
 @media (max-width: 450px) {
+    .landingContainer > .headerContainer > .header >.logoContainer{
+        margin-right: 11px;
+    }
     .logoWordMark{
         display: none;
+    }
+    .landingContainer > .headerContainer > .header >.loginContainer{
+        margin-left: 11px;
     }
 }

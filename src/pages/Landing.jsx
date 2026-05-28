@@ -49,10 +49,9 @@ const Landing = () => {
             {isMenuOpen &&(
                 <nav className={Style.mobileMenu}>
                     <div className={Style.mobileMenuHolder}>
-                        <div className={Style.closeTheMobileMenu} onClick={toggleMenu}></div>
-                        <div className={Style.screenLightMode}>
-                            <div className={Style.mobileLightMode}></div>
-                            <div className={Style.mobileDarkMode}></div>
+                        <div className={Style.closeAndScreenMode}>
+                            {isDarkMode ? <div className={Style.mobileLightMode} onClick={toggleDarkMode}></div> : <div className={Style.mobileDarkMode} onClick={toggleDarkMode}></div>}
+                            <div className={Style.closeTheMobileMenu} onClick={toggleMenu}></div>
                         </div>
                         <div className={Style.mobileMenuItemsContainer}>
                             <div className={Style.mobileMenuItem}>خانه</div>
