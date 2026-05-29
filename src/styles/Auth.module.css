@@ -12,6 +12,7 @@
 .main_box{
     height: fit-content;
     width: 500px;
+    max-width: 100%;
     background-color: white;
     border-radius: 20px;
     color: black;
