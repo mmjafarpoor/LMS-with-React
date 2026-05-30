@@ -21,11 +21,18 @@ const Home = () => {
         </div>
         <div className={Style.beginTheJourneyBottomSection}>
           <div className={Style.rightSideImage}></div>
-          <div className={Style.activeStudents}></div>
+          <div className={Style.activeStudents}>
+            <span>1000+ <br/>دانشجوی فعال و شاغل <br/>در سر تا سر جهان</span>
+          </div>
           <div className={Style.middleImage}></div>
-          <div className={Style.twentyYearsOfWork}></div>
+          <div className={Style.twentyYearsOfWork}>
+            <span>20+<br/>سال سابقه  اموزش<br/>در برنامه نویسان</span>
+          </div>
           <div className={Style.leftSideImage}></div>
         </div>
+      </div>
+      <div className={Style.latestOnlineCourses}>
+        <div className={Style.latestOnlineCoursesHeading}></div>
       </div>
     </div>
   )

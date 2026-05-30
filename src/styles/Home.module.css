@@ -7,6 +7,7 @@
     flex-direction: column;
     align-items: center;
 }
+                                                /* Begin The Journey Section */
 .beginTheJourney{
     width: 90%;
     height: max-content;
@@ -16,6 +17,7 @@
     flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
+    gap: 35px;
 }
 .beginTheJourneyTopSection{
     display: flex;
@@ -71,6 +73,7 @@
 }
 .beginTheJourneyButton{
     width: 14.3%;
+    min-width: 215px;
     height: 54px;
     background-color: #0CBDE2;
     border-radius: 30px;
@@ -80,8 +83,143 @@
     color: #ffffff;
     font-weight: 600;
     font-size: 1.35rem;
+    white-space: nowrap;
 }
 .beginTheJourneyBottomSection{
-    width: 100%;
-    border: 1px solid black;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+}
+.rightSideImage{
+    width: 18%;
+    min-width: 171px;
+    height: 369px;
+    background: url(/images/manWorkingWithPc.png) no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+}
+.activeStudents{
+    width: 14.7%;
+    min-width: 170px;
+    height: 260px;
+    background-color: #8FE1F2;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    user-select: none;
+}
+.activeStudents > span{
+    font-weight: 900;
+    font-size: clamp(1.05rem,1.1vw,1.35rem);
+    white-space: nowrap;
+}
+.middleImage{
+    width: 17%;
+    height: 175px;
+    min-height: 175px;
+    background: url(/images/manUsingKeyboard.png) no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+}
+.twentyYearsOfWork{
+    width: 14.7%;
+    min-width: 170px;
+    height: 260px;
+    background-color: #DDDDDD;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    user-select: none;
+}
+.twentyYearsOfWork > span{
+    font-weight: 900;
+    font-size: clamp(1.05rem,1.1vw,1.35rem);
+    white-space: nowrap;
+}
+.leftSideImage{
+    width: 18%;
+    height: 369px;
+    min-width: 171px;
+    background: url(/images/boyWithBear.png) no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+}
+                                        /* Latest Online Courses Section */
+.latestOnlineCourses{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    border: 1px solid purple;
+}
+.latestOnlineCoursesHeading{
+
+}
+
+
+
+
+                                                    /* @Media Section */
+@media (max-width: 1200px) {
+    .beginTheJourneyBottomSection{
+        width: 100%;
+    }
+    .rightSideImage,.leftSideImage{
+        height: 295px;
+    }
+}
+@media (max-width: 1000px) {
+    .beginTheJourneyBottomSection{
+        width: 100%;
+    }
+    .middleImage{
+        display: none;
+    }
+}
+@media (max-width: 800px) {
+    .headingTitleFirstLineText {
+        font-size: 2rem;
+    }
+    .headingTitleFirstLineTextBadge {
+        font-size: 2rem;
+        padding: 6px 9px;
+    }
+    .beginTheJourneyHeadingTitleSecondLine{
+        font-size: 1.8rem;
+    }
+    .beginTheJourneyDescription{
+        font-size: 1rem;
+        max-width: 80%;
+    }
+    .beginTheJourneyBottomSection{
+        width: max-content;
+        gap: 85px;
+    }
+    .rightSideImage,.leftSideImage{
+        display: none;
+    }
+    .activeStudents ,.twentyYearsOfWork{
+        min-width: 228px;
+    }
+    .twentyYearsOfWork > span , .activeStudents > span{
+        font-size: 1.35rem;
+    }
+}
+@media (max-width: 600px) {
+    .headingTitleFirstLineText {
+        font-size: 1.8rem;
+    }
+    .headingTitleFirstLineTextBadge {
+        font-size: 1.8rem;
+        padding: 6px 9px;
+    }
+    .beginTheJourneyBottomSection{
+        flex-direction: column;
+    }
 }
