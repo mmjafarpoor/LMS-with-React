@@ -19,4 +19,22 @@
     display: flex;
     flex-flow: column;
     align-items: center;
+    position: relative;
+}
+
+.icons_box{
+    height: 55px;
+    width: 110px;
+    position: absolute;
+    top: -30px;
+    right: 0;
+    background-color: white;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    gap: 16px
+
 }
