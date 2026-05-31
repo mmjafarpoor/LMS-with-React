@@ -6,16 +6,17 @@
     align-items: center;
     background: url("/images/Banner.png") no-repeat 50%;
     background-size: 100%;
-    background-color: #EBEBEB;
+    background-color: var(--auth-bg);
+    /* filter: invert(var(--invert-color)); */
 }
 
 .main_box{
     height: fit-content;
     width: 500px;
     max-width: 100%;
-    background-color: white;
+    background-color: var(--auth-main-bg);
     border-radius: 20px;
-    color: black;
+    color: var(--text-color);
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -24,17 +25,17 @@
 
 .icons_box{
     height: 55px;
-    width: 110px;
+    width: 105px;
     position: absolute;
-    top: -30px;
+    top: -35px;
     right: 0;
-    background-color: white;
+    background-color: var(--auth-main-bg);
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
     display: flex;
     flex-flow: row;
     align-items: center;
     justify-content: center;
-    gap: 16px
+    gap: 12px;
 
 }

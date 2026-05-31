@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import OtpInput from "react-otp-input";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 
 const Login = () => {
   const [step, setStep] = useState(1);
@@ -48,6 +50,21 @@ const Login = () => {
     });
   }
 
+  const inputAnimation = {
+    initial: {
+      opacity: 0,
+      y: 20,
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+    },
+    exit: {
+      opacity: 0,
+      y: -20,
+    },
+  };
+
   return (
     <>
       <img
@@ -87,13 +104,19 @@ const Login = () => {
           <Form className="w-[80%] flex flex-col">
             {/* STEP 1 */}
             {step === 1 && (
-              <>
+              <motion.div
+                key={step}
+                initial={inputAnimation.initial}
+                animate={inputAnimation.animate}
+                exit={inputAnimation.exit}
+              >
                 <Field
                   type="text"
                   name="email"
                   placeholder="ایمیل یا شماره تماس"
-                  className="h-12 w-full rounded-xl mt-4 mb-2 indent-12 outline-[#0CBDE2] caret-[#0CBDE2]
-             bg-[url('/public/images/user.png')] bg-no-repeat bg-position-[97%] bg-[#F4F4F4]"
+                  className="h-12 w-full rounded-xl mt-4 mb-2 indent-12
+                  outline-none border border-transparent focus:border-[#0CBDE2] transition-colors duration-150
+                  bg-[url('/public/images/user.png')] bg-no-repeat bg-position-[97%] bg-(--input-bg)"
                 />
                 <ErrorMessage
                   component="p"
@@ -104,8 +127,9 @@ const Login = () => {
                   type="password"
                   name="password"
                   placeholder="رمز عبور خود را وارد کنید"
-                  className="h-12 w-full rounded-xl mt-2 mb-2 indent-12 outline-[#0CBDE2] caret-[#0CBDE2]
-            bg-[url('/public/images/password.png')] bg-no-repeat bg-position-[97%] bg-[#F4F4F4]"
+                  className="h-12 w-full rounded-xl mt-2 mb-2 indent-12
+                  outline-none border border-transparent focus:border-[#0CBDE2] transition-colors duration-150
+                  bg-[url('/public/images/password.png')] bg-no-repeat bg-position-[97%] bg-(--input-bg)"
                 />
                 <ErrorMessage
                   component="p"
@@ -130,38 +154,40 @@ const Login = () => {
                     فراموشی رمز عبور
                   </Link>
                 </div>
-              </>
+              </motion.div>
             )}
 
             {/* STEP 2 */}
             {step === 2 && (
-              <>
-                <div
-                  data-otp="true"
-                  className="w-full mt-4 flex flex-col items-center justify-around"
-                >
-                  <OtpInput
-                    value={values.otp}
-                    onChange={(value) => setFieldValue("otp", value)}
-                    numInputs={6}
-                    renderSeparator={renderSeparator}
-                    skipDefaultStyles={true}
-                    renderInput={(props) => (
-                      <input
-                        {...props}
-                        className="h-11.5 w-11 m-0.5 text-center text-xl bg-[#F4F4F4] border-2 border-[#DDDDDD] rounded-xl outline-none focus:border-[#0CBDE2] caret-[#0CBDE2]"
-                      />
-                    )}
-                    inputType="tel"
-                    shouldAutoFocus={true}
-                  />
-                  <ErrorMessage
-                    component="p"
-                    name="otp"
-                    className="text-[#0CBDE2] text-[12px] mt-2"
-                  />
-                </div>
-              </>
+              <motion.div
+                key={step}
+                initial={inputAnimation.initial}
+                animate={inputAnimation.animate}
+                exit={inputAnimation.exit}
+                data-otp="true"
+                className="w-full mt-4 flex flex-col items-center justify-around"
+              >
+                <OtpInput
+                  value={values.otp}
+                  onChange={(value) => setFieldValue("otp", value)}
+                  numInputs={6}
+                  renderSeparator={renderSeparator}
+                  skipDefaultStyles={true}
+                  renderInput={(props) => (
+                    <input
+                      {...props}
+                      className="h-11.5 w-11 m-0.5 text-center text-xl bg-(--input-bg) border-2 border-[#DDDDDD] rounded-xl outline-none focus:border-[#0CBDE2] caret-[#0CBDE2]"
+                    />
+                  )}
+                  inputType="tel"
+                  shouldAutoFocus={true}
+                />
+                <ErrorMessage
+                  component="p"
+                  name="otp"
+                  className="text-[#0CBDE2] text-[12px] mt-2"
+                />
+              </motion.div>
             )}
             <button
               type="submit"

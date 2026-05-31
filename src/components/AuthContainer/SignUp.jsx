@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import OtpInput from "react-otp-input";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 
 const SignUp = () => {
   const [step, setStep] = useState(1);
@@ -51,6 +53,21 @@ const SignUp = () => {
     });
   }
 
+  const inputAnimation = {
+    initial: {
+      opacity: 0,
+      y: 20,
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+    },
+    exit: {
+      opacity: 0,
+      y: -20,
+    },
+  };
+
   return (
     <>
       <img
@@ -97,25 +114,36 @@ const SignUp = () => {
           <Form className="w-[80%] flex flex-col">
             {/* STEP 1 */}
             {step === 1 && (
-              <>
+              <motion.div
+                key={step}
+                initial={inputAnimation.initial}
+                animate={inputAnimation.animate}
+                exit={inputAnimation.exit}
+              >
                 <Field
                   type="text"
                   name="email"
                   placeholder="ایمیل یا شماره تماس"
-                  className="h-12 w-full rounded-xl mt-4 indent-12 outline-[#0CBDE2] caret-[#0CBDE2]
-             bg-[url('/public/images/user.png')] bg-no-repeat bg-position-[97%] bg-[#F4F4F4]"
+                  className="h-12 w-full rounded-xl mt-4 indent-12
+                  outline-none border border-transparent focus:border-[#0CBDE2] transition-colors duration-150
+                  bg-[url('/public/images/user.png')] bg-no-repeat bg-position-[97%] bg-(--input-bg)"
                 />
                 <ErrorMessage
                   component="p"
                   name="email"
                   className="mt-2 text-[#0CBDE2] text-[12px] indent-2"
                 />
-              </>
+              </motion.div>
             )}
 
             {/* STEP 2 */}
             {step === 2 && (
-              <>
+              <motion.div
+                key={step}
+                initial={inputAnimation.initial}
+                animate={inputAnimation.animate}
+                exit={inputAnimation.exit}
+              >
                 <div
                   data-otp="true"
                   className="w-full mt-4 flex flex-col items-center justify-around"
@@ -129,7 +157,7 @@ const SignUp = () => {
                     renderInput={(props) => (
                       <input
                         {...props}
-                        className="h-11.5 w-11 m-0.5 text-center text-xl bg-[#F4F4F4] border-2 border-[#DDDDDD] rounded-xl outline-none focus:border-[#0CBDE2] caret-[#0CBDE2]"
+                        className="h-11.5 w-11 m-0.5 text-center text-xl bg-(--input-bg) border-2 border-[#DDDDDD] rounded-xl outline-none focus:border-[#0CBDE2] caret-[#0CBDE2]"
                       />
                     )}
                     inputType="tel"
@@ -141,18 +169,24 @@ const SignUp = () => {
                     className="text-[#0CBDE2] text-[12px] mt-2"
                   />
                 </div>
-              </>
+              </motion.div>
             )}
 
             {/* STEP 3 */}
             {step === 3 && (
-              <>
+              <motion.div
+                key={step}
+                initial={inputAnimation.initial}
+                animate={inputAnimation.animate}
+                exit={inputAnimation.exit}
+              >
                 <Field
                   type="text"
                   name="password"
                   placeholder="رمز عبور"
                   className="h-12 w-full rounded-xl mt-4 mb-2 indent-12 outline-[#0CBDE2] caret-[#0CBDE2]
-             bg-[url('/public/images/password.png')] bg-no-repeat bg-position-[97%] bg-[#F4F4F4]"
+                  outline-none border border-transparent focus:border-[#0CBDE2] transition-colors duration-150
+                  bg-[url('/public/images/password.png')] bg-no-repeat bg-position-[97%] bg-(--input-bg)"
                 />
                 <ErrorMessage
                   component="p"
@@ -164,14 +198,15 @@ const SignUp = () => {
                   name="passwordRepeat"
                   placeholder="تکرار رمز عبور"
                   className="h-12 w-full rounded-xl mt-2  indent-12 outline-[#0CBDE2] caret-[#0CBDE2]
-             bg-[url('/public/images/password.png')] bg-no-repeat bg-position-[97%] bg-[#F4F4F4]"
+                  outline-none border border-transparent focus:border-[#0CBDE2] transition-colors duration-150
+                  bg-[url('/public/images/password.png')] bg-no-repeat bg-position-[97%] bg-(--input-bg)"
                 />
                 <ErrorMessage
                   component="p"
                   name="passwordRepeat"
                   className="mt-2 text-[#0CBDE2] text-[12px] indent-2"
                 />
-              </>
+              </motion.div>
             )}
 
             <button
