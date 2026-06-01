@@ -158,12 +158,9 @@
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    border: 1px solid purple;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
     align-items: center;
     gap: 18px;
+    border: 1px solid purple;
 }
 .latestOnlineCoursesHeading{
     width: clamp(340px,50%,570px);
@@ -173,12 +170,10 @@
     flex-wrap: nowrap;
     align-items: center;
     gap: 15px;
-    border: 1px solid black;
 }
 .latestOnlineCoursesTitleContainer{
     width: 332px;
     height: 63px;
-    border: 1px solid red;
     display: flex;
     flex-direction: row;
     align-items: start;
@@ -207,16 +202,16 @@
     width: 75%;
     height: max-content;
     border: 1px solid cyan;
+    display: flex;
+    overflow: hidden;
 }
 .sliderGallery{
-    width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    border: 1px solid black;
 }
 .sliderItem{
-    width: 100%;
-    max-width: 1293px;
     height: 300px;
     display: flex;
     flex-direction: row;
@@ -228,10 +223,10 @@
     width: 31%;
     max-width: 400px;
     height: 300px;
-    border: 1px solid red;
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 .sliderItemImage{
     width: 100%;
@@ -241,7 +236,7 @@
     height: fit-content;
     max-height: 100%;
     width: 62%;
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -259,7 +254,7 @@
     user-select: none;
 }
 .sliderItemDescription{
-    max-height: 150px;
+    max-height: 70px;
     font-weight: 600;
     overflow: auto;
     text-overflow: ellipsis;
@@ -272,7 +267,6 @@
     flex-direction: row;
     align-items: center;
     gap: 40px;
-    border: 1px solid cyan;
 }
 .sliderItemOlderPriceContainer{
     height: 54px;
@@ -335,6 +329,63 @@
     cursor: pointer;
     user-select: none;
 }
+.sliderItemActionsContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+}
+.sliderItemReservation{
+    width: 180px;
+    height: 51px;
+    background-color: #0CBDE2;
+    border-radius: 35px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    cursor: pointer;
+}
+.sliderItemAddToCart{
+    width: 22px;
+    height: 24px;
+}
+.sliderItemAddToCartText{
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1.1rem;
+    user-select: none;
+}
+.carouselIndicatorsContainer{
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.carouselIndicators{
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #B5B5B5;
+    cursor: pointer;
+    transition: 0.2s linear;
+}
+.carouselIndicators:hover{
+    transform: scale(1.12);
+}
+.carouselIndicatorsActive{
+    width: 32px;
+    height: 12px;
+    border-radius: 12px;
+    background-color: #0CBDE2;
+}
+
+
+
+
 
 
 
@@ -353,6 +404,10 @@
     }
     .middleImage{
         display: none;
+    }
+                                        /* Latest Online Course Media */
+    .latestOnlineCourses{
+        width: 100%;
     }
 }
 @media (max-width: 800px) {

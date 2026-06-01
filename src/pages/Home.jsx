@@ -1,7 +1,50 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Style from "../styles/Home.module.css";
+import SliderData from "../Data/SliderData"
+import clsx from "clsx"
 
 const Home = () => {
+  // console.log(SliderData);
+  // console.log(SliderData.length);
+  
+  const sliderRef = useRef(null);
+  const [sliderContainerWidth, setSliderContainerWidth] = useState(0)
+  useEffect(() => {
+    const calculateWidth = () => {
+      if (!sliderRef.current) return;
+      const newItemWidth = sliderRef.current.offsetWidth;
+      setSliderContainerWidth(newItemWidth);
+      console.log("Container Item:", newItemWidth);
+    };
+
+    calculateWidth();
+
+    window.addEventListener("resize", calculateWidth);
+
+    return () => {
+      window.removeEventListener("resize", calculateWidth);
+    };
+  }, []);
+
+  const galleryWidth =
+    sliderContainerWidth > 0
+      ? (SliderData.length * sliderContainerWidth) +
+        (SliderData.length - 1)
+      : 0;
+  const itemWidth = galleryWidth/(SliderData.length);
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide(prev =>
+        prev === SliderData.length - 1 ? 0 : prev + 1
+      );
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className={Style.homeContainer}>
       <div className={Style.beginTheJourney}>
@@ -39,27 +82,40 @@ const Home = () => {
           </div>
           <div className={Style.latestOnlineCoursesDescription}>محبوب ترین دوره های آموزشی نویسندگان متخصص ما را بررسی کنید.</div>
         </div>
-        <div className={Style.sliderContainer}>
-          <div className={Style.sliderGallery}>
-            <div className={Style.sliderItem}>
-              <div className={Style.sliderItemImageWrapper}>
-                <img src="/images/reactProductCardPic.png" alt="" className={Style.sliderItemImage}/>
-              </div>
-              <div className={Style.sliderItemMeta}>
-                <div className={Style.sliderItemMetaHeading}>
-                  <span className={Style.sliderItemTitle}>آموزش Node.js</span>
-                  <span className={Style.sliderItemDescription}>Node.js یک پلتفرم قدرتمند برای توسعهٔ برنامههای سرور با استفاده از جاوااسکریپت است. با استفاده از Node.js، میتوانید اپلیکیشنهای سریع و مقیاسپذیر بسازید. یادگیری آن آسان است، بهخصوص اگر با جاوااسکریپت آشنا باشید.</span>
+        <div className={Style.sliderContainer} ref={sliderRef}>
+          <div className={Style.sliderGallery} style={{width : galleryWidth , transform: `translateX(+${currentSlide * sliderContainerWidth}px)`,transition: "transform 0.5s ease"}}>
+            {SliderData.map((item) =>(
+              <div key={item.id} className={Style.sliderItem} style={{width : itemWidth}}>
+                <div className={Style.sliderItemImageWrapper}>
+                  <img src={item.imageURL} alt="" className={Style.sliderItemImage}/>
                 </div>
-                <div className={Style.sliderItemPriceTagsContainer}>
-                  <div className={Style.sliderItemOlderPriceContainer}>
-                    <div className={Style.sliderItemOlderPrice}>40.000 تومان</div>
-                    <div className={Style.sliderItemPriceOfferLine}></div>
-                    <div className={Style.sliderItemPriceOfferPercentage}>10%</div>
+                <div className={Style.sliderItemMeta}>
+                  <div className={Style.sliderItemMetaHeading}>
+                    <span className={Style.sliderItemTitle}>{item.name}</span>
+                    <span className={Style.sliderItemDescription}>Node.js یک پلتفرم قدرتمند برای توسعهٔ برنامههای سرور با استفاده از جاوااسکریپت است. با استفاده از Node.js، میتوانید اپلیکیشنهای سریع و مقیاسپذیر بسازید. یادگیری آن آسان است، بهخصوص اگر با جاوااسکریپت آشنا باشید.</span>
                   </div>
-                  <div className={Style.newPrice}>40.000 تومان</div>
+                  <div className={Style.sliderItemPriceTagsContainer}>
+                    <div className={Style.sliderItemOlderPriceContainer}>
+                      <div className={Style.sliderItemOlderPrice}>{item.olderPrice}</div>
+                      <div className={Style.sliderItemPriceOfferLine}></div>
+                      <div className={Style.sliderItemPriceOfferPercentage}>10%</div>
+                    </div>
+                    <div className={Style.newPrice}>{item.price}</div>
+                  </div>
+                  <div className={Style.sliderItemActionsContainer}>
+                    <div className={Style.sliderItemReservation}>
+                      <img src="/images/addToCart.png" alt="Add-To-Cart" className={Style.sliderItemAddToCart} />
+                      <span className={Style.sliderItemAddToCartText}>شروع یادگیری</span>
+                    </div>
+                  </div>
+                  <div className={Style.carouselIndicatorsContainer}>
+                    {SliderData.map((item,index) => (
+                      <div onClick={() => setCurrentSlide(index)} key={item.id} className={clsx(Style.carouselIndicators,currentSlide === index ? Style.carouselIndicatorsActive : null)}></div>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
