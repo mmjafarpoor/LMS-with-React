@@ -160,7 +160,6 @@
     flex-wrap: nowrap;
     align-items: center;
     gap: 18px;
-    border: 1px solid purple;
 }
 .latestOnlineCoursesHeading{
     width: clamp(340px,50%,570px);
@@ -201,7 +200,6 @@
 .sliderContainer{
     width: 75%;
     height: max-content;
-    border: 1px solid cyan;
     display: flex;
     overflow: hidden;
 }
@@ -209,7 +207,6 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    border: 1px solid black;
 }
 .sliderItem{
     height: 300px;
@@ -336,6 +333,7 @@
     justify-content: end;
 }
 .sliderItemReservation{
+    margin-left: 5px;
     width: 180px;
     height: 51px;
     background-color: #0CBDE2;

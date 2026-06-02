@@ -8,6 +8,7 @@ const Home = () => {
   // console.log(SliderData.length);
   
   const sliderRef = useRef(null);
+  const intervalRef = useRef(null);
   const [sliderContainerWidth, setSliderContainerWidth] = useState(0)
   useEffect(() => {
     const calculateWidth = () => {
@@ -26,23 +27,26 @@ const Home = () => {
     };
   }, []);
 
-  const galleryWidth =
-    sliderContainerWidth > 0
-      ? (SliderData.length * sliderContainerWidth) +
-        (SliderData.length - 1)
-      : 0;
+  const galleryWidth = sliderContainerWidth > 0 ? (SliderData.length * sliderContainerWidth) : 0;
   const itemWidth = galleryWidth/(SliderData.length);
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
+  const startSlider = () => {
+    clearInterval(intervalRef.current);
+
+    intervalRef.current = setInterval(() => {
       setCurrentSlide(prev =>
         prev === SliderData.length - 1 ? 0 : prev + 1
       );
-    }, 5000);
-
-    return () => clearInterval(interval);
+    }, 2500);
+  };
+  const stopSlider = () => {
+    clearInterval(intervalRef.current);
+  };
+  useEffect(() => {
+    startSlider();
+    return () => stopSlider();
   }, []);
 
   return (
@@ -83,7 +87,7 @@ const Home = () => {
           <div className={Style.latestOnlineCoursesDescription}>محبوب ترین دوره های آموزشی نویسندگان متخصص ما را بررسی کنید.</div>
         </div>
         <div className={Style.sliderContainer} ref={sliderRef}>
-          <div className={Style.sliderGallery} style={{width : galleryWidth , transform: `translateX(+${currentSlide * sliderContainerWidth}px)`,transition: "transform 0.5s ease"}}>
+          <div className={Style.sliderGallery} style={{width : galleryWidth , transform: `translateX(+${currentSlide * sliderContainerWidth}px)`,transition: "transform 0.5s ease"}} onMouseEnter={stopSlider} onMouseLeave={startSlider}>
             {SliderData.map((item) =>(
               <div key={item.id} className={Style.sliderItem} style={{width : itemWidth}}>
                 <div className={Style.sliderItemImageWrapper}>
