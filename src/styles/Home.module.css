@@ -380,8 +380,12 @@
     border-radius: 12px;
     background-color: #0CBDE2;
 }
-
-
+                                            /* Best Instructors Section */
+.bestInstructorsContainer{
+    width: 90%;
+    height: 825px;
+    border: 1px solid black;
+}
 
 
 
