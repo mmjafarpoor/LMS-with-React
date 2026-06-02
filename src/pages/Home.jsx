@@ -39,7 +39,7 @@ const Home = () => {
       setCurrentSlide(prev =>
         prev === SliderData.length - 1 ? 0 : prev + 1
       );
-    }, 2500);
+    }, 2250);
   };
   const stopSlider = () => {
     clearInterval(intervalRef.current);
@@ -124,7 +124,29 @@ const Home = () => {
         </div>
       </div>
       <div className={Style.bestInstructorsContainer}></div>
-      
+      <div className={Style.selfPresentationContainer}>
+        <div className={Style.selfPresentationBanner}>
+          <img src="/images/selfPresentationBanner.png" alt="Self-Presentation-Banner" className={Style.selfPresentationBannerImage}/>
+          <div className={Style.twoDecadesOfExperience}>
+            <span className={Style.twoDecadesOfExperienceText}>+20 <br/>
+              سال سابقه  اموزش<br/>
+              در برنامه نویسان
+            </span>
+          </div>
+        </div>
+        <div className={Style.selfPresentation}>
+          <div className={Style.selfPresentationHeading}>
+            <span className={Style.selfPresentationTitle}>چرا به یک جامعه‌ی یادگیرندگان مادام‌العمر نیاز داریم؟</span>
+            <span className={Style.selfPresentationDescription}>زیرا برنامه‌نویسی فقط یک مهارت فنی نیست؛ راهی است برای تقویت تفکر منطقی، حل مسئله و ساختن آینده‌ای روشن‌تر. با همراهی یک جامعه فعال و پشتیبان، می‌توانی بر چالش‌ها مسلط شوی و مسیر رشد خود را با اعتماد بیشتری طی کنی.</span>
+          </div>
+          <div className={Style.learnToLead}>
+            <div className={Style.learnToLeadHeading}>
+              <img src="/images/learnToLead.png" alt="Learn-To-Lead" className={Style.learnToLeadIcon}/>
+              <span className={Style.learnToLeadTitle}>رهبرِ مؤثرِ آینده باش</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

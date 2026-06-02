@@ -16,13 +16,15 @@ html, body, #root{
     --bg-color: #ffffff;
     --text-color: #000000;
     --header-bg: #FFFFFF; 
-    --bottom-bg: #F4F4F4; 
+    --bottom-bg: #F4F4F4;
+    --icon-bg: url("/images/darkMode.png"); 
 }
 .dark-theme {
     --bg-color: #212121;
     --text-color: #FFFFFF;
     --header-bg: #2E2E2E;
     --bottom-bg: #2E2E2E;
+    --icon-bg: url("/images/lightMode.png");
 }
 img{
   width: fit-content;
@@ -32,6 +34,11 @@ img{
   font-family: IranSans;
   src: url(/fonts/persian-fonts/iran-sans/IRANSans_Bold.ttf);
   font-weight: 900;
+}
+@font-face {
+  font-family: IranSans;
+  src: url(/fonts/persian-fonts/iran-sans/IRANSans_Black.ttf);
+  font-weight: 800;
 }
 @font-face {
   font-family: IranSans;
