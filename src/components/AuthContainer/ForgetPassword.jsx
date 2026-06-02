@@ -5,7 +5,7 @@ import { Form, Formik, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import OtpInput from "react-otp-input";
 // eslint-disable-next-line no-unused-vars
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const ForgetPassword = () => {
   const [step, setStep] = useState(1);
@@ -68,6 +68,21 @@ const ForgetPassword = () => {
     },
   };
 
+  const errorAnimation = {
+    initial: {
+      opacity: 0,
+      height: 0,
+    },
+    animate: {
+      opacity: 1,
+      height: "auto",
+    },
+    exit: {
+      opacity: 0,
+      height: 0,
+    },
+  };
+
   return (
     <>
       <img
@@ -116,7 +131,7 @@ const ForgetPassword = () => {
         }}
         validationSchema={validationSchema}
       >
-        {({ values, setFieldValue }) => (
+        {({ values, setFieldValue, errors, touched }) => (
           <Form className="w-[80%] flex flex-col">
             {/* STEP 1 */}
             {step === 1 && (
@@ -130,15 +145,22 @@ const ForgetPassword = () => {
                   type="text"
                   name="email"
                   placeholder="ایمیل یا شماره تماس"
-                  className="h-12 w-full rounded-xl mt-4 indent-12 outline-[#0CBDE2] caret-[#0CBDE2]
+                  className="h-12 w-full rounded-xl mt-4 mb-2 indent-12 outline-[#0CBDE2] caret-[#0CBDE2]
                   outline-none border border-transparent focus:border-[#0CBDE2] transition-colors duration-150
                   bg-[url('/public/images/user.png')] bg-no-repeat bg-position-[97%] bg-(--input-bg)"
                 />
-                <ErrorMessage
-                  component="p"
-                  name="email"
-                  className="mt-2 text-[#0CBDE2] text-[12px] indent-2"
-                />
+                <AnimatePresence>
+                  {errors.email && touched.email && (
+                    <motion.p
+                      initial={errorAnimation.initial}
+                      animate={errorAnimation.animate}
+                      exit={errorAnimation.exit}
+                      className="text-[#0CBDE2] text-[12px] indent-2"
+                    >
+                      {errors.email}
+                    </motion.p>
+                  )}
+                </AnimatePresence>
               </motion.div>
             )}
 
@@ -163,17 +185,24 @@ const ForgetPassword = () => {
                     renderInput={(props) => (
                       <input
                         {...props}
-                        className="h-11.5 w-11 m-0.5 text-center text-xl bg-(--input-bg) border-2 border-[#DDDDDD] rounded-xl outline-none focus:border-[#0CBDE2] caret-[#0CBDE2]"
+                        className="h-11.5 w-11 m-0.5 mb-2 text-center text-xl bg-(--input-bg) border-2 border-[#DDDDDD] rounded-xl outline-none focus:border-[#0CBDE2] caret-[#0CBDE2]"
                       />
                     )}
                     inputType="tel"
                     shouldAutoFocus={true}
                   />
-                  <ErrorMessage
-                    component="p"
-                    name="otp"
-                    className="text-[#0CBDE2] text-[12px] mt-2"
-                  />
+                  <AnimatePresence>
+                    {errors.otp && touched.otp && (
+                      <motion.p
+                        initial={errorAnimation.initial}
+                        animate={errorAnimation.animate}
+                        exit={errorAnimation.exit}
+                        className="text-[#0CBDE2] text-[12px] indent-2"
+                      >
+                        {errors.otp}
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
                 </div>
               </motion.div>
             )}
@@ -194,30 +223,44 @@ const ForgetPassword = () => {
                   outline-none border border-transparent focus:border-[#0CBDE2] transition-colors duration-150
                   bg-[url('/public/images/password.png')] bg-no-repeat bg-position-[97%] bg-(--input-bg)"
                 />
-                <ErrorMessage
-                  component="p"
-                  name="password"
-                  className="text-[#0CBDE2] text-[12px] indent-2"
-                />
+                <AnimatePresence>
+                  {errors.password && touched.password && (
+                    <motion.p
+                      initial={errorAnimation.initial}
+                      animate={errorAnimation.animate}
+                      exit={errorAnimation.exit}
+                      className="text-[#0CBDE2] text-[12px] indent-2"
+                    >
+                      {errors.password}
+                    </motion.p>
+                  )}
+                </AnimatePresence>
                 <Field
                   type="text"
                   name="passwordRepeat"
                   placeholder="تکرار رمز عبور"
-                  className="h-12 w-full rounded-xl mt-2 indent-12
+                  className="h-12 w-full rounded-xl mt-2 mb-2 indent-12
                   outline-none border border-transparent focus:border-[#0CBDE2] transition-colors duration-150 caret-[#0CBDE2]
                   bg-[url('/public/images/password.png')] bg-no-repeat bg-position-[97%] bg-(--input-bg)"
                 />
-                <ErrorMessage
-                  component="p"
-                  name="passwordRepeat"
-                  className="mt-2 text-[#0CBDE2] text-[12px] indent-2"
-                />
+                <AnimatePresence>
+                  {errors.passwordRepeat && touched.passwordRepeat && (
+                    <motion.p
+                      initial={errorAnimation.initial}
+                      animate={errorAnimation.animate}
+                      exit={errorAnimation.exit}
+                      className="text-[#0CBDE2] text-[12px] indent-2"
+                    >
+                      {errors.passwordRepeat}
+                    </motion.p>
+                  )}
+                </AnimatePresence>
               </motion.div>
             )}
 
             <button
               type="submit"
-              className="h-12 w-full mt-4 mb-6 font-bold! text-white bg-[#0CBDE2] flex items-center justify-center rounded-xl cursor-pointer"
+              className="h-12 w-full mt-2 mb-8 font-bold! text-white bg-[#0CBDE2] flex items-center justify-center rounded-xl cursor-pointer"
             >
               {step === 1
                 ? "ارسال کد یکبار مصرف"
@@ -239,7 +282,7 @@ const ForgetPassword = () => {
       )}
 
       {step === 2 && time > 0 && (
-        <div className="h-6 w-fit mb-8 p-2">
+        <div className="h-6 w-fit mb-8">
           {minute}:{second.toString().padStart(2, "0")}
         </div>
       )}

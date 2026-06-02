@@ -5,7 +5,7 @@ import { Form, Formik, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import OtpInput from "react-otp-input";
 // eslint-disable-next-line no-unused-vars
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Login = () => {
   const [step, setStep] = useState(1);
@@ -65,6 +65,21 @@ const Login = () => {
     },
   };
 
+  const errorAnimation = {
+    initial: {
+      opacity: 0,
+      height: 0,
+    },
+    animate: {
+      opacity: 1,
+      height: "auto",
+    },
+    exit: {
+      opacity: 0,
+      height: 0,
+    },
+  };
+
   return (
     <>
       <img
@@ -89,7 +104,6 @@ const Login = () => {
             setPassword(values.password);
             setStep(2);
           }
-
           if (!values.otp) return;
           if (step === 2 && values.otp === "000000") {
             setOtp(values.otp);
@@ -100,7 +114,7 @@ const Login = () => {
         }}
         validationSchema={validationSchema}
       >
-        {({ values, setFieldValue }) => (
+        {({ values, setFieldValue, errors, touched }) => (
           <Form className="w-[80%] flex flex-col">
             {/* STEP 1 */}
             {step === 1 && (
@@ -118,11 +132,23 @@ const Login = () => {
                   outline-none border border-transparent focus:border-[#0CBDE2] transition-colors duration-150
                   bg-[url('/public/images/user.png')] bg-no-repeat bg-position-[97%] bg-(--input-bg)"
                 />
-                <ErrorMessage
+                <AnimatePresence>
+                  {errors.email && touched.email && (
+                    <motion.p
+                      initial={errorAnimation.initial}
+                      animate={errorAnimation.animate}
+                      exit={errorAnimation.exit}
+                      className="text-[#0CBDE2] text-[12px] indent-2"
+                    >
+                      {errors.email}
+                    </motion.p>
+                  )}
+                </AnimatePresence>
+                {/* <ErrorMessage
                   component="p"
                   name="email"
                   className="text-[#0CBDE2] text-[12px] indent-2"
-                />
+                /> */}
                 <Field
                   type="password"
                   name="password"
@@ -131,11 +157,18 @@ const Login = () => {
                   outline-none border border-transparent focus:border-[#0CBDE2] transition-colors duration-150
                   bg-[url('/public/images/password.png')] bg-no-repeat bg-position-[97%] bg-(--input-bg)"
                 />
-                <ErrorMessage
-                  component="p"
-                  name="password"
-                  className="text-[#0cbee2] text-[12px] indent-2"
-                />
+                <AnimatePresence>
+                  {errors.password && touched.password && (
+                    <motion.p
+                      initial={errorAnimation.initial}
+                      animate={errorAnimation.animate}
+                      exit={errorAnimation.exit}
+                      className="text-[#0CBDE2] text-[12px] indent-2"
+                    >
+                      {errors.password}
+                    </motion.p>
+                  )}
+                </AnimatePresence>
                 <div className="flex flex-row items-center justify-between mt-2 w-full">
                   <div className="flex flex-row items-center gap-1.25">
                     <div
@@ -182,11 +215,18 @@ const Login = () => {
                   inputType="tel"
                   shouldAutoFocus={true}
                 />
-                <ErrorMessage
-                  component="p"
-                  name="otp"
-                  className="text-[#0CBDE2] text-[12px] mt-2"
-                />
+                <AnimatePresence>
+                  {errors.otp && touched.otp && (
+                    <motion.p
+                      initial={errorAnimation.initial}
+                      animate={errorAnimation.animate}
+                      exit={errorAnimation.exit}
+                      className="text-[#0CBDE2] text-[12px] indent-2 mt-2"
+                    >
+                      {errors.otp}
+                    </motion.p>
+                  )}
+                </AnimatePresence>
               </motion.div>
             )}
             <button
