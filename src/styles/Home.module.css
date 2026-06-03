@@ -390,7 +390,6 @@
 .selfPresentationContainer{
     width: 90%;
     height: 834px;
-    border: 1px solid blue;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -398,13 +397,12 @@
 .selfPresentationBanner{
     height: 100%;
     width: 36%;
-    border: 1px solid red;
+    min-width: 425px;
     position: relative;
 }
 .selfPresentationBannerImage{
     width: 94%;
     height: 776px;
-    border: 1px solid black;
 }
 .twoDecadesOfExperience{
     position: absolute;
@@ -421,16 +419,17 @@
 }
 .twoDecadesOfExperience > span{
     font-size: 1.8rem;
+    font-size: clamp(1.5rem,1.5vw,1.9rem);
     font-weight: 900;
     color: #ffffff;
 }
 .selfPresentation{
     width: 44%;
     height: max-content;
-    border: 1px solid orange;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 35px;
+    overflow: hidden;
 }
 .selfPresentationHeading{
     height: max-content;
@@ -441,22 +440,21 @@
 }
 .selfPresentationTitle{
     font-weight: 800;
-    font-size: 2.15rem;
+    font-size: clamp(1.7rem,1.8vw,2.2rem);
 }
 .selfPresentationDescription{
     font-weight: 600;
     color: #A6A6A6;
-    font-size: 1.1rem;
+    font-size: clamp(0.98rem,0.95vw,1.15rem);
 }
-.learnToLead{
+.prosAboutUs{
     height: max-content;
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 25px;
-    border: 1px solid blue;
 }
-.learnToLeadHeading{
+.prosAboutUsHeading{
     width: max-content;
     height: max-content;
     display: flex;
@@ -464,14 +462,39 @@
     flex-wrap: nowrap;
     align-items: center;
     gap: 10px;
-    border: 1px solid cyan;
 }
-.learnToLeadIcon{
+.prosAboutUsIcon{
     width: 40px;
     height: 40px;
 }
-.learnToLeadTitle{
-    
+.prosAboutUsTitle{
+    font-weight: 900;
+    font-size: clamp(1.1rem,1.05vw,1.3rem);
+    text-overflow: ellipsis;
+}
+.prosAboutUsDescription{
+    font-weight: 600;
+    color: #A6A6A6;
+    font-size: clamp(0.98rem,0.95vw,1.15rem);
+}
+.knowMoreAboutOurTrip{
+    margin: 0 auto;
+    width: 42%;
+    min-width: 240px;
+    height: 55px;
+    background-color: #0CBDE2;
+    border-radius: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.knowMoreAboutOurTripText{
+    color: #ffffff;
+    font-weight: 900;
+    font-size: clamp(1.2rem,1.13vw,1.4rem);
+    user-select: none;
+    white-space: nowrap;
 }
 
 
@@ -500,6 +523,19 @@
                                         /* Latest Online Course Media */
     .latestOnlineCourses{
         width: 100%;
+    }
+}
+@media (max-width: 900px) {
+    .selfPresentationContainer{
+        height: max-content;
+        justify-content: center;
+        align-items: center;
+    }
+    .selfPresentationBanner{
+        display: none;
+    }
+    .selfPresentation{
+        width: 80%;
     }
 }
 @media (max-width: 800px) {
@@ -544,5 +580,8 @@
     }
     .beginTheJourneyBottomSection{
         flex-direction: column;
+    }
+    .selfPresentation{
+        width: 100%;
     }
 }

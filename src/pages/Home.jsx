@@ -139,11 +139,19 @@ const Home = () => {
             <span className={Style.selfPresentationTitle}>چرا به یک جامعه‌ی یادگیرندگان مادام‌العمر نیاز داریم؟</span>
             <span className={Style.selfPresentationDescription}>زیرا برنامه‌نویسی فقط یک مهارت فنی نیست؛ راهی است برای تقویت تفکر منطقی، حل مسئله و ساختن آینده‌ای روشن‌تر. با همراهی یک جامعه فعال و پشتیبان، می‌توانی بر چالش‌ها مسلط شوی و مسیر رشد خود را با اعتماد بیشتری طی کنی.</span>
           </div>
-          <div className={Style.learnToLead}>
-            <div className={Style.learnToLeadHeading}>
-              <img src="/images/learnToLead.png" alt="Learn-To-Lead" className={Style.learnToLeadIcon}/>
-              <span className={Style.learnToLeadTitle}>رهبرِ مؤثرِ آینده باش</span>
+          {[{src : "/images/learnToLead.png" , alt : "Learn-To-Lead" , title : "رهبرِ مؤثرِ آینده باش" , description : "کلاس‌های برنامه‌نویسی ما طوری طراحی شده‌اند که بتوانی در هر سطحی که هستی، مهارت‌هایی واقعی و کاربردی کسب کنی. یاد می‌گیری چگونه بر ایده‌هایت مسلط شوی، پروژه بسازی و قدم‌به‌قدم آینده شغلی‌ات را متحول کنی."},
+            {src : "/images/pathOfGrowth.png" , alt : "Path-Of-Growth" , title : "مسیر پیشرفت شفاف و قابل اندازه‌گیری" , description : "در هر مرحله می‌توانی رشد خود را ببینی، پروژه‌هایت را توسعه دهی و نتایج واقعی به دست بیاوری. هدف ما این است که تو نه فقط برنامه‌نویسی، بلکه طرز فکر یک سازنده و خالق را به دست بیاوری."}
+          ].map((pros,index) => (
+            <div kdy={index} className={Style.prosAboutUs}>
+              <div className={Style.prosAboutUsHeading}>
+                <img src={pros.src} alt={pros.alt} className={Style.prosAboutUsIcon}/>
+                <span className={Style.prosAboutUsTitle}>{pros.title}</span>
+              </div>
+              <span className={Style.prosAboutUsDescription}>{pros.description}</span>
             </div>
+          ))}
+          <div className={Style.knowMoreAboutOurTrip}>
+            <span className={Style.knowMoreAboutOurTripText}>درباره سفر ما بیشتر بدانید</span>
           </div>
         </div>
       </div>
