@@ -1,26 +1,24 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import Landing from "../../pages/Landing";
-import Auth from "../../pages/Auth";
-<<<<<<< HEAD
-import Login from "../../components/AuthContainer/Login/Login";
-import SignUp from "../../components/AuthContainer/SignUp/SignUp";
-import ForgetPassword from "../../components/AuthContainer/ForgetPassword/ForgetPassword";
 import Home from "../../pages/Home";
-=======
+import Auth from "../../pages/Auth";
 import Login from "../../components/AuthContainer/Login";
 import SignUp from "../../components/AuthContainer/SignUp";
 import ForgetPassword from "../../components/AuthContainer/ForgetPassword";
->>>>>>> authentication
+import Courses from "../../pages/Courses";
+import Instructors from "../../pages/Instructors";
+import Contact from "../../pages/Contact";
+import News from "../../pages/News";
 
 const router = createBrowserRouter([
     { path: "/", element: <Landing/> , children:[
         {index: true, element: <Home/> },
         { path: "Home", element: <Home/> },
-        { path: "Courses", element: <Login /> },
-        { path: "Instructors", element: <Login /> },
-        { path: "WebLog", element: <Login /> },
-        { path: "Contact", element: <Login /> },
+        { path: "Courses", element: <Courses/> },
+        { path: "Instructors", element: <Instructors/> },
+        { path: "News", element: <News/> },
+        { path: "Contact", element: <Contact/> },
     ]},
     {
         path: "/",

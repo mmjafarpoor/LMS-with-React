@@ -87,11 +87,11 @@ const Home = () => {
           <div className={Style.latestOnlineCoursesDescription}>محبوب ترین دوره های آموزشی نویسندگان متخصص ما را بررسی کنید.</div>
         </div>
         <div className={Style.sliderContainer} ref={sliderRef}>
-          <div className={Style.sliderGallery} style={{width : galleryWidth , transform: `translateX(+${currentSlide * sliderContainerWidth}px)`,transition: "transform 0.5s ease"}} onMouseEnter={stopSlider} onMouseLeave={startSlider}>
+          <div className={Style.sliderGallery} style={{width : galleryWidth , transform: `translateX(+${currentSlide * sliderContainerWidth}px)`,transition: "transform 0s ease"}} onMouseEnter={stopSlider} onMouseLeave={startSlider}>
             {SliderData.map((item) =>(
               <div key={item.id} className={Style.sliderItem} style={{width : itemWidth}}>
                 <div className={Style.sliderItemImageWrapper}>
-                  <img src={item.imageURL} alt="" className={Style.sliderItemImage}/>
+                  <img src={item.imageURL} alt="Slider-Image" className={Style.sliderItemImage}/>
                 </div>
                 <div className={Style.sliderItemMeta}>
                   <div className={Style.sliderItemMetaHeading}>

@@ -26,30 +26,21 @@ body > div:not([data-otp]) {
     --bg-color: #FFFFFF;
     --text-color: #000000;
     --header-bg: #FFFFFF; 
-<<<<<<< HEAD
     --bottom-bg: #F4F4F4;
-    --icon-bg: url("/images/darkMode.png"); 
-=======
-    --bottom-bg: #F4F4F4; 
     --auth-bg: #F4F4F4;
     --auth-main-bg: #FFFFFF;
     --input-bg: #F4F4F4;
-    --invert-color: 0
->>>>>>> authentication
+    --invert-color: 0;
 }
 .dark-theme {
     --bg-color: #212121;
     --text-color: #FFFFFF;
     --header-bg: #2E2E2E;
     --bottom-bg: #2E2E2E;
-<<<<<<< HEAD
-    --icon-bg: url("/images/lightMode.png");
-=======
     --auth-bg: #212121;
     --auth-main-bg: #2E2E2E;
     --input-bg: #4F4F4F;
-    --invert-color: 1
->>>>>>> authentication
+    --invert-color: 1;
 }
 
 ::view-transition-old(root),
@@ -59,7 +50,7 @@ body > div:not([data-otp]) {
 }
 
 ::view-transition-old(root) {
-  z-index: 1;
+  z-index: 500;
 }
 
 ::view-transition-new(root) {

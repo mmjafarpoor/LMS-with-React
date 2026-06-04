@@ -84,7 +84,7 @@ const Login = () => {
     <>
       <img
         style={{ height: "180px", marginTop: "32px" }}
-        src="/public/images/logo2.png"
+        src="/images/bigLogo.png"
       />
       <p className="font-bold! text-2xl mt-4 mb-4">ورود به حساب کاربری</p>
 
