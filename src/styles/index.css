@@ -11,21 +11,61 @@ html, body, #root{
   height: 100%;
   width: 100%;
   margin: 0;
+  /* direction: rtl; */
 }
+
+body > div:not([data-otp]) {
+  direction: rtl;
+}
+
+[data-otp="true"] * {
+  direction: ltr !important;
+}
+
 :root {
-    --bg-color: #ffffff;
+    --bg-color: #FFFFFF;
     --text-color: #000000;
     --header-bg: #FFFFFF; 
+<<<<<<< HEAD
     --bottom-bg: #F4F4F4;
     --icon-bg: url("/images/darkMode.png"); 
+=======
+    --bottom-bg: #F4F4F4; 
+    --auth-bg: #F4F4F4;
+    --auth-main-bg: #FFFFFF;
+    --input-bg: #F4F4F4;
+    --invert-color: 0
+>>>>>>> authentication
 }
 .dark-theme {
     --bg-color: #212121;
     --text-color: #FFFFFF;
     --header-bg: #2E2E2E;
     --bottom-bg: #2E2E2E;
+<<<<<<< HEAD
     --icon-bg: url("/images/lightMode.png");
+=======
+    --auth-bg: #212121;
+    --auth-main-bg: #2E2E2E;
+    --input-bg: #4F4F4F;
+    --invert-color: 1
+>>>>>>> authentication
 }
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 10000;
+}
+
 img{
   width: fit-content;
   height: fit-content;
@@ -55,3 +95,4 @@ img{
   src: url(/fonts/persian-fonts/iran-sans/IRANSans_Light.ttf);
   font-weight: 400px;
 }
+

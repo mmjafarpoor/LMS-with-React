@@ -2,10 +2,16 @@ import { createBrowserRouter } from "react-router-dom";
 
 import Landing from "../../pages/Landing";
 import Auth from "../../pages/Auth";
+<<<<<<< HEAD
 import Login from "../../components/AuthContainer/Login/Login";
 import SignUp from "../../components/AuthContainer/SignUp/SignUp";
 import ForgetPassword from "../../components/AuthContainer/ForgetPassword/ForgetPassword";
 import Home from "../../pages/Home";
+=======
+import Login from "../../components/AuthContainer/Login";
+import SignUp from "../../components/AuthContainer/SignUp";
+import ForgetPassword from "../../components/AuthContainer/ForgetPassword";
+>>>>>>> authentication
 
 const router = createBrowserRouter([
     { path: "/", element: <Landing/> , children:[
@@ -17,7 +23,7 @@ const router = createBrowserRouter([
         { path: "Contact", element: <Login /> },
     ]},
     {
-        path: "/Auth",
+        path: "/",
         element: <Auth/>,
         children: [
             { path: "login", element: <Login /> },
