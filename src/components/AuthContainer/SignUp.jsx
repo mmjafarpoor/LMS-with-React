@@ -141,7 +141,7 @@ const SignUp = () => {
                   placeholder="ایمیل یا شماره تماس"
                   className="h-12 w-full rounded-xl mt-4 mb-2 indent-12
                   outline-none border border-transparent focus:border-[#0CBDE2] transition-colors duration-150
-                  bg-[url('/public/images/user.png')] bg-no-repeat bg-position-[97%] bg-(--input-bg)"
+                  bg-[url('/images/user.png')] bg-no-repeat bg-position-[97%] bg-(--input-bg)"
                 />
                 <AnimatePresence>
                   {errors.email && touched.email && (
@@ -215,7 +215,7 @@ const SignUp = () => {
                   placeholder="رمز عبور"
                   className="h-12 w-full rounded-xl mt-4 mb-2 indent-12 outline-[#0CBDE2] caret-[#0CBDE2]
                   outline-none border border-transparent focus:border-[#0CBDE2] transition-colors duration-150
-                  bg-[url('/public/images/password.png')] bg-no-repeat bg-position-[97%] bg-(--input-bg)"
+                  bg-[url('/images/password.png')] bg-no-repeat bg-position-[97%] bg-(--input-bg)"
                 />
                 <AnimatePresence>
                   {errors.password && touched.password && (
@@ -235,7 +235,7 @@ const SignUp = () => {
                   placeholder="تکرار رمز عبور"
                   className="h-12 w-full rounded-xl mt-2 mb-2 indent-12 outline-[#0CBDE2] caret-[#0CBDE2]
                   outline-none border border-transparent focus:border-[#0CBDE2] transition-colors duration-150
-                  bg-[url('/public/images/password.png')] bg-no-repeat bg-position-[97%] bg-(--input-bg)"
+                  bg-[url('/images/password.png')] bg-no-repeat bg-position-[97%] bg-(--input-bg)"
                 />
                 <AnimatePresence>
                   {errors.passwordRepeat && touched.passwordRepeat && (

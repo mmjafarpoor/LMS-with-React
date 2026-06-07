@@ -6,7 +6,7 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 	const Landing = () => {
 
     const navigate = useNavigate();
-	  const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	
 	  // const [isDarkMode, setIsDarkMode] = useState(() => {
 	  //     const savedTheme = localStorage.getItem('theme');
@@ -20,86 +20,86 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 	  //     });
 	  // };
 	
-	  const themeButtonRef = useRef(null);
-	  const [isDarkMode, setIsDarkMode] = useState(() => {
-	    const savedTheme = localStorage.getItem("theme");
-	    return savedTheme === "dark";
-	  });
+	const themeButtonRef = useRef(null);
+    const [isDarkMode, setIsDarkMode] = useState(() => {
+    const savedTheme = localStorage.getItem("theme");
+    return savedTheme === "dark";
+    });
 	
-	  const toggleDarkMode = async () => {
-	    const rect = themeButtonRef.current.getBoundingClientRect();
-	
-	    const darkSwitch_X = rect.left + rect.width / 2;
-	    const darkSwitch_Y = rect.top + rect.height / 2;
-	
-	    const endRadius = Math.hypot(
-	      Math.max(darkSwitch_X, window.innerWidth - darkSwitch_X),
-	      Math.max(darkSwitch_Y, window.innerHeight - darkSwitch_Y),
-	    );
-	
-	    if (!document.startViewTransition) {
-	      setIsDarkMode((prev) => {
-	        const newMode = !prev;
-	        localStorage.setItem("theme", newMode ? "dark" : "light");
-	        return newMode;
-	      });
-	      return;
-	    }
-	
-	    const transition = document.startViewTransition(() => {
-	      setIsDarkMode((prev) => {
-	        const newMode = !prev;
-	        localStorage.setItem("theme", newMode ? "dark" : "light");
-	        return newMode;
-	      });
-	    });
-	
-	    await transition.ready;
-	
-	    document.documentElement.animate(
-	      {
-	        clipPath: [
-	          `circle(0px at ${darkSwitch_X}px ${darkSwitch_Y}px)`,
-	          `circle(${endRadius}px at ${darkSwitch_X}px ${darkSwitch_Y}px)`,
-	        ],
-	      },
-	      {
-	        duration: 700,
-	        easing: "ease-in-out",
-	        pseudoElement: "::view-transition-new(root)",
-	      },
-	    );
-	  };
-	
-	  useEffect(() => {
-	    if (isDarkMode) {
-	      document.body.classList.add("dark-theme");
-	    } else {
-	      document.body.classList.remove("dark-theme");
-	    }
-	  }, [isDarkMode]);
-	
-	  const toggleMenu = () => {
-	    setIsMenuOpen((prevState) => !prevState);
-	    console.log("Menu Status =", isMenuOpen);
-	  };
-	  useEffect(() => {
-	    const handleResize = () => {
-	      if (window.innerWidth > 700 && isMenuOpen) {
-	        setIsMenuOpen(false);
-	      }
-	    };
-	    window.addEventListener("resize", handleResize);
-	
-	    return () => {
-	      window.removeEventListener("resize", handleResize);
-	    };
-	  }, [isMenuOpen]);
-	
-	  const GoToAuth = () => {
-	    navigate("/login");
-	  };
-	
+    const toggleDarkMode = async () => {
+    const rect = themeButtonRef.current.getBoundingClientRect();
+
+    const darkSwitch_X = rect.left + rect.width / 2;
+    const darkSwitch_Y = rect.top + rect.height / 2;
+
+    const endRadius = Math.hypot(
+        Math.max(darkSwitch_X, window.innerWidth - darkSwitch_X),
+        Math.max(darkSwitch_Y, window.innerHeight - darkSwitch_Y),
+    );
+
+    if (!document.startViewTransition) {
+        setIsDarkMode((prev) => {
+        const newMode = !prev;
+        localStorage.setItem("theme", newMode ? "dark" : "light");
+        return newMode;
+        });
+        return;
+    }
+
+    const transition = document.startViewTransition(() => {
+        setIsDarkMode((prev) => {
+        const newMode = !prev;
+        localStorage.setItem("theme", newMode ? "dark" : "light");
+        return newMode;
+        });
+    });
+
+    await transition.ready;
+
+    document.documentElement.animate(
+        {
+        clipPath: [
+            `circle(0px at ${darkSwitch_X}px ${darkSwitch_Y}px)`,
+            `circle(${endRadius}px at ${darkSwitch_X}px ${darkSwitch_Y}px)`,
+        ],
+        },
+        {
+        duration: 700,
+        easing: "ease-in-out",
+        pseudoElement: "::view-transition-new(root)",
+        },
+    );
+    };
+
+    useEffect(() => {
+    if (isDarkMode) {
+        document.body.classList.add("dark-theme");
+    } else {
+        document.body.classList.remove("dark-theme");
+    }
+    }, [isDarkMode]);
+
+    const toggleMenu = () => {
+    setIsMenuOpen((prevState) => !prevState);
+    console.log("Menu Status =", isMenuOpen);
+    };
+    useEffect(() => {
+    const handleResize = () => {
+        if (window.innerWidth > 700 && isMenuOpen) {
+        setIsMenuOpen(false);
+        }
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+        window.removeEventListener("resize", handleResize);
+    };
+    }, [isMenuOpen]);
+
+    const GoToAuth = () => {
+    navigate("/login");
+    };
+
 
     return (
 

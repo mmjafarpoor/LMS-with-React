@@ -1,0 +1,148 @@
+.coursesContainer{
+    margin: 50px auto;
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+.coursesBanner{
+    width: 85%;
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap-reverse;
+    justify-content: space-between;
+    align-items: center;
+}
+.bannerHeading{
+    width: clamp(430px,50%,570px);
+    min-height: 103px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 15px;
+}
+.bannerTitle{
+    height: 63px;
+    display: flex;
+    align-items: start;
+    position: relative;
+}
+.bannerTitle > span{
+    font-size: clamp(2rem,2vw,2.4rem);
+    font-weight: 900;
+    z-index: 200;
+    user-select: none;
+    white-space: nowrap;
+}
+.titleBackGround{
+    position: absolute;
+    right: 85px;
+    bottom: 0;
+}
+.bannerDescription{
+    max-width: 564px;
+    height: max-content;
+    color: #A6A6A6;
+    font-size: clamp(1rem,1vw,1.2rem);
+    font-weight: 600;
+    text-align: center;
+}
+.bannerWrapper{
+    width: clamp(360px,39%,637px);
+    height: 100%;
+    position: relative;
+}
+.bannerWrapper > img{
+    width: clamp(355px,94.5%,597px);
+    height: auto;
+}
+.blueDiv{
+    width: clamp(54px,14.35%,91px);
+    height: auto;
+    aspect-ratio: 54 / 49;
+    background-color: #5CD3EC;
+    border-radius: 28%;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.blueDiv > img{
+    width: 30px;
+    height: 30px;
+}
+.productContainer{
+    width: 90%;
+    height: 1305px;
+    border: 1px solid black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 1000px) {
+    .coursesBanner{
+        flex-direction: column;
+        gap: 35px;
+        
+    }
+    .bannerHeading{
+        order: 2;
+    }
+    .bannerWrapper{
+        order: 1;
+        width: clamp(360px,75%,637px);
+    }
+}
+@media (max-width: 800px) {
+    .coursesBanner{
+        width: 95%;
+    }
+    .bannerHeading{
+        width: clamp(345px,55%,430px);
+        gap: 10px;
+    }
+    .bannerTitle{
+        height: max-content;
+    }
+    .titleBackGround{
+        display: none;
+    }
+    .bannerTitle > span{
+        font-size: clamp(1.65rem,4vw,2rem);
+    }
+    .bannerDescription{
+        font-size: clamp(0.85rem,2vw,1rem);
+    }
+}
+@media (max-width: 600px) {
+
+}
+@media (max-width: 400px) {
+    .coursesBanner{
+        width: 100%;
+    }
+}
