@@ -130,7 +130,7 @@ const Login = () => {
                   placeholder="ایمیل یا شماره تماس"
                   className="h-12 w-full rounded-xl mt-4 mb-2 indent-12
                   outline-none border border-transparent focus:border-[#0CBDE2] transition-colors duration-150
-                  bg-[url('/public/images/user.png')] bg-no-repeat bg-position-[97%] bg-(--input-bg)"
+                  bg-[url('/images/user.png')] bg-no-repeat bg-position-[97%] bg-(--input-bg)"
                 />
                 <AnimatePresence>
                   {errors.email && touched.email && (
@@ -155,7 +155,7 @@ const Login = () => {
                   placeholder="رمز عبور خود را وارد کنید"
                   className="h-12 w-full rounded-xl mt-2 mb-2 indent-12
                   outline-none border border-transparent focus:border-[#0CBDE2] transition-colors duration-150
-                  bg-[url('/public/images/password.png')] bg-no-repeat bg-position-[97%] bg-(--input-bg)"
+                  bg-[url('/images/password.png')] bg-no-repeat bg-position-[97%] bg-(--input-bg)"
                 />
                 <AnimatePresence>
                   {errors.password && touched.password && (

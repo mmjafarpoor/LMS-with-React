@@ -1,0 +1,102 @@
+                                        /* Common Styles */
+.formClass{
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 25px;
+}
+.filterContainer{
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 15px;
+    border-bottom: 1px solid #CCCCCC;
+    overflow: hidden;
+}
+.filterDisplay{
+    width: 100%;
+    height: 40px;
+    min-height: 40px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.filterTitle{
+    font-weight: 600;
+    font-size: 1.1rem;
+    white-space: nowrap;
+    user-select: none;
+}
+.filterDisplaySwitchIcon{
+    width: 25px;
+    height: 25px;
+    transition: 0.3s ease-in-out;
+    user-select: none;
+}
+.priceRangeSliderContainer{
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+.priceRangeSliderValue{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+.priceRangeSliderValueText{
+    color: #787878;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.priceRangeSliderValueNumber{
+    color: var(--text-color);
+    font-weight: 600;
+    white-space: nowrap;
+}
+.priceRangeSliderFilters{
+    height: max-content;
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.searchTheInstructors{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-flow: row nowrap;
+    margin-bottom: 15px;
+    background-color: var(--input-bg);
+    border-radius: 16px;
+}
+.searchIcon{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.searchTheInstructorsInput{
+    width: calc(100% - 40px);
+    height: 40px;
+    color: var(--text-color);
+    outline: none;
+    text-indent: 8px;
+    border-radius: 16px;
+}
+.instructorsFilter{
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 15px;
+    margin-bottom: 15px;
+}

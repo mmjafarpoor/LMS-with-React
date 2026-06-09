@@ -1,0 +1,45 @@
+.searchBox{
+    width: 100%;
+    height: 100%;
+    background-color: inherit;
+    border-radius: inherit;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.searchContainer{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.search{
+    height: 48px;
+    width: 48px;
+    min-width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search >img{
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+}
+.searchInput{
+    width: calc(100% - 48px);
+    height: 48px;
+    color: var(--text-color);
+    font-size: 1.05rem;
+    text-indent: 10px;
+    border-radius: 16px;
+    outline: none;
+}
+.errorMessage{
+    color: red;
+    white-space: nowrap;
+    position: absolute;
+    bottom: -25px;
+    right: 48px;
+    user-select: none;
+}

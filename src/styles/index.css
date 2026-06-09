@@ -30,6 +30,8 @@ body > div:not([data-otp]) {
     --auth-bg: #F4F4F4;
     --auth-main-bg: #FFFFFF;
     --input-bg: #F4F4F4;
+    --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --display-arrow : url(/images/displayArrow.png);
     --invert-color: 0;
 }
 .dark-theme {
@@ -40,6 +42,8 @@ body > div:not([data-otp]) {
     --auth-bg: #212121;
     --auth-main-bg: #2E2E2E;
     --input-bg: #4F4F4F;
+    --box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+    --display-arrow : url(/images/displayArrowWhite.png);
     --invert-color: 1;
 }
 
@@ -56,7 +60,9 @@ body > div:not([data-otp]) {
 ::view-transition-new(root) {
   z-index: 10000;
 }
-
+input[type='checkbox']{
+  accent-color: #8FE1F2;
+}
 img{
   width: fit-content;
   height: fit-content;
