@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import Style from "../styles/Landing.module.css";
 import clsx from "clsx";
 import { Link, Outlet, useNavigate } from "react-router-dom";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 	
 	const Landing = () => {
 
@@ -22,8 +24,12 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 	
 	  const themeButtonRef = useRef(null);
 	  const [isDarkMode, setIsDarkMode] = useState(() => {
-	    const savedTheme = localStorage.getItem("theme");
-	    return savedTheme === "dark";
+	  const savedTheme =
+        localStorage.getItem("theme") ||
+        (window.matchMedia("(perfers-color-scheme: light)").matches
+            ? "light"
+            : "dark");
+        return savedTheme === "dark";
 	  });
 	
 	  const toggleDarkMode = async () => {
@@ -144,8 +150,15 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
                         <Link to={"Contact"} className={Style.menuItem}>ارتباط با ما</Link>
                     </div>
                     <div className={Style.loginContainer}>
-                        <div className={Style.darkModeSwitch} ref={themeButtonRef} onClick={toggleDarkMode}  title={isDarkMode ? "حالت روشن" : "حالت تاریک"}>
-                            <img src={isDarkMode ? "/images/lightMode.png" : "/images/darkMode.png"} alt={isDarkMode ? "Light Mode" : "Dark Mode"} />
+                        <div className={Style.darkModeSwitch}
+                        ref={themeButtonRef} onClick={toggleDarkMode}  title={isDarkMode ? "حالت روشن" : "حالت تاریک"}>
+                            <motion.img
+                                key={isDarkMode}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.4 }}
+                                src={isDarkMode ? "/images/lightMode.png" : "/images/darkMode.png"} alt={isDarkMode ? "Light Mode" : "Dark Mode"} />
                         </div>
                         <div className={Style.account} onClick={GoToAuth}>ورود یا ثبت نام</div>
                         <div className={Style.headerShowMoreButton} onClick={toggleMenu}>

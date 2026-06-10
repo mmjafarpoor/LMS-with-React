@@ -22,20 +22,3 @@
     align-items: center;
     position: relative;
 }
-
-.icons_box{
-    height: 55px;
-    width: 105px;
-    position: absolute;
-    top: -35px;
-    right: 0;
-    background-color: var(--auth-main-bg);
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
-    display: flex;
-    flex-flow: row;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-
-}

@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import OtpInput from "react-otp-input";
@@ -8,6 +8,11 @@ import OtpInput from "react-otp-input";
 import { motion, AnimatePresence } from "framer-motion";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+  const GoToHome = () => {
+    navigate("/");
+  };
+
   const [step, setStep] = useState(1);
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
@@ -86,8 +91,10 @@ const SignUp = () => {
   return (
     <>
       <img
-        style={{ height: "180px", marginTop: "32px" }}
+        style={{ height: "180px", marginTop: "32px",cursor: "pointer" }}
         src="/images/bigLogo.png"
+        title="بازگشت به صفحه اصلی"
+        onClick={GoToHome}
       />
       <p className="font-bold! text-2xl mt-4 mb-4">ایجاد حساب کاربری</p>
 

@@ -30,6 +30,11 @@ body > div:not([data-otp]) {
     --auth-bg: #F4F4F4;
     --auth-main-bg: #FFFFFF;
     --input-bg: #F4F4F4;
+    --news-boxs: #FFFFFF;
+    --news-top-filter: #F4F4F4;
+    --news-show-icons: #FFFFFF;
+    --news-description: #909090;
+    --news-shadow-color: rgba(0,0,0,0.1);
     --invert-color: 0;
 }
 .dark-theme {
@@ -40,6 +45,11 @@ body > div:not([data-otp]) {
     --auth-bg: #212121;
     --auth-main-bg: #2E2E2E;
     --input-bg: #4F4F4F;
+    --news-boxs: #2E2E2E;
+    --news-show-icons: #4F4F4F;
+    --news-top-filter: #2E2E2E;
+    --news-description: #A6A6A6;
+    --news-shadow-color: rgba(0,0,0,0);
     --invert-color: 1;
 }
 

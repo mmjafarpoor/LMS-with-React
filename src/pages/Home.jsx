@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import Style from "../styles/Home.module.css";
 import SliderData from "../Data/SliderData"
 import clsx from "clsx"
+// eslint-disable-next-line no-unused-vars
+import { motion } from 'framer-motion';
 
 const Home = () => {
   // console.log(SliderData);
@@ -49,6 +51,22 @@ const Home = () => {
     return () => stopSlider();
   }, []);
 
+  const imgAnimation = {
+    initial: {
+      opacity: 0,
+    },
+    animate: {
+      opacity: 1
+    },
+    exit: {
+      opacity: 0
+    },
+    transition: {
+      duration: 0.5
+    }
+  };
+  
+
   return (
     <div className={Style.homeContainer}>
       <div className={Style.beginTheJourney}>
@@ -91,7 +109,12 @@ const Home = () => {
             {SliderData.map((item) =>(
               <div key={item.id} className={Style.sliderItem} style={{width : itemWidth}}>
                 <div className={Style.sliderItemImageWrapper}>
-                  <img src={item.imageURL} alt="Slider-Image" className={Style.sliderItemImage}/>
+                  <motion.img
+                  key={currentSlide}
+                  initial={imgAnimation.initial}
+                  animate={imgAnimation.animate}
+                  exit={imgAnimation.exit}
+                  src={item.imageURL} alt="Slider-Image" className={Style.sliderItemImage}/>
                 </div>
                 <div className={Style.sliderItemMeta}>
                   <div className={Style.sliderItemMetaHeading}>
