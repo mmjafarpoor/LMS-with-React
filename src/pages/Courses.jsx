@@ -1,17 +1,54 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Style from '../styles/Courses.module.css'
 import SearchInput from '../components/CoursesPage/ProductSearchBox/SearchInput'
 import SearchFilterInput from '../components/CoursesPage/SearchTheFilter/SearchFilterInput'
 import ComplexOfFilters from '../components/CoursesPage/ComplexOfFilters/ComplexOfFilters'
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
+import RegularCard from '../components/CoursesPage/ProductCards/RegularCard/RegularCard'
+import { getCourseList } from '../core/services/get'
+import FullLineCard from '../components/CoursesPage/ProductCards/FullLineCard/FullLineCard'
 
 const Courses = () => {
-  const [isCategoriesOpen, setIsCategoriesOpen] = useState(true);
+  // const [courseList, setCourseList] = useState([]);
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [error, setError] = useState(null);
 
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(true);
+  
   const toggleFiltersHandler = () => {
       setIsCategoriesOpen(prev => !prev)
     }
+    // const fetchCourseList = async () => {
+    //   setIsLoading(true);
+    //   setError(null);
+    //   try{
+    //     const response = await getCourseList({pageNumber:1, rowOfPage:12, });
+    //       if (response.data && response.data.courseDtos) {
+    //           setCourseList(response.data.courseDtos);
+    //           console.log("Data Received",response.data.courseDtos)}
+    //       else {throw new Error("Data structure is invalid");}
+    //   }
+    //   catch (err) {
+    //     console.error("Fetch error:", err);
+    //     setError(err.message || "Failed to load courses");
+    //   }
+    //   finally{
+    //     setIsLoading(false);
+    //   }
+    // }
+    // useEffect(() => {
+    //     fetchCourseList();
+    // }, [])
+    // if (isLoading) {
+    //     return <div className="text-blue-800"> در حال بارگذاری...</div>;
+    // }
+    // if (error) {
+    //     return <div className="text-red-700"> خطا در بارگذاری: {error}</div>;
+    // }
+    // if (!courseList || courseList.length === 0) {
+    //     return <div className={Style.noData}> محصولی یافت نشد.</div>;
+    // }
 
   return (
     <div className={Style.coursesContainer}>
@@ -60,6 +97,12 @@ const Courses = () => {
               <SearchInput/>
             </div>
             <div className={Style.viewAsMenu}></div>
+          </div>
+          <div className={Style.itemsContainer}>
+            <FullLineCard/>
+            <FullLineCard/>
+            <FullLineCard/>
+            <FullLineCard/>
           </div>
         </div>
       </div>

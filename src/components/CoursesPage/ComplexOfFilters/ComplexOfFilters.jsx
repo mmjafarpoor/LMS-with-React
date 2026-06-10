@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import Style from './ComplexOfFilters.module.css'
 import Slider from 'rc-slider';
 import FilterTag from '../FilterTag/FilterTag';
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 
 const ComplexOfFilters = () => {

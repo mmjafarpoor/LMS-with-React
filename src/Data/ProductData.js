@@ -1,0 +1,42 @@
+const ProductData = [
+    {
+        id: 1,
+        name: "آموزش Node.js",
+        description : "خواه شما مبتدی باشید یا به دنبال پیشرفت در مهارت‌های برنامه‌نویسی خود باشید، دوره‌های آموزشی ما شما را در هر مرحله همراهی می‌کنند.",
+        rate:"3",
+        price: "40.000 تومان",
+        olderPrice: "50.000 تومان",
+        imageURL:"/images/reactProductCard.png",
+        instructorName:"دکتر بحرالعلوم",
+    },
+    {
+        id: 2,
+        name: "دوره آموزش جامع HTML5",
+        description : "Wazzup Beijing",
+        rate:"3",
+        price: "40.000 تومان",
+        olderPrice: "50.000 تومان",
+        imageURL:"/images/reactProductCard.png",
+        instructorName:"مسعود هشمتی",
+    },
+    {
+        id: 3,
+        name: "Learn JavaScript",
+        description : "IM Batman",
+        rate:"3",
+        price: "40.000 تومان",
+        olderPrice: "50.000 تومان",
+        imageURL:"/images/reactProductCard.png",
+        instructorName:"طاها رحیمی",
+    },
+    {
+        id: 4,
+        name: "TypeScript is Better",
+        description : "Meow Meow",
+        rate:"3",
+        price: "40.000 تومان",
+        olderPrice: "50.000 تومان",
+        imageURL:"/images/reactProductCard.png",
+        instructorName:"محمد رضا سابتی",
+    },]
+export default ProductData;
