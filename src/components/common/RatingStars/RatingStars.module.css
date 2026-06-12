@@ -1,0 +1,29 @@
+.courseRating{
+    height: 15px;
+    overflow: hidden;
+}
+.ratedProduct{
+    height: 15px;
+    width: 83px;
+    min-width: 83px;
+    /* border: 1px solid #000; */
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 2px;
+}
+.ratedStars{
+    width: 15px;
+    height: 15px;
+    user-select: none;
+}
+.nonRatedProduct{
+    height: 15px;
+    width: 83px;
+    border: 1px solid #000;
+}
+.nonRatedStar{
+    width: 15px;
+    height: 15px;
+    user-select: none;
+}

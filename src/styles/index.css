@@ -34,6 +34,8 @@ body > div:not([data-otp]) {
     --display-arrow : url(/images/displayArrow.png);
     --button-bg :#5CD3EC;
     --button-hover: #2AB5D4;
+    --fullLine-btn-bg: #0CBDE2;
+    --fullLine-btn-hover: #099BB8;
     --invert-color: 0;
 }
 .dark-theme {
@@ -48,6 +50,8 @@ body > div:not([data-otp]) {
     --display-arrow : url(/images/displayArrowWhite.png);
     --button-bg :#0BACCE;
     --button-hover: #076C82;
+    --fullLine-btn-bg: #0986A0;
+    --fullLine-btn-hover: #055063;
     --invert-color: 1;
 }
 

@@ -1,15 +1,10 @@
 import apiClient from "../interceptor/interceptor";
 
-const getCourseList = ({pageNumber , rowOfPage , sortingCol , sortType , teacherId , costUp , costDown}) => {
+const getCourseList = ({pageNumber , rowOfPage }) => {
     return apiClient.get("/Home/GetCoursesWithPagination",{
         params:{
             RowsOfPage:rowOfPage,
             PageNumber:pageNumber,
-            SortingCol:sortingCol,
-            SortType:sortType,
-            TeacherId:teacherId,
-            CostUp:costUp,
-            CostDown:costDown,
         }
     })
 }

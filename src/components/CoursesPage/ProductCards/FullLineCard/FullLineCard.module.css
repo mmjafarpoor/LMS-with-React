@@ -1,7 +1,6 @@
 .fullLineCard{
     width: 85%;
     height: 320px;
-    border: 1px solid red;
     border-radius: 32px;
     position: relative;
     display: flex;
@@ -24,7 +23,6 @@
 .productMeta{
     height: 93.5%;
     width: 56%;
-    border: 1px solid blue;
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
@@ -32,7 +30,6 @@
 .productHeading{
     height: 115px;
     width: 100%;
-    border: 1px solid yellow;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -47,6 +44,7 @@
 .productDescription{
     font-weight: 600;
     font-size: 0.97rem;
+    height: 70px;
     max-height: 70px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -54,7 +52,6 @@
 .productInfo{
     width: 100%;
     height: 54px;
-    border: 1px solid cyan;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
@@ -62,11 +59,61 @@
 }
 .productPrice{
     height: 54px;
+    min-width: 308px;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    gap:8px;
-    border: 1px solid purple;
+    gap:35px;
+}
+.olderPrice{
+    width: max-content;
+    height: 40px;
+    background-color: #FFB6B6;
+    border-radius: 9999px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+.olderPriceSpan{
+    padding: 0px 30px;
+    font-weight: 900;
+    font-size: 0.95rem;
+    color: #E81313;
+    white-space: nowrap;
+    user-select: none;
+}
+.discountPercentage{
+    height: 54px;
+    width: 54px;
+    border-radius: 50%;
+    position: absolute;
+    left: -25px;
+    background-color: #FFFFFF;
+    border: 1px solid #054F5F;
+    color: #FF1515;
+    font-weight: 900;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+.newPrice{
+    width: max-content;
+    height: 40px;
+    background-color: #C1FEB0;
+    color: #28B200;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    padding: 0px 18px;
+    font-weight: 900;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    user-select: none;
+    cursor: pointer;
 }
 .participantsCount{
     height: 32px;
@@ -88,4 +135,105 @@
     font-weight: 900;
     font-size: 0.97rem;
     color: #3DCAE8;
+}
+.courseFilters{
+    width: 100%;
+    height: 32px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.courseInstructor{
+    height: 32px;
+    width: max-content;
+    max-width: 150px;
+    padding: 0px 5px;
+    background-color: var(--fullLine-btn-bg);
+    border-radius: 8px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: 0.35s ease-in-out;
+}
+.courseInstructor:hover{
+    background-color: var(--fullLine-btn-hover);
+}
+.instructorIcon{
+    width: 24px;
+    height: 24px;
+    user-select: none;
+}
+.instructorName{
+    font-weight: 900;
+    font-size: 0.95rem;
+    color: #FFFFFF;
+    user-select: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.courseRating{
+    height: 15px;
+    overflow: hidden;
+}
+.ratedProduct{
+    height: 15px;
+    width: 83px;
+    min-width: 83px;
+    /* border: 1px solid #000; */
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 2px;
+}
+.ratedStars{
+    width: 15px;
+    height: 15px;
+    user-select: none;
+}
+.nonRatedProduct{
+    height: 15px;
+    width: 83px;
+    border: 1px solid #000;
+}
+.nonRatedStar{
+    width: 15px;
+    height: 15px;
+    user-select: none;
+}
+.productAction{
+    width: 100%;
+    height: 48px;
+    display: flex;
+    flex-flow: row-reverse nowrap;
+}
+.reserveTheCourse{
+    width: 167px;
+    height: 48px;
+    background-color: var(--fullLine-btn-bg);
+    border-radius: 18px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: 0.35s ease-in-out;
+}
+.reserveTheCourse:hover{
+    background-color: var(--fullLine-btn-hover);
+}
+.reserveIcon{
+    width: 24px;
+    height: 24px;
+}
+.reserveTheCourseSpan{
+    font-weight: 900;
+    font-size: 0.97rem;
+    color: #ffffff;
+    white-space: nowrap;
+    user-select: none;
 }

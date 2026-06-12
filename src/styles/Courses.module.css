@@ -79,7 +79,7 @@
 }
 .productContainer{
     width: 90%;
-    height: 1305px;
+    height: max-content;
     border: 1px solid black;
     display: flex;
     flex-direction: row;
@@ -137,7 +137,7 @@
 }
 .productMain{
     width: 75%;
-    height: 1000px;
+    height: max-content;
     border: 1px solid purple;
     display: flex;
     flex-flow: column nowrap;
@@ -226,6 +226,7 @@
     flex-flow: row wrap;
     justify-content: center;
     gap: 25px;
+    border: 1px solid green;
 }
 
 

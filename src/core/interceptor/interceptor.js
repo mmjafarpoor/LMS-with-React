@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "https://sepehracademy.liara.run";
+const API_BASE_URL = "http://188.121.111.8:3001";
 
 const apiClient = axios.create({
     baseURL: API_BASE_URL,

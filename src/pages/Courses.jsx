@@ -8,48 +8,60 @@ import { motion } from 'framer-motion'
 import RegularCard from '../components/CoursesPage/ProductCards/RegularCard/RegularCard'
 import { getCourseList } from '../core/services/get'
 import FullLineCard from '../components/CoursesPage/ProductCards/FullLineCard/FullLineCard'
+import { toast } from 'react-toastify'
 
 const Courses = () => {
-  // const [courseList, setCourseList] = useState([]);
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [error, setError] = useState(null);
-
-  const [isCategoriesOpen, setIsCategoriesOpen] = useState(true);
   
+  const [courseList, setCourseList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(true);
+  const [displayMode, setDisplayMode] = useState("regular");
+  console.log("DisplayMode =" , displayMode );
   const toggleFiltersHandler = () => {
       setIsCategoriesOpen(prev => !prev)
     }
-    // const fetchCourseList = async () => {
-    //   setIsLoading(true);
-    //   setError(null);
-    //   try{
-    //     const response = await getCourseList({pageNumber:1, rowOfPage:12, });
-    //       if (response.data && response.data.courseDtos) {
-    //           setCourseList(response.data.courseDtos);
-    //           console.log("Data Received",response.data.courseDtos)}
-    //       else {throw new Error("Data structure is invalid");}
-    //   }
-    //   catch (err) {
-    //     console.error("Fetch error:", err);
-    //     setError(err.message || "Failed to load courses");
-    //   }
-    //   finally{
-    //     setIsLoading(false);
-    //   }
-    // }
-    // useEffect(() => {
-    //     fetchCourseList();
-    // }, [])
-    // if (isLoading) {
-    //     return <div className="text-blue-800"> در حال بارگذاری...</div>;
-    // }
-    // if (error) {
-    //     return <div className="text-red-700"> خطا در بارگذاری: {error}</div>;
-    // }
-    // if (!courseList || courseList.length === 0) {
-    //     return <div className={Style.noData}> محصولی یافت نشد.</div>;
-    // }
+    const fetchCourseList = async () => {
+      setIsLoading(true);
+      setError(null);
+      try{
+        const response = await getCourseList({pageNumber:1, rowOfPage:12, });
+          if (response.data && response.data.courseFilterDtos) {
+              setCourseList(response.data.courseFilterDtos);
+              console.log("Data Received",response.data.courseFilterDtos)}
+          else {throw new Error("Data structure is invalid");}
+      }
+      catch (err) {
+        console.error("Fetch error:", err);
+        const errorMsg = err.message || "خطا در بارگذاری لیست دوره‌ها";
+        toast.error(errorMsg);
+      }
+      finally{
+        setIsLoading(false);
+      }
+    }
+    useEffect(() => {
+        fetchCourseList();
+    }, [])
+    if (isLoading) {
+        return <div className="text-blue-800"> در حال بارگذاری...</div>;
+    }
+    if (error) {
+        return <div className="text-red-700"> خطا در بارگذاری: {error}</div>;
+    }
+    if (!courseList || courseList.length === 0) {
+        return <div className={Style.noData}> محصولی یافت نشد.</div>;
+    }
+    const formatPrice = (price) => {
+      if (price === null || price === undefined) return '';
+        const numberPrice = Number(price);
+        return numberPrice.toLocaleString('en-US');
+    };
 
+    const handleDisplayChange = (changeMode) => {
+        setDisplayMode(changeMode);
+    };
+    
   return (
     <div className={Style.coursesContainer}>
       <div className={Style.coursesBanner}>
@@ -86,10 +98,10 @@ const Courses = () => {
         <div className={Style.productMain}>
           <div className={Style.productsSearchAndDisplay}>
             <div className={Style.productListDisplaySwitch}>
-              <div className={Style.displayRegularMode}>
+              <div className={Style.displayRegularMode} onClick={() => handleDisplayChange("regular")}>
                 <img src="/images/regularCard.png" alt="Display-Regular-Card" className={Style.switchModeIcon}/>
               </div>
-              <div className={Style.displayFullLineMode}>
+              <div className={Style.displayFullLineMode} onClick={() => handleDisplayChange("fullLine")}>
                 <img src="/images/fullLineCard.png" alt="Display-Full-Line-Card" className={Style.switchModeIcon}/>
               </div>
             </div>
@@ -99,10 +111,12 @@ const Courses = () => {
             <div className={Style.viewAsMenu}></div>
           </div>
           <div className={Style.itemsContainer}>
-            <FullLineCard/>
-            <FullLineCard/>
-            <FullLineCard/>
-            <FullLineCard/>
+            {displayMode == "regular" ? (
+              courseList.map((course)=>(<RegularCard key={course.courseId} {...course} cost={formatPrice(course.cost)}/>))
+            ) : (
+              courseList.map((course)=>(<FullLineCard key={course.courseId} {...course} cost={formatPrice(course.cost)}/>))
+            )
+          }
           </div>
         </div>
       </div>

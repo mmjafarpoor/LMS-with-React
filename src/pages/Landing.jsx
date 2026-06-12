@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import Style from "../styles/Landing.module.css";
 import clsx from "clsx";
 import { Link, Outlet, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/ReactToastify.css";
 	
 	const Landing = () => {
 
@@ -74,8 +76,12 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
     useEffect(() => {
     if (isDarkMode) {
         document.body.classList.add("dark-theme");
+        toast.success("حالت تاریک فعال شد 🌙",{
+            theme: "dark"
+        });
     } else {
         document.body.classList.remove("dark-theme");
+        toast.success("حالت روشن فعال شد ☀️");
     }
     }, [isDarkMode]);
 
