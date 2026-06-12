@@ -1,0 +1,86 @@
+.error404{
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1920/825;
+    background: url(/images/error404Bg.png) no-repeat;
+    background-size: 100% 100%;
+}
+.errorContainer{
+    margin: 100px auto;
+    height: max-content;
+    width: max-content;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    gap: 20px;
+}
+.errorCode{
+    color: var(--fullLine-btn-bg);
+    font-weight: 800;
+    font-size: 15rem;
+    line-height: 1;
+    max-height: 195px;
+    user-select: none;
+    white-space: nowrap;
+    transition: 0.35s ease-in-out;
+}
+.errorCode:hover{
+    color: var(--fullLine-btn-hover);
+}
+.errorText{
+    font-weight: 900;
+    font-size: 1.8rem;
+    user-select: none;
+    white-space: nowrap;
+}
+.backToPrevPage{
+    width: 190px;
+    height: 40px;
+    background-color: var(--fullLine-btn-bg);
+    border-radius: 18px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-evenly;
+    cursor: pointer;
+    transition: 0.35s ease-in-out;
+}
+.backToPrevPage:hover{
+    background-color: var(--fullLine-btn-hover);
+}
+.buttonText{
+    font-weight: 900;
+    font-size: 0.95rem;
+    color: #ffffff;
+    user-select: none;
+    white-space: nowrap;
+}
+.buttonArrow{
+    width: 24px;
+    height: 24px;
+}
+
+@media (max-width: 1200px) {
+    .error404{
+        height: 100%;
+        aspect-ratio: unset;
+    }
+}
+@media (max-width: 1000px) {
+    .errorContainer{
+        margin-top: 70px;
+    }
+    .errorCode{
+        font-size: 12rem;
+        max-height: 170px;
+    }
+    .errorText{
+        font-size: 1.55rem;
+    }
+}
+@media (max-width: 400px) {
+    .errorCode{
+        font-size: 10rem;
+        max-height: 130px;
+    }
+}

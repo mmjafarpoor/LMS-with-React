@@ -10,6 +10,7 @@ import Courses from "../../pages/Courses";
 import Instructors from "../../pages/Instructors";
 import Contact from "../../pages/Contact";
 import News from "../../pages/News";
+import Error404 from "../../pages/Error404";
 
 const router = createBrowserRouter([
     { path: "/", element: <Landing/> , children:[
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
         { path: "Instructors", element: <Instructors/> },
         { path: "News", element: <News/> },
         { path: "Contact", element: <Contact/> },
+        { path: "*", element: <Error404/> },
     ]},
     {
         path: "/",
