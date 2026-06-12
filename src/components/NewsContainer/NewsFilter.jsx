@@ -15,7 +15,7 @@ const NewsFilters = ({categories}) => {
   // console.log(activeFilter)
 
   return (
-    <div className="sticky top-8 w-[25%] pt-5 pb-5 h-fit hidden lg:flex flex-col gap-4 items-center justify-center rounded-2xl bg-(--news-boxs) shadow-[0_0px_8px_var(--news-shadow-color)]">
+    <div className="sticky top-7 w-[25%] pt-5 pb-5 h-fit hidden lg:flex flex-col gap-4 items-center justify-center rounded-2xl bg-(--news-boxs) shadow-[0_0px_8px_var(--news-shadow-color)]">
       <div className="w-[90%] h-10 content-center relative">
         دسته‌بندی‌ها
         <div className="w-4 h-5 content-center bg-[url(/images/arrow.png)] bg-no-repeat bg-position-[50%] invert-(--invert-color) absolute left-2 top-2.5"></div>

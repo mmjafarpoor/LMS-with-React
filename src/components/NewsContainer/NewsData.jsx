@@ -1,17 +1,26 @@
 import clsx from "clsx";
 import React from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 
 const NewsData = ({
   showType,
+  id,
   title,
+  googleTitle,
   describe,
   currentImageAddress,
   currentView,
 }) => {
+  const navigate = useNavigate();
+  const GoToNewsDetails = () => {
+    navigate(`/News/${id}/${googleTitle.replaceAll(" ", "-")}`);
+  };
+
   return (
     <div
+      onClick={GoToNewsDetails}
       className={clsx(
-        "rounded-3xl overflow-hidden relative",
+        "rounded-3xl overflow-hidden cursor-pointer relative",
         showType === "grid" ? "w-78.75 h-122.5" : "w-240 h-140",
       )}
     >
