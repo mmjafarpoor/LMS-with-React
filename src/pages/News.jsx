@@ -5,15 +5,22 @@ import { HugeiconsFreeIcons } from "@hugeicons/core-free-icons";
 import NewsFilter from "../components/NewsContainer/NewsFilter";
 import NewsData from "../components/NewsContainer/NewsData";
 import clsx from "clsx";
+import ReactPaginate from "react-paginate";
 
 const News = () => {
   const [showType, setShowType] = useState("grid");
+
   const [newsItems, setNewsItems] = useState([]);
+
+  const [page, setPage] = useState(0);
+  const perPage = 9;
+  const offset = page * perPage;
+  const currentItems = newsItems.slice(offset, offset + perPage);
+  const pageCount = Math.abs(newsItems.length / perPage);
 
   const fetchNews = async () => {
     const response = await fetch("http://188.121.111.8:3001/News");
     const data = await response.json();
-    console.log(data);
     setNewsItems(data.news);
   };
 
@@ -21,6 +28,8 @@ const News = () => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchNews();
   }, []);
+
+  
 
   const categories = useMemo(() => {
     return [...new Set(newsItems.map((item) => item.newsCatregoryName))];
@@ -46,7 +55,7 @@ const News = () => {
       <div className={styles.data_container}>
         <NewsFilter categories={categories} />
 
-        <div className="w-full sm:w-[95%] lg:w-[72.5%] h-auto flex flex-col gap-2">
+        <div className="w-full sm:w-[95%] lg:w-[72.5%] h-auto flex flex-col items-center gap-8">
           <div className="w-full h-12 flex flex-row gap-2 items-center justify-around">
             <div className="relative w-24 h-full rounded-2xl hidden md:flex flex-row items-center justify-center gap-2 bg-(--news-top-filter)">
               <div
@@ -79,10 +88,26 @@ const News = () => {
             </div>
           </div>
           <div className="w-full h-fit mt-6 flex flex-row flex-wrap justify-around gap-2 gap-y-8">
-            {newsItems.map((item) => (
-              <NewsData key={item.id} {...item} showType={showType}/>
+            {currentItems.map((item) => (
+              <NewsData key={item.id} {...item} showType={showType} />
             ))}
           </div>
+          <ReactPaginate
+            // className="p-5 flex flex-row gap-3 items-center text-2xl bg-amber-500"
+            previousLabel={"<"}
+            nextLabel={">"}
+            pageCount={pageCount}
+            onPageChange={(page) => setPage(page.selected)}
+            containerClassName={"h-12 px-2 rounded-2xl flex flex-row gap-1 items-center text-2xl bg-(--news-boxs)"}
+            pageClassName={"h-full w-12 content-center text-center text-(--text-color) text-[18px] cursor-pointer"}
+            pageLinkClassName="block"
+            previousLinkClassName="block"
+            nextLinkClassName="block"
+            activeClassName={"text-white rounded-lg bg-(--button-bg) cursor-none"}
+            previousClassName={"mx-3 cursor-pointer"}
+            nextClassName={"mx-3 cursor-pointer"}
+            // disabledClassName={"opacity-50"}
+          />
         </div>
       </div>
     </div>

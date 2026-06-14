@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Rating, RoundedStar } from "@smastrom/react-rating";
-import "@smastrom/react-rating/style.css";
 import { useParams } from "react-router-dom";
+import "@smastrom/react-rating/style.css";
+import Comment from "./Comment";
 
 const NewsDetails = () => {
   const { id } = useParams();
@@ -10,7 +11,6 @@ const NewsDetails = () => {
   const fetchItem = async () => {
     const response = await fetch(`http://188.121.111.8:3001/News/${id}`);
     const data = await response.json();
-    console.log(data);
     setItem(data.detailsNewsDto);
     setUsersRate(data.detailsNewsDto.newsRate);
   };
@@ -22,7 +22,7 @@ const NewsDetails = () => {
 
   return (
     <div className="w-full mt-10 mb-10 flex justify-center">
-      <div className="w-[97%] md:w-[90%] flex flex-row flex-wrap gap-y-5 justify-around">
+      <div className="w-[97%] md:w-[90%] flex flex-row flex-wrap justify-around">
         <div className="w-[90%] lg:w-[70%]">
           <div className="w-full flex justify-center">
             <div className="w-fit flex justify-center relative">
@@ -44,22 +44,12 @@ const NewsDetails = () => {
           </div>
           <div className="w-full">
             <div className="pt-10 pb-10 w-full flex flex-col justify-center gap-4 ">
-              <p className="font-bold! text-[24px] indent-8">{item?.title}</p>
-              <h2 className="text-[15px] text-(--news-description) indent-8">
+              <p className="font-bold! text-[24px] text-center lg:text-start lg:indent-8">
+                {item?.title}
+              </p>
+              <h2 className="text-[15px] text-(--news-description) text-center lg:text-start lg:mr-8">
                 {item?.describe}
               </h2>
-            </div>
-            <div className="pb-10 w-full flex flex-col justify-center gap-4 ">
-              <p className="font-bold! text-[24px] indent-8">توضیحات</p>
-              <h2 className="p-5 rounded-3xl font-semibold! text-[15px] text-(--news-description) bg-(--news-boxs) shadow-[0_0px_8px_var(--news-shadow-color)]">
-                {item?.describe}
-              </h2>
-            </div>
-          </div>
-          <div className="w-full">
-            <div className="w-full flex flex-row justify-between">
-              <p className="font-bold! text-[24px]">نظرات</p>
-              <button className="p-3 pr-14 rounded-2xl font-bold! text-[16px] text-white bg-[url(/public/images/addComment.png)] bg-no-repeat bg-position-[90%_50%] bg-[#07687C] cursor-pointer">ارسال دیدگاه جدید</button>
             </div>
           </div>
         </div>
@@ -86,7 +76,10 @@ const NewsDetails = () => {
           </div>
           <div className="h-20 rounded-3xl bg-(--news-boxs) shadow-[0_0px_8px_var(--news-shadow-color)] flex justify-center items-center">
             <div className="w-[85%] flex flex-row items-center gap-2">
-              <img style={{ height: "50px" }} src="/public/images/bob.png" />
+              <img
+                style={{ height: "64px", borderRadius: "100%" }}
+                src="/images/bob.png"
+              />
               <div className="flex flex-col gap-1">
                 <p>باب اسنفنجی</p>
                 <p className="text-(--news-description) text-[14px]">@bob</p>
@@ -115,6 +108,19 @@ const NewsDetails = () => {
             </div>
           </div>
         </div>
+
+        <div className="w-[90%] lg:w-[70%]">
+          <div className="w-full mt-3 pb-10 flex flex-col justify-center gap-4 ">
+            <p className="font-bold! text-[24px] text-center lg:text-start lg:mr-8">
+              توضیحات
+            </p>
+            <h2 className="p-5 rounded-3xl font-semibold! text-[15px] text-(--news-description) bg-(--news-boxs) shadow-[0_0px_8px_var(--news-shadow-color)]">
+              {item?.describe}
+            </h2>
+          </div>
+          <Comment newsId={id} />
+        </div>
+        <div className="w-[90%] lg:w-[25%] flex flex-col gap-5"></div>
       </div>
     </div>
   );
