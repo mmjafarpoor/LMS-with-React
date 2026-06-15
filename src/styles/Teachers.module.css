@@ -22,17 +22,17 @@
 }
 
 @media (max-width: 1400px){
-    .titleBox{width: 90%}
+    .title_box{width: 90%}
 }
 
 .data_container{
-    height: fit-content;
+    /* border: 1px solid red; */
     width: 90%;
+    min-width: 300px;
     margin-top: 50px;
     margin-bottom: 50px;
     display: flex;
-    flex-flow: row;
-    justify-content: space-around;
-    gap: 10px;
-    
+    flex-flow: column;
+    align-items: center;
+    gap: 40px;
 }

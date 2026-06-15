@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
 import styles from "../styles/News.module.css";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { HugeiconsFreeIcons } from "@hugeicons/core-free-icons";
 import NewsFilter from "../components/NewsContainer/NewsFilter";
 import NewsData from "../components/NewsContainer/NewsData";
 import clsx from "clsx";
@@ -39,7 +37,7 @@ const News = () => {
     <div className={styles.whole_box}>
       <div className={styles.title_box}>
         <div className="flex flex-col gap-4 items-center lg:w-[50%] xl:w-[40%] lg:bg-[url(/public/images/blueLine.png)] bg-no-repeat bg-position-[50%_30px]">
-          <h1 className="lg:text-[30px] sm:text-[26px] text-[20px] font-semibold!">
+          <h1 className="lg:text-[30px] sm:text-[26px] text-[20px] font-bold!">
             آموزش برنامه‌نویسی با بهترین‌ها
           </h1>
           <p className="flex items-center text-center lg:text-[16px] sm:text-[14px] text-[10px] w-[80%] xl:w-fit text-(--news-description)">
@@ -93,12 +91,11 @@ const News = () => {
             ))}
           </div>
           <ReactPaginate
-            // className="p-5 flex flex-row gap-3 items-center text-2xl bg-amber-500"
             previousLabel={"<"}
             nextLabel={">"}
             pageCount={pageCount}
             onPageChange={(page) => setPage(page.selected)}
-            containerClassName={"h-12 px-2 rounded-2xl flex flex-row gap-1 items-center text-2xl bg-(--news-boxs)"}
+            containerClassName={"h-12 px-2 rounded-2xl flex flex-row gap-1 items-center text-2xl bg-(--news-boxs) shadow-[0_0px_8px_var(--news-shadow-color)]"}
             pageClassName={"h-full w-12 content-center text-center text-(--text-color) text-[18px] cursor-pointer"}
             pageLinkClassName="block"
             previousLinkClassName="block"
@@ -106,7 +103,6 @@ const News = () => {
             activeClassName={"text-white rounded-lg bg-(--button-bg) cursor-none"}
             previousClassName={"mx-3 cursor-pointer"}
             nextClassName={"mx-3 cursor-pointer"}
-            // disabledClassName={"opacity-50"}
           />
         </div>
       </div>

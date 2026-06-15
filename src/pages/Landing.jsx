@@ -120,7 +120,7 @@ import { motion } from "framer-motion";
                         <div className={Style.mobileMenuItemsContainer}>
                             <Link to={"Home"} className={Style.mobileMenuItem}>خانه</Link>
                             <Link to={"Courses"} className={Style.mobileMenuItem}>دوره ها</Link>
-                            <Link to={"Instructors"} className={Style.mobileMenuItem}>اساتید</Link>
+                            <Link to={"Teachers"} className={Style.mobileMenuItem}>اساتید</Link>
                             <Link to={"News"} className={Style.mobileMenuItem}>اخبار و مقالات</Link>
                             <Link to={"Contact"} className={Style.mobileMenuItem}>ارتباط باما</Link>
                         </div>
@@ -145,7 +145,7 @@ import { motion } from "framer-motion";
                     <div className={Style.menu}>
                         <Link to={"Home"} className={Style.menuItem}>خانه</Link>
                         <Link to={"Courses"} className={Style.menuItem}>دوره ها</Link>
-                        <Link to={"Instructors"} className={Style.menuItem}>اساتید</Link>
+                        <Link to={"Teachers"} className={Style.menuItem}>اساتید</Link>
                         <Link to={"News"} className={Style.menuItem}>اخبار و مقالات</Link>
                         <Link to={"Contact"} className={Style.menuItem}>ارتباط با ما</Link>
                     </div>

@@ -7,10 +7,12 @@ import Login from "../../components/AuthContainer/Login";
 import SignUp from "../../components/AuthContainer/SignUp";
 import ForgetPassword from "../../components/AuthContainer/ForgetPassword";
 import Courses from "../../pages/Courses";
-import Instructors from "../../pages/Instructors";
+import Teachers from "../../pages/Teachers";
+import TeacherDetails from "../../components/TeacherContainer/TeacherDetails";
 import Contact from "../../pages/Contact";
 import News from "../../pages/News";
 import NewsDetails from "../../components/NewsContainer/NewsDetails";
+
 
 const router = createBrowserRouter([
   {
@@ -20,7 +22,8 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: "Home", element: <Home /> },
       { path: "Courses", element: <Courses /> },
-      { path: "Instructors", element: <Instructors /> },
+      { path: "Teachers", element: <Teachers /> },
+      { path: "Teachers/:teacherId/:TeacherName", element: <TeacherDetails /> },
       { path: "News", element: <News /> },
       { path: "News/:id/:NewsName", element: <NewsDetails /> },
       { path: "Contact", element: <Contact /> },
