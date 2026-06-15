@@ -2,7 +2,7 @@ import React from 'react'
 import Style from './FullLineCard.module.css'
 import RatingStars from '../../../common/RatingStars/RatingStars';
 
-const FullLineCard = ({title,describe,cost,currentRegistrants,imageAddress , courseRate}) => {
+const FullLineCard = ({title,describe,cost,currentRegistrants,imageAddress , courseRate = 1}) => {
 
   return (
     <div className={Style.fullLineCard}>

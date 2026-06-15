@@ -1,0 +1,11 @@
+.mapContainer{
+    width: 100%;
+    min-width: 340px;
+    height: 100%;
+}
+.popUp{
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+                            /* clusterIcon Style is in app.css */

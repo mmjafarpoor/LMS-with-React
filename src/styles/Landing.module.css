@@ -227,6 +227,14 @@
     height: 52px;
     background-color: #5CD3EC;
     border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.landingContainer > .bottom > .navigateTopContainer > .navigateTop > .arrowUp{
+    width: 35px;
+    height: 35px;
 }
 .landingContainer > .bottom > .bottomMain{
     margin-top: 60px;

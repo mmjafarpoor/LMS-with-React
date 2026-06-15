@@ -106,6 +106,13 @@ import "react-toastify/ReactToastify.css";
     navigate("/login");
     };
 
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth"
+        });
+    }
 
     return (
 
@@ -161,11 +168,13 @@ import "react-toastify/ReactToastify.css";
                 </div>
             </div>
             <main className={Style.outlet}>
-                <Outlet/>
+                <Outlet />
             </main>
             <div className={Style.bottom}>
                 <div className={Style.navigateTopContainer}>
-                    <div className={Style.navigateTop}></div>
+                    <button onClick={() => scrollToTop()} className={Style.navigateTop}>
+                        <img src="/images/arrowUp.png" alt="Go To Top" className={Style.arrowUp}/>
+                    </button>
                 </div>
                 <div className={Style.bottomMain}>
                     <div className={Style.knowMoreAboutAcademy}>

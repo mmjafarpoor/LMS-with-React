@@ -36,6 +36,10 @@ body > div:not([data-otp]) {
     --button-hover: #2AB5D4;
     --fullLine-btn-bg: #0CBDE2;
     --fullLine-btn-hover: #099BB8;
+    --input-bg: #E1E4E7;
+    --input-text-color: #6D6C80;
+    --socialMedia-container-bg: #8FE1F2;
+    --socialMedia-bg: #FFFFFF;
     --invert-color: 0;
 }
 .dark-theme {
@@ -52,6 +56,10 @@ body > div:not([data-otp]) {
     --button-hover: #076C82;
     --fullLine-btn-bg: #0986A0;
     --fullLine-btn-hover: #055063;
+    --input-bg: #3C3C3C;
+    --input-text-color: #FFFFFF;
+    --socialMedia-container-bg: #2E2E2E;
+    --socialMedia-bg: #4F4F4F;
     --invert-color: 1;
 }
 
@@ -93,11 +101,11 @@ img{
 @font-face {
   font-family: IranSans;
   src: url(/fonts/persian-fonts/iran-sans/IRANSans_Medium.ttf);
-  font-weight: 500px;
+  font-weight: 500;
 }
 @font-face {
   font-family: IranSans;
   src: url(/fonts/persian-fonts/iran-sans/IRANSans_Light.ttf);
-  font-weight: 400px;
+  font-weight: 400;
 }
 

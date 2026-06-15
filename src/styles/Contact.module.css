@@ -1,0 +1,196 @@
+.contactUsContainer{
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    gap: 45px;
+}
+.contactUsBanner{
+    width: 90%;
+    height: 353px;
+    margin-top: 45px;
+    background: url(/images/contactUsBanner.png);
+    background-size: 100% 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+}
+.contactWithUs{
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 3rem;
+    white-space: nowrap;
+}
+.contactWithUsDescription{
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 1.2rem;
+    white-space: nowrap;
+}
+.aboutUs{
+    width: 90%;
+    height: max-content;
+    max-height: 445px;
+    /* border: 1px solid blue; */
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 100px;
+}
+.aboutUsBanner{
+    width: 418px;
+    height: 445px;
+}
+.aboutUsMain{
+    width: max-content;
+    max-width: 80%;
+    height: max-content;
+    margin-top: 70px;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 25px;
+}
+.aboutUsTitle{
+    font-weight: 900;
+    font-size: clamp(1.7rem,1.55vw,1.9rem);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.aboutUsDescription{
+    font-weight: 600;
+    font-size: 1.2rem;
+    font-size: clamp(1rem,1vw,1.2rem);
+    color: #B5B5B5;
+}
+.sendMailForUs{
+    width: 70%;
+    height: max-content;
+    /* border: 1px solid red; */
+}
+.howToFindUs{
+    width: 90%;
+    height: max-content;
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 40px;
+    margin-bottom: 50px;
+}
+.socialMediasBox{
+    width: max-content;
+    height: max-content;
+    background-color: var(--socialMedia-container-bg);
+    border-radius: 24px;
+}
+.socialMediasContainer{
+    height: max-content;
+    padding: 20px 20px;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 20px;
+}
+.socialMedia{
+    min-width: 326px;
+    width: 326px;
+    max-width: 326px;
+    height: 67px;
+    display: flex;
+    flex-flow: row nowrap;
+    background-color: var(--socialMedia-bg);
+    border-radius: 18px;
+}
+.socialMediaIconContainer{
+    width: 70px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.socialMediaIcon{
+    width: 40px;
+    height: 40px;
+}
+.mediaInfoContainer{
+    width: calc(100% - 70px);
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+}
+.socialMediaTitle{
+    font-weight: 900;
+    font-size: 1.08rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.socialMediasAddress{
+    width: max-content;
+    font-weight: 600;
+    font-size: 0.97rem;
+    color: #B5B5B5;
+    cursor: pointer;
+    user-select: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: 0.3s ease-in-out;
+}
+.socialMediasAddress:hover{
+    color: blue;
+}
+.ourAddress{
+    width: calc(100% - 406px);
+    height: 368px;
+    border: 1px solid purple;
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+
+
+
+
+
+@media (max-width: 1000px) {
+    .aboutUs{
+        width: 418px;
+        max-height: max-content;
+        flex-direction: column;
+        gap: 0px;
+        align-items: center;
+    }
+}
+@media (max-width: 800px) {
+    .howToFindUs{
+        width: max-content;
+        flex-direction: column;
+        align-items: center;
+    }
+    .socialMedia{
+        min-width: 306px;
+        width: 306px;
+    }
+    .ourAddress{
+        width: max-content;
+    }
+}
+@media (max-width: 600px) {
+    .contactWithUs{
+        font-size: 2.4rem;
+    }
+    .contactWithUsDescription{
+        font-size: 1.05rem;
+    }
+}
+@media (max-width: 400px) {
+    .contactUsBanner{
+        background: url(/images/contactUsBannerMobile.png);
+    }
+    .contactWithUs{
+        font-size: 2.2rem;
+    }
+    .contactWithUsDescription{
+        font-size: 0.92rem;
+    }
+}
