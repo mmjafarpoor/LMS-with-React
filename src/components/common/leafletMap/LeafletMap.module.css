@@ -8,4 +8,17 @@
     white-space: nowrap;
 }
 
-                            /* clusterIcon Style is in app.css */
+                            /* clusterIcon Style is in app.css */       
+
+/* .clusterIcon{
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    font-weight: 800;
+    font-size: 1.7rem;
+} */
