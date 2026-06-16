@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import Style from "../styles/Landing.module.css";
 import clsx from "clsx";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 	
@@ -10,6 +10,18 @@ import "react-toastify/ReactToastify.css";
     const navigate = useNavigate();
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	
+    const location = useLocation();
+
+    function getActivePage() {
+        const path = location.pathname;
+
+        if (path === "/") return "Home";
+        if (path.startsWith("/Courses")) return "Courses";
+        if (path.startsWith("/About")) return "About";
+        if (path.startsWith("/Contact")) return "Contact";
+
+        return "Home";
+    }
 	  // const [isDarkMode, setIsDarkMode] = useState(() => {
 	  //     const savedTheme = localStorage.getItem('theme');
 	  //     return savedTheme === 'dark';
