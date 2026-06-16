@@ -24,7 +24,7 @@ const TeachersDetails = () => {
       <div className="w-[90%] mt-10 mb-10 flex flex-row flex-wrap gap-y-5 justify-around">
         <div className="w-[90%] md:w-[35%] lg:w-[30%] xl:w-[25%] rounded-3xl flex flex-col items-center bg-(--news-boxs) shadow-[0_0px_8px_var(--news-shadow-color)] ">
           <div className="w-full mt-5 flex flex-col items-center gap-5">
-            <img src="/public/images/bahr.png" />
+            <img src="/images/bahr.png" />
             <p className="font-bold!">{teacherProfile?.fullName}</p>
           </div>
 

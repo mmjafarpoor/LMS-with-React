@@ -14,7 +14,7 @@ const TeachersData = ({ teacherId, courseCounts, fullName }) => {
     >
       <img
         style={{ maxWidth: "none", height: "386px" }}
-        src={"/public/images/teacher.png"}
+        src={"/images/teacher.png"}
       />
       <div className="w-[80%] mr-6 flex flex-col gap-2 text-black">
         <p className="text-2xl font-bold!">{fullName}</p>

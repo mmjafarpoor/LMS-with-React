@@ -36,7 +36,7 @@ const NewsFilters = ({categories}) => {
               className={clsx(
                 "h-4.5 w-4.5 rounded-md duration-50 cursor-pointer",
                 activeFilter[category]
-                  ? "bg-[url(/public/images/check.png)] bg-no-repeat bg-position-[50%_55%] bg-[#ECFDEF] border border-[#3DCAE8]"
+                  ? "bg-[url(/images/check.png)] bg-no-repeat bg-position-[50%_55%] bg-[#ECFDEF] border border-[#3DCAE8]"
                   : "bg-[#E7F8FC] border border-[#A6A6A6]",
               )}
             ></div>
