@@ -4,6 +4,8 @@ import clsx from "clsx";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.css";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 	
 	const Landing = () => {
 
@@ -36,8 +38,8 @@ import "react-toastify/ReactToastify.css";
 	
 	const themeButtonRef = useRef(null);
     const [isDarkMode, setIsDarkMode] = useState(() => {
-    const savedTheme = localStorage.getItem("theme");
-    return savedTheme === "dark";
+        const savedTheme = localStorage.getItem("theme");
+        return savedTheme === "dark";
     });
 	
     const toggleDarkMode = async () => {
@@ -139,7 +141,7 @@ import "react-toastify/ReactToastify.css";
                         <div className={Style.mobileMenuItemsContainer}>
                             <Link to={"Home"} className={Style.mobileMenuItem}>خانه</Link>
                             <Link to={"Courses"} className={Style.mobileMenuItem}>دوره ها</Link>
-                            <Link to={"Instructors"} className={Style.mobileMenuItem}>اساتید</Link>
+                            <Link to={"Teachers"} className={Style.mobileMenuItem}>اساتید</Link>
                             <Link to={"News"} className={Style.mobileMenuItem}>اخبار و مقالات</Link>
                             <Link to={"Contact"} className={Style.mobileMenuItem}>ارتباط باما</Link>
                         </div>
@@ -164,13 +166,20 @@ import "react-toastify/ReactToastify.css";
                     <div className={Style.menu}>
                         <Link to={"Home"} className={Style.menuItem}>خانه</Link>
                         <Link to={"Courses"} className={Style.menuItem}>دوره ها</Link>
-                        <Link to={"Instructors"} className={Style.menuItem}>اساتید</Link>
+                        <Link to={"Teachers"} className={Style.menuItem}>اساتید</Link>
                         <Link to={"News"} className={Style.menuItem}>اخبار و مقالات</Link>
                         <Link to={"Contact"} className={Style.menuItem}>ارتباط با ما</Link>
                     </div>
                     <div className={Style.loginContainer}>
-                        <div className={Style.darkModeSwitch} ref={themeButtonRef} onClick={toggleDarkMode}  title={isDarkMode ? "حالت روشن" : "حالت تاریک"}>
-                            <img src={isDarkMode ? "/images/lightMode.png" : "/images/darkMode.png"} alt={isDarkMode ? "Light Mode" : "Dark Mode"} />
+                        <div className={Style.darkModeSwitch}
+                        ref={themeButtonRef} onClick={toggleDarkMode}  title={isDarkMode ? "حالت روشن" : "حالت تاریک"}>
+                            <motion.img
+                                key={isDarkMode}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.4 }}
+                                src={isDarkMode ? "/images/lightMode.png" : "/images/darkMode.png"} alt={isDarkMode ? "Light Mode" : "Dark Mode"} />
                         </div>
                         <div className={Style.account} onClick={GoToAuth}>ورود یا ثبت نام</div>
                         <div className={Style.headerShowMoreButton} onClick={toggleMenu}>
