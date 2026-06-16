@@ -15,7 +15,7 @@
     gap: 20px;
 }
 .errorCode{
-    color: var(--fullLine-btn-bg);
+    color: var(--button-bg);
     font-weight: 800;
     font-size: 15rem;
     line-height: 1;
@@ -25,7 +25,7 @@
     transition: 0.35s ease-in-out;
 }
 .errorCode:hover{
-    color: var(--fullLine-btn-hover);
+    color: var(--button-hover);
 }
 .errorText{
     font-weight: 900;
@@ -36,7 +36,7 @@
 .backToPrevPage{
     width: 190px;
     height: 40px;
-    background-color: var(--fullLine-btn-bg);
+    background-color: var(--button-bg);
     border-radius: 18px;
     display: flex;
     flex-flow: row nowrap;
@@ -46,7 +46,7 @@
     transition: 0.35s ease-in-out;
 }
 .backToPrevPage:hover{
-    background-color: var(--fullLine-btn-hover);
+    background-color: var(--button-hover);
 }
 .buttonText{
     font-weight: 900;

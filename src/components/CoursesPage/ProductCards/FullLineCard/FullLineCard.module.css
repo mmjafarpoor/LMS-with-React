@@ -149,7 +149,7 @@
     width: max-content;
     max-width: 150px;
     padding: 0px 5px;
-    background-color: var(--fullLine-btn-bg);
+    background-color: var(--button-bg);
     border-radius: 8px;
     display: flex;
     flex-flow: row nowrap;
@@ -159,7 +159,7 @@
     transition: 0.35s ease-in-out;
 }
 .courseInstructor:hover{
-    background-color: var(--fullLine-btn-hover);
+    background-color: var(--button-hover);
 }
 .instructorIcon{
     width: 24px;
@@ -213,7 +213,7 @@
 .reserveTheCourse{
     width: 167px;
     height: 48px;
-    background-color: var(--fullLine-btn-bg);
+    background-color: var(--button-bg);
     border-radius: 18px;
     display: flex;
     flex-flow: row nowrap;
@@ -224,7 +224,7 @@
     transition: 0.35s ease-in-out;
 }
 .reserveTheCourse:hover{
-    background-color: var(--fullLine-btn-hover);
+    background-color: var(--button-hover);
 }
 .reserveIcon{
     width: 24px;
