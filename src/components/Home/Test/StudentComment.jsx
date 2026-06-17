@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Rating, RoundedStar } from "@smastrom/react-rating";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 
 const StudentComment = () => {
   const commentBoxes = ["A", "B", "C", "D", "E", "F"];
   const [activeBoxIndex, setActiveBoxIndex] = useState(0);
   const visibleIndexes = [
+    {
+      index: (activeBoxIndex + 2) % commentBoxes.length,
+      pos: "righter",
+    },
     {
       index: (activeBoxIndex + 1) % commentBoxes.length,
       pos: "right",
@@ -13,6 +19,10 @@ const StudentComment = () => {
     {
       index: (activeBoxIndex - 1 + commentBoxes.length) % commentBoxes.length,
       pos: "left",
+    },
+    {
+      index: (activeBoxIndex - 2 + commentBoxes.length) % commentBoxes.length,
+      pos: "lefter",
     },
   ];
 
@@ -23,9 +33,9 @@ const StudentComment = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       GoToNext();
-    }, 1000);
+    }, 5000);
     return () => clearInterval(interval);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -83,18 +93,29 @@ const StudentComment = () => {
         [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]
         lg:[-webkit-mask-image:linear-gradient(to_left,transparent,black_20%,black_80%,transparent)]"
       >
-        <div className="h-full w-300 xl:w-366 hidden md:flex flex-col lg:flex-row justify-center items-center border">
+        <div className="h-full w-582 xl:w-710 hidden md:flex flex-col lg:flex-row justify-center items-center">
           {visibleIndexes.map((item) => (
-            <div
+            <motion.div
               key={item.index}
+              layout
+              transition={{
+                layout: {
+                  duration: 0.5,
+                  ease: "easeInOut",
+                },
+              }}
               className={
-                item.pos === "center"
-                  ? "h-100 lg:h-full w-full lg:w-122 px-7 py-5 rounded-2xl flex flex-col justify-around gap-12 bg-(--student-comment-box-bg) shadow-[0_0px_8px_var(--news-shadow-color)] z-12222"
+                item.pos === "righter"
+                  ? "h-100 lg:h-full w-full lg:w-122 scale-90 px-7 py-5 -mb-5 lg:mb-0 ml-0 lg:-ml-6 rounded-2xl flex flex-col justify-around gap-12 bg-(--student-comment-box-bg) shadow-[0_0px_8px_var(--news-shadow-color)]"
                   : item.pos === "right"
                     ? "h-100 lg:h-full w-full lg:w-122 scale-90 px-7 py-5 -mb-5 lg:mb-0 ml-0 lg:-ml-6 rounded-2xl flex flex-col justify-around gap-12 bg-(--student-comment-box-bg) shadow-[0_0px_8px_var(--news-shadow-color)]"
-                    : item.pos === "left"
-                      ? "h-100 lg:h-full w-full lg:w-122 scale-90 px-7 py-5-mt-5 lg:mt-0 mr-0 lg:-mr-6 rounded-2xl flex flex-col justify-around gap-12 bg-(--student-comment-box-bg) shadow-[0_0px_8px_var(--news-shadow-color)]"
-                      : "hidden"
+                    : item.pos === "center"
+                      ? "h-100 lg:h-full w-full lg:w-122 px-7 py-5 -my-7 lg:my-0 mx-0 lg:-mx-11 rounded-2xl flex flex-col justify-around gap-12 bg-(--student-comment-box-bg) shadow-[0_0px_8px_var(--news-shadow-color)] z-12222"
+                      : item.pos === "left"
+                        ? "h-100 lg:h-full w-full lg:w-122 scale-90 px-7 py-5 -mt-5 lg:mt-0 mr-0 lg:-mr-6 rounded-2xl flex flex-col justify-around gap-12 bg-(--student-comment-box-bg) shadow-[0_0px_8px_var(--news-shadow-color)]"
+                        : item.pos === "lefter"
+                          ? "h-100 lg:h-full w-full lg:w-122 scale-90 px-7 py-5 -mt-5 lg:mt-0 mr-0 lg:-mr-6 rounded-2xl flex flex-col justify-around gap-12 bg-(--student-comment-box-bg) shadow-[0_0px_8px_var(--news-shadow-color)]"
+                          : "hidden"
               }
             >
               <Rating
@@ -125,7 +146,7 @@ const StudentComment = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
