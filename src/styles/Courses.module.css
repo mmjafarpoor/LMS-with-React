@@ -64,7 +64,7 @@
     width: clamp(54px,14.35%,91px);
     height: auto;
     aspect-ratio: 54 / 49;
-    background-color: #5CD3EC;
+    background-color: var(--button-bg);
     border-radius: 28%;
     position: absolute;
     bottom: 0px;

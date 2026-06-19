@@ -48,6 +48,9 @@
     font-weight: 900;
     font-size: 1.1rem;
     max-height: 28px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .productDescription{
     font-weight: 600;

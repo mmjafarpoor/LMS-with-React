@@ -44,6 +44,7 @@ body > div:not([data-otp]) {
     --news-description: #909090;
     --news-shadow-color: rgba(0,0,0,0.1);
     --comment-reply-bg: #F4F4F4;
+    --home-text-badge: #5CD3EC;
     --invert-color: 0;
 }
 .dark-theme {
@@ -68,6 +69,7 @@ body > div:not([data-otp]) {
     --news-description: #A6A6A6;
     --news-shadow-color: rgba(0,0,0,0);
     --comment-reply-bg: #3C3C3C;
+    --home-text-badge: #0986A0;
     --invert-color: 1;
 }
 
@@ -85,7 +87,7 @@ body > div:not([data-otp]) {
   z-index: 10000;
 }
 input[type='checkbox']{
-  accent-color: #8FE1F2;
+  accent-color: var(--button-bg);
 }
 img{
   width: fit-content;

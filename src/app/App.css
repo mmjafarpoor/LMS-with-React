@@ -40,7 +40,7 @@ body{
 .rc-slider-tracks {
     position: absolute;
     height: 7px;
-    background-color: #5CD3EC;
+    background-color: var(--button-bg);
     border-radius: 6px;
 }
 .rc-slider-track-draggable {
@@ -57,8 +57,8 @@ body{
     width: 17px;
     height: 17px;
     margin-top: -5px;
-    background-color: #0CBDE2;
-    border: solid 4px #0CBDE2;
+    background-color: var(--button-bg);
+    border: solid 4px var(--button-bg);
     border-radius: 50%;
     cursor: pointer;
     cursor: -webkit-grab;

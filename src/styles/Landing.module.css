@@ -24,7 +24,6 @@
 .landingContainer > .headerContainer > .header{
     width: 98%;
     height: fit-content;
-    /* border: 1px solid cyan; */
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -33,7 +32,6 @@
 .landingContainer > .headerContainer > .header >.logoContainer{
     width: max-content;
     height: max-content;
-    /* border: 1px solid blue; */
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -182,7 +180,7 @@
     width: 78%;
     min-width: 146px;
     height: 100%;
-    background-color: #0CBDE2;
+    background-color: var(--button-bg);
     border-radius: 16px;
     color: #ffffff;
     display: flex;
@@ -193,6 +191,10 @@
     white-space: nowrap;
     user-select: none;
     cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+.landingContainer > .headerContainer > .header >.loginContainer > .account:hover{
+    background-color: var(--button-hover);
 }
 .landingContainer > .headerContainer > .header >.loginContainer > .headerShowMoreButton{
     display: none;
@@ -234,12 +236,16 @@
 .landingContainer > .bottom > .navigateTopContainer > .navigateTop{
     width: 56px;
     height: 52px;
-    background-color: #5CD3EC;
+    background-color: var(--button-bg);
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+.landingContainer > .bottom > .navigateTopContainer > .navigateTop:hover{
+    background-color: var(--button-hover);
 }
 .landingContainer > .bottom > .navigateTopContainer > .navigateTop > .arrowUp{
     width: 35px;

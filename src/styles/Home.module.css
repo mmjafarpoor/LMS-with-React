@@ -52,7 +52,7 @@
     white-space: nowrap;
     font-size: clamp(2.3rem,2.5vw,3.2rem);
     color: #ffffff;
-    background-color: #5CD3EC;
+    background-color: var(--home-text-badge);
     padding: 9px 18px;
     border-radius: 40px;
     font-weight: 900;
@@ -77,9 +77,13 @@
     width: 14.3%;
     min-width: 215px;
     height: 54px;
-    background-color: #0CBDE2;
+    background-color: var(--button-bg);
     border-radius: 30px;
     cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+.beginTheJourneyButton:hover{
+    background-color: var(--button-hover);
 }
 .beginTheJourneyButton > span{
     color: #ffffff;
@@ -106,7 +110,7 @@
     width: 14.7%;
     min-width: 170px;
     height: 260px;
-    background-color: #8FE1F2;
+    background-color: var(--button-bg);
     border-radius: 40px;
     display: flex;
     justify-content: center;
@@ -336,7 +340,7 @@
     margin-left: 5px;
     width: 180px;
     height: 51px;
-    background-color: #0CBDE2;
+    background-color: var(--button-bg);
     border-radius: 35px;
     display: flex;
     flex-direction: row;
@@ -344,6 +348,10 @@
     justify-content: center;
     gap: 12px;
     cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+.sliderItemReservation:hover{
+    background-color: var(--button-hover);
 }
 .sliderItemAddToCart{
     width: 22px;
@@ -378,7 +386,7 @@
     width: 32px;
     height: 12px;
     border-radius: 12px;
-    background-color: #0CBDE2;
+    background-color: var(--button-bg);
 }
                                             /* Best Instructors Section */
 .bestInstructorsContainer{
@@ -410,7 +418,7 @@
     left: 0px;
     width: 45%;
     height: 280px;
-    background-color: #5CD3EC;
+    background-color: var(--button-bg);
     border-radius: 40px;
     display: flex;
     align-items: center;
@@ -482,12 +490,16 @@
     width: 42%;
     min-width: 240px;
     height: 55px;
-    background-color: #0CBDE2;
+    background-color: var(--button-bg);
     border-radius: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+.knowMoreAboutOurTrip:hover{
+    background-color: var(--button-hover);
 }
 .knowMoreAboutOurTripText{
     color: #ffffff;
