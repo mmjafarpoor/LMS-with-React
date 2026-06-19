@@ -4,6 +4,7 @@ import SliderData from "../Data/SliderData"
 import clsx from "clsx"
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
+import AnimateRoadmap from '../components/common/AnimateRoadmap/AnimateRoadmap';
 
 const Home = () => {
   // console.log(SliderData);
@@ -177,6 +178,16 @@ const Home = () => {
             <span className={Style.knowMoreAboutOurTripText}>درباره سفر ما بیشتر بدانید</span>
           </div>
         </div>
+      </div>
+      <div className={Style.roadMapContainer}>
+        <div className={Style.roadMapHeading}>
+          <div className={Style.roadMapTitleContainer}>
+            <span className={Style.roadMapTitle}>نقشه راه شما</span>
+            <img src="/images/blueLine.png" className={Style.roadMapTitleBackGround}/>
+          </div>
+          <span className={Style.roadMapDescription}>ما اینجا هستیم تا بشما کمک کنیم راه خود را پیدا کنید</span>
+        </div>
+        <AnimateRoadmap/>
       </div>
     </div>
   )
