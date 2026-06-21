@@ -86,7 +86,7 @@ body > div:not([data-otp]) {
 ::view-transition-new(root) {
   z-index: 10000;
 }
-input[type='checkbox']{
+input[type='checkbox'],input[type='radio']{
   accent-color: var(--button-bg);
 }
 img{

@@ -87,6 +87,7 @@
 }
 .productFilterContainer{
     width: 21%;
+    min-width: 235px;
     height: max-content;
     background-color: var(--header-bg);
     box-shadow: var(--box-shadow); 
@@ -95,7 +96,7 @@
     flex-flow: column nowrap;
     align-items: center;
     gap: 25px;
-    
+    overflow: hidden;
 }
 .searchTheFilters{
     width: 92%;
@@ -244,9 +245,11 @@
 
 
 
-
-
-
+@media (max-width: 1200px) {
+    .productContainer{
+        width: 100%;
+    }
+}
 @media (max-width: 1000px) {
     .coursesBanner{
         flex-direction: column;
@@ -259,6 +262,12 @@
     .bannerWrapper{
         order: 1;
         width: clamp(360px,75%,637px);
+    }
+    .productContainer{
+        justify-content: center;
+    }
+    .productFilterContainer{
+        display: none;
     }
 }
 @media (max-width: 800px) {

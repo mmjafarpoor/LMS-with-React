@@ -9,6 +9,7 @@ import RegularCard from '../components/CoursesPage/ProductCards/RegularCard/Regu
 import { getCourseList } from '../core/services/get'
 import FullLineCard from '../components/CoursesPage/ProductCards/FullLineCard/FullLineCard'
 import { toast } from 'react-toastify'
+import ViewAsMenu from '../components/CoursesPage/ViewAsMenu/ViewAsMenu'
 
 const Courses = () => {
   
@@ -43,15 +44,15 @@ const Courses = () => {
     useEffect(() => {
         fetchCourseList();
     }, [])
-    if (isLoading) {
-        return <div className="text-blue-800"> در حال بارگذاری...</div>;
-    }
-    if (error) {
-        return <div className="text-red-700"> خطا در بارگذاری: {error}</div>;
-    }
-    if (!courseList || courseList.length === 0) {
-        return <div className={Style.noData}> محصولی یافت نشد.</div>;
-    }
+    // if (isLoading) {
+    //     return <div className="text-blue-800"> در حال بارگذاری...</div>;
+    // }
+    // if (error) {
+    //     return <div className="text-red-700"> خطا در بارگذاری: {error}</div>;
+    // }
+    // if (!courseList || courseList.length === 0) {
+    //     return <div className={Style.noData}> محصولی یافت نشد.</div>;
+    // }
     const formatPrice = (price) => {
       if (price === null || price === undefined) return '';
         const numberPrice = Number(price);
@@ -108,7 +109,9 @@ const Courses = () => {
             <div className={Style.productSearchBar}>
               <SearchInput/>
             </div>
-            <div className={Style.viewAsMenu}></div>
+            <div className={Style.viewAsMenu}>
+              <ViewAsMenu/>
+            </div>
           </div>
           <div className={Style.itemsContainer}>
             {displayMode == "regular" ? (

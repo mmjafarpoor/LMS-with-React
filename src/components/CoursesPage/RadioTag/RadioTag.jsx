@@ -1,11 +1,11 @@
 import React from 'react'
-import Style from './FilterTag.module.css'
+import Style from './RadioTag.module.css'
 import { Field, Form, Formik } from 'formik'
 
-const FilterTag = ({name , id}) => {
+const FilterTag = ({name , id , value}) => {
     return (
         <div className={Style.FilterTagContainer}>
-            <Field type="checkbox" id={id} name={id}></Field>
+            <Field type="radio" id={id} name="priceType" value={value}></Field>
             <label htmlFor={id}>{name}</label>
         </div>
     )

@@ -1,7 +1,7 @@
 .FilterTagContainer{
     height: 26px;
     max-height: 26px;
-    width: 90%;
+    width: max-content;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;

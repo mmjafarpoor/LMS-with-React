@@ -1,0 +1,40 @@
+.viewAsMenuContainer{
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    border-radius: inherit;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.listSortIconContainer{
+    width: 35px;
+    height: 35px;
+    border: 1px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.listSortIcon{
+    width: 24px;
+    height: 24px;
+}
+.sortFilterContainer{
+    width: calc(90% - 70px);
+    height: max-content;
+    display: flex;
+    flex-flow: column nowrap;
+}
+.arrowIconContainer{
+    width: 35px;
+    height: 35px;
+    border: 1px solid blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.arrowIcon{
+    width: 28px;
+    height: 28px;
+}
