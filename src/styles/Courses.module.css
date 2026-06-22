@@ -230,7 +230,60 @@
     gap: 25px;
     border: 1px solid green;
 }
-
+                                                /* React Pagination */
+.paginationContainer{
+    margin: 50px auto;
+    width: max-content;
+    height: 50px;
+    background-color: var(--bottom-bg);
+    border-radius: 16px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    list-style: none;
+    direction: ltr;
+}
+.paginationButton{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background: url(/images/paginationLeftArrow.png) no-repeat; */
+}
+.prevPaginationIcon{
+    color: var(--pagination-backButton);
+    cursor: pointer;
+}
+.nextPaginationIcon{
+    color: var(--button-bg);
+    cursor: pointer;
+}
+.activePageItem{
+    background-color: #0CBDE2;
+    border-radius: 8px;
+    width: 45px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    user-select: none;
+}
+.pageItem{
+    border-radius: 8px;
+    width: 45px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    user-select: none;
+    cursor: pointer;
+    transition: 0.25s ease-in-out;
+}
 
 
 

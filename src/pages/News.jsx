@@ -17,7 +17,7 @@ const News = () => {
   const pageCount = Math.abs(newsItems.length / perPage);
 
   const fetchNews = async () => {
-    const response = await fetch("http://188.121.111.8:3001/News");
+    const response = await fetch("http://188.121.104.25:3001/News");
     const data = await response.json();
     setNewsItems(data.news);
   };
@@ -36,7 +36,7 @@ const News = () => {
   return (
     <div className={styles.whole_box}>
       <div className={styles.title_box}>
-        <div className="flex flex-col gap-4 items-center lg:w-[50%] xl:w-[40%] lg:bg-[url(/public/images/blueLine.png)] bg-no-repeat bg-position-[50%_30px]">
+        <div className="flex flex-col gap-4 items-center lg:w-[50%] xl:w-[40%] lg:bg-[url(/images/blueLine.png)] bg-no-repeat bg-position-[50%_30px]">
           <h1 className="lg:text-[30px] sm:text-[26px] text-[20px] font-bold!">
             آموزش برنامه‌نویسی با بهترین‌ها
           </h1>
@@ -64,11 +64,11 @@ const News = () => {
               ></div>
               <div
                 onClick={() => setShowType("grid")}
-                className="h-10 w-10 bg-[url(/public/images/grid.png)] bg-no-repeat bg-position-[50%] invert-(--invert-color) cursor-pointer"
+                className="h-10 w-10 bg-[url(/images/grid.png)] bg-no-repeat bg-position-[50%] invert-(--invert-color) cursor-pointer"
               ></div>
               <div
                 onClick={() => setShowType("list")}
-                className="h-10 w-10 bg-[url(/public/images/list.png)] bg-no-repeat bg-position-[50%] invert-(--invert-color) cursor-pointer"
+                className="h-10 w-10 bg-[url(/images/list.png)] bg-no-repeat bg-position-[50%] invert-(--invert-color) cursor-pointer"
               ></div>
             </div>
             <input

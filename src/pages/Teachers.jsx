@@ -13,7 +13,7 @@ const Teachers = () => {
   const pageCount = Math.abs(teachersItems.length / perPage);
 
   const fetchNews = async () => {
-    const response = await fetch("http://188.121.111.8:3001/Home/GetTeachers");
+    const response = await fetch("http://188.121.104.25:3001/Home/GetTeachers");
     const data = await response.json();
     setTeachersItems(data);
   };
@@ -26,7 +26,7 @@ const Teachers = () => {
   return (
     <div className={styles.whole_box}>
       <div className={styles.title_box}>
-        <div className="flex flex-col gap-4 items-center lg:w-[50%] xl:w-[40%] lg:bg-[url(/public/images/blueLine.png)] bg-no-repeat bg-position-[50%_30px]">
+        <div className="flex flex-col gap-4 items-center lg:w-[50%] xl:w-[40%] lg:bg-[url(/images/blueLine.png)] bg-no-repeat bg-position-[50%_30px]">
           <h1 className="lg:text-[30px] sm:text-[26px] text-[20px] font-bold!">
             آموزش برنامه‌نویسی با بهترین‌ها
           </h1>
@@ -41,7 +41,7 @@ const Teachers = () => {
         </div>
       </div>
       <div className={styles.data_container}>
-        <div className="hidden lg:flex flex-col gap-4 items-center lg:w-[50%] xl:w-[40%] bg-[url(/public/images/blueLine.png)] bg-no-repeat bg-position-[50%_30px]">
+        <div className="hidden lg:flex flex-col gap-4 items-center lg:w-[50%] xl:w-[40%] bg-[url(/images/blueLine.png)] bg-no-repeat bg-position-[50%_30px]">
           <h1 className="lg:text-[30px] sm:text-[26px] text-[20px] font-bold!">
             رهبری ما
           </h1>

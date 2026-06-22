@@ -17,7 +17,7 @@ const ViewAsMenu = () => {
     );
 
     return (
-        <div className={Style.viewAsMenuContainer} onClick={() => setIsOpen((prev) => !prev)}>
+        <div className={Style.viewAsMenuContainer}>
             <div className={Style.listSortIconContainer}>
                 <img src="/images/listsort.png" alt="List Sort Icon" className={Style.listSortIcon} />
             </div>
@@ -35,7 +35,7 @@ const ViewAsMenu = () => {
                     </div>
                 )}
             </div>
-            <div className={Style.arrowIconContainer}>
+            <div className={Style.arrowIconContainer} onClick={() => setIsOpen((prev) => !prev)}>
                 <img src="/images/displayArrow.png" style={{transform: isOpen ? 'rotate(0deg)' : 'rotate(180deg)'}} alt="Arrow Icon" className={Style.arrowIcon}/>
             </div>
         </div>

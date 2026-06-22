@@ -45,6 +45,7 @@ body > div:not([data-otp]) {
     --news-shadow-color: rgba(0,0,0,0.1);
     --comment-reply-bg: #F4F4F4;
     --home-text-badge: #5CD3EC;
+    --pagination-backButton : #A6A6A6;
     --invert-color: 0;
 }
 .dark-theme {
@@ -70,6 +71,7 @@ body > div:not([data-otp]) {
     --news-shadow-color: rgba(0,0,0,0);
     --comment-reply-bg: #3C3C3C;
     --home-text-badge: #0986A0;
+    --pagination-backButton : #909090;
     --invert-color: 1;
 }
 

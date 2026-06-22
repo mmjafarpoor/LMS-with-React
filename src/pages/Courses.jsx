@@ -10,6 +10,7 @@ import { getCourseList } from '../core/services/get'
 import FullLineCard from '../components/CoursesPage/ProductCards/FullLineCard/FullLineCard'
 import { toast } from 'react-toastify'
 import ViewAsMenu from '../components/CoursesPage/ViewAsMenu/ViewAsMenu'
+import ReactPaginate from 'react-paginate'
 
 const Courses = () => {
   
@@ -19,19 +20,25 @@ const Courses = () => {
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(true);
   const [displayMode, setDisplayMode] = useState("regular");
   console.log("DisplayMode =" , displayMode );
+  const [pageIndex, setPageIndex] = useState(0);
+  const [pageCount, setPageCount] = useState(0);
+
+  const itemsPerPage = 12;
+
   const toggleFiltersHandler = () => {
-      setIsCategoriesOpen(prev => !prev)
-    }
-    const fetchCourseList = async () => {
-      setIsLoading(true);
-      setError(null);
-      try{
-        const response = await getCourseList({pageNumber:1, rowOfPage:12, });
-          if (response.data && response.data.courseFilterDtos) {
-              setCourseList(response.data.courseFilterDtos);
-              console.log("Data Received",response.data.courseFilterDtos)}
-          else {throw new Error("Data structure is invalid");}
-      }
+    setIsCategoriesOpen(prev => !prev)
+  }
+  const fetchCourseList = async (pageNumber = 1) => {
+    setIsLoading(true);
+    setError(null);
+    try{
+      const response = await getCourseList({pageNumber, rowOfPage: itemsPerPage, });
+        if (response.data?.courseFilterDtos) {
+            setCourseList(response.data.courseFilterDtos);
+            setPageCount(Math.ceil(response.data.totalCount / itemsPerPage));
+            console.log("Data Received",response.data.courseFilterDtos)}
+        }
+        // else {throw new Error("Data structure is invalid");}
       catch (err) {
         console.error("Fetch error:", err);
         const errorMsg = err.message || "خطا در بارگذاری لیست دوره‌ها";
@@ -40,10 +47,28 @@ const Courses = () => {
       finally{
         setIsLoading(false);
       }
-    }
-    useEffect(() => {
-        fetchCourseList();
-    }, [])
+  }
+  const handlePageClick = async (event) => {
+    const page = event.selected + 1;
+
+    setPageIndex(event.selected);
+
+    await fetchCourseList(page);
+  };
+  useEffect(() => {
+      fetchCourseList();
+  }, [])
+
+    
+    // const startIndex = pageIndex * itemsPerPage;
+    // const endIndex = startIndex + itemsPerPage;
+    // const currentItems = courseList.slice(startIndex, endIndex);
+    // const pageCount = Math.ceil(courseList.length / itemsPerPage);
+    
+
+    
+    
+
     // if (isLoading) {
     //     return <div className="text-blue-800"> در حال بارگذاری...</div>;
     // }
@@ -115,12 +140,42 @@ const Courses = () => {
           </div>
           <div className={Style.itemsContainer}>
             {displayMode == "regular" ? (
-              courseList.map((course)=>(<RegularCard key={course.courseId} {...course} cost={formatPrice(course.cost)}/>))
-            ) : (
-              courseList.map((course)=>(<FullLineCard key={course.courseId} {...course} cost={formatPrice(course.cost)}/>))
-            )
-          }
+                courseList.map((course)=>(<RegularCard key={course.courseId} {...course} cost={formatPrice(course.cost)}/>))
+              ) : (
+                courseList.map((course)=>(<FullLineCard key={course.courseId} {...course} cost={formatPrice(course.cost)}/>))
+              )
+            }
           </div>
+          <ReactPaginate
+            previousLabel={
+              <span className={Style.prevPaginationIcon}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                </svg>
+              </span>
+            }
+            breakLabel="..."
+            nextLabel={
+              <span className={Style.nextPaginationIcon}>
+                <svg style={{ transform: 'scaleX(-1)' }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                </svg>
+              </span>
+            }
+            pageCount={pageCount}
+            onPageChange={handlePageClick}
+            forcePage={pageIndex}
+            containerClassName={Style.paginationContainer}
+            pageClassName={Style.pageItem}
+            pageLinkClassName="block"
+            previousLinkClassName="block"
+            nextLinkClassName="block"
+            activeClassName={Style.activePageItem}
+            disabledClassName={Style.disabledArrow}
+            disableInitialClassNames={true}
+            previousClassName={Style.paginationButton}
+            nextClassName={Style.paginationButton}
+          />
         </div>
       </div>
     </div>
