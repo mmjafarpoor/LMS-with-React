@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Style from './ViewAsMenu.module.css'
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
+import useDarkStore from '../../../store/DarkStore';
 
 const ViewAsMenu = () => {
 
@@ -18,10 +19,12 @@ const ViewAsMenu = () => {
         (item) => item.id === selectedFilter
     );
 
+    const isDarkMode = useDarkStore((state) => state.isDarkMode);
+
     return (
         <div className={Style.viewAsMenuContainer} onClick={() => setIsOpen((prev) => !prev)}>
             <div className={Style.listSortIconContainer}>
-                <img src="/images/listsort.png" alt="List Sort Icon" className={Style.listSortIcon} />
+                <img src={isDarkMode ? "/images/listsortWhite.png" : "/images/listsort.png"} alt="List Sort Icon" className={Style.listSortIcon} />
             </div>
             <div className={Style.sortFilterContainer}>
                 <div className={Style.selectedItem}>
@@ -37,7 +40,7 @@ const ViewAsMenu = () => {
                     </motion.div>
             </div>
             <div className={Style.arrowIconContainer}>
-                <img src="/images/displayArrow.png" style={{transform: isOpen ? 'rotate(0deg)' : 'rotate(180deg)'}} alt="Arrow Icon" className={Style.arrowIcon}/>
+                <img src={isDarkMode ? "/images/displayArrowWhite.png" : "/images/displayArrow.png"} style={{transform: isOpen ? 'rotate(0deg)' : 'rotate(180deg)'}} alt="Arrow Icon" className={Style.arrowIcon}/>
             </div>
         </div>
     )

@@ -3,7 +3,11 @@ import Style from '../styles/Contact.module.css'
 import SendUsMessage from '../components/common/SendUsMessage/SendUsMessage'
 import ContactUsMediasData from '../Data/ContactUsMediasData'
 import LeafletMap from '../components/common/leafletMap/LeafletMap'
+import useDarkStore from '../store/DarkStore'
 const Contact = () => {
+
+  const isDarkMode = useDarkStore((state) => state.isDarkMode);
+
   return (
     <div className={Style.contactUsContainer}>
       <div className={Style.contactUsBanner}>
@@ -26,7 +30,7 @@ const Contact = () => {
             {ContactUsMediasData.map((Media)=>(
               <div className={Style.socialMedia} key={Media.id}>
                 <div className={Style.socialMediaIconContainer}>
-                  <img src={Media.imageUrlLight} alt={Media.imageAlt} className={Style.socialMediaIcon} />
+                  <img src={isDarkMode ?  Media.imageUrlDark  : Media.imageUrlLight} alt={Media.imageAlt} className={Style.socialMediaIcon} />
                 </div>
                 <div className={Style.mediaInfoContainer}>
                   <span className={Style.socialMediaTitle}>{Media.socialTitle}</span>

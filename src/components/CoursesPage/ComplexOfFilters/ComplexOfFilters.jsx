@@ -7,6 +7,7 @@ import RadioTag from "../RadioTag/RadioTag";
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import FormLogger from './FormLogger';
+import useDarkStore from '../../../store/DarkStore';
 
 const ComplexOfFilters = () => {
 
@@ -22,6 +23,8 @@ const ComplexOfFilters = () => {
     const toggleInstructorFilter = () => {
         setIsInstructorFilterOpen(prev => !prev);
     }
+
+    const isDarkMode = useDarkStore((state) => state.isDarkMode);
 
     return (
         <Formik
@@ -40,7 +43,7 @@ const ComplexOfFilters = () => {
                     <motion.div className={Style.filterContainer} animate={{height: isPriceFilterOpen ? "auto" : 40}} transition={{duration : 0.5}}>
                         <div className={Style.filterDisplay} onClick={togglePriceFilter}>
                             <span className={Style.filterTitle}>قیمت</span>
-                            <img src="/images/displayArrow.png" style={{transform: isPriceFilterOpen ? 'rotate(0deg)' : 'rotate(180deg)'}} alt="Filter-Display" className={Style.filterDisplaySwitchIcon}/>
+                            <img src={isDarkMode ? "/images/displayArrowWhite.png" : "/images/displayArrow.png"} style={{transform: isPriceFilterOpen ? 'rotate(0deg)' : 'rotate(180deg)'}} alt="Filter-Display" className={Style.filterDisplaySwitchIcon}/>
                         </div>
                         <div className={Style.priceRangeSliderContainer}>
                             <Slider key="priceRangeSlider" range reverse min={0} step={100000} max={10000000} value={sliderValue} onChange={setSliderValue}></Slider>
@@ -60,7 +63,7 @@ const ComplexOfFilters = () => {
                     <motion.div className={Style.filterContainer} animate={{height: isInstructorFilterOpen ? "auto" : 40}} transition={{duration : 0.5}}>
                         <div className={Style.filterDisplay} onClick={toggleInstructorFilter}>
                             <span className={Style.filterTitle}>اساتید</span>
-                            <img src="/images/displayArrow.png" style={{transform: isInstructorFilterOpen ? 'rotate(0deg)' : 'rotate(180deg)'}} alt="Filter-Display" className={Style.filterDisplaySwitchIcon}/>
+                            <img src={isDarkMode ? "/images/displayArrowWhite.png" : "/images/displayArrow.png"} style={{transform: isInstructorFilterOpen ? 'rotate(0deg)' : 'rotate(180deg)'}} alt="Filter-Display" className={Style.filterDisplaySwitchIcon}/>
                         </div>
                         <div className={Style.searchTheInstructors}>
                             <button className={Style.searchIcon} type='submit'>

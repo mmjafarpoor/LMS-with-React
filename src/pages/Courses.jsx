@@ -11,6 +11,8 @@ import FullLineCard from '../components/CoursesPage/ProductCards/FullLineCard/Fu
 import { toast } from 'react-toastify'
 import ViewAsMenu from '../components/CoursesPage/ViewAsMenu/ViewAsMenu'
 import ReactPaginate from 'react-paginate'
+import useDarkStore from '../store/DarkStore'
+import clsx from 'clsx'
 
 const Courses = () => {
   
@@ -24,6 +26,8 @@ const Courses = () => {
   const [pageCount, setPageCount] = useState(0);
 
   const itemsPerPage = 12;
+
+  const isDarkMode = useDarkStore((state) => state.isDarkMode);
 
   const toggleFiltersHandler = () => {
     setIsCategoriesOpen(prev => !prev)
@@ -113,7 +117,7 @@ const Courses = () => {
           <motion.div className={Style.filtersContainer}  animate={{height: isCategoriesOpen ? "auto" : 40}} transition={{duration : 0.7}}>
             <div className={Style.filtersDisplaySwitch} onClick={toggleFiltersHandler}>
               <span className={Style.filterTitle}>دسته بندی ها</span>
-              <img src="/images/displayArrow.png" style={{transform: isCategoriesOpen ? 'rotate(0deg)' : 'rotate(180deg)'}} alt="Filter-Display-Switch" className={Style.filterDisplaySwitchIcon}/>
+              <img src={isDarkMode ? "/images/displayArrowWhite.png" : "/images/displayArrow.png"} style={{transform: isCategoriesOpen ? 'rotate(0deg)' : 'rotate(180deg)'}} alt="Filter-Display-Switch" className={Style.filterDisplaySwitchIcon}/>
             </div>
             <ComplexOfFilters/>
             <div className={Style.showMoreFilters}>
@@ -124,11 +128,11 @@ const Courses = () => {
         <div className={Style.productMain}>
           <div className={Style.productsSearchAndDisplay}>
             <div className={Style.productListDisplaySwitch}>
-              <div className={Style.displayRegularMode} onClick={() => handleDisplayChange("regular")}>
-                <img src="/images/regularCard.png" alt="Display-Regular-Card" className={Style.switchModeIcon}/>
+              <div className={clsx(displayMode === 'regular' ? Style.displayModeActivated : Style.displayModeInactivated)} onClick={() => handleDisplayChange("regular")}>
+                <img src={isDarkMode ? "/images/regularCardWhite.png" : "/images/regularCard.png"} alt="Display-Regular-Card" className={Style.switchModeIcon}/>
               </div>
-              <div className={Style.displayFullLineMode} onClick={() => handleDisplayChange("fullLine")}>
-                <img src="/images/fullLineCard.png" alt="Display-Full-Line-Card" className={Style.switchModeIcon}/>
+              <div className={clsx(displayMode === 'fullLine' ? Style.displayModeActivated : Style.displayModeInactivated)} onClick={() => handleDisplayChange("fullLine")}>
+                <img src={isDarkMode ? "/images/fullLineCardWhite.png" : "/images/fullLineCard.png"} alt="Display-Full-Line-Card" className={Style.switchModeIcon}/>
               </div>
             </div>
             <div className={Style.productSearchBar}>

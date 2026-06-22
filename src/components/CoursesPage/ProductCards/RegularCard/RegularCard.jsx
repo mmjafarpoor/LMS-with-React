@@ -2,7 +2,7 @@ import React from 'react'
 import Style from './RegularCard.module.css'
 import RatingStars from '../../../common/RatingStars/RatingStars'
 
-const RegularCard = ({title,describe,cost,currentRegistrants,imageAddress , courseRate}) => { 
+const RegularCard = ({title,describe,cost,currentRegistrants,imageAddress , courseRate , teacherName}) => { 
     
     return (
         <div className={Style.regularCard}>
@@ -18,7 +18,7 @@ const RegularCard = ({title,describe,cost,currentRegistrants,imageAddress , cour
                     <RatingStars courseRate={courseRate}/>
                     <div className={Style.courseInstructor}>
                         <img src="/images/teaching.png" alt="Course Instructor" className={Style.courseInstructorIcon}/>
-                        <span className={Style.instructorName}>دکتر بحرالعلوم</span>
+                        <span className={Style.instructorName}>{teacherName}</span>
                     </div>
                 </div>
                 <div className={Style.productAction}>
