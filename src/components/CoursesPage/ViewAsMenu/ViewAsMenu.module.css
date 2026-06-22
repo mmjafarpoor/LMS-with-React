@@ -1,17 +1,17 @@
 .viewAsMenuContainer{
     width: 100%;
     height: 100%;
-    background-color: red;
+    /* background-color: red; */
     border-radius: inherit;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
     justify-content: space-evenly;
+    position: relative;
 }
 .listSortIconContainer{
     width: 35px;
     height: 35px;
-    border: 1px solid white;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,15 +21,56 @@
     height: 24px;
 }
 .sortFilterContainer{
-    width: calc(90% - 70px);
+    width: calc(88% - 70px);
+    min-width: calc(88% - 70px);
     height: max-content;
     display: flex;
-    flex-flow: column nowrap;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    overflow: hidden;
+}
+.selectedItem{
+    width: 100%;
+    min-width: 100%;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    color: var(--button-bg);
+    font-weight: 900;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.dropdown {
+    position: absolute;
+    top: 53px;
+    left: 0;
+    width: 100%;
+    box-shadow: var(--box-shadow);
+    background-color: var(--bottom-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    z-index: 100;
+}
+.option {
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s ease-in-out;
+}
+.option:hover {
+    background-color: var(--button-bg);
+    opacity: 0.75;
 }
 .arrowIconContainer{
     width: 35px;
     height: 35px;
-    border: 1px solid blue;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -37,4 +78,5 @@
 .arrowIcon{
     width: 28px;
     height: 28px;
+    transition: 0.35s ease-in-out;
 }

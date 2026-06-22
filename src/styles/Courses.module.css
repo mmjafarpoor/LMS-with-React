@@ -193,6 +193,7 @@
 }
 .viewAsMenu{
     width: 17%;
+    min-width: 195px;
     height: 48px;
     background-color: var(--bottom-bg);
     border-radius: 16px;

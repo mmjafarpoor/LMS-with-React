@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import Style from './ViewAsMenu.module.css'
-// eslint-disable-next-line no-unused-vars
-import { motion } from 'framer-motion';
 
 const ViewAsMenu = () => {
 
@@ -27,14 +25,15 @@ const ViewAsMenu = () => {
                 <div className={Style.selectedItem}>
                     {selectedItem?.title}
                 </div>
-                    <motion.div className={Style.dropdown} animate={isOpen ? "open" : "closed"} variants={{open: {height: "auto",opacity: 1}, closed: {height: 0,opacity: 0}}} transition={{ duration: 0.35 }}>
-                        {viewAsFilters.filter((filter) => filter.id !== selectedFilter)
-                        .map((filter) => (
-                            <div key={filter.id} className={Style.option} onClick={() => {setSelectedFilter(filter.id); setIsOpen(true);}}>
+                {isOpen && (
+                    <div className={Style.dropdown}>
+                        {viewAsFilters.map((filter) => (
+                            <div key={filter.id} className={Style.option} onClick={() => {setSelectedFilter(filter.id); setIsOpen(false);}}>
                                 {filter.title}
                             </div>
                         ))}
-                    </motion.div>
+                    </div>
+                )}
             </div>
             <div className={Style.arrowIconContainer}>
                 <img src="/images/displayArrow.png" style={{transform: isOpen ? 'rotate(0deg)' : 'rotate(180deg)'}} alt="Arrow Icon" className={Style.arrowIcon}/>
