@@ -2,10 +2,11 @@ import React, { useEffect, useState, useRef } from "react";
 import Style from "../styles/Landing.module.css";
 import clsx from "clsx";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
+import useDarkStore from "../store/DarkStore";
+
 	
 	const Landing = () => {
 
@@ -24,80 +25,55 @@ import { motion } from "framer-motion";
 
         return "Home";
     }
-	  // const [isDarkMode, setIsDarkMode] = useState(() => {
-	  //     const savedTheme = localStorage.getItem('theme');
-	  //     return savedTheme === 'dark';
-	  // });
-	  // const toggleDarkMode = () => {
-	  //     setIsDarkMode(prevMode => {
-	  //         const newMode = !prevMode;
-	  //         localStorage.setItem('theme', newMode ? 'dark' : 'light');
-	  //         return newMode;
-	  //     });
-	  // };
 	
 	const themeButtonRef = useRef(null);
-    const [isDarkMode, setIsDarkMode] = useState(() => {
-        const savedTheme = localStorage.getItem("theme");
-        return savedTheme === "dark";
-    });
-	
-    const toggleDarkMode = async () => {
-    const rect = themeButtonRef.current.getBoundingClientRect();
+    const isDarkMode = useDarkStore((state) => state.isDarkMode);
+    const toggleDarkMode = useDarkStore((state) => state.toggleDarkMode);
 
-    const darkSwitch_X = rect.left + rect.width / 2;
-    const darkSwitch_Y = rect.top + rect.height / 2;
+    const handleThemeToggle = async () => {
+        const rect = themeButtonRef.current.getBoundingClientRect();
 
-    const endRadius = Math.hypot(
-        Math.max(darkSwitch_X, window.innerWidth - darkSwitch_X),
-        Math.max(darkSwitch_Y, window.innerHeight - darkSwitch_Y),
-    );
+        const themeSwitch_X = rect.left + rect.width / 2;
+        const themeSwitch_Y = rect.top + rect.height / 2;
 
-    if (!document.startViewTransition) {
-        setIsDarkMode((prev) => {
-        const newMode = !prev;
-        localStorage.setItem("theme", newMode ? "dark" : "light");
-        return newMode;
+        const endRadius = Math.hypot(
+            Math.max(themeSwitch_X, window.innerWidth - themeSwitch_X),
+            Math.max(themeSwitch_Y, window.innerHeight - themeSwitch_Y)
+        );
+
+        if (!document.startViewTransition) {
+            toggleDarkMode();
+            return;
+        }
+        const transition = document.startViewTransition(() => {
+            toggleDarkMode();
         });
-        return;
-    }
 
-    const transition = document.startViewTransition(() => {
-        setIsDarkMode((prev) => {
-        const newMode = !prev;
-        localStorage.setItem("theme", newMode ? "dark" : "light");
-        return newMode;
-        });
-    });
+        await transition.ready;
 
-    await transition.ready;
-
-    document.documentElement.animate(
-        {
-        clipPath: [
-            `circle(0px at ${darkSwitch_X}px ${darkSwitch_Y}px)`,
-            `circle(${endRadius}px at ${darkSwitch_X}px ${darkSwitch_Y}px)`,
-        ],
-        },
-        {
-        duration: 700,
-        easing: "ease-in-out",
-        pseudoElement: "::view-transition-new(root)",
-        },
-    );
+        document.documentElement.animate(
+            {
+                clipPath: [
+                    `circle(0px at ${themeSwitch_X}px ${themeSwitch_Y}px)`,
+                    `circle(${endRadius}px at ${themeSwitch_X}px ${themeSwitch_Y}px)`,
+                ],
+            },
+            {
+                duration: 700,
+                easing: "ease-in-out",
+                pseudoElement: "::view-transition-new(root)",
+            }
+        );
     };
 
     useEffect(() => {
-    if (isDarkMode) {
+        if (isDarkMode) {
         document.body.classList.add("dark-theme");
-        toast.success("حالت تاریک فعال شد 🌙",{
-            theme: "dark"
-        });
     } else {
         document.body.classList.remove("dark-theme");
-        toast.success("حالت روشن فعال شد ☀️");
     }
-    }, [isDarkMode]);
+    }, [isDarkMode])
+    
 
     const toggleMenu = () => {
     setIsMenuOpen((prevState) => !prevState);
@@ -172,7 +148,7 @@ import { motion } from "framer-motion";
                     </div>
                     <div className={Style.loginContainer}>
                         <div className={Style.darkModeSwitch}
-                        ref={themeButtonRef} onClick={toggleDarkMode}  title={isDarkMode ? "حالت روشن" : "حالت تاریک"}>
+                        ref={themeButtonRef} onClick={handleThemeToggle}  title={isDarkMode ? "حالت روشن" : "حالت تاریک"}>
                             <motion.img
                                 key={isDarkMode}
                                 initial={{ opacity: 0 }}
