@@ -5,6 +5,8 @@ import clsx from "clsx"
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import AnimateRoadmap from '../components/common/AnimateRoadmap/AnimateRoadmap';
+import StudentComment from '../components/Home/StudentComment/StudentComment';
+
 
 const Home = () => {
   // console.log(SliderData);
@@ -188,6 +190,9 @@ const Home = () => {
           <span className={Style.roadMapDescription}>ما اینجا هستیم تا بشما کمک کنیم راه خود را پیدا کنید</span>
         </div>
         <AnimateRoadmap/>
+      </div>
+      <div className={Style.studentComment}>
+        <StudentComment/>
       </div>
     </div>
   )

@@ -61,17 +61,17 @@ const StudentComment = () => {
               <img
                 style={{ height: "55px" }}
                 className="rounded-full border-2 border-white -ml-5 z-10003"
-                src="/public/images/MaxPayne1.png"
+                src="/images/MaxPayne1.png"
               />
               <img
                 style={{ height: "55px" }}
                 className="rounded-full border-2 border-white -ml-5 z-10002"
-                src="/public/images/MaxPayne2.jpg"
+                src="/images/MaxPayne2.jpg"
               />
               <img
                 style={{ height: "55px" }}
                 className="rounded-full border-2 border-white z-10001"
-                src="/public/images/MaxPayne3.png"
+                src="/images/MaxPayne3.png"
               />
             </div>
             <Rating
@@ -137,7 +137,7 @@ const StudentComment = () => {
               <div className="w-[85%] flex flex-row items-center gap-2">
                 <img
                   style={{ height: "64px", borderRadius: "100%" }}
-                  src="/public/images/AlanWake.jpg"
+                  src="/images/AlanWake.jpg"
                 />
                 <div className="flex flex-col gap-1">
                   <p>الن ویک</p>

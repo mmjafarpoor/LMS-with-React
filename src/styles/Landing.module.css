@@ -213,6 +213,8 @@
     width: 100%;
     min-height: 480px;
     background-color: var(--bottom-bg);
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;

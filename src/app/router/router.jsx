@@ -13,13 +13,11 @@ import News from "../../pages/News";
 import NewsDetails from "../../components/NewsContainer/NewsDetails";
 import Contact from "../../pages/Contact";
 import Error404 from "../../pages/Error404";
-import HomeTest from "../../pages/HomeTest";
 
 const router = createBrowserRouter([
     { path: "/", element: <Landing/> , children:[
         {index: true, element: <Home/> },
         { path: "Home", element: <Home/> },
-        { path: "Home/test", element: <HomeTest/> },
         { path: "Courses", element: <Courses/> },
         { path: "Teachers", element: <Teachers /> },
         { path: "Teachers/:teacherId/:TeacherName", element: <TeacherDetails /> },
