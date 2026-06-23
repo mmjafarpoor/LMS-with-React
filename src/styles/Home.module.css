@@ -393,6 +393,7 @@
     width: 90%;
     height: 825px;
     border: 1px solid black;
+    display: none;
 }
                                             /* Self Presentation Section */
 .selfPresentationContainer{
