@@ -46,6 +46,8 @@ body > div:not([data-otp]) {
     --comment-reply-bg: #F4F4F4;
     --home-text-badge: #5CD3EC;
     --pagination-backButton : #A6A6A6;
+    --student-comment-bg: #F4F4F4;
+    --student-comment-box-bg: #FFFFFF;
     --invert-color: 0;
 }
 .dark-theme {
@@ -72,6 +74,8 @@ body > div:not([data-otp]) {
     --comment-reply-bg: #3C3C3C;
     --home-text-badge: #0986A0;
     --pagination-backButton : #909090;
+    --student-comment-bg: #2E2E2E;
+    --student-comment-box-bg: #383838;
     --invert-color: 1;
 }
 
