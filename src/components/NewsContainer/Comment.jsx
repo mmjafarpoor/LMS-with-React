@@ -11,7 +11,7 @@ const Comment = ({ newsId }) => {
 
   const fetchItem = async () => {
     const response = await fetch(
-      `http://188.121.111.8:3001/News/GetNewsComments?NewsId=${newsId}`,
+      `http://188.121.104.25:3001/News/GetNewsComments?NewsId=${newsId}`,
     );
     const data = await response.json();
     setComments(data);

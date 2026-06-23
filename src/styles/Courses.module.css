@@ -229,7 +229,7 @@
     flex-flow: row wrap;
     justify-content: center;
     gap: 25px;
-    border: 1px solid green;
+    /* border: 1px solid green; */
 }
                                                 /* React Pagination */
 .paginationContainer{

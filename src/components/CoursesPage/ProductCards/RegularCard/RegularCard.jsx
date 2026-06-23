@@ -7,7 +7,7 @@ const RegularCard = ({title,describe,cost,currentRegistrants,imageAddress , cour
     return (
         <div className={Style.regularCard}>
             <div className={Style.imageWrapper}>
-                <img src={imageAddress} className={Style.productImg} alt="ProductCard Image"/>
+                <img src="/images/javaScriptProductCard.png" className={Style.productImg} alt="ProductCard Image"/>
             </div>
             <div className={Style.productMeta}>
                 <div className={Style.metaHeading}>

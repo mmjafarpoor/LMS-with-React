@@ -7,7 +7,7 @@ const FullLineCard = ({title,describe,cost,currentRegistrants,imageAddress , cou
   return (
     <div className={Style.fullLineCard}>
       <div className={Style.imageWrapper}>
-        <img src={imageAddress} alt="Product Image" className={Style.productImage}/>
+        <img src="/images/javaScriptProductCard.png" alt="Product Image" className={Style.productImage}/>
       </div>
       <div className={Style.productMeta}>
         <div className={Style.productHeading}>

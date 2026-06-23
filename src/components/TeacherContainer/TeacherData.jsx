@@ -16,7 +16,7 @@ const TeachersData = ({ teacherId, courseCounts, fullName }) => {
         style={{ maxWidth: "none", height: "386px" }}
         src={"/images/teacher.png"}
       />
-      <div className="w-[80%] mr-6 flex flex-col gap-2 text-black">
+      <div className="w-[80%] mr-6 flex flex-col gap-2">
         <p className="text-2xl font-bold!">{fullName}</p>
         <h2 className="text-md ">طراحی وب</h2>
         <p>تعداد دوره‌ها: {courseCounts} دوره</p>

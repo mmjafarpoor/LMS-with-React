@@ -9,7 +9,7 @@ const NewsDetails = () => {
   const [item, setItem] = useState(null);
   const [usersRate, setUsersRate] = useState(null);
   const fetchItem = async () => {
-    const response = await fetch(`http://188.121.111.8:3001/News/${id}`);
+    const response = await fetch(`http://188.121.104.25:3001/News/${id}`);
     const data = await response.json();
     setItem(data.detailsNewsDto);
     setUsersRate(data.detailsNewsDto.newsRate);
@@ -28,7 +28,7 @@ const NewsDetails = () => {
             <div className="w-fit flex justify-center relative">
               <img
                 style={{ width: "950px", borderRadius: "24px" }}
-                src={item?.currentImageAddress}
+                src="/images/PythonBig.png"
               />
               <div className="p-1 flex flex-row items-center gap-5 rounded-tr-3xl bg-(--bg-color) absolute bottom-0 left-0">
                 <div className="flex flex-row items-center">
