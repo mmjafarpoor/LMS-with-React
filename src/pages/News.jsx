@@ -10,9 +10,9 @@ const News = () => {
 
   const [newsItems, setNewsItems] = useState([]);
 
-  const [page, setPage] = useState(0);
+  const [pageIndex, setPageIndex] = useState(0);
   const perPage = 9;
-  const offset = page * perPage;
+  const offset = pageIndex * perPage;
   const currentItems = newsItems.slice(offset, offset + perPage);
   const pageCount = Math.abs(newsItems.length / perPage);
 
@@ -94,7 +94,7 @@ const News = () => {
             previousLabel={"<"}
             nextLabel={">"}
             pageCount={pageCount}
-            onPageChange={(page) => setPage(page.selected)}
+            onPageChange={(page) => setPageIndex(page.selected)}
             containerClassName={"h-12 px-2 rounded-2xl flex flex-row gap-1 items-center text-2xl bg-(--news-boxs) shadow-[0_0px_8px_var(--news-shadow-color)]"}
             pageClassName={"h-full w-12 content-center text-center text-(--text-color) text-[18px] cursor-pointer"}
             pageLinkClassName="block"

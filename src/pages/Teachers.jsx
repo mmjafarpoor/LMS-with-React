@@ -6,9 +6,9 @@ import ReactPaginate from "react-paginate";
 const Teachers = () => {
   const [teachersItems, setTeachersItems] = useState([]);
 
-  const [page, setPage] = useState(0);
+  const [pageIndex, setPageIndex] = useState(0);
   const perPage = 8;
-  const offset = page * perPage;
+  const offset = pageIndex * perPage;
   const currentItems = teachersItems.slice(offset, offset + perPage);
   const pageCount = Math.abs(teachersItems.length / perPage);
 
@@ -61,7 +61,7 @@ const Teachers = () => {
             previousLabel={"<"}
             nextLabel={">"}
             pageCount={pageCount}
-            onPageChange={(page) => setPage(page.selected)}
+            onPageChange={(page) => setPageIndex(page.selected)}
             containerClassName={"h-12 px-2 -mt-6 rounded-2xl flex flex-row gap-1 items-center text-2xl bg-(--news-boxs) shadow-[0_0px_8px_var(--news-shadow-color)]"}
             pageClassName={"h-full w-12 content-center text-center text-(--text-color) text-[18px] cursor-pointer"}
             pageLinkClassName="block"
