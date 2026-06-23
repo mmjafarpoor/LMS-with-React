@@ -66,7 +66,7 @@ const StudentComment = () => {
               <img
                 style={{ height: "55px" }}
                 className="rounded-full border-2 border-white -ml-5 z-10002"
-                src="/images/MaxPayne2.jpg"
+                src="/images/MaxPayne2.JPG"
               />
               <img
                 style={{ height: "55px" }}
