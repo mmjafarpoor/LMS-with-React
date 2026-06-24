@@ -189,7 +189,7 @@ const Login = () => {
                   </div>
                   <Link
                     className="text-[14px] text-[#A6A6A6] duration-150 hover:text-[#0CBDE2]"
-                    to="/forget-password"
+                    to="forget-password"
                   >
                     فراموشی رمز عبور
                   </Link>
@@ -249,7 +249,7 @@ const Login = () => {
       {step === 1 && (
         <div className="flex flex-row justify-center mt-6 mb-8 ">
           <p>حساب کاربری ندارید؟</p>
-          <Link className="mr-2 text-[#0CBDE2]" to="/sign-up">
+          <Link className="mr-2 text-[#0CBDE2]" to="sign-up">
             ثبت‌نام
           </Link>
         </div>

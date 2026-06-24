@@ -276,7 +276,7 @@ const SignUp = () => {
       {(step === 1 || step === 3) && (
         <div className="flex flex-row justify-center mt-6 mb-8 ">
           <p>حساب کاربری دارید؟</p>
-          <Link className="mr-2 text-[#0CBDE2]" to="/login">
+          <Link className="mr-2 text-[#0CBDE2]" to="/Auth">
             وارد شوید
           </Link>
         </div>

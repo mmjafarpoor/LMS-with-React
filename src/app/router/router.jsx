@@ -13,6 +13,7 @@ import News from "../../pages/News";
 import NewsDetails from "../../components/NewsContainer/NewsDetails";
 import Contact from "../../pages/Contact";
 import Error404 from "../../pages/Error404";
+import Dashboard from "../../pages/Dashboard";
 
 const router = createBrowserRouter([
     { path: "/", element: <Landing/> , children:[
@@ -27,12 +28,22 @@ const router = createBrowserRouter([
         { path: "*", element: <Error404/> },
     ]},
     {
-      path: "/",
+      path: "/Auth",
       element: <Auth/>,
       children: [
-        { path: "login", element: <Login /> },
-        { path: "sign-up", element: <SignUp /> },
-        { path: "forget-password", element: <ForgetPassword /> },
+        {index: true, element: <Login/> },
+        { path: "login", element: <Login/> },
+        { path: "sign-up", element: <SignUp/> },
+        { path: "forget-password", element: <ForgetPassword/> },
+      ],
+    },
+    {
+      path: "/Dashboard",
+      element: <Dashboard/>,
+      children: [
+        // { path: "login", element: <Login /> },
+        // { path: "sign-up", element: <SignUp /> },
+        // { path: "forget-password", element: <ForgetPassword /> },
       ],
     },
 ]);
