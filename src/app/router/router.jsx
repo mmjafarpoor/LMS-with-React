@@ -13,7 +13,15 @@ import News from "../../pages/News";
 import NewsDetails from "../../components/NewsContainer/NewsDetails";
 import Contact from "../../pages/Contact";
 import Error404 from "../../pages/Error404";
-import Dashboard from "../../pages/Dashboard";
+import DashBoard from "../../pages/DashBoard";
+import DashBoardMain from "../../components/DashBoard/DashBoardMain/DashBoardMain";
+import BookedCourses from '../../components/DashBoard/BookedCourses/BookedCourses'
+import Reserved from '../../components/DashBoard/Reserved/Reserved'
+import FavouredCourses from '../../components/DashBoard/FavouredCourses/FavouredCourses'
+import FavouredBlogs from '../../components/DashBoard/FavouredBlogs/FavouredBlogs'
+import DashBoardProfile from '../../components/DashBoard/DashBoardProfile/DashBoardProfile'
+
+
 
 const router = createBrowserRouter([
     { path: "/", element: <Landing/> , children:[
@@ -39,11 +47,15 @@ const router = createBrowserRouter([
     },
     {
       path: "/Dashboard",
-      element: <Dashboard/>,
+      element: <DashBoard/>,
       children: [
-        // { path: "login", element: <Login /> },
-        // { path: "sign-up", element: <SignUp /> },
-        // { path: "forget-password", element: <ForgetPassword /> },
+        {index: true, element: <DashBoardMain/> },
+        { path: "Main", element: <DashBoardMain/> },
+        { path: "Booked", element: <BookedCourses/> },
+        { path: "Reserved", element: <Reserved/> },
+        { path: "FavouredCourses", element: <FavouredCourses/> },
+        { path: "FavouredBlogs", element: <FavouredBlogs/> },
+        { path: "Profile", element: <DashBoardProfile/> },
       ],
     },
 ]);

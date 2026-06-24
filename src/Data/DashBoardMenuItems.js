@@ -1,0 +1,50 @@
+const DashBoardMenuItems =[
+    {
+        id: "DashBoard",
+        title: "داشبورد",
+        imageUrlLightMode:"/images/dashBoard.svg",
+        imageUrlDarkMode:"/images/dashBoardWhite.svg",
+        imageAlt:"DashBoard-Icon",
+        linkTo:"Main",
+    },
+    {
+        id: "BookedCourses",
+        title: "دوره من",
+        imageUrlLightMode:"/images/bookedCourses.svg",
+        imageUrlDarkMode:"/images/bookedCoursesWhite.svg",
+        imageAlt:"Booked-Courses-Icon",
+        linkTo:"Booked",
+    },
+    {
+        id: "Reserved",
+        title: "رزرو من",
+        imageUrlLightMode:"/images/myReserved.svg",
+        imageUrlDarkMode:"/images/myReservedWhite.svg",
+        imageAlt:"My-Reserved-Icon",
+        linkTo:"Reserved",
+    },
+    {
+        id: "FavouredCourses",
+        title: "علاقه‌مندی دوره",
+        imageUrlLightMode:"/images/favouredCourses.svg",
+        imageUrlDarkMode:"/images/favouredCoursesWhite.svg",
+        imageAlt:"Favoured-Courses-Icon",
+        linkTo:"FavouredCourses",
+    },
+    {
+        id: "FavouredBlogs",
+        title: "علاقه‌مندی مقالات",
+        imageUrlLightMode:"/images/favouredBlogs.svg",
+        imageUrlDarkMode:"/images/favouredBlogsWhite.svg",
+        imageAlt:"Favoured-Blogs-Icon",
+        linkTo:"FavouredBlogs",
+    },
+    {
+        id: "Profile",
+        title: "پروفایل",
+        imageUrlLightMode:"/images/dashBoardProfile.svg",
+        imageUrlDarkMode:"/images/dashBoardProfileWhite.svg",
+        imageAlt:"Profile-Icon",
+        linkTo:"Profile",
+    },]
+export default DashBoardMenuItems;

@@ -1,0 +1,236 @@
+.dashboard{
+    width: 100%;
+    height: 100vh;
+    max-height: 950px;
+    overflow-y: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FAFBFF;
+    color: var(--text-color);
+    /* padding: 25px; */
+}
+.dashboardHolder{
+    width: clamp(310px,calc(100% - 50px),1870px);
+    height: clamp(800px,calc(100% - 50px),900px);
+    border: 1px solid black;
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 25px;
+}
+.dashboardMenuContainer{
+    width: 21%;
+    height: 100%;
+    /* border: 1px solid red; */    
+    box-shadow: var(--box-shadow);
+    background-color: var(--bg-color);
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dashboardMenu{
+    width: calc(100% - 25px);
+    height: calc(100% - 50px);
+    border: 1px solid green;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.dashboardMenuTop{
+    width: 100%;
+    height: max-content;
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 85px;
+}
+.logoContainer{
+    width: max-content;
+    height: max-content;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+.menuItemsContainer{
+    width: 75%;
+    min-width: 205px;
+    height: max-content;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.activeMenuItem{
+    width: 100%;
+    height: 55px;
+    background-color: var(--button-bg);
+    border-radius: 9999px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    transform: translateX(-8px);
+}
+.inactiveMenuItem{
+    width: 100%;
+    height: 55px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    cursor: pointer;
+    transform: translateX(0);
+    transition: 0.2s ease-in-out;
+}
+.menuItemIconContainer{
+    margin-right: 18px;
+    width: 28px;
+    height: 28px;
+}
+.menuItemIcon{
+    width: 28px;
+    height: 28px;
+}
+.menuItemTitle{
+    margin-right: 18px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    user-select: none;
+}
+.dashboardMenuBottom{
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid blue;
+}
+.logOutButton{
+    width: 65%;
+    min-width: 205px;
+    height: 55px;
+    border: 1px solid #CCCCCC;
+    border-radius: 9999px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+}
+.logOutIcon{
+    position: absolute;
+    right: 15px;
+    width: 28px;
+    height: 28px;
+}
+.logOutText{
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #FF1515;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.dashboardMain{
+    width: calc(79% - 25px);
+    height: 100%;
+    /* border: 1px solid yellow; */
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.dashboardHeaderContainer{
+    width: 100%;
+    height: 75px;
+    border-radius: 25px;
+    box-shadow: var(--box-shadow);
+    background-color: var(--bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dashboardHeader{
+    width: calc(100% - 36px);
+    height: max-content;
+    /* border: 1px solid green; */
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+.userInfoBox{
+    width: max-content;
+    height: 59px;
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 12px;
+}
+.userProfileContainer{
+    width: 59px;
+    height: 59px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.userProfile{
+    width: 59px;
+    height: 59px;
+}
+.userNameContainer{
+    height: 100%;
+    min-width: 90px;
+    max-width: 150px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+.userName{
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+.userNameText{
+    font-weight: 900;
+    font-size: 1.2rem;
+    user-select: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;  
+}
+.userId{
+    width: 100%;
+    height: max-content;
+}
+.userIdText{
+    font-size: 0.97rem;
+    font-weight: 600;
+    color: #A6A6A6;
+    user-select: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.25;
+}
+.themeSwitch{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.themeIcon{
+    cursor: pointer;
+}
+                                        /* OUT LET Section */
+.outLet{
+    width: 100%;
+    height: calc(100% - 100px);
+}                                        

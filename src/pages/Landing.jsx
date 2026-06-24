@@ -93,7 +93,7 @@ import useDarkStore from "../store/DarkStore";
     }, [isMenuOpen]);
 
     const GoToAuth = () => {
-    navigate("/Auth");
+        navigate("/Auth");
     };
 
     function scrollToTop() {

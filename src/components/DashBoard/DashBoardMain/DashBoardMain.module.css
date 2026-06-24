@@ -1,0 +1,45 @@
+.dashBoardMainContainer{
+    width: 100%;
+    height: 100%;
+    /* background-color: black; */
+}
+.userStatsContainer{
+    width: 100%;
+    height: 110px;
+    border: 1px solid pink;
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 30px;
+}
+.greetingMessage{
+    width: calc(25% - 22.5px);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border: 1px solid yellow;
+}
+.userStats{
+    width: calc(25% - 22.5px);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border: 1px solid red;
+}
+.statIconContainer{
+    width: 55px;
+    height: 55px;
+    border: 1px solid yellow;
+}
+.statIcon{
+    width: 55px;
+    height: 55px;
+}
+.statTextContainer{
+    
+}
+.statTitle{
+
+}
+.statCount{
+
+}
