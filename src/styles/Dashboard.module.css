@@ -1,7 +1,7 @@
 .dashboard{
     width: 100%;
     height: 100vh;
-    max-height: 950px;
+    max-height: 1000px;
     overflow-y: auto;
     display: flex;
     align-items: center;
@@ -12,7 +12,7 @@
 }
 .dashboardHolder{
     width: clamp(310px,calc(100% - 50px),1870px);
-    height: clamp(800px,calc(100% - 50px),900px);
+    height: clamp(800px,calc(100% - 50px),950px);
     border: 1px solid black;
     display: flex;
     flex-flow: row nowrap;
@@ -20,8 +20,7 @@
 }
 .dashboardMenuContainer{
     width: 21%;
-    height: 100%;
-    /* border: 1px solid red; */    
+    height: 100%;  
     box-shadow: var(--box-shadow);
     background-color: var(--bg-color);
     border-radius: 25px;
@@ -32,7 +31,6 @@
 .dashboardMenu{
     width: calc(100% - 25px);
     height: calc(100% - 50px);
-    border: 1px solid green;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -41,7 +39,6 @@
 .dashboardMenuTop{
     width: 100%;
     height: max-content;
-    border: 1px solid red;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -58,7 +55,6 @@
     width: 75%;
     min-width: 205px;
     height: max-content;
-    border: 1px solid black;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -109,7 +105,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid blue;
 }
 .logOutButton{
     width: 65%;
@@ -141,7 +136,6 @@
 .dashboardMain{
     width: calc(79% - 25px);
     height: 100%;
-    /* border: 1px solid yellow; */
     display: flex;
     flex-direction: column;
     gap: 25px;
@@ -159,11 +153,22 @@
 .dashboardHeader{
     width: calc(100% - 36px);
     height: max-content;
-    /* border: 1px solid green; */
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
     justify-content: space-between;
+}
+.mobileMenuSwitch{
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    min-height: 40px;
+    display: none;
+}
+.mobileMenuIcon{
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
 }
 .userInfoBox{
     width: max-content;
@@ -234,3 +239,19 @@
     width: 100%;
     height: calc(100% - 100px);
 }                                        
+
+
+
+
+                                                /* @Media Section */
+@media (max-width: 1200px) {
+    .dashboardMenuContainer{
+        display: none;
+    }
+    .dashboardMain{
+        width: 100%;
+    }
+    .mobileMenuSwitch{
+        display: block;
+    }
+}

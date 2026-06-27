@@ -24,6 +24,7 @@ body > div:not([data-otp]) {
 
 :root {
     --bg-color: #FFFFFF;
+    --invert-bg: #212121;
     --text-color: #000000;
     --header-bg: #FFFFFF; 
     --bottom-bg: #F4F4F4;
@@ -48,10 +49,12 @@ body > div:not([data-otp]) {
     --pagination-backButton : #A6A6A6;
     --student-comment-bg: #F4F4F4;
     --student-comment-box-bg: #FFFFFF;
+    --dashBoard-Main-Title: #4F4F4F;
     --invert-color: 0;
 }
 .dark-theme {
     --bg-color: #212121;
+    --invert-bg: #FFFFFF;
     --text-color: #FFFFFF;
     --header-bg: #2E2E2E;
     --bottom-bg: #2E2E2E;
@@ -76,6 +79,7 @@ body > div:not([data-otp]) {
     --pagination-backButton : #909090;
     --student-comment-bg: #2E2E2E;
     --student-comment-box-bg: #383838;
+    --dashBoard-Main-Title: #838383;
     --invert-color: 1;
 }
 

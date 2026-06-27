@@ -16,6 +16,7 @@
     "@splidejs/react-splide": "^0.7.12",
     "@tailwindcss/vite": "^4.2.4",
     "@tanstack/react-query": "^5.101.0",
+    "@tomickigrzegorz/react-circular-progress-bar": "^1.1.2",
     "axios": "^1.15.2",
     "clsx": "^2.1.1",
     "formik": "^2.4.9",

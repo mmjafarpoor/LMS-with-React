@@ -1,0 +1,302 @@
+.bookedCoursesContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+.pageTitle{
+    width: 100%;
+    height: 58px;
+    font-weight: 900;
+    font-size: 2.4rem;
+    white-space: nowrap;
+}
+.mainContainer{
+    height: calc(100% - 58px - 60px - 48px);
+    width: 100%;
+    box-shadow: var(--box-shadow);
+    background-color: var(--bg-color);
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+.itemsInputContainer{
+    margin-top: 20px;
+    width: 95%;
+    height: 40px;
+}
+.itemsContainer{
+    width: 95%;
+    height: calc(100% - 40px - 65px);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow: auto;
+    scrollbar-width: thin;
+    scroll-behavior: smooth;
+}
+.item{
+    height: 70px;
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+.itemImageContainer{
+    width: 10%;
+    min-width: 130px;
+    height: 70px;
+    border-radius: 18px;
+    overflow: hidden;
+}
+.itemImage{
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+.itemTitle{
+    width: 14%;
+    height: max-content;
+    font-weight: 900;
+    font-size: 1.1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.itemDescription{
+    width: 21%;
+    height: max-content;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #909090;
+}
+.itemPrice{
+    width: 12%;
+    height: max-content;
+    font-weight: 500;
+    font-size: 1.1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.itemOpen{
+    width: 13%;
+    min-width: 115px;
+    height: 45px;
+    background-color: var(--button-bg);
+    border-radius: 18px;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1.1rem;
+    white-space: nowrap;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.35s ease-in-out;
+}
+.itemOpen:hover{
+    background-color: var(--button-hover);
+}
+.itemAction{
+    margin-left: 5px;
+    width: 72px;
+    height: 40px;
+    border: 1px solid #B5B5B5;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+.viewProduct{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.35s ease-in-out;
+}
+.viewProduct:hover{
+    background-color: var(--invert-bg);
+}
+.viewProductIcon{
+    width: 28px;
+    height: 28px;
+}
+.deleteProduct{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.35s ease-in-out;
+}
+.deleteProduct:hover{
+    background-color: var(--invert-bg);
+}
+
+
+
+
+
+                                                /* React Pagination */
+.paginationContainer{
+    width: max-content;
+    height: 48px;
+    background-color: var(--bottom-bg);
+    border-radius: 16px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    list-style: none;
+    direction: ltr;
+}
+.paginationButton{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background: url(/images/paginationLeftArrow.png) no-repeat; */
+}
+.prevPaginationIcon{
+    color: var(--pagination-backButton);
+    cursor: pointer;
+}
+.nextPaginationIcon{
+    color: var(--button-bg);
+    cursor: pointer;
+}
+.activePageItem{
+    background-color: #0CBDE2;
+    border-radius: 8px;
+    width: 45px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    user-select: none;
+}
+.pageItem{
+    border-radius: 8px;
+    width: 45px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    user-select: none;
+    cursor: pointer;
+    transition: 0.25s ease-in-out;
+}
+                                                /* Input Section */
+.formStyle{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+.searchFilter{
+    width: calc(30% - 50px);
+    min-width: 180px;
+    height: 40px;
+    display: flex;
+    flex-flow: row nowrap;
+    background-color: var(--input-bg);
+    border-radius: 14px;
+}
+.searchSubmit{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.filterIcon{
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+}
+.searchInput{
+    width: calc(100% - 40px);
+    height: 40px;
+    color: var(--text-color);
+    border-radius: 16px;
+    outline: none;
+    text-indent: 10px;
+}
+.priceRangeSliderContainer{
+    width: calc(30% - 50px);
+    min-width: 250px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.priceRangeSliderValue{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+.priceRangeSliderValueText{
+    color: #787878;   
+    font-weight: 600;   
+    white-space: nowrap;
+}
+.priceRangeSliderValueNumber{
+    color: var(--text-color);   
+    font-weight: 600;   
+    white-space: nowrap;
+}
+
+                                                /* @Media Section */
+@media (max-width: 1000px) {
+    .itemTitle{
+        font-size: 1rem;
+    }
+    .itemDescription{
+        font-size: 0.95rem;
+    }
+    .itemPrice{
+        font-size: 0.95rem;
+    }
+}
+@media (max-width: 800px) {
+    .itemImageContainer{
+        min-width: 110px;
+    }
+    .itemTitle{
+        width: 22%;
+    }
+    .itemDescription{
+        display: none;
+    }
+    .itemPrice{
+        width: 22%;
+    }
+}
+@media (max-width: 700px) {
+    .itemsInputContainer{
+        display: none;
+    }
+    .itemsContainer{
+        height: calc(100% - 50px);
+        margin-top: 20px;
+    }
+}

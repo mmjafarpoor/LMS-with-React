@@ -1,12 +1,13 @@
 .dashBoardMainContainer{
     width: 100%;
     height: 100%;
-    /* background-color: black; */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 .userStatsContainer{
     width: 100%;
     height: 110px;
-    border: 1px solid pink;
     display: flex;
     flex-flow: row nowrap;
     gap: 30px;
@@ -16,30 +17,361 @@
     height: 100%;
     display: flex;
     align-items: center;
-    border: 1px solid yellow;
+    font-weight: 900;
+    font-size: 1.7rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .userStats{
     width: calc(25% - 22.5px);
     height: 100%;
     display: flex;
     align-items: center;
-    border: 1px solid red;
+    justify-content: center;
+    gap: 15px;
+    box-shadow: var(--box-shadow);
+    background-color: var(--bg-color);
+    border-radius: 25px;
 }
 .statIconContainer{
-    width: 55px;
-    height: 55px;
-    border: 1px solid yellow;
+    width: 75px;
+    min-width: 75px;
+    height: 75px;
+    min-height: 75px;
 }
 .statIcon{
-    width: 55px;
-    height: 55px;
+    width: 100%;
+    height: 100%;
 }
 .statTextContainer{
-    
+    width: max-content;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
 }
 .statTitle{
-
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: #A6A6A6;
+    white-space: nowrap;
+    user-select: none;
 }
 .statCount{
+    font-weight: 500;
+    font-size: 1.8rem;
+    color: var(--button-bg);
+    white-space: nowrap;
+}
+.latestNewsContainer{
+    width: 100%;
+    height: 280px;
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 20px;
+}
+.latestNews{
+    width: 74%;
+    height: 100%;
+    box-shadow: var(--box-shadow);
+    background-color: var(--bg-color);
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+.latestNewsTitle{
+    margin-top: 12px;
+    width: 95%;
+    height: max-content;
+    font-weight: 900;
+    font-size: 1.45rem;
+}
+.latestNewsItemsContainer{
+    width: 95%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: hidden;
+}
+.latestNewsItems{
+    width: 100%;
+    height: 32px;
+    min-height: 32px;
+    border-bottom: 1px dashed #B5B5B5;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+.newsTitle{
+    font-weight: 500;
+    color: var(--dashBoard-Main-Title);
+    max-width: 600px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.newsPublishedDate{
+    color: #838383;
+    max-width: 180px;
+    white-space: nowrap;
+}
+.profileProgress{
+    width: calc(26% - 20px);
+    height: 100%;
+    box-shadow: var(--box-shadow);
+    background-color: var(--bg-color);
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.profileProgressStatus{
+    font-weight: 600;
+    font-size: 1.45rem;
+}
+.circularProgressBarContainer{
+    width: 142px;
+    height: 142px;
+}
+.latestCoursesContainer{
+    height: calc(100% - 110px - 40px - 280px);
+    width: 100%;
+    box-shadow: var(--box-shadow);
+    background-color: var(--bg-color);
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.latestCoursesTitle{
+    margin-top: 15px;
+    width: 95%;
+    height: max-content;
+    font-weight: 900;
+    font-size: 1.45rem;
+}
+.latestCoursesInputs{
+    width: 95%;
+    height: 40px;
+}
+.latestCoursesItemContainer{
+    width: 95%;
+    height: calc(100% - 80px - 50px);
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    overflow: auto;
+}
+.latestCourses{
+    height: 38px;
+    min-height: 38px;
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+}
+.latestCourseTitle{
+    width: 12%;
+    font-weight: 900;
+    font-size: 1.1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.latestCourseDescription{
+    width: 21%;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #909090;
+}
+.courseInstructors{
+    width: 13%;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.coursePublishDate{
+    width: 13%;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.coursePrice{
+    width: 12%;
+    font-weight: 500;
+    font-size: 1.15rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.viewCourse{
+    width: 38px;
+    height: 38px;
+}
+.viewCourseIcon{
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+}
+                                                /* Input Section */
+.formStyle{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+.searchFilter{
+    width: calc(30% - 50px);
+    min-width: 180px;
+    height: 40px;
+    display: flex;
+    flex-flow: row nowrap;
+    background-color: var(--input-bg);
+    border-radius: 14px;
+}
+.searchSubmit{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.filterIcon{
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+}
+.searchInput{
+    width: calc(100% - 40px);
+    height: 40px;
+    color: var(--text-color);
+    border-radius: 16px;
+    outline: none;
+    text-indent: 10px;
+}
+.priceRangeSliderContainer{
+    width: calc(30% - 50px);
+    min-width: 250px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.priceRangeSliderValue{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+.priceRangeSliderValueText{
+    color: #787878;   
+    font-weight: 600;   
+    white-space: nowrap;
+}
+.priceRangeSliderValueNumber{
+    color: var(--text-color);   
+    font-weight: 600;   
+    white-space: nowrap;
+}
 
+                                                /* @Media Section */
+@media (max-width: 1000px) {
+    .greetingMessage{
+        display: none;
+    }
+    .userStats{
+        width: calc(33.3% - 20px);
+    }
+    .latestCourseTitle{
+        font-size: 0.95rem;
+    }
+    .latestCourseDescription{
+        font-size: 0.9rem;
+    }
+    .courseInstructors{
+        font-size: 0.9rem;
+    }
+    .coursePublishDate{
+        font-size: 0.85rem;
+    }
+    .coursePrice{
+        font-size: 0.92rem;
+    }
+}
+@media (max-width: 800px) {
+    .latestNews{
+        width: 100%;
+    }
+    .profileProgress{
+        display: none;
+    }
+    .statIconContainer{
+        width: 55px;
+        min-width: 55px;
+        height: 55px;
+        min-height: 55px;
+    }
+    .userStats{
+        gap: 8px;
+    }
+    .statTitle{
+        font-size: 1.3rem;
+    }
+    .statCount{
+        font-size: 1.4rem;
+    }
+    .newsTitle{
+        max-width: 450px;
+    }
+    .newsPublishedDate{
+        max-width: 130px;
+    }
+}
+@media (max-width: 700px) {
+    .latestCoursesInputs{
+        display: none;
+    }
+    .latestCoursesItemContainer{
+        height: calc(100% - 75px);
+    }
+    .latestNewsTitle{
+        font-size: clamp(1.1rem,2.9vw,1.25rem);
+    }
+    .latestCoursesTitle{
+        font-size: clamp(1.1rem,2.9vw,1.25rem);
+    }
+}
+@media (max-width: 600px) {
+    .statIconContainer{
+        display: none;
+    }
+    .newsTitle{
+        font-size: clamp(0.85rem,2.6vw,0.95rem);
+        max-width: 350px;
+    }
+    .newsPublishedDate{
+        font-size: clamp(0.82rem,2.4vw,0.9rem);
+    }
+}
+@media (max-width: 450px) {
+    .newsTitle{
+        max-width: 220px;
+    }
+    .newsPublishedDate{
+        max-width: 100px;
+    }
 }

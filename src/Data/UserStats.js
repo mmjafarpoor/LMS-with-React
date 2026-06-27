@@ -18,8 +18,8 @@ const UserStats = [
     {
         id: 3,
         name: "واچ تایم",
-        imageUrlLightMode:"/images/dashBoard.svg",
-        imageUrlDarkMode:"/images/dashBoardWhite.svg",
+        imageUrlLightMode:"/images/watchTime.png",
+        imageUrlDarkMode:"/images/watchTimeWhite.png",
         imageUlt:"Watch-Time-Icon",
         stat : "1024",
     },]

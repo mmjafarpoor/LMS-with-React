@@ -39,6 +39,9 @@ const DashBoard = () => {
                 <div className={Style.dashboardMain}>
                     <div className={Style.dashboardHeaderContainer}>
                         <div className={Style.dashboardHeader}>
+                            <div className={Style.mobileMenuSwitch}>
+                                <img src="/images/mobileMenuOpenLightMode.svg" alt="Mobile-Menu" className={Style.mobileMenuIcon} />
+                            </div>
                             <div className={Style.userInfoBox}>
                                 <div className={Style.userProfileContainer}>
                                     <img src="/images/profile.png" alt="user-profile" className={Style.userProfile}/>
@@ -53,7 +56,7 @@ const DashBoard = () => {
                                 </div>
                             </div>
                             <div className={Style.themeSwitch}>
-                                <img src="/public/images/darkMode.png" alt="Theme Icon" className={Style.themeIcon}/>
+                                <img src="/images/darkMode.png" alt="Theme Icon" className={Style.themeIcon}/>
                             </div>
                         </div>
                     </div>
