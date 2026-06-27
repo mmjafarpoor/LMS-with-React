@@ -55,7 +55,7 @@ const Reserved = () => {
                                     <img src={course.imageURL} alt="Item-Image" className={Style.itemImage}/>
                                 </div>
                                 <div className={Style.itemTitle}>{course.title}</div>
-                                <div className={Style.itemDescription}>{course.description}</div>
+                                <div className={Style.itemDescription}>{course.instructor}</div>
                                 <div className={Style.itemPrice}>{course.price}</div>
                                 <div className={Style.itemOpen}>شروع یادگیری</div>
                                 <div className={Style.itemAction}>

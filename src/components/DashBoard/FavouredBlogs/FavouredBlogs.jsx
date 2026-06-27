@@ -45,8 +45,8 @@ const FavouredBlogs = () => {
                                     <img src={course.imageURL} alt="Item-Image" className={Style.itemImage}/>
                                 </div>
                                 <div className={Style.itemTitle}>{course.title}</div>
-                                <div className={Style.itemDescription}>{course.description}</div>
-                                <div className={Style.itemPrice}>{course.instructor}</div>
+                                <div className={Style.itemDescription}>{course.instructor}</div>
+                                <div className={Style.itemPrice}>{course.date}</div>
                                 <div className={Style.itemAction}>
                                     <div className={Style.viewProduct}>
                                         <img src="/images/viewProductWithOutBorder.svg" alt="Product-View-Icon" className={Style.viewProductIcon}/>

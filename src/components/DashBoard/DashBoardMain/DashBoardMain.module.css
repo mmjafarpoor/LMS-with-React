@@ -340,10 +340,34 @@
     .newsPublishedDate{
         max-width: 130px;
     }
+    .latestCourseTitle{
+        font-size: clamp(0.85rem,1.9vw,0.95rem);
+        width: 16%;
+    }
+    .latestCourseDescription{
+        display: none;
+    }
+    .courseInstructors{
+        font-size: clamp(0.82rem,1.8vw,0.9rem);
+        width: 16%;
+    }
+    .coursePublishDate{
+        font-size: clamp(0.82rem,1.7vw,0.85rem);
+    }
+    .coursePrice{
+        font-size: clamp(0.82rem,1.87vw,0.92rem);
+        width: 18%;
+    }
 }
 @media (max-width: 700px) {
-    .latestCoursesInputs{
-        display: none;
+    .searchFilter{
+        min-width: 165px;
+    }
+    .priceRangeSliderContainer{
+        min-width: 180px;
+    }
+    .priceRangeSliderValueText{
+        font-size: 0.8rem;
     }
     .latestCoursesItemContainer{
         height: calc(100% - 75px);
@@ -354,9 +378,18 @@
     .latestCoursesTitle{
         font-size: clamp(1.1rem,2.9vw,1.25rem);
     }
+    .pageTitle{
+        font-size: 1.8rem;
+    }
 }
 @media (max-width: 600px) {
     .statIconContainer{
+        display: none;
+    }
+    .searchFilter{
+        min-width: 185px;
+    }
+    .priceRangeSliderContainer{
         display: none;
     }
     .newsTitle{
@@ -366,8 +399,31 @@
     .newsPublishedDate{
         font-size: clamp(0.82rem,2.4vw,0.9rem);
     }
+    .latestCourseTitle{
+        width: 23%;
+    }
+    .courseInstructors{
+        width: 20%;
+    }
+    .coursePublishDate{
+        width: 20%;
+    }
+    .coursePrice{
+        display: none;
+    }
 }
 @media (max-width: 450px) {
+    .latestCoursesInputs{
+        display: none;
+    }
+    .statTitle{
+        font-size: 1rem;
+        max-width: 70px;
+    }
+    .statCount{
+        font-size: 1.2rem;
+        max-width: 70px;
+    }
     .newsTitle{
         max-width: 220px;
     }

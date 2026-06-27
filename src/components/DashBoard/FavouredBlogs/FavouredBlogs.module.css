@@ -234,24 +234,91 @@
 }
 @media (max-width: 800px) {
     .itemImageContainer{
-        min-width: 110px;
+        min-width: 90px;
     }
     .itemTitle{
-        width: 22%;
+        width: 14%;
+        font-size: clamp(0.85rem,1.9vw,0.95rem);
     }
     .itemDescription{
+        width: 14%;
+        font-size: clamp(0.82rem,1.8vw,0.9rem);
+    }
+    .itemPrice{
+        width: 14%;
+        font-size: clamp(0.82rem,1.87vw,0.92rem);
+    }
+    .itemOpen{
+        min-width: 75px;
+        font-size: 0.75rem;
+    }
+}
+@media (max-width: 700px) {
+    /* .itemsInputContainer{
+        display: none;
+    }
+    .itemsContainer{
+        height: calc(100% - 50px);
+        margin-top: 20px;
+    } */
+    .searchFilter{
+        min-width: 165px;
+    }
+    .priceRangeSliderContainer{
+        min-width: 180px;
+    }
+    .priceRangeSliderValueText{
+        font-size: 0.8rem;
+    }
+    .pageTitle{
+        font-size: 1.8rem;
+    }
+}
+@media (max-width: 600px) {
+    .itemImageContainer{
+        min-width: 90px;
+    }
+    .itemTitle{
+        font-size: clamp(0.88rem,2.53vw,0.95rem);
+        min-width: 18%;
+    }
+    .itemInstructors{
+        font-size: clamp(0.82rem,2.4vw,0.9rem);
+        width: 16%;
+    }
+    .formStyle{
+        justify-content: space-between;
+        gap: 0;
+    }
+    .searchFilter{
+        min-width: 185px;
+    }
+    .priceRangeSliderContainer{
         display: none;
     }
     .itemPrice{
-        width: 22%;
+        display: none;
     }
 }
-@media (max-width: 500px) {
+@media (max-width: 450px) {
+    .itemImageContainer{
+        min-width: 65px;
+        height: 50px;
+    }
+    .itemTitle{
+        width: 18%;
+    }
     .itemsInputContainer{
         display: none;
     }
     .itemsContainer{
         height: calc(100% - 50px);
         margin-top: 20px;
+    }
+    .itemInstructors{
+        display: none;
+    }
+    .itemDescription{
+        display: none;
     }
 }
