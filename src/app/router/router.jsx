@@ -20,6 +20,10 @@ import Reserved from '../../components/DashBoard/Reserved/Reserved'
 import FavouredCourses from '../../components/DashBoard/FavouredCourses/FavouredCourses'
 import FavouredBlogs from '../../components/DashBoard/FavouredBlogs/FavouredBlogs'
 import DashBoardProfile from '../../components/DashBoard/DashBoardProfile/DashBoardProfile'
+import PersonalInfo from "../../components/DashBoard/DashBoardProfile/Personal-Info/PersonalInfo";
+import ProfilePicture from "../../components/DashBoard/DashBoardProfile/ProfilePicture/ProfilePicture";
+import LivingAddress from "../../components/DashBoard/DashBoardProfile/LivingAddress/LivingAddress";
+import Connections from "../../components/DashBoard/DashBoardProfile/Connections/Connections";
 
 
 
@@ -55,7 +59,13 @@ const router = createBrowserRouter([
         { path: "Reserved", element: <Reserved/> },
         { path: "FavouredCourses", element: <FavouredCourses/> },
         { path: "FavouredBlogs", element: <FavouredBlogs/> },
-        { path: "Profile", element: <DashBoardProfile/> },
+        { path: "Profile", element: <DashBoardProfile/> ,children:[
+          {index: true, element: <PersonalInfo/> },
+          { path: "Personal-Info", element: <PersonalInfo/> },
+          { path: "Profile-Picture", element: <ProfilePicture/> },
+          { path: "Living-Address", element: <LivingAddress/> },
+          { path: "Connections", element: <Connections/> },
+        ]},
       ],
     },
 ]);

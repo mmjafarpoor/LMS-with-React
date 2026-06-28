@@ -6,7 +6,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #FAFBFF;
+    background-color: var(--dashBoard-bg);
     color: var(--text-color);
     /* padding: 25px; */
 }
@@ -22,7 +22,7 @@
     width: 21%;
     height: 100%;  
     box-shadow: var(--box-shadow);
-    background-color: var(--bg-color);
+    background-color: var(--header-bg);
     border-radius: 25px;
     display: flex;
     justify-content: center;
@@ -145,7 +145,7 @@
     height: 75px;
     border-radius: 25px;
     box-shadow: var(--box-shadow);
-    background-color: var(--bg-color);
+    background-color: var(--header-bg);
     display: flex;
     align-items: center;
     justify-content: center;
