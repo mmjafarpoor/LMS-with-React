@@ -1,0 +1,35 @@
+.FilterTagContainer{
+    height: 26px;
+    max-height: 26px;
+    width: max-content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 8px;
+}
+.FilterTagContainer >input{
+    width: 20px;
+    height: 20px;
+    margin-right: 0;
+    cursor: pointer;
+}
+.FilterTagContainer > label{
+    color: var(--text-color);
+    font-size: 1.05rem;
+    font-weight: 500;
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+}
+
+
+@media (max-width: 600px) {
+    .FilterTagContainer >input{
+        width: 17px;
+        height: 17px;
+    }
+    .FilterTagContainer > label{
+        font-size: clamp(0.92rem,2.8vw,1.05rem);
+    }
+}

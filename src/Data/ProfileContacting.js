@@ -5,8 +5,9 @@ const ProfileContacting = [
         inputPlaceHolder : "شماره همراه خود را وارد کنید",
     },
     {
-        id: "PersonalId",
-        title: "کد ملی",
-        inputPlaceHolder : "کد ملی خود را وارد کنید",
+        id: "Email",
+        title: "ایمیل",
+        inputPlaceHolder : "ایمیل خود را وارد کنید",
+        inputType: "email",
     },]
 export default ProfileContacting;

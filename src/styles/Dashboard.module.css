@@ -255,3 +255,9 @@
         display: block;
     }
 }
+@media (max-width: 400px) {
+    .dashboardHolder{
+        width: clamp(310px,calc(100% - 30px),1870px);
+        height: clamp(800px,calc(100% - 30px),950px);
+    }
+}

@@ -11,9 +11,9 @@ const useDarkStore = create((set) => ({
                 newMode
                     ? "حالت تاریک فعال شد 🌙"
                     : "حالت روشن فعال شد ☀️",
-                {
-                    theme: newMode ? "dark" : "light",
-                }
+                // {
+                //     theme: newMode ? "dark" : "light",
+                // }
             );
             localStorage.setItem(
                 "theme",

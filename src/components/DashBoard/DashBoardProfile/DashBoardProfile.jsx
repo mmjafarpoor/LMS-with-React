@@ -2,9 +2,16 @@ import React, { useState } from 'react'
 import Style from './DashBoardProfile.module.css'
 import ProfileTab from '../../../Data/ProfileTab'
 import { Link, Outlet } from 'react-router-dom';
+import useUserInfoStore from '../../../store/UserInfoStore';
 const DashBoardProfile = () => {
 
     const [selectedItem, setSelectedItem] = useState(ProfileTab[0].id);
+
+    const userName = useUserInfoStore((state) => state.user.userName);
+    const userProfilePicture = useUserInfoStore((state) => state.user.userProfilePicture);
+    const userPhoneNumber = useUserInfoStore((state) => state.user.userPhoneNumber);
+    const userEmailAddress = useUserInfoStore((state) => state.user.userEmailAddress);
+    const userBiography = useUserInfoStore((state) => state.user.userBiography);
 
     return (
         <div className={Style.dashBoardProfileContainer}>
@@ -15,29 +22,29 @@ const DashBoardProfile = () => {
                     </svg>
                 </div>
                 <div className={Style.userProfileContainer}>
-                    <img src="/images/userProfile.svg" alt="" className={Style.userProfile} />
+                    <img src={userProfilePicture} alt="user-profile" className={Style.userProfile}/>
                 </div>
             </div>
             <div className={Style.userDetailContainer}>
                 <div className={Style.userDetailRightSection}>
                     <div className={Style.userDetailRightSectionTop}>
-                        <span className={Style.userName}>امیر محمد</span>
+                        <span className={Style.userName}>{userName}</span>
                         <span className={Style.userRole}>( دانشجو )</span>
                     </div>
                     <div className={Style.userDetailRightSectionBottom}>
                         <div className={Style.userPhoneNumberContainer}>
                             <img src="/images/smartPhone.svg" alt="Phone-Icon" className={Style.phoneIcon} />
-                            <a href="tel:09373808890" target="_blank" rel="noopener noreferrer" className={Style.userPhoneNumber}>09373808890</a>
+                            <a href={`tel:${userPhoneNumber}`} target="_blank" rel="noopener noreferrer" className={Style.userPhoneNumber}>{userPhoneNumber}</a>
                         </div>
                         <div className={Style.userMailAddressContainer}>
                             <img src="/images/mail.svg" alt="Phone-Icon" className={Style.phoneIcon} />
-                            <a href="mailto:example@email.com" target="_blank" rel="noopener noreferrer" className={Style.userEmailAddress}>Example@gmail.com</a>
+                            <a href={`mailto:${userEmailAddress}`} target="_blank" rel="noopener noreferrer" className={Style.userEmailAddress}>{userEmailAddress}</a>
                         </div>
                     </div>
                 </div>
                 <div className={Style.userDetailLeftSection}>
                     <div className={Style.aboutMeTitle}>درباره من</div>
-                    <span className={Style.aboutMe}>من امیر محمد دانشجوی نوب سگ هستم که اخیرا دارم یاد میگیرم برنامه نویسی رو و امیدوارم از نوبیت دربیام و بتونم یه کاری پیدا کنم تو دنیای دیجیتال ، ممنون از همه 😊</span>
+                    <span className={Style.aboutMe}>{userBiography}</span>
                 </div>
             </div>
             <div className={Style.profileTabsContainer}>

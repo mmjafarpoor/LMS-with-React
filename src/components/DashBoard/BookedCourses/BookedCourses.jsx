@@ -3,8 +3,11 @@ import Style from './BookedCourses.module.css'
 import ReactPaginate from 'react-paginate'
 import DashBoardCoursesData from '../../../Data/DashBoardCoursesData'
 import { Field, Form, Formik } from 'formik'
+import useDarkStore from '../../../store/DarkStore'
 
 const BookedCourses = () => {
+
+    const isDarkMode = useDarkStore((state) => state.isDarkMode);
 
     const [pageIndex, setPageIndex] = useState(0);
     const [pageCount, setPageCount] = useState(0);
@@ -49,7 +52,7 @@ const BookedCourses = () => {
                                 <div className={Style.itemInstructors}>{course.instructor}</div>
                                 <div className={Style.itemOpen}>مشاهده </div>
                                 <div className={Style.viewProduct}>
-                                    <img src="/images/viewProduct.svg" alt="Product-View-Icon" className={Style.viewProductIcon}/>
+                                    <img src={isDarkMode ? "/images/viewProductDark.svg" :"/images/viewProduct.svg"} alt="Product-View-Icon" className={Style.viewProductIcon}/>
                                 </div>
                             </div>
                         ))}

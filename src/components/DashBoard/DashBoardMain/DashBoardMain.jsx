@@ -5,11 +5,14 @@ import LatestNewsDashBoard from '../../../Data/LatestNewsDashBoard'
 import LatestCourseDashBoard from '../../../Data/LatestCoursesDashBoard'
 import { Field, Form, Formik } from 'formik'
 import Slider from 'rc-slider';
+import useDarkStore from '../../../store/DarkStore'
 
 const DashBoardMain = () => {
 
     const [sliderValue, setSliderValue] = useState([0,10000000]);
         console.log(sliderValue);
+
+    const isDarkMode = useDarkStore((state) => state.isDarkMode);
 
     return (
         <Formik>
@@ -19,7 +22,7 @@ const DashBoardMain = () => {
                     {UserStats.map((stat) => (
                         <div key={stat.id} className={Style.userStats}>
                             <div className={Style.statIconContainer}>
-                                <img src={stat.imageUrlLightMode} alt={stat.imageUlt} className={Style.statIcon}/>
+                                <img src={isDarkMode ? stat.imageUrlDarkMode : stat.imageUrlLightMode} alt={stat.imageUlt} className={Style.statIcon}/>
                             </div>
                             <div className={Style.statTextContainer}>
                                 <div className={Style.statTitle}>{stat.name}</div>
@@ -80,7 +83,7 @@ const DashBoardMain = () => {
                                 <div className={Style.coursePublishDate}>{course.date}</div>
                                 <div className={Style.coursePrice}>{course.price}</div>
                                 <div className={Style.viewCourse}>
-                                    <img src="/images/viewProduct.svg" alt="View-Course-Icon" className={Style.viewCourseIcon}/>
+                                    <img src={isDarkMode ? "/images/viewProductDark.svg" :"/images/viewProduct.svg"} alt="View-Course-Icon" className={Style.viewCourseIcon}/>
                                 </div>
                             </div>
                         ))}

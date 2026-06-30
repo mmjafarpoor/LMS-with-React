@@ -1,0 +1,32 @@
+.livingAddressContainer{
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.livingAddressTitle{
+    font-weight: 900;
+    color: var(--button-bg);
+    font-size: 1.2rem;
+    white-space: nowrap;
+}
+.navigationMapContainer{
+    width: 100%;
+    height: 261px;
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+
+
+@media (max-width: 600px) {
+    .livingAddressTitle{
+        font-size: clamp(0.88rem,3vw,1.2rem);
+    }
+}
+@media (max-width: 400px) {
+    .livingAddressTitle{
+        font-size: clamp(0.78rem,3.5vw,0.88rem);
+    }
+}

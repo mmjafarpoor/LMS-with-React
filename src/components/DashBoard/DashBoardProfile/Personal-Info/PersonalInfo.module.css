@@ -19,7 +19,6 @@
 .inputsContainer{
     width: calc(100% - 40px);
     height: calc(100% - 40px);
-    /* border: 1px solid #000; */
     display: flex;
     flex-direction: column;
     gap: 27px;
@@ -55,10 +54,119 @@
     width: calc(50% - 21px);
     height: 72px;
 }
+.genderCheckContainer{
+    width: max-content;
+    height: 28px;
+    max-height: 28px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 20px;
+}
+.genderCheckTitle{
+    font-weight: 900;
+    font-size: 1.05rem;
+    white-space: nowrap;
+    user-select: none;
+}
+.submitTheForms{
+    width: 190px;
+    height: 55px;
+    background-color: var(--button-bg);
+    border-radius: 18px;
+    color: #ffffff;
+    font-weight: 900;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+.submitTheForms:hover{
+    background-color: var(--button-hover);
+}
 .circularProgressBarContainer{
     width: 26%;
     height: 377px;
     box-shadow: var(--box-shadow);
     background-color: var(--header-bg);
     border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.profileProgressStatus{
+    font-weight: 600;
+    font-size: clamp(1.5rem,1.41vw,1.7rem);
+    white-space: nowrap;
+    user-select: none;
+}
+.profileProgress{
+    width: 50%;
+    height: auto;
+    aspect-ratio: 1/1;
+}
+.profileProgress > img{
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+
+
+                                                /* @Media Section */
+@media (max-width: 1000px) {
+    .circularProgressBarContainer{
+        height: 240px;
+    }
+    .profileProgressStatus{
+        font-size: clamp(1.2rem,1.5vw,1.5rem);
+    }
+}
+@media (max-width: 800px) {
+    .circularProgressBarContainer{
+        display: none;
+    }
+    .informationInputWrapper{
+        width: 95%;
+    }
+    .personalInfoContainer{
+        justify-content: center;
+    }
+}
+@media (max-width: 600px) {
+    .inputsContainer{
+        width: calc(100% - 20px);
+        height: calc(100% - 20px);
+    }
+    .informationInputWrapper{
+        width: 100%;
+    }
+    .doubleInputContainer{
+        gap: 14px;
+    }
+    .doubleInput{
+        width: calc(50% - 7px);
+    }
+    .quadrupleInputContainer{
+        gap: 14px;
+    }
+    .quadrupleInput{
+        width: calc(50% - 7px);
+    }
+    .genderCheckContainer{
+        gap: 12px;
+    }
+    .genderCheckTitle{
+        font-size: clamp(0.85rem,2.8vw,1.05rem);
+    }
+    .submitTheForms{
+        width: 34%;
+        min-width: 140px;
+        height: auto;
+        aspect-ratio: 190 / 55;
+        font-size: clamp(1rem,2vw,1.2rem);
+    }
 }

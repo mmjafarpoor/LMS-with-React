@@ -1,0 +1,192 @@
+.profilePictureContainer{
+    width: 100%;
+    height: max-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.profileGallery{
+    width: 82%;
+    height: max-content;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 16px;
+    direction: ltr;
+    border: 1px solid #000;
+}
+.addPicture{
+    width: calc(25% - 12px);
+    height: auto;
+    aspect-ratio: 1/1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border: 4px dashed var(--button-bg);
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+.addPicture:hover{
+    border: 4px dashed var(--button-hover);
+}
+.dragging {
+    border: 4px dashed #4f46e5;
+    background-color: rgba(79, 70, 229, 0.08);
+}
+.addPictureImage{
+    width: 15.5%;
+    min-width: 35px;
+    height: auto;
+    aspect-ratio: 1/1;
+}
+.addPictureText{
+    font-weight: 900;
+    font-size: 1.3rem;
+    white-space: nowrap;
+    user-select: none;
+}
+.selectedPicture{
+    width: calc(25% - 12px);
+    height: auto;
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid var(--button-bg);
+    border-radius: 18px;
+    cursor: pointer;
+}
+.pictureContainer{
+    width: 92%;
+    height: auto;
+    aspect-ratio: 1/1;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+}
+.picture{
+    width: 100%;
+    height: 100%;
+}
+.selectedOption{
+    /* width: 16.2%; */
+    width: calc(32.4% + 8px);
+    height: auto;
+    aspect-ratio: 90/41;
+    border-radius: 99999px;
+    background-color: #FFFFFF;
+    position: absolute;
+    bottom: 3%;
+    left: 3%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.selectTheProfile{
+    width: auto;
+    height: 85%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background-color: var(--button-bg);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s ease-in-out;
+}
+.deleteTheProfile{
+    width: auto;
+    height: 85%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.deselectedOption{
+    width: 16.2%;
+    height: auto;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+    position: absolute;
+    bottom: 3%;
+    left: 3%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.deselectedOptionPicture{
+    width: 67%;
+    height: 67%;
+}
+.selectedOptionPicture{
+    width: 100%;
+    height: 100%;
+}
+.deselectedPicture{
+    width: calc(25% - 12px);
+    height: auto;
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid var(--deselected-pic);
+    border-radius: 18px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+
+
+
+                                                /* @Media Section */
+@media (max-width: 1000px) {
+    .addPicture{
+        width: 180px;
+        height: 180px;
+    }
+    .selectedPicture{
+        width: 180px;
+        height: 180px;
+    }
+    .deselectedPicture{
+        width: 180px;
+        height: 180px;
+    }
+}
+@media (max-width: 800px) {
+
+}
+@media (max-width: 600px) {
+    .profileGallery{
+        width: 90%;
+    }
+}
+@media (max-width: 400px) {
+    .profileGallery{
+        width: 100%;
+    }
+    .addPicture{
+        width: 140px;
+        height: 140px;
+        gap: 5px;
+    }
+    .addPictureText{
+        font-size: 0.9rem;
+    }
+    .selectedPicture{
+        width: 140px;
+        height: 140px;
+    }
+    .deselectedPicture{
+        width: 140px;
+        height: 140px;
+    }
+}

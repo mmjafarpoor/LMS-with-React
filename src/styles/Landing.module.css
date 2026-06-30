@@ -117,14 +117,14 @@
 .landingContainer > .mobileMenu > .mobileMenuHolder > .closeAndScreenMode > .mobileLightMode{
     width: 40px;
     height: 40px;
-    background: url(/images/lightMode.png) no-repeat;
+    background: url(/images/lightMode.svg) no-repeat;
     border-radius: 50%;
     cursor: pointer;
 }
 .landingContainer > .mobileMenu > .mobileMenuHolder > .closeAndScreenMode > .mobileDarkMode{
     width: 40px;
     height: 40px;
-    background: url(/images/darkMode.png) no-repeat;
+    background: url(/images/darkMode.svg) no-repeat;
     border-radius: 50%;
     cursor: pointer;
 }

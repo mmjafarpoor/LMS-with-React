@@ -155,7 +155,7 @@ import useDarkStore from "../store/DarkStore";
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
                                 transition={{ duration: 0.4 }}
-                                src={isDarkMode ? "/images/lightMode.png" : "/images/darkMode.png"} alt={isDarkMode ? "Light Mode" : "Dark Mode"} />
+                                src={isDarkMode ? "/images/lightMode.svg" : "/images/darkMode.svg"} alt={isDarkMode ? "Light Mode" : "Dark Mode"} />
                         </div>
                         <div className={Style.account} onClick={GoToAuth}>ورود یا ثبت نام</div>
                         <div className={Style.headerShowMoreButton} onClick={toggleMenu}>

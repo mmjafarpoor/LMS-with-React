@@ -52,6 +52,7 @@ body > div:not([data-otp]) {
     --dashBoard-bg: #FAFBFF;
     --dashBoard-Main-Title: #4F4F4F;
     --dashboard-tab-text: #909090;
+    --deselected-pic: #666666;
     --invert-color: 0;
 }
 .dark-theme {
@@ -84,6 +85,7 @@ body > div:not([data-otp]) {
     --dashBoard-bg: #212121;
     --dashBoard-Main-Title: #838383;
     --dashboard-tab-text: #FFFFFF;
+    --deselected-pic: #4F4F4F;
     --invert-color: 1;
 }
 

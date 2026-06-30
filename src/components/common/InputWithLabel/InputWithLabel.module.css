@@ -28,3 +28,22 @@
 .inputContainer >input:focus{
     cursor: text;
 }
+
+
+@media (max-width: 600px) {
+    .inputContainer > label{
+        font-size: clamp(0.85rem,2.8vw,1.05rem);
+    }
+    .inputContainer >input{
+        font-size: clamp(0.8rem,2.6vw,1rem);
+    }
+}
+@media (max-width: 400px) {
+    .inputContainer > label{
+        margin: 0px 6px;
+    }
+    .inputContainer >input{
+        text-indent: 8px;
+        font-size: 0.75rem;
+    }
+}
