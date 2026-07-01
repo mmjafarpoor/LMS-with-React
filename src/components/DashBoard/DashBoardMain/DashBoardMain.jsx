@@ -6,19 +6,22 @@ import LatestCourseDashBoard from '../../../Data/LatestCoursesDashBoard'
 import { Field, Form, Formik } from 'formik'
 import Slider from 'rc-slider';
 import useDarkStore from '../../../store/DarkStore'
+import useUserInfoStore from '../../../store/UserInfoStore'
+import GreetingMessage from '../../common/GreetingMessage/GreetingMessage'
 
 const DashBoardMain = () => {
 
     const [sliderValue, setSliderValue] = useState([0,10000000]);
         console.log(sliderValue);
-
+    
     const isDarkMode = useDarkStore((state) => state.isDarkMode);
+    const userName = useUserInfoStore((state) => state.user.userName);
 
     return (
         <Formik>
             <Form className={Style.dashBoardMainContainer}>
                 <div className={Style.userStatsContainer}>
-                    <div className={Style.greetingMessage}>سلام، صبح‌ بخیر امیر</div>
+                    <div className={Style.greetingMessage}>سلام، {GreetingMessage}<br/>{userName}</div>
                     {UserStats.map((stat) => (
                         <div key={stat.id} className={Style.userStats}>
                             <div className={Style.statIconContainer}>

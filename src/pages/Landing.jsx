@@ -159,7 +159,7 @@ import useDarkStore from "../store/DarkStore";
                         </div>
                         <div className={Style.account} onClick={GoToAuth}>ورود یا ثبت نام</div>
                         <div className={Style.headerShowMoreButton} onClick={toggleMenu}>
-                            <img src="/images/headerMore.png" alt="Header-Show-More-Button"/>
+                            <img src={isDarkMode ? "/images/mobileMenuOpenDarkMode.svg" : "/images/mobileMenuOpenLightMode.svg"} alt="Header-Show-More-Button"/>
                         </div>
                     </div>
                 </div>

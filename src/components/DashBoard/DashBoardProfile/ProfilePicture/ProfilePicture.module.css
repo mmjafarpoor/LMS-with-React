@@ -14,7 +14,6 @@
     justify-content: center;
     gap: 16px;
     direction: ltr;
-    border: 1px solid #000;
 }
 .addPicture{
     width: calc(25% - 12px);
@@ -174,19 +173,19 @@
         width: 100%;
     }
     .addPicture{
-        width: 140px;
-        height: 140px;
+        width: 150px;
+        height: 150px;
         gap: 5px;
     }
     .addPictureText{
         font-size: 0.9rem;
     }
     .selectedPicture{
-        width: 140px;
-        height: 140px;
+        width: 150px;
+        height: 150px;
     }
     .deselectedPicture{
-        width: 140px;
-        height: 140px;
+        width: 150px;
+        height: 150px;
     }
 }

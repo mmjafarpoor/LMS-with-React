@@ -4,6 +4,7 @@ import DashBoardMenuItems from '../Data/DashBoardMenuItems'
 import { Link, Outlet } from 'react-router-dom'
 import useUserInfoStore from '../store/UserInfoStore'
 import useDarkStore from '../store/DarkStore'
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 
 const DashBoard = () => {
@@ -62,11 +63,12 @@ const DashBoard = () => {
     }, [isDarkMode])
 
     // const updateUser = useUserInfoStore((state) => state.updateUser);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
         <div className={Style.dashboard}>
             <div className={Style.dashboardHolder}>
-                <div className={Style.dashboardMenuContainer}>
+                <div  className={`${Style.dashboardMenuContainer} ${isMenuOpen ? Style.menuOpen : ""}`}>
                     <div className={Style.dashboardMenu}>
                         <div className={Style.dashboardMenuTop}>
                             <div className={Style.logoContainer}>
@@ -75,7 +77,7 @@ const DashBoard = () => {
                             </div>
                             <div className={Style.menuItemsContainer}>
                                 {DashBoardMenuItems.map((item) =>(
-                                    <Link to={item.linkTo} key={item.id} className={selectedItem === item.id  ? Style.activeMenuItem : Style.inactiveMenuItem} onClick={() => setSelectedItem(item.id)} >
+                                    <Link to={item.linkTo} key={item.id} className={selectedItem === item.id  ? Style.activeMenuItem : Style.inactiveMenuItem} onClick={() => {setSelectedItem(item.id);if(window.innerWidth <= 1200){setIsMenuOpen(false);}}} >
                                         <div className={Style.menuItemIconContainer}>
                                             <img src={isDarkMode ? item.imageUrlDarkMode : item.imageUrlLightMode} alt={item.imageAlt} className={Style.menuItemIcon} />
                                         </div>
@@ -95,8 +97,8 @@ const DashBoard = () => {
                 <div className={Style.dashboardMain}>
                     <div className={Style.dashboardHeaderContainer}>
                         <div className={Style.dashboardHeader}>
-                            <div className={Style.mobileMenuSwitch}>
-                                <img src="/images/mobileMenuOpenLightMode.svg" alt="Mobile-Menu" className={Style.mobileMenuIcon} />
+                            <div className={Style.mobileMenuSwitch} onClick={() => setIsMenuOpen(prev => !prev)}>
+                                <img src={isDarkMode ? "/images/mobileMenuOpenDarkMode.svg" : "/images/mobileMenuOpenLightMode.svg"} alt="Mobile-Menu" className={Style.mobileMenuIcon} />
                             </div>
                             <div className={Style.userInfoBox}>
                                 <div className={Style.userProfileContainer}>
@@ -107,7 +109,7 @@ const DashBoard = () => {
                                         <span className={Style.userNameText}>{userName}</span>
                                     </div>
                                     <span className={Style.userId}>
-                                        <span className={Style.userIdText}>amirKh@</span>
+                                        <span className={Style.userIdText}>userId@</span>
                                     </span>
                                 </div>
                             </div>

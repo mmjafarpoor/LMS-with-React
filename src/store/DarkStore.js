@@ -1,4 +1,4 @@
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import { create } from "zustand";
 
 const useDarkStore = create((set) => ({
@@ -7,14 +7,14 @@ const useDarkStore = create((set) => ({
     toggleDarkMode: () =>
         set((state) => {
             const newMode = !state.isDarkMode;
-            toast.success(
-                newMode
-                    ? "حالت تاریک فعال شد 🌙"
-                    : "حالت روشن فعال شد ☀️",
-                // {
-                //     theme: newMode ? "dark" : "light",
-                // }
-            );
+            // toast.success(
+            //     newMode
+            //         ? "حالت تاریک فعال شد 🌙"
+            //         : "حالت روشن فعال شد ☀️",
+            //     {
+            //         theme: newMode ? "dark" : "light",
+            //     }
+            // );
             localStorage.setItem(
                 "theme",
                 newMode ? "dark" : "light"

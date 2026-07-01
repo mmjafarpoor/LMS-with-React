@@ -8,12 +8,10 @@
     justify-content: center;
     background-color: var(--dashBoard-bg);
     color: var(--text-color);
-    /* padding: 25px; */
 }
 .dashboardHolder{
     width: clamp(310px,calc(100% - 50px),1870px);
     height: clamp(800px,calc(100% - 50px),950px);
-    border: 1px solid black;
     display: flex;
     flex-flow: row nowrap;
     gap: 25px;
@@ -246,13 +244,23 @@
                                                 /* @Media Section */
 @media (max-width: 1200px) {
     .dashboardMenuContainer{
-        display: none;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 300px;
+        height: 100vh;
+        transition: 0.4s;
+        z-index: 999;
+        display: flex;
+    }
+    .menuOpen{
+        right: 0;
     }
     .dashboardMain{
-        width: 100%;
+        width:100%;
     }
     .mobileMenuSwitch{
-        display: block;
+        display:block;
     }
 }
 @media (max-width: 400px) {

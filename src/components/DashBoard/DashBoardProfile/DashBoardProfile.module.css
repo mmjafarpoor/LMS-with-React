@@ -203,9 +203,53 @@
 
 }
 @media (max-width: 800px) {
-
+    .userDetailContainer{
+        height: max-content;
+        flex-direction: column;
+        gap: 40px;
+    }
+    .userDetailRightSection{
+        width: 60%;
+    }
+    .userPhoneNumber{
+        font-size: clamp(0.85rem,1.9vw,0.95rem);
+    }
+    .userEmailAddress{
+        font-size: clamp(0.85rem,1.9vw,0.95rem);
+    }
+    .userDetailLeftSection{
+        width: 60%;
+    }
 }
 @media (max-width: 600px) {
+    .userDetailRightSectionTop{
+        flex-direction: column;
+        max-height: max-content;
+        gap: 8px;
+    }
+    .userDetailRightSection{
+        width: 80%;
+        height: max-content;
+        gap: 10px;
+    }
+    .userDetailLeftSection{
+        width: 80%;
+    }
+    .userName{
+        font-size: clamp(1.6rem,5.33vw,2rem);
+    }
+    .userRole{
+        font-size: clamp(0.83rem,2.67vw,1rem);
+    }
+    .aboutMeTitle{
+        text-align: center;
+    }
+    .aboutMe{
+        text-align: center;
+    }
+    .profileHeadingContainer{
+        display: none;
+    }
     .tabsContainer{
         margin-right: 7px;
         gap: 8px;
@@ -215,6 +259,10 @@
     }
     .inactiveTab{
         font-size: clamp(0.88rem,2.66vw,1rem);
+    }
+    .userDetailRightSectionBottom{
+        flex-direction: column;
+        gap: 8px;
     }
 }
 @media (max-width: 400px) {
