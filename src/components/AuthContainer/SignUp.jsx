@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import OtpInput from "react-otp-input";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
+import { registerGmail, registerLastStep, registerVerifyMessage } from "../../core/services/authService/authService";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -108,23 +109,52 @@ const SignUp = () => {
 
       <Formik
         initialValues={{ email: "", otp: "", password: "", passwordRepeat: "" }}
-        onSubmit={(values, { setFieldError }) => {
+        onSubmit={async (values, { setFieldError }) => {
           if (step === 1) {
-            setEmail(values.email);
-            setStep(2);
-            console.log("step 1 success");
+            try{
+              const response = await registerGmail({
+                gmail: values.email,
+              });
+              console.log(response.data);
+              
+              setEmail(values.email);
+              setStep(2);
+            }
+            catch(error){
+              setFieldError("email",error.response?.data?.message || "ایمیل وارد شده اشتباه است.");
+            }
           }
 
           if (!values.otp) return;
-          if (step === 2 && values.otp === "000000") {
-            setOtp(values.otp);
-            setStep(3);
-          } else {
-            setFieldError("otp", "رمز یکبار مصرف به نادرستی وارد شده است");
-          }
+          if (step === 2 ) {
+            try{
+              const response = await registerVerifyMessage({
+                gmail: email,
+                verifyCode: values.otp,
+              });
+              console.log(response.data);
 
-          if (values.password === values.passwordRepeat) {
-            setPassword(values.password);
+              setOtp(values.otp);
+              setStep(3);
+            }
+            catch(error){
+              setFieldError("otp",error.response?.data?.message || "رمز یکبار مصرف به نادرستی وارد شده است");
+            }
+          }
+          if (step === 3 && values.password === values.passwordRepeat) {
+            try{
+              const response = await registerLastStep({
+                password: values.password,
+                gmail: email,
+                phoneNumber: email,
+              });
+              console.log(response.data);
+
+              setPassword(values.password);
+            }
+            catch(error){
+              setFieldError("otp",error.response?.data?.message || "اطلاعات ثبت نام اشتباه است.");
+            }
             // setStep(4);
           } else {
             setFieldError("passwordRepeat", "رمزها با یکدیگر مطابقت ندارند");
@@ -180,6 +210,7 @@ const SignUp = () => {
                   <OtpInput
                     value={values.otp}
                     onChange={(value) => setFieldValue("otp", value)}
+                    name="otp"
                     numInputs={6}
                     renderSeparator={renderSeparator}
                     skipDefaultStyles={true}

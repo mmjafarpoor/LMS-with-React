@@ -21,10 +21,9 @@ function App() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="light"
+        theme={isDarkMode ? "dark" : "light"}
         fontFamily="IranSans" 
         transition={Bounce}
-        theme={isDarkMode ? "dark" : "light"}
         toastStyle={{fontFamily: "IranSans"}}
       />
     </>

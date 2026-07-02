@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import OtpInput from "react-otp-input";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
+import { loginGmail, loginVerifyMessage } from "../../core/services/authService/authService";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -26,7 +27,6 @@ const Login = () => {
       return <div className="mx-2 h-1 w-2.5 bg-[#B5B5B5]"></div>;
     }
   };
-
   const [rememberBoxActivate, setRememberBoxActivate] = useState(false);
 
   const [time, setTime] = useState(120);
@@ -105,18 +105,41 @@ const Login = () => {
 
       <Formik
         initialValues={{ email: "", password: "", otp: "" }}
-        onSubmit={(values, { setFieldError }) => {
+        onSubmit={async (values, { setFieldError }) => {
           if (step === 1) {
-            setEmail(values.email);
-            setPassword(values.password);
-            setStep(2);
+            try{
+              const response = await loginGmail({
+                phoneOrGmail: values.email,
+                password: values.password,
+              });
+              console.log(response.data);
+
+              setEmail(values.email);
+              setPassword(values.password);
+              
+              setStep(2);
+            }catch(error){
+              setFieldError(
+                "email",
+                error.response?.data?.message || "اطلاعات ورود اشتباه است."
+              );
+            }
+            return;
           }
           if (!values.otp) return;
           if (step === 2 && values.otp === "000000") {
-            setOtp(values.otp);
-            // setStep(3);
-          } else {
-            setFieldError("otp", "رمز یکبار مصرف به نادرستی وارد شده است");
+            try{
+              const response = await loginVerifyMessage({
+                code : values.otp,
+                phoneOrGmail : email,
+              });
+              console.log(response.data);
+
+              setOtp(values.otp);
+            }
+            catch(error){
+              setFieldError("otp",error.response?.data?.message || "رمز یکبار مصرف به نادرستی وارد شده است");
+            }
           }
         }}
         validationSchema={validationSchema}
@@ -211,6 +234,7 @@ const Login = () => {
                   value={values.otp}
                   onChange={(value) => setFieldValue("otp", value)}
                   numInputs={6}
+                  name="otp"
                   renderSeparator={renderSeparator}
                   skipDefaultStyles={true}
                   renderInput={(props) => (

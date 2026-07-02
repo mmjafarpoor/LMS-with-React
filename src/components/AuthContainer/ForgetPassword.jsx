@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import OtpInput from "react-otp-input";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
+import { forgetGmail } from "../../core/services/authService/authService";
 
 const ForgetPassword = () => {
   const navigate = useNavigate()
@@ -114,11 +115,20 @@ const ForgetPassword = () => {
 
       <Formik
         initialValues={{ email: "", otp: "", password: "", passwordRepeat: "" }}
-        onSubmit={(values, { setFieldError }) => {
+        onSubmit={async (values, { setFieldError }) => {
           if (step === 1) {
-            setEmail(values.email);
-            setStep(2);
-            console.log("step 1 success");
+            try {
+              const response = await forgetGmail({
+                email: values.email,
+                baseUrl: "https://localhost:5173/resetpassword",
+              });
+              console.log(response.data);
+
+              setEmail(values.email);
+              setStep(2);
+            } catch (error) {
+              setFieldError("email",error.response?.data?.message || "رمز یکبار مصرف به نادرستی وارد شده است");
+            }
           }
 
           if (!values.otp) return;
