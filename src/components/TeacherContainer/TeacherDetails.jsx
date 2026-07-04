@@ -7,7 +7,7 @@ const TeachersDetails = () => {
   // const [teacherCourses, setTeacherCouses] = useState([]);
   const fetchItem = async () => {
     const response = await fetch(
-      `http://188.121.111.8:3001/Home/GetTeacherDetails?TeacherId=${teacherId}`,
+      `http://188.121.104.25:3001/Home/GetTeacherDetails?TeacherId=${teacherId}`,
     );
     const data = await response.json();
     setTeacherProfile(data);
@@ -18,6 +18,8 @@ const TeachersDetails = () => {
     fetchItem();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [teacherId]);
+
+  console.log(teacherProfile)
 
   return (
     <div className="w-full flex items-center justify-center">
@@ -77,7 +79,7 @@ const TeachersDetails = () => {
           </h2>
         </div>
         <div className="pb-3 flex flex-col gap-4 items-center lg:w-[50%] xl:w-[40%] lg:bg-[url(/public/images/blueLine.png)] bg-no-repeat bg-position-[50%_30px]">
-          <h1 className="lg:text-[30px] sm:text-[26px] text-[20px] font-bold!">
+          <h1 className="lg:text-[30px] sm:text-[26px] text-[20px] font-semibold!">
             دوره‌های استاد
           </h1>
         </div>

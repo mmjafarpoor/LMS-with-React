@@ -9,6 +9,7 @@ import StudentComment from '../components/Home/StudentComment/StudentComment';
 import WagonSlider from '../components/Home/WagonSlider/WagonSlider';
 import NewsCards from '../components/Home/NewsCards/NewsCards';
 import TeachersCards from '../components/Home/TeachersCards/TeachersCards';
+import CoursesCards from '../components/Home/CoursesCards/CoursesCards';
 
 const Home = () => {
   // console.log(SliderData);
@@ -194,6 +195,9 @@ const Home = () => {
           <span className={Style.roadMapDescription}>ما اینجا هستیم تا بشما کمک کنیم راه خود را پیدا کنید</span>
         </div>
         <AnimateRoadmap/>
+      </div>
+      <div className={Style.CoursesCards}>
+        <CoursesCards />
       </div>
       <div className={Style.wagonSlider}>
         <WagonSlider />

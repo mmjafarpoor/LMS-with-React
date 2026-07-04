@@ -8,6 +8,7 @@ import Login from "../../components/AuthContainer/Login";
 import SignUp from "../../components/AuthContainer/SignUp";
 import ForgetPassword from "../../components/AuthContainer/ForgetPassword";
 import Courses from "../../pages/Courses";
+import CourseDetails from "../../components/CoursesPage/CourseDetails/CourseDetails";
 import Teachers from "../../pages/Teachers";
 import TeacherDetails from "../../components/TeacherContainer/TeacherDetails";
 import News from "../../pages/News";
@@ -28,12 +29,14 @@ import Connections from "../../components/DashBoard/DashBoardProfile/Connections
 
 
 
+
 const router = createBrowserRouter([
     { path: "/", element: <Landing/> , children:[
         {index: true, element: <Home/> },
         { path: "Home", element: <Home/> },
         { path: "HomeEdit", element: <HomeEdit/> },
         { path: "Courses", element: <Courses/> },
+        { path: "Courses/:courseId", element: <CourseDetails/> },
         { path: "Teachers", element: <Teachers /> },
         { path: "Teachers/:teacherId/:TeacherName", element: <TeacherDetails /> },
         { path: "News", element: <News/> },
