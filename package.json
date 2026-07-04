@@ -21,6 +21,7 @@
     "clsx": "^2.1.1",
     "formik": "^2.4.9",
     "framer-motion": "^12.40.0",
+    "jalali-moment": "^3.3.11",
     "leaflet": "^1.9.4",
     "motion": "^12.40.0",
     "rc-slider": "^11.1.9",

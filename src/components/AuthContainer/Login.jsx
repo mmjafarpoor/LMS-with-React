@@ -111,8 +111,10 @@ const Login = () => {
               const response = await loginGmail({
                 phoneOrGmail: values.email,
                 password: values.password,
+                rememberMe : true
               });
               console.log(response.data);
+              console.log(response);
 
               setEmail(values.email);
               setPassword(values.password);

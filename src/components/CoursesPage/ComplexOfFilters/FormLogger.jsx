@@ -1,10 +1,11 @@
 import { useFormikContext } from "formik";
 import { useEffect } from "react";
 
-    const FormLogger = () => {
+    const FormLogger = ({setCourseFilters}) => {
     const { values } = useFormikContext();
 
     useEffect(() => {
+        setCourseFilters(values);
         console.log(values);
     }, [values]);
 
