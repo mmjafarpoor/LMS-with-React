@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 import Landing from "../../pages/Landing";
 import Home from "../../pages/Home";
+import HomeEdit from "../../pages/Home-Edit";
 import Auth from "../../pages/Auth";
 import Login from "../../components/AuthContainer/Login";
 import SignUp from "../../components/AuthContainer/SignUp";
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
     { path: "/", element: <Landing/> , children:[
         {index: true, element: <Home/> },
         { path: "Home", element: <Home/> },
+        { path: "HomeEdit", element: <HomeEdit/> },
         { path: "Courses", element: <Courses/> },
         { path: "Teachers", element: <Teachers /> },
         { path: "Teachers/:teacherId/:TeacherName", element: <TeacherDetails /> },
