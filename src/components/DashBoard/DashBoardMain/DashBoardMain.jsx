@@ -26,7 +26,7 @@ const DashBoardMain = () => {
 
     const fetchCourseList = async (pageNumber = 1) => {
         try{
-            const response = await getCourseList({pageNumber, rowOfPage: 6,});
+            const response = await getCourseList({pageNumber, rowOfPage: 6, sortingCol: "lastUpdate" ,});
             if (response.data?.courseFilterDtos) {
                 setCourseList(response.data.courseFilterDtos);
                 console.log("Data Received",response.data.courseFilterDtos)}
@@ -39,7 +39,7 @@ const DashBoardMain = () => {
     }
     const fetchNewsList = async () => {
         try {
-            const response = await apiClient("/News",{PageNumber : 1, RowsOfPage: 6,});
+            const response = await apiClient("/News",{PageNumber : 1, RowsOfPage: 6, sortingCol: "insertDate" ,});
             if (response.data?.news) {
                 setNewsList(response.data.news);
                 console.log("Data Received",response.data.news)

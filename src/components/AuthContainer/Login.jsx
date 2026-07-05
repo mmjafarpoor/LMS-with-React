@@ -118,9 +118,9 @@ const Login = () => {
 
               setEmail(values.email);
               setPassword(values.password);
-              
+              localStorage.setItem("token", response.data.token);
               setStep(2);
-            }catch(error){
+            } catch(error){
               setFieldError(
                 "email",
                 error.response?.data?.message || "اطلاعات ورود اشتباه است."

@@ -46,7 +46,7 @@ const Courses = () => {
     setIsLoading(true);
     setError(null);
     try{
-      const response = await getCourseList({pageNumber, rowOfPage: itemsPerPage, costDown: courseFilters.costDown , costUp: courseFilters.costUp , teacherId: courseFilters.teacherId , priceType: courseFilters.priceType , query: courseFilters.search,});
+      const response = await getCourseList({pageNumber , rowOfPage: itemsPerPage , costDown: courseFilters.costDown , costUp: courseFilters.costUp , teacherId: courseFilters.teacherId , priceType: courseFilters.priceType , query: courseFilters.search,});
         if (response.data?.courseFilterDtos) {
             setCourseList(response.data.courseFilterDtos);
             setPageCount(Math.ceil(response.data.totalCount / itemsPerPage));
