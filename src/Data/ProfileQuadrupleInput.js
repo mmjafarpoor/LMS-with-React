@@ -1,6 +1,6 @@
 const ProfileQuadrupleInput = [
     {
-        id: "PersonalId",
+        id: "NationalCode",
         title: "کد ملی",
         inputPlaceHolder : "کد ملی خود را وارد کنید",
     },

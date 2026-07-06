@@ -6,6 +6,7 @@ import * as Yup from "yup";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 import { forgetGmail, forgetNewPassWord } from "../../core/services/authService/authService";
+import { toast } from "react-toastify";
 
 const ForgetPassword = () => {
   const navigate = useNavigate();
@@ -112,6 +113,18 @@ const ForgetPassword = () => {
                 newPassword: values.password,
                 resetValue: values.otp,
               });
+              const toastId = toast.loading("در حال تغیر رمز حساب شما...");
+
+              setTimeout(()=>{
+                toast.update(toastId, {
+                    render: "رمز عبور شما با موفقیت عوض شد",
+                    type: "success",
+                    isLoading: false,
+                    autoClose: 1500,
+                });
+                navigate("/Auth", { replace: true });
+              },2000)
+
               console.log(response);
               console.log(response.data);
               setPassword(values.password);
@@ -190,7 +203,7 @@ const ForgetPassword = () => {
                 <Field
                   type="text"
                   name="otp"
-                  placeholder=" رمز عبور یکبار مصرف"
+                  placeholder=" رمز یکبار مصرف"
                   className="h-12 w-full rounded-xl mt-2 mb-2 indent-12
                   outline-none border border-transparent focus:border-[#0CBDE2] transition-colors duration-150 caret-[#0CBDE2]
                   bg-[url('/images/password.png')] bg-no-repeat bg-position-[97%] bg-(--input-bg)"

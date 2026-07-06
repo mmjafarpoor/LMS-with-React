@@ -1,26 +1,41 @@
 import { create } from "zustand";
+import {userApiData} from '../core/services/dashBoardService/dashBoardApi'
+import { dashBoardDataMapper } from "../core/services/dashBoardService/dashBoardDataMapper";
+import { toast } from "react-toastify";
 
-const useUserInfoStore = create((set) => ({
-    user : {
-        userName : "کاربر جدید",
-        userLastName: "",
-        userBiography: "در این بخش میتوانید راجب خودتون و توانایی هاتون و همچنین انگیزتون به عنوان عضوی از آکادمی بحر را شرح دهید❤️",
-        userPhoneNumber : "*********09",
-        userEmailAddress : "Example@gmail.com",
-        userPersonalId: "",
-        userBirthDay : "",
-        userLivingAddress : "",
-        userGender : "",
-        userProfilePicture : "/images/defaultAvatar.webp",
+const userInfoStore = create((set) => ({
+    user: null,
+    loading: false,
+
+    fetchUser : async () => {
+        set({ loading: true });
+
+        try {
+            const response = await userApiData();
+            
+
+            const mappedUser = dashBoardDataMapper(response.data);
+            console.log("userInfo =",response.data);
+            
+            set({
+                user:mappedUser,
+            });
+        } catch (error) {
+            toast.error("در نمایش اطلاعات کاربر مشکلی بوجود امد")
+            console.log(error)
+        }
+        finally{
+            set({ loading: false });
+        }
     },
-
-    updateUser : (data) =>
+    updateUser: (data) =>
         set((state) => ({
             user: {
-                ...state.user,
-                ...data,
-            },
-        })),
-}));
+            ...state.user,
+            ...data,
+        },
+    })),
+    clearUser: () =>set({user: null,}),
+}))
 
-export default useUserInfoStore;
+export default userInfoStore;

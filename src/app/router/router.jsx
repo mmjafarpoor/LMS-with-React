@@ -24,6 +24,7 @@ import PersonalInfo from "../../components/DashBoard/DashBoardProfile/Personal-I
 import ProfilePicture from "../../components/DashBoard/DashBoardProfile/ProfilePicture/ProfilePicture";
 import LivingAddress from "../../components/DashBoard/DashBoardProfile/LivingAddress/LivingAddress";
 import Connections from "../../components/DashBoard/DashBoardProfile/Connections/Connections";
+import ProtectedRoute from "./ProtectedRoute";
 
 
 
@@ -49,23 +50,23 @@ const router = createBrowserRouter([
         { path: "forget-password", element: <ForgetPassword/> },
       ],
     },
-    {
-      path: "/Dashboard",
-      element: <DashBoard/>,
+    { element: <ProtectedRoute/>,
       children: [
-        {index: true, element: <DashBoardMain/> },
-        { path: "Main", element: <DashBoardMain/> },
-        { path: "Booked", element: <BookedCourses/> },
-        { path: "Reserved", element: <Reserved/> },
-        { path: "FavouredCourses", element: <FavouredCourses/> },
-        { path: "FavouredBlogs", element: <FavouredBlogs/> },
-        { path: "Profile", element: <DashBoardProfile/> ,children:[
-          {index: true, element: <PersonalInfo/> },
-          { path: "Personal-Info", element: <PersonalInfo/> },
-          { path: "Profile-Picture", element: <ProfilePicture/> },
-          { path: "Living-Address", element: <LivingAddress/> },
-          { path: "Connections", element: <Connections/> },
-        ]},
+        {path: "/Dashboard", element: <DashBoard/>,children: [
+          {index: true, element: <DashBoardMain/> },
+          { path: "Main", element: <DashBoardMain/> },
+          { path: "Booked", element: <BookedCourses/> },
+          { path: "Reserved", element: <Reserved/> },
+          { path: "FavouredCourses", element: <FavouredCourses/> },
+          { path: "FavouredBlogs", element: <FavouredBlogs/> },
+          { path: "Profile", element: <DashBoardProfile/> ,children:[
+            {index: true, element: <PersonalInfo/> },
+            { path: "Personal-Info", element: <PersonalInfo/> },
+            { path: "Profile-Picture", element: <ProfilePicture/> },
+            { path: "Living-Address", element: <LivingAddress/> },
+            { path: "Connections", element: <Connections/> },
+          ]},
+        ]}  ,
       ],
     },
 ]);

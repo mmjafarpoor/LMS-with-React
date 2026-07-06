@@ -5,14 +5,58 @@ import InputWithLabel from '../../../common/InputWithLabel/InputWithLabel'
 import ProfileFullName from '../../../../Data/ProfileFullName'
 import ProfileContacting from '../../../../Data/ProfileContacting'
 import ProfileQuadrupleInput from '../../../../Data/ProfileQuadrupleInput'
-import RadioInput from '../../../common/RadioInput/RadioInput'
+import userInfoStore from '../../../../store/UserInfoStore'
+import { editUserApiData } from '../../../../core/services/dashBoardService/dashBoardApi'
+import { editUserDataMapper } from '../../../../core/services/dashBoardService/editUserDataMapper'
+import { toast } from 'react-toastify'
+import GenderRadio from '../../../common/GenderRadio/GenderRadio'
 
 const PersonalInfo = () => {
 
+    const {user , fetchUser} = userInfoStore();
+
+
+
     return (
         <Formik
-            initialValues={{
-                gender: "",
+            enableReinitialize
+            initialValues = {{
+                FirstName: user?.userName || "",
+                LastName: user?.userLastName || "",
+                AboutMe: user?.userBiography || "",
+                PhoneNumber: user?.userPhoneNumber || "",
+                Email: user?.userEmailAddress || "",    
+                NationalCode: user?.userPersonalId || "",
+                BirthDay: user?.userBirthDay || "2024-07-16",
+                LivingAddress: user?.userLivingAddress || "",
+                gender: true,
+            }}
+            onSubmit = {async (values) => {
+                try {
+                    const formData  = editUserDataMapper(values);
+                    for (const [key, value] of formData.entries()) {
+                        console.log(key, value);
+                    }
+                    console.log("Field Values =",formData);
+                    const response = await editUserApiData(formData);
+                    console.log("Fields Changed =",response.data)
+
+                    await fetchUser();
+                    
+                    // updateUser({
+                    //     userName: values.FirstName,
+                    //     userLastName: values.LastName,
+                    //     userBiography: values.AboutMe,
+                    // });
+
+                    toast.success("اطلاعات با موفقیت ویرایش شد");
+                } catch (error) {
+                    console.log(error);
+                    console.log(error.response?.status);
+                    console.log(error.response);
+                    console.log(error.response?.data);
+                    toast.error(error)
+                }
             }}
         >
             <Form className={Style.personalInfoContainer}>
@@ -50,13 +94,13 @@ const PersonalInfo = () => {
                         <div className={Style.genderCheckContainer}>
                             <span className={Style.genderCheckTitle}>جنسیت</span>
                             {[
-                                {title : "مرد" , id : "Male"},
-                                {title : "زن" , id : "Female"}
+                                {title : "مرد" , value : true},
+                                {title : "زن" , value : false}
                             ].map((input) => (
-                                <RadioInput {...input}/>
+                                <GenderRadio key={input.title} {...input}/>
                             ))}
                         </div>
-                        <button className={Style.submitTheForms}>اعمال تغییرات</button>
+                        <button type='submit' className={Style.submitTheForms}>اعمال تغییرات</button>
                     </div>
                 </div>
                 <div className={Style.circularProgressBarContainer}>

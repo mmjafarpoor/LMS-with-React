@@ -118,7 +118,10 @@ const Login = () => {
 
               setEmail(values.email);
               setPassword(values.password);
+
               localStorage.setItem("token", response.data.token);
+              navigate("/Dashboard");
+              
               setStep(2);
             } catch(error){
               setFieldError(
@@ -222,7 +225,7 @@ const Login = () => {
               </motion.div>
             )}
 
-            {/* STEP 2 */}
+            {/* STEP 2
             {step === 2 && (
               <motion.div
                 key={step}
@@ -261,7 +264,7 @@ const Login = () => {
                   )}
                 </AnimatePresence>
               </motion.div>
-            )}
+            )} */}
             <button
               type="submit"
               className="h-12 w-full mt-4 font-bold! text-white bg-[#0CBDE2] flex items-center justify-center rounded-xl cursor-pointer"
@@ -281,13 +284,13 @@ const Login = () => {
         </div>
       )}
 
-      {step === 2 && time > 0 && (
+      {/* {step === 2 && time > 0 && (
         <div className="h-6 w-fit mt-4 mb-8 p-2">
           {minute}:{second.toString().padStart(2, "0")}
         </div>
-      )}
+      )} */}
 
-      {step === 2 && time === 0 && (
+      {/* {step === 2 && time === 0 && (
         <button
           onClick={() => {
             setTime(120);
@@ -296,7 +299,7 @@ const Login = () => {
         >
           ارسال مجدد کد
         </button>
-      )}
+      )} */}
     </>
   );
 };
