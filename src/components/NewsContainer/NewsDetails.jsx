@@ -32,11 +32,11 @@ const NewsDetails = () => {
               />
               <div className="p-1 flex flex-row items-center gap-5 rounded-tr-3xl bg-(--bg-color) absolute bottom-0 left-0">
                 <div className="flex flex-row items-center">
-                  <div className="h-10 w-10 bg-[url(/public/images/like.png)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
+                  <div className="h-10 w-10 bg-[url(/images/like.png)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
                   <div className="font-bold!">{item?.currentLikeCount}</div>
                 </div>
                 <div className="flex flex-row items-center">
-                  <div className="h-10 w-10 bg-[url(/public/images/disslike.png)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
+                  <div className="h-10 w-10 bg-[url(/images/disslike.png)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
                   <div className="font-bold!">{item?.currentDissLikeCount}</div>
                 </div>
               </div>
@@ -61,14 +61,14 @@ const NewsDetails = () => {
             </p>
             <div className="h-12 w-[85%] flex items-center justify-between border-b border-(--news-description)">
               <div className="flex flex-row gap-2">
-                <div className="h-6.5 w-6 bg-[url(/public/images/watch.svg)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
+                <div className="h-6.5 w-6 bg-[url(/images/watch.svg)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
                 <p className="text-(--news-description)">بازدید</p>
               </div>
               <div>{item?.currentView}</div>
             </div>
             <div className="mt-1.5 h-12 w-[85%] flex items-center justify-between">
               <div className="flex flex-row gap-2">
-                <div className="h-6.5 w-6 bg-[url(/public/images/calendar-start.svg)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
+                <div className="h-6.5 w-6 bg-[url(/images/calendar-start.svg)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
                 <p className="text-(--news-description)">تاریخ</p>
               </div>
               <div>1/1/1</div>

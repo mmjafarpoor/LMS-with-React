@@ -152,7 +152,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-      {/* <div className={Style.bestInstructorsContainer}></div> */}
       <div className={Style.TeachersCards}>
         <TeachersCards />
       </div>

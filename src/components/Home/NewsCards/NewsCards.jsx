@@ -51,10 +51,10 @@ const NewsCards = () => {
               <p className="text-2xl font-semibold!">{item?.title}</p>
               <h2 className="text-md font-semibold!">{item?.describe} </h2>
               <div className="mt-2 flex flex-row gap-10 text-sm font-bold!">
-                <div className="h-6 bg-[url(/public/images/whiteUser.png)] bg-no-repeat bg-position-[100%_0%] indent-8 text-white font-semibold!">
+                <div className="h-6 bg-[url(/images/whiteUser.png)] bg-no-repeat bg-position-[100%_0%] indent-8 text-white font-semibold!">
                   {item?.currentView} بازدید
                 </div>
-                <div className="h-6 bg-[url(/public/images/book.png)] bg-no-repeat bg-position-[100%_0%] indent-12 text-white font-semibold!">
+                <div className="h-6 bg-[url(/images/book.png)] bg-no-repeat bg-position-[100%_0%] indent-12 text-white font-semibold!">
                   دروس
                 </div>
               </div>

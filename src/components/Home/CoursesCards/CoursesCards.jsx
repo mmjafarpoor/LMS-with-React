@@ -34,7 +34,7 @@ const CoursesCards = () => {
                 </p>
               </div>
               <div className="w-[90%] flex flex-row items-center justify-between">
-                <p className="w-fit py-2 pl-2.5 indent-10 rounded-xl text-[#3DCAE8] font-semibold! bg-[url(/public/images/participantIcon.png)] bg-no-repeat bg-position-[90%_45%] bg-(--input-bg-second)">
+                <p className="w-fit py-2 pl-2.5 indent-10 rounded-xl text-[#3DCAE8] font-semibold! bg-[url(/images/participantIcon.png)] bg-no-repeat bg-position-[90%_45%] bg-(--input-bg-second)">
                   20
                 </p>
                 <p className="text-[#28B200]">

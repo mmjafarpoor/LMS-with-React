@@ -43,8 +43,8 @@ const WagonSlider = () => {
           {[...items, ...items].map((item) => (
             <div className="relative w-45 h-[80%] rounded-4xl bg-(--news-top-filter) flex items-center shrink-0 justify-center font-semibold! cursor-pointer">
               {item}
-              <div className="absolute -right-1 top-3.5 h-10 w-10 bg-[url(public/images/api.svg)] bg-no-repeat rotate-6"></div>
-              <div className="absolute left-2.5 top-3.5 h-10 w-10 bg-[url(public/images/arrowLeftWithCircle.svg)] bg-no-repeat rotate-6"></div>
+              <div className="absolute -right-1 top-3.5 h-10 w-10 bg-[url(/images/api.svg)] bg-no-repeat rotate-6"></div>
+              <div className="absolute left-2.5 top-3.5 h-10 w-10 bg-[url(/images/arrowLeftWithCircle.svg)] bg-no-repeat rotate-6"></div>
             </div>
           ))}
         </motion.div>
@@ -62,8 +62,8 @@ const WagonSlider = () => {
           {[...items, ...items].map((item) => (
             <div className="relative w-45 h-[80%] rounded-4xl bg-(--news-top-filter) flex items-center shrink-0 justify-center font-semibold! cursor-pointer">
               {item}
-              <div className="absolute -right-1 top-3.5 h-10 w-10 bg-[url(public/images/api.svg)] bg-no-repeat rotate-6"></div>
-              <div className="absolute left-2.5 top-3.5 h-10 w-10 bg-[url(public/images/arrowLeftWithCircle.svg)] bg-no-repeat rotate-6"></div>
+              <div className="absolute -right-1 top-3.5 h-10 w-10 bg-[url(/images/api.svg)] bg-no-repeat rotate-6"></div>
+              <div className="absolute left-2.5 top-3.5 h-10 w-10 bg-[url(/images/arrowLeftWithCircle.svg)] bg-no-repeat rotate-6"></div>
             </div>
           ))}
         </motion.div>

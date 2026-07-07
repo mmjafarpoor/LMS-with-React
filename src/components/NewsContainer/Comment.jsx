@@ -34,7 +34,7 @@ const Comment = ({ newsId, courseId }) => {
           onClick={() => {
             isCommentModalActive(!commentModalActive);
           }}
-          className="w-50 p-3 pr-14 rounded-2xl font-semibold! text-[16px] text-white bg-[url(/public/images/addComment.png)] bg-no-repeat bg-position-[90%_50%] bg-(--button-bg) cursor-pointer"
+          className="w-50 p-3 pr-14 rounded-2xl font-semibold! text-[16px] text-white bg-[url(/images/addComment.png)] bg-no-repeat bg-position-[90%_50%] bg-(--button-bg) cursor-pointer"
         >
           {commentModalActive ? "بستن ارسال دیدگاه" : "ارسال دیدگاه جدید"}
         </button>
