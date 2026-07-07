@@ -1,25 +1,47 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import OtpInput from "react-otp-input";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
-import { forgetGmail, forgetNewPassWord } from "../../core/services/authService/authService";
-import { toast } from "react-toastify";
+import { forgetGmail } from "../../core/services/authService/authService";
 
 const ForgetPassword = () => {
-  const navigate = useNavigate();
-  const GoToHome = () => {
-    navigate("/");
-  };
+  const navigate = useNavigate()
+  const GoToHome = (()=>{
+    navigate("/")
+  })
 
   const [step, setStep] = useState(1);
   const [email, setEmail] = useState("");
+  const [otp, setOtp] = useState("");
   const [password, setPassword] = useState("");
 
   console.log(email);
+  console.log(otp);
   console.log(password);
+
+  const renderSeparator = (index) => {
+    if (index === 2) {
+      return <div className="mx-2 h-1 w-2.5 bg-[#B5B5B5]"></div>;
+    }
+  };
+
+  const [time, setTime] = useState(120);
+  const minute = Math.floor(time / 60);
+  const second = time % 60;
+
+  useEffect(() => {
+    if (step !== 2 || time === 0) return;
+
+    const interval = setInterval(() => {
+      setTime((prev) => prev - 1);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [step, time]);
 
   let validationSchema;
   if (step === 1) {
@@ -28,8 +50,12 @@ const ForgetPassword = () => {
     });
   } else if (step === 2) {
     validationSchema = Yup.object({
+      otp: Yup.string().required("کد تایید الزامی است"),
+    });
+  } else if (step === 3) {
+    validationSchema = Yup.object({
       password: Yup.string().required("رمز عبور نمی‌تواند خالی باشد"),
-      otp: Yup.string().required("کد یکبار مصرف نمی‌تواند خالی باشد"),
+      passwordRepeat: Yup.string().required("رمز عبور نمی‌تواند خالی باشد"),
     });
   }
 
@@ -66,7 +92,7 @@ const ForgetPassword = () => {
   return (
     <>
       <img
-        style={{ height: "180px", marginTop: "32px", cursor: "pointer" }}
+        style={{ height: "180px", marginTop: "32px",cursor: "pointer" }}
         src="/images/bigLogo.png"
         title="بازگشت به صفحه اصلی"
         onClick={GoToHome}
@@ -82,64 +108,47 @@ const ForgetPassword = () => {
       >
         {step === 1
           ? "برای درخواست تغییر رمز عبور، ایمیل یا شماره تماس خود را وارد کنید"
+          : step === 2
+            ? "رمز یکبار مصرف را وارد کنید"
             : "لطفا یک رمز عبور جدید تنظیم کنید"}
       </p>
 
       <Formik
-        initialValues={{ email: "", otp: "", password: "",}}
+        initialValues={{ email: "", otp: "", password: "", passwordRepeat: "" }}
         onSubmit={async (values, { setFieldError }) => {
           if (step === 1) {
             try {
               const response = await forgetGmail({
                 email: values.email,
-                baseUrl: "http://localhost:5173/Auth/forget-password",
+                baseUrl: "https://localhost:5173/resetpassword",
               });
-              console.log(response);
               console.log(response.data);
+
               setEmail(values.email);
               setStep(2);
             } catch (error) {
-              setFieldError(
-                "email",
-                error.response?.data?.message ||
-                  "رمز یکبار مصرف به نادرستی وارد شده است",
-              );
+              setFieldError("email",error.response?.data?.message || "رمز یکبار مصرف به نادرستی وارد شده است");
             }
           }
-          if (step === 2 ) {
-            try {
-              const response = await forgetNewPassWord({
-                gmail: email,
-                newPassword: values.password,
-                resetValue: values.otp,
-              });
-              const toastId = toast.loading("در حال تغیر رمز حساب شما...");
 
-              setTimeout(()=>{
-                toast.update(toastId, {
-                    render: "رمز عبور شما با موفقیت عوض شد",
-                    type: "success",
-                    isLoading: false,
-                    autoClose: 1500,
-                });
-                navigate("/Auth", { replace: true });
-              },2000)
+          if (!values.otp) return;
+          if (step === 2 && values.otp === "000000") {
+            setOtp(values.otp);
+            setStep(3);
+          } else {
+            setFieldError("otp", "رمز یکبار مصرف به نادرستی وارد شده است");
+          }
 
-              console.log(response);
-              console.log(response.data);
-              setPassword(values.password);
-            } catch (error) {
-              setFieldError(
-                "otp",
-                error.response?.data?.message ||
-                  "رمزها با یکدیگر مطابقت ندارند",
-              );
-            }
+          if (values.password === values.passwordRepeat) {
+            setPassword(values.password);
+            // setStep(4);
+          } else {
+            setFieldError("passwordRepeat", "رمزها با یکدیگر مطابقت ندارند");
           }
         }}
         validationSchema={validationSchema}
       >
-        {({ errors, touched }) => (
+        {({ values, setFieldValue, errors, touched }) => (
           <Form className="w-[80%] flex flex-col">
             {/* STEP 1 */}
             {step === 1 && (
@@ -171,9 +180,52 @@ const ForgetPassword = () => {
                 </AnimatePresence>
               </motion.div>
             )}
-            
+
             {/* STEP 2 */}
             {step === 2 && (
+              <motion.div
+                key={step}
+                initial={inputAnimation.initial}
+                animate={inputAnimation.animate}
+                exit={inputAnimation.exit}
+              >
+                <div
+                  data-otp="true"
+                  className="w-full mt-4 flex flex-col items-center justify-around"
+                >
+                  <OtpInput
+                    value={values.otp}
+                    onChange={(value) => setFieldValue("otp", value)}
+                    numInputs={6}
+                    renderSeparator={renderSeparator}
+                    skipDefaultStyles={true}
+                    renderInput={(props) => (
+                      <input
+                        {...props}
+                        className="h-11.5 w-11 m-0.5 mb-2 text-center text-xl bg-(--input-bg) border-2 border-[#DDDDDD] rounded-xl outline-none focus:border-[#0CBDE2] caret-[#0CBDE2]"
+                      />
+                    )}
+                    inputType="tel"
+                    shouldAutoFocus={true}
+                  />
+                  <AnimatePresence>
+                    {errors.otp && touched.otp && (
+                      <motion.p
+                        initial={errorAnimation.initial}
+                        animate={errorAnimation.animate}
+                        exit={errorAnimation.exit}
+                        className="text-[#0CBDE2] text-[12px] indent-2"
+                      >
+                        {errors.otp}
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </motion.div>
+            )}
+
+            {/* STEP 3 */}
+            {step === 3 && (
               <motion.div
                 key={step}
                 initial={inputAnimation.initial}
@@ -202,21 +254,21 @@ const ForgetPassword = () => {
                 </AnimatePresence>
                 <Field
                   type="text"
-                  name="otp"
-                  placeholder=" رمز یکبار مصرف"
+                  name="passwordRepeat"
+                  placeholder="تکرار رمز عبور"
                   className="h-12 w-full rounded-xl mt-2 mb-2 indent-12
                   outline-none border border-transparent focus:border-[#0CBDE2] transition-colors duration-150 caret-[#0CBDE2]
                   bg-[url('/images/password.png')] bg-no-repeat bg-position-[97%] bg-(--input-bg)"
                 />
                 <AnimatePresence>
-                  {errors.otp && touched.otp && (
+                  {errors.passwordRepeat && touched.passwordRepeat && (
                     <motion.p
                       initial={errorAnimation.initial}
                       animate={errorAnimation.animate}
                       exit={errorAnimation.exit}
                       className="text-[#0CBDE2] text-[12px] indent-2"
                     >
-                      {errors.otp}
+                      {errors.passwordRepeat}
                     </motion.p>
                   )}
                 </AnimatePresence>
@@ -229,6 +281,8 @@ const ForgetPassword = () => {
             >
               {step === 1
                 ? "ارسال کد یکبار مصرف"
+                : step === 2
+                  ? "تایید کد یکبار مصرف"
                   : "ثبت رمز عبور جدید"}
             </button>
           </Form>
@@ -242,6 +296,23 @@ const ForgetPassword = () => {
             وارد شوید
           </Link>
         </div>
+      )}
+
+      {step === 2 && time > 0 && (
+        <div className="h-6 w-fit mb-8">
+          {minute}:{second.toString().padStart(2, "0")}
+        </div>
+      )}
+
+      {step === 2 && time === 0 && (
+        <button
+          onClick={() => {
+            setTime(120);
+          }}
+          className="h-6 w-fit mt-4 mb-8 p-2 font-bold! text-sm text-[#454545] hover:text-black rounded-sm cursor-pointer"
+        >
+          ارسال مجدد کد
+        </button>
       )}
     </>
   );

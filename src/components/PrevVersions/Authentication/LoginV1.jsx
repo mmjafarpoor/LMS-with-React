@@ -7,7 +7,6 @@ import OtpInput from "react-otp-input";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 import { loginGmail, loginVerifyMessage } from "../../core/services/authService/authService";
-import { toast } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -112,34 +111,18 @@ const Login = () => {
               const response = await loginGmail({
                 phoneOrGmail: values.email,
                 password: values.password,
-                rememberMe : true
               });
               console.log(response.data);
-              console.log(response);
 
               setEmail(values.email);
               setPassword(values.password);
-
-              localStorage.setItem("token", response.data.token);
-              const toastId = toast.loading("در حال ورود به حساب شما...");
               
-              setTimeout(()=>{
-                toast.update(toastId, {
-                    render: "با موفقیت وارد حساب خود شدید",
-                    type: "success",
-                    isLoading: false,
-                    autoClose: 1500,
-                });
-                navigate("/Dashboard", { replace: true });
-              },2000)
-              
-              // setStep(2);
-            } catch(error){
+              setStep(2);
+            }catch(error){
               setFieldError(
                 "email",
                 error.response?.data?.message || "اطلاعات ورود اشتباه است."
               );
-              toast.error("خطا در ورود به حساب شما")
             }
             return;
           }
@@ -237,7 +220,7 @@ const Login = () => {
               </motion.div>
             )}
 
-            {/* STEP 2
+            {/* STEP 2 */}
             {step === 2 && (
               <motion.div
                 key={step}
@@ -276,7 +259,7 @@ const Login = () => {
                   )}
                 </AnimatePresence>
               </motion.div>
-            )} */}
+            )}
             <button
               type="submit"
               className="h-12 w-full mt-4 font-bold! text-white bg-[#0CBDE2] flex items-center justify-center rounded-xl cursor-pointer"
@@ -296,13 +279,13 @@ const Login = () => {
         </div>
       )}
 
-      {/* {step === 2 && time > 0 && (
+      {step === 2 && time > 0 && (
         <div className="h-6 w-fit mt-4 mb-8 p-2">
           {minute}:{second.toString().padStart(2, "0")}
         </div>
-      )} */}
+      )}
 
-      {/* {step === 2 && time === 0 && (
+      {step === 2 && time === 0 && (
         <button
           onClick={() => {
             setTime(120);
@@ -311,7 +294,7 @@ const Login = () => {
         >
           ارسال مجدد کد
         </button>
-      )} */}
+      )}
     </>
   );
 };

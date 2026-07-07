@@ -11,7 +11,7 @@
 }
 .dashboardHolder{
     width: clamp(310px,calc(100% - 50px),1870px);
-    height: clamp(800px,calc(100% - 50px),950px);
+    height: clamp(750px,calc(100% - 50px),950px);
     display: flex;
     flex-flow: row nowrap;
     gap: 25px;

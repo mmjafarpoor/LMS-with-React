@@ -1,17 +1,41 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Style from '../styles/Dashboard.module.css'
 import DashBoardMenuItems from '../Data/DashBoardMenuItems'
-import { Link, Outlet } from 'react-router-dom'
-import useUserInfoStore from '../store/UserInfoStore'
+import { Link, Outlet, useNavigate } from 'react-router-dom'
+import userInfoStore from '../store/UserInfoStore'
 import useDarkStore from '../store/DarkStore'
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
+import { toast } from 'react-toastify'
 
 const DashBoard = () => {
 
+    const navigate = useNavigate();
+
+    const handleLogOut = () =>{
+        const toastId = toast.loading("در حال خروج از حساب...");
+
+        localStorage.removeItem("token");
+        setTimeout(()=>{
+            toast.update(toastId, {
+                render: "با موفقیت خارج شدید",
+                type: "success",
+                isLoading: false,
+                autoClose: 1500,
+            });
+            navigate("/Auth", { replace: true });
+        },2000)
+    }
+
     const [selectedItem, setSelectedItem] = useState(DashBoardMenuItems[0].id);
-    const userName = useUserInfoStore((state) => state.user.userName);
-    const userProfilePicture = useUserInfoStore((state) => state.user.userProfilePicture);
+    const user = userInfoStore((state) => state.user);
+    const loading = userInfoStore((state) => state.loading);
+    const fetchUser = userInfoStore((state) => state.fetchUser);
+
+    useEffect(() => {
+        fetchUser();
+    }, [fetchUser]);
+
 
 
     const themeButtonRef = useRef(null);
@@ -87,7 +111,7 @@ const DashBoard = () => {
                             </div>
                         </div>
                         <div className={Style.dashboardMenuBottom}>
-                            <button className={Style.logOutButton}>
+                            <button className={Style.logOutButton} onClick={handleLogOut}>
                                 <img src="/images/logOut.svg" alt="log-out-icon" className={Style.logOutIcon} />
                                 <span className={Style.logOutText}>خروج از حساب</span>
                             </button>
@@ -102,11 +126,11 @@ const DashBoard = () => {
                             </div>
                             <div className={Style.userInfoBox}>
                                 <div className={Style.userProfileContainer}>
-                                    <img src={userProfilePicture} alt="user-profile" className={Style.userProfile}/>
+                                    <img src={user?.userProfilePicture} alt="user-profile" className={Style.userProfile}/>
                                 </div>
                                 <div className={Style.userNameContainer}>
                                     <div className={Style.userName}>
-                                        <span className={Style.userNameText}>{userName}</span>
+                                        <span className={Style.userNameText}>{user?.userName}</span>
                                     </div>
                                     <span className={Style.userId}>
                                         <span className={Style.userIdText}>userId@</span>

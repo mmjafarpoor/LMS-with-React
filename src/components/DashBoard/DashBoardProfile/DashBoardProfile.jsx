@@ -2,16 +2,11 @@ import React, { useState } from 'react'
 import Style from './DashBoardProfile.module.css'
 import ProfileTab from '../../../Data/ProfileTab'
 import { Link, Outlet } from 'react-router-dom';
-import useUserInfoStore from '../../../store/UserInfoStore';
+import userInfoStore from '../../../store/UserInfoStore';
 const DashBoardProfile = () => {
 
     const [selectedItem, setSelectedItem] = useState(ProfileTab[0].id);
-
-    const userName = useUserInfoStore((state) => state.user.userName);
-    const userProfilePicture = useUserInfoStore((state) => state.user.userProfilePicture);
-    const userPhoneNumber = useUserInfoStore((state) => state.user.userPhoneNumber);
-    const userEmailAddress = useUserInfoStore((state) => state.user.userEmailAddress);
-    const userBiography = useUserInfoStore((state) => state.user.userBiography);
+    const user = userInfoStore((state) => state.user);
 
     return (
         <div className={Style.dashBoardProfileContainer}>
@@ -22,29 +17,29 @@ const DashBoardProfile = () => {
                     </svg>
                 </div>
                 <div className={Style.userProfileContainer}>
-                    <img src={userProfilePicture} alt="user-profile" className={Style.userProfile}/>
+                    <img src={user?.userProfilePicture} alt="user-profile" className={Style.userProfile}/>
                 </div>
             </div>
             <div className={Style.userDetailContainer}>
                 <div className={Style.userDetailRightSection}>
                     <div className={Style.userDetailRightSectionTop}>
-                        <span className={Style.userName}>{userName}</span>
+                        <span className={Style.userName}>{user?.userName} {user?.userLastName}</span>
                         <span className={Style.userRole}>( دانشجو )</span>
                     </div>
                     <div className={Style.userDetailRightSectionBottom}>
                         <div className={Style.userPhoneNumberContainer}>
                             <img src="/images/smartPhone.svg" alt="Phone-Icon" className={Style.phoneIcon} />
-                            <a href={`tel:${userPhoneNumber}`} target="_blank" rel="noopener noreferrer" className={Style.userPhoneNumber}>{userPhoneNumber}</a>
+                            <a href={`tel:${user?.userPhoneNumber}`} target="_blank" rel="noopener noreferrer" className={Style.userPhoneNumber}>{user?.userPhoneNumber}</a>
                         </div>
                         <div className={Style.userMailAddressContainer}>
                             <img src="/images/mail.svg" alt="Phone-Icon" className={Style.phoneIcon} />
-                            <a href={`mailto:${userEmailAddress}`} target="_blank" rel="noopener noreferrer" className={Style.userEmailAddress}>{userEmailAddress}</a>
+                            <a href={`mailto:${user?.userEmailAddress}`} target="_blank" rel="noopener noreferrer" className={Style.userEmailAddress}>{user?.userEmailAddress}</a>
                         </div>
                     </div>
                 </div>
                 <div className={Style.userDetailLeftSection}>
                     <div className={Style.aboutMeTitle}>درباره من</div>
-                    <span className={Style.aboutMe}>{userBiography}</span>
+                    <span className={Style.aboutMe}>{user?.userBiography}</span>
                 </div>
             </div>
             <div className={Style.profileTabsContainer}>

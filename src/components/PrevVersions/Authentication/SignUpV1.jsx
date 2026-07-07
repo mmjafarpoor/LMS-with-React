@@ -6,11 +6,7 @@ import * as Yup from "yup";
 import OtpInput from "react-otp-input";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  registerGmail,
-  registerLastStep,
-  registerVerifyMessage,
-} from "../../core/services/authService/authService";
+import { registerGmail, registerLastStep, registerVerifyMessage } from "../../core/services/authService/authService";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -21,12 +17,10 @@ const SignUp = () => {
   const [step, setStep] = useState(1);
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
 
   console.log(email);
   console.log(otp);
-  console.log(phoneNumber);
   console.log(password);
 
   const renderSeparator = (index) => {
@@ -60,9 +54,6 @@ const SignUp = () => {
     });
   } else if (step === 3) {
     validationSchema = Yup.object({
-      phoneNumber: Yup.string().required(
-        "شماره تلفن همراه نمی‌تواند خالی باشد",
-      ),
       password: Yup.string().required("رمز عبور نمی‌تواند خالی باشد"),
       passwordRepeat: Yup.string().required("رمز عبور نمی‌تواند خالی باشد"),
     });
@@ -101,7 +92,7 @@ const SignUp = () => {
   return (
     <>
       <img
-        style={{ height: "180px", marginTop: "32px", cursor: "pointer" }}
+        style={{ height: "180px", marginTop: "32px",cursor: "pointer" }}
         src="/images/bigLogo.png"
         title="بازگشت به صفحه اصلی"
         onClick={GoToHome}
@@ -120,25 +111,23 @@ const SignUp = () => {
         initialValues={{ email: "", otp: "", password: "", passwordRepeat: "" }}
         onSubmit={async (values, { setFieldError }) => {
           if (step === 1) {
-            try {
+            try{
               const response = await registerGmail({
                 gmail: values.email,
               });
               console.log(response.data);
-
+              
               setEmail(values.email);
               setStep(2);
-            } catch (error) {
-              setFieldError(
-                "email",
-                error.response?.data?.message || "ایمیل وارد شده اشتباه است.",
-              );
+            }
+            catch(error){
+              setFieldError("email",error.response?.data?.message || "ایمیل وارد شده اشتباه است.");
             }
           }
 
           if (!values.otp) return;
-          if (step === 2) {
-            try {
+          if (step === 2 ) {
+            try{
               const response = await registerVerifyMessage({
                 gmail: email,
                 verifyCode: values.otp,
@@ -147,16 +136,13 @@ const SignUp = () => {
 
               setOtp(values.otp);
               setStep(3);
-            } catch (error) {
-              setFieldError(
-                "otp",
-                error.response?.data?.message ||
-                  "رمز یکبار مصرف به نادرستی وارد شده است",
-              );
+            }
+            catch(error){
+              setFieldError("otp",error.response?.data?.message || "رمز یکبار مصرف به نادرستی وارد شده است");
             }
           }
           if (step === 3 && values.password === values.passwordRepeat) {
-            try {
+            try{
               const response = await registerLastStep({
                 password: values.password,
                 gmail: email,
@@ -164,13 +150,10 @@ const SignUp = () => {
               });
               console.log(response.data);
 
-              setPhoneNumber(values.phoneNumber);
               setPassword(values.password);
-            } catch (error) {
-              setFieldError(
-                "otp",
-                error.response?.data?.message || "اطلاعات ثبت نام اشتباه است.",
-              );
+            }
+            catch(error){
+              setFieldError("otp",error.response?.data?.message || "اطلاعات ثبت نام اشتباه است.");
             }
             // setStep(4);
           } else {
@@ -192,7 +175,7 @@ const SignUp = () => {
                 <Field
                   type="text"
                   name="email"
-                  placeholder="ایمیل"
+                  placeholder="ایمیل یا شماره تماس"
                   className="h-12 w-full rounded-xl mt-4 mb-2 indent-12
                   outline-none border border-transparent focus:border-[#0CBDE2] transition-colors duration-150
                   bg-[url('/images/user.png')] bg-no-repeat bg-position-[97%] bg-(--input-bg)"
@@ -266,29 +249,9 @@ const SignUp = () => {
               >
                 <Field
                   type="text"
-                  name="phoneNumber"
-                  placeholder="شماره تلفن همراه"
-                  className="h-12 w-full rounded-xl mt-4 mb-2 indent-12
-                  outline-none border border-transparent focus:border-[#0CBDE2] transition-colors duration-150
-                  bg-[url('/images/user.png')] bg-no-repeat bg-position-[97%] bg-(--input-bg)"
-                />
-                <AnimatePresence>
-                  {errors.phoneNumber && touched.phoneNumber && (
-                    <motion.p
-                      initial={errorAnimation.initial}
-                      animate={errorAnimation.animate}
-                      exit={errorAnimation.exit}
-                      className="text-[#0CBDE2] text-[12px] indent-2"
-                    >
-                      {errors.phoneNumber}
-                    </motion.p>
-                  )}
-                </AnimatePresence>
-                <Field
-                  type="text"
                   name="password"
                   placeholder="رمز عبور"
-                  className="h-12 w-full rounded-xl mt-2 mb-2 indent-12 outline-[#0CBDE2] caret-[#0CBDE2]
+                  className="h-12 w-full rounded-xl mt-4 mb-2 indent-12 outline-[#0CBDE2] caret-[#0CBDE2]
                   outline-none border border-transparent focus:border-[#0CBDE2] transition-colors duration-150
                   bg-[url('/images/password.png')] bg-no-repeat bg-position-[97%] bg-(--input-bg)"
                 />

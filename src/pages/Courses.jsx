@@ -13,10 +13,12 @@ import ViewAsMenu from '../components/CoursesPage/ViewAsMenu/ViewAsMenu'
 import ReactPaginate from 'react-paginate'
 import useDarkStore from '../store/DarkStore'
 import clsx from 'clsx'
+import apiClient from '../core/interceptor/interceptor'
 
 const Courses = () => {
   
   const [courseList, setCourseList] = useState([]);
+  const [instructorList, setInstructorList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(true);
@@ -24,6 +26,14 @@ const Courses = () => {
   console.log("DisplayMode =" , displayMode );
   const [pageIndex, setPageIndex] = useState(0);
   const [pageCount, setPageCount] = useState(0);
+
+    const [courseFilters, setCourseFilters] = useState({
+        priceType: "All",
+        teacherId: [],
+        costDown: 0,
+        costUp: 10000000,
+        search: "",
+    });
 
   const itemsPerPage = 12;
 
@@ -36,7 +46,7 @@ const Courses = () => {
     setIsLoading(true);
     setError(null);
     try{
-      const response = await getCourseList({pageNumber, rowOfPage: itemsPerPage, });
+      const response = await getCourseList({pageNumber , rowOfPage: itemsPerPage , costDown: courseFilters.costDown , costUp: courseFilters.costUp , teacherId: courseFilters.teacherId , priceType: courseFilters.priceType , query: courseFilters.search,});
         if (response.data?.courseFilterDtos) {
             setCourseList(response.data.courseFilterDtos);
             setPageCount(Math.ceil(response.data.totalCount / itemsPerPage));
@@ -60,8 +70,26 @@ const Courses = () => {
     await fetchCourseList(page);
   };
   useEffect(() => {
-      fetchCourseList();
-  }, [])
+      setPageIndex(0);
+      fetchCourseList(1);
+  }, [courseFilters])
+
+  const fetchCourseInstructor = async() =>{
+      try {
+          const response = await apiClient.get("/Home/GetTeachers");
+          if(response?.data){
+              setInstructorList(response.data);
+          }
+          console.log(response.data)
+      } catch (error) {
+          const errorMsg = error.message || "خطا در بارگذاری لیست دوره‌ها";
+          toast.error(errorMsg);
+      }
+    }
+
+    useEffect(() => {
+        fetchCourseInstructor();
+    }, [])
 
     
     // const startIndex = pageIndex * itemsPerPage;
@@ -119,7 +147,7 @@ const Courses = () => {
               <span className={Style.filterTitle}>دسته بندی ها</span>
               <img src={isDarkMode ? "/images/displayArrowWhite.png" : "/images/displayArrow.png"} style={{transform: isCategoriesOpen ? 'rotate(0deg)' : 'rotate(180deg)'}} alt="Filter-Display-Switch" className={Style.filterDisplaySwitchIcon}/>
             </div>
-            <ComplexOfFilters/>
+            <ComplexOfFilters instructorList={instructorList} courseFilters={courseFilters} setCourseFilters={setCourseFilters}/>
             <div className={Style.showMoreFilters}>
               <span className={Style.showMoreFiltersText}>مشاهده‌ بیشتر</span>
             </div>
