@@ -3,8 +3,10 @@ import { Rating, RoundedStar } from "@smastrom/react-rating";
 import { useParams } from "react-router-dom";
 import "@smastrom/react-rating/style.css";
 import Comment from "../../NewsContainer/Comment";
+import clsx from "clsx";
 
 const NewsDetails = () => {
+  const [fav, setFav] = useState(false);
   const { courseId } = useParams();
   const [item, setItem] = useState(null);
   const fetchItem = async () => {
@@ -40,6 +42,17 @@ const NewsDetails = () => {
                   <div className="font-bold!">{item?.dissLikeCount}</div>
                 </div>
               </div>
+              <div
+                onClick={() => setFav(!fav)}
+                className={clsx(
+                  "absolute -right-58 -bottom-59 h-100 w-100 scale-45 sm:-right-77 sm:-bottom-77 sm:h-120 sm:w-120 sm:scale-60 cursor-pointer transition-all duration-500",
+                  fav ? "bg-red-700" : "bg-(--input-bg) shadow-[0_0px_8px_var(--news-shadow-color)]",
+                )}
+                style={{
+                  clipPath:
+                    "path('M50,15 C35,-5 0,10 0,40 C0,70 50,100 50,100 C50,100 100,70 100,40 C100,10 65,-5 50,15')",
+                }}
+              ></div>
             </div>
           </div>
           <div className="w-full">
@@ -86,11 +99,14 @@ const NewsDetails = () => {
               <div>12/12/12</div>
             </div>
             <div className="mt-4 h-12 w-[85%] flex flex-row items-center justify-between">
-              <button className="p-2.5 rounded-3xl bg-(--button-bg) font-semibold! cursor-pointer">
+              <button className="py-2.5 px-6.5 lg:px-2.5 rounded-3xl bg-(--button-bg) hover:bg-(--button-hover) font-semibold! cursor-pointer transition-all duration-300 ease-in-out">
                 شروع یادگیری
               </button>
               <p>
-                <span className="text-(--button-bg) font-semibold!">{item?.cost} هزار</span> تومان
+                <span className="text-(--button-bg) font-semibold!">
+                  {item?.cost} هزار
+                </span>{" "}
+                تومان
               </p>
             </div>
           </div>

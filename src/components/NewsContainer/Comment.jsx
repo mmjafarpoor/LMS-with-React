@@ -34,14 +34,14 @@ const Comment = ({ newsId, courseId }) => {
           onClick={() => {
             isCommentModalActive(!commentModalActive);
           }}
-          className="w-50 p-3 pr-14 rounded-2xl font-semibold! text-[16px] text-white bg-[url(/images/addComment.png)] bg-no-repeat bg-position-[90%_50%] bg-(--button-bg) cursor-pointer"
+          className="w-50 p-3 pr-14 rounded-2xl font-semibold! text-[16px] text-white bg-[url(/images/addComment.png)] bg-no-repeat bg-position-[90%_50%] bg-(--button-bg) hover:bg-(--button-hover) cursor-pointer transition-all duration-300 ease-in-out"
         >
           {commentModalActive ? "بستن ارسال دیدگاه" : "ارسال دیدگاه جدید"}
         </button>
       </div>
       <div
         className={`
-          w-full transition-all overflow-hidden flex flex-col justify-around items-center
+          w-full transition-all duration-700 overflow-hidden flex flex-col justify-around items-center
           ${commentModalActive ? "max-h-500 w-full py-9 rounded-3xl bg-(--news-boxs) shadow-[0_0px_8px_var(--news-shadow-color)]" : "h-0"}`}
       >
         <Formik>
@@ -63,7 +63,7 @@ const Comment = ({ newsId, courseId }) => {
             ></Field> */}
             <button
               type="submit"
-              className="h-12 w-45 rounded-2xl text-center text-white font-semibold! bg-(--button-bg) cursor-pointer"
+              className="h-12 w-45 rounded-2xl text-center text-white font-semibold! bg-(--button-bg) hover:bg-(--button-hover) cursor-pointer transition-all duration-300 ease-in-out"
             >
               ثبت و ارسال دیدگاه
             </button>
@@ -138,7 +138,7 @@ const Comment = ({ newsId, courseId }) => {
             : () => setShowMore(2)
         }
         className={`
-            w-40 p-2 rounded-2xl transition-all
+            w-40 p-2 rounded-2xl transition-all duration-300
             ${
               comments.length == 0
                 ? "w-fit text-(--button-bg) font-semibold! border-none"

@@ -3,8 +3,11 @@ import { Rating, RoundedStar } from "@smastrom/react-rating";
 import { useParams } from "react-router-dom";
 import "@smastrom/react-rating/style.css";
 import Comment from "./Comment";
+import clsx from "clsx";
 
 const NewsDetails = () => {
+  const [fav, setFav] = useState(false);
+
   const { id } = useParams();
   const [item, setItem] = useState(null);
   const [usersRate, setUsersRate] = useState(null);
@@ -40,6 +43,19 @@ const NewsDetails = () => {
                   <div className="font-bold!">{item?.currentDissLikeCount}</div>
                 </div>
               </div>
+              <div
+                onClick={() => setFav(!fav)}
+                className={clsx(
+                  "absolute -right-58 -bottom-59 h-100 w-100 scale-45 sm:-right-77 sm:-bottom-77 sm:h-120 sm:w-120 sm:scale-60 cursor-pointer transition-all duration-500",
+                  fav
+                    ? "bg-red-700"
+                    : "bg-(--input-bg) shadow-[0_0px_8px_var(--news-shadow-color)]",
+                )}
+                style={{
+                  clipPath:
+                    "path('M50,15 C35,-5 0,10 0,40 C0,70 50,100 50,100 C50,100 100,70 100,40 C100,10 65,-5 50,15')",
+                }}
+              ></div>
             </div>
           </div>
           <div className="w-full">
@@ -121,7 +137,6 @@ const NewsDetails = () => {
           <Comment newsId={id} />
         </div>
         <div className="w-[90%] lg:w-[25%] flex flex-col gap-5"></div>
-        
       </div>
     </div>
   );
