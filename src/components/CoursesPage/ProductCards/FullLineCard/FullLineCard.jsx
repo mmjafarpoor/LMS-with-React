@@ -1,11 +1,21 @@
 import React from 'react'
 import Style from './FullLineCard.module.css'
 import RatingStars from '../../../common/RatingStars/RatingStars';
+import { useNavigate } from 'react-router-dom';
 
-const FullLineCard = ({title,describe,cost,currentRegistrants,imageAddress , courseRate = 1 , teacherName}) => {
+const FullLineCard = ({courseId, title, describe, cost, currentRegistrants, imageAddress, courseRate, teacherId, teacherName}) => {
+
+  const navigate = useNavigate();
+  const GoToCourseDetails = () => {
+    navigate(`/Courses/${courseId}`);
+  };
+  const GoToTeacherDetails = (e) => {
+    e.stopPropagation();
+    navigate(`/Teachers/${teacherId}/${teacherName.replaceAll(" ", "-")}`);
+  };
 
   return (
-    <div className={Style.fullLineCard}>
+    <div onClick={GoToCourseDetails} className={Style.fullLineCard}>
       <div className={Style.imageWrapper}>
         <img src="/images/javaScriptProductCard.png" alt="Product Image" className={Style.productImage}/>
       </div>
@@ -29,7 +39,7 @@ const FullLineCard = ({title,describe,cost,currentRegistrants,imageAddress , cou
           </div>
         </div>
         <div className={Style.courseFilters}>
-          <div className={Style.courseInstructor}>
+          <div onClick={GoToTeacherDetails} className={Style.courseInstructor}>
             <img src="/images/teaching.png" alt=" Instructor Icon" className={Style.instructorIcon}/>
             <span className={Style.instructorName}>{teacherName}</span>
           </div>

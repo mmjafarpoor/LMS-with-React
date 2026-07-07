@@ -8,7 +8,7 @@ const NewsData = ({
   title,
   googleTitle,
   describe,
-  currentImageAddress,
+  // currentImageAddress,
   currentView,
 }) => {
   const navigate = useNavigate();
@@ -30,16 +30,17 @@ const NewsData = ({
           position: "absolute",
           ...(showType === "grid" ? { height: "490px" } : { height: "640px" }),
         }}
-        src="/images/PythonBig.png"
+        src={"/images/PythonBig.png"}
+        
       />
-      <div className="w-[80%] mr-6 flex flex-col gap-2 absolute bottom-4 text-black">
+      <div className="w-[80%] mr-6 flex flex-col gap-2 absolute bottom-4 text-white">
         <p className="text-2xl font-bold!">{title}</p>
         <h2 className="text-md font-bold!">{describe} </h2>
         <div className="mt-2 flex flex-row gap-10 text-sm font-bold!">
-          <div className="h-6 bg-[url(/public/images/whiteUser.png)] bg-no-repeat bg-position-[100%_0%] indent-8 text-white font-bold! invert-100">
+          <div className="h-6 bg-[url(/public/images/whiteUser.png)] bg-no-repeat bg-position-[100%_0%] indent-8 text-white font-bold!">
             {currentView} بازدید
           </div>
-          <div className="h-6 bg-[url(/public/images/book.png)] bg-no-repeat bg-position-[100%_0%] indent-12 text-white font-bold! invert-100">
+          <div className="h-6 bg-[url(/public/images/book.png)] bg-no-repeat bg-position-[100%_0%] indent-12 text-white font-bold!">
             دروس
           </div>
         </div>

@@ -1,22 +1,32 @@
 import React from 'react'
 import Style from './RegularCard.module.css'
 import RatingStars from '../../../common/RatingStars/RatingStars'
+import { useNavigate } from 'react-router-dom'
 
-const RegularCard = ({title,describe,cost,currentRegistrants,imageAddress , courseRate , teacherName}) => { 
+const RegularCard = ({courseId, title, describe, cost, currentRegistrants, imageAddress, courseRate, teacherId, teacherName}) => { 
     
+    const navigate = useNavigate();
+    const GoToCourseDetails = () => {
+        navigate(`/Courses/${courseId}`);
+    };
+    const GoToTeacherDetails = (e) => {
+        e.stopPropagation();
+        navigate(`/Teachers/${teacherId}/${teacherName.replaceAll(" ", "-")}`);
+    };
+
     return (
         <div className={Style.regularCard}>
-            <div className={Style.imageWrapper}>
+            <div onClick={GoToCourseDetails} className={Style.imageWrapper}>
                 <img src="/images/javaScriptProductCard.png" className={Style.productImg} alt="ProductCard Image"/>
             </div>
-            <div className={Style.productMeta}>
+            <div onClick={GoToCourseDetails} className={Style.productMeta}>
                 <div className={Style.metaHeading}>
                     <span className={Style.productTitle}>{title}</span>
                     <span className={Style.productDescription}>{describe}</span>
                 </div>
                 <div className={Style.productInfo}>
                     <RatingStars courseRate={courseRate}/>
-                    <div className={Style.courseInstructor}>
+                    <div onClick={GoToTeacherDetails} className={Style.courseInstructor}>
                         <img src="/images/teaching.png" alt="Course Instructor" className={Style.courseInstructorIcon}/>
                         <span className={Style.instructorName}>{teacherName}</span>
                     </div>

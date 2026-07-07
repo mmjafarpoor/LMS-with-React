@@ -9,6 +9,7 @@
     justify-content: space-evenly;
     background-color: var(--header-bg);
     box-shadow: var(--box-shadow);
+    /* cursor: pointer; */
 }
 .imageWrapper{
     width: 400px;

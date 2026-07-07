@@ -6,7 +6,10 @@ import clsx from "clsx"
 import { motion } from 'framer-motion';
 import AnimateRoadmap from '../components/common/AnimateRoadmap/AnimateRoadmap';
 import StudentComment from '../components/Home/StudentComment/StudentComment';
-
+import WagonSlider from '../components/Home/WagonSlider/WagonSlider';
+import NewsCards from '../components/Home/NewsCards/NewsCards';
+import TeachersCards from '../components/Home/TeachersCards/TeachersCards';
+import CoursesCards from '../components/Home/CoursesCards/CoursesCards';
 
 const Home = () => {
   // console.log(SliderData);
@@ -149,7 +152,10 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className={Style.bestInstructorsContainer}></div>
+      {/* <div className={Style.bestInstructorsContainer}></div> */}
+      <div className={Style.TeachersCards}>
+        <TeachersCards />
+      </div>
       <div className={Style.selfPresentationContainer}>
         <div className={Style.selfPresentationBanner}>
           <img src="/images/selfPresentationBanner.png" alt="Self-Presentation-Banner" className={Style.selfPresentationBannerImage}/>
@@ -191,8 +197,17 @@ const Home = () => {
         </div>
         <AnimateRoadmap/>
       </div>
+      <div className={Style.CoursesCards}>
+        <CoursesCards />
+      </div>
+      <div className={Style.wagonSlider}>
+        <WagonSlider />
+      </div>
       <div className={Style.studentComment}>
         <StudentComment/>
+      </div>
+      <div className={Style.newsCard}>
+        <NewsCards />
       </div>
     </div>
   )

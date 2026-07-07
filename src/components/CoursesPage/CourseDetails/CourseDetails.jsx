@@ -2,23 +2,23 @@ import React, { useState, useEffect } from "react";
 import { Rating, RoundedStar } from "@smastrom/react-rating";
 import { useParams } from "react-router-dom";
 import "@smastrom/react-rating/style.css";
-import Comment from "./Comment";
+import Comment from "../../NewsContainer/Comment";
 
 const NewsDetails = () => {
-  const { id } = useParams();
+  const { courseId } = useParams();
   const [item, setItem] = useState(null);
-  const [usersRate, setUsersRate] = useState(null);
   const fetchItem = async () => {
-    const response = await fetch(`http://188.121.104.25:3001/News/${id}`);
+    const response = await fetch(
+      `http://188.121.104.25:3001/Home/GetCourseDetails?CourseId=${courseId}`,
+    );
     const data = await response.json();
-    setItem(data.detailsNewsDto);
-    setUsersRate(data.detailsNewsDto.newsRate);
+    setItem(data);
   };
 
   useEffect(() => {
     fetchItem();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+  }, [courseId]);
 
   return (
     <div className="w-full mt-10 mb-10 flex justify-center">
@@ -28,16 +28,16 @@ const NewsDetails = () => {
             <div className="w-fit flex justify-center relative">
               <img
                 style={{ width: "950px", borderRadius: "24px" }}
-                src="/images/PythonBig.png"
+                src="/images/JSBig.jpg"
               />
               <div className="p-1 flex flex-row items-center gap-5 rounded-tr-3xl bg-(--bg-color) absolute bottom-0 left-0">
                 <div className="flex flex-row items-center">
                   <div className="h-10 w-10 bg-[url(/public/images/like.png)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
-                  <div className="font-bold!">{item?.currentLikeCount}</div>
+                  <div className="font-bold!">{item?.likeCount}</div>
                 </div>
                 <div className="flex flex-row items-center">
                   <div className="h-10 w-10 bg-[url(/public/images/disslike.png)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
-                  <div className="font-bold!">{item?.currentDissLikeCount}</div>
+                  <div className="font-bold!">{item?.dissLikeCount}</div>
                 </div>
               </div>
             </div>
@@ -56,33 +56,55 @@ const NewsDetails = () => {
 
         <div className="w-[90%] lg:w-[25%] flex flex-col gap-5">
           <div className="pt-5 pb-5 rounded-3xl bg-(--news-boxs) shadow-[0_0px_8px_var(--news-shadow-color)] flex flex-col items-center justify-around">
-            <p className="mb-5 text-[30px] font-semibold!">
-              {item?.newsCatregoryName}
-            </p>
+            <p className="mb-5 text-[30px] font-semibold!">{item?.title}</p>
             <div className="h-12 w-[85%] flex items-center justify-between border-b border-(--news-description)">
               <div className="flex flex-row gap-2">
                 <div className="h-6.5 w-6 bg-[url(/public/images/watch.svg)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
-                <p className="text-(--news-description)">بازدید</p>
+                <p className="text-(--news-description)">دانشجویان</p>
               </div>
-              <div>{item?.currentView}</div>
+              <div>{item?.studentCount}</div>
             </div>
-            <div className="mt-1.5 h-12 w-[85%] flex items-center justify-between">
+            <div className="h-12 w-[85%] flex items-center justify-between border-b border-(--news-description)">
+              <div className="flex flex-row gap-2">
+                <div className="h-6.5 w-6 bg-[url(/public/images/watch.svg)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
+                <p className="text-(--news-description)">وضعیت</p>
+              </div>
+              <div>{item?.statusName}</div>
+            </div>
+            <div className="h-12 w-[85%] flex items-center justify-between border-b border-(--news-description)">
               <div className="flex flex-row gap-2">
                 <div className="h-6.5 w-6 bg-[url(/public/images/calendar-start.svg)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
-                <p className="text-(--news-description)">تاریخ</p>
+                <p className="text-(--news-description)">شروع</p>
               </div>
               <div>1/1/1</div>
+            </div>
+            <div className="h-12 w-[85%] flex items-center justify-between border-b border-(--news-description)">
+              <div className="flex flex-row gap-2">
+                <div className="h-6.5 w-6 bg-[url(/public/images/calendar-start.svg)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
+                <p className="text-(--news-description)">پایان</p>
+              </div>
+              <div>12/12/12</div>
+            </div>
+            <div className="mt-4 h-12 w-[85%] flex flex-row items-center justify-between">
+              <button className="p-2.5 rounded-3xl bg-(--button-bg) font-semibold! cursor-pointer">
+                شروع یادگیری
+              </button>
+              <p>
+                <span className="text-(--button-bg) font-semibold!">{item?.cost} هزار</span> تومان
+              </p>
             </div>
           </div>
           <div className="h-20 rounded-3xl bg-(--news-boxs) shadow-[0_0px_8px_var(--news-shadow-color)] flex justify-center items-center">
             <div className="w-[85%] flex flex-row items-center gap-2">
               <img
                 style={{ height: "64px", borderRadius: "100%" }}
-                src="/images/bob.png"
+                src="/images/MaxPayne1.png"
               />
               <div className="flex flex-col gap-1">
-                <p>باب اسفنجی</p>
-                <p className="text-(--news-description) text-[14px]">@bob</p>
+                <p>{item?.teacherName}</p>
+                <p className="text-(--news-description) text-[14px]">
+                  {item?.teacherName}@
+                </p>
               </div>
             </div>
           </div>
@@ -98,11 +120,11 @@ const NewsDetails = () => {
                     activeFillColor: "#ffb700",
                     inactiveFillColor: "#EAEAEA",
                   }}
-                  value={usersRate?.avg}
+                  value={item?.courseRate}
                   readOnly
                 />
                 <div className="text-[15px] md:text-[16px]">
-                  {usersRate?.avg.toFixed(2)} امتیاز
+                  {item?.courseRate.toFixed(2)} امتیاز
                 </div>
               </div>
             </div>
@@ -118,10 +140,9 @@ const NewsDetails = () => {
               {item?.describe}
             </h2>
           </div>
-          <Comment newsId={id} />
+          <Comment courseId={courseId} />
         </div>
         <div className="w-[90%] lg:w-[25%] flex flex-col gap-5"></div>
-        
       </div>
     </div>
   );
