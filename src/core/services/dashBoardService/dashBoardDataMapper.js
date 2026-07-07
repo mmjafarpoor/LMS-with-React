@@ -12,5 +12,6 @@ export const dashBoardDataMapper = (data) =>{
         userLivingAddress: data.homeAdderess || "",
         userGender: data.gender ?? "",
         userProfilePicture: data.currentPictureAddress || "/images/defaultAvatar.webp",
+        userPictureGallery: Array.isArray(data.userPicture) ? data.userPicture : [],
     }
 }

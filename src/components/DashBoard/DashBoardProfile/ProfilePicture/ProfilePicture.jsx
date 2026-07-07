@@ -1,7 +1,7 @@
 import React from 'react'
 import Style from './ProfilePicture.module.css'
 import BlurModal from '../../../common/BlurModal/BlurModal';
-import useProfilePicture from '../../../common/UseProfilePicture/useProfilePicture';
+import ProfilePicLogic from './ProfilePicLogic';
 const ProfilePicture = () => {
     const {
     fileInputRef,
@@ -19,7 +19,8 @@ const ProfilePicture = () => {
     selectProfilePicture,
     deletePicture,
     updateProfile,
-    } = useProfilePicture();
+    } = ProfilePicLogic();
+    
     return (
         <div className={Style.profilePictureContainer}>
             <div className={Style.profileGallery}>
@@ -31,27 +32,6 @@ const ProfilePicture = () => {
                 {preview && (
                     <BlurModal preview={preview}  discard={discardImage} confirm={confirmImage}/>
                 )}
-                {/* <div className={Style.deselectedPicture}>
-                    <div className={Style.pictureContainer}>
-                        <img src="/images/defaultAvatar.webp" alt="Profile-Picture" className={Style.picture}/>
-                        <div className={Style.deselectedOption}>
-                            <img src="/images/deselectedOption.svg" alt="Deselected-Option" className={Style.deselectedOptionPicture}/>
-                        </div>
-                    </div>
-                </div>
-                <div className={Style.selectedPicture}>
-                    <div className={Style.pictureContainer}>
-                        <img src="/images/defaultAvatar.webp" alt="Profile-Picture" className={Style.picture}/>
-                        <div className={Style.selectedOption}>
-                            <div className={Style.deleteTheProfile}>
-                                <img src="/images/deleteTheProfile.svg" alt="Deselected-Option" className={Style.selectedOptionPicture}/>
-                            </div>
-                            <div className={Style.selectTheProfile}>
-                                <img src="/images/selectTheProfile.svg" alt="Deselected-Option" className={Style.selectedOptionPicture}/>
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
                 {pictures.map((picture) => (
                     <div key={picture.id} className={picture.isSelected ? Style.selectedPicture : Style.deselectedPicture}>
                         <div className={Style.pictureContainer} onClick={() => selectProfilePicture(picture.id)}>

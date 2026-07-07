@@ -7,6 +7,7 @@ import OtpInput from "react-otp-input";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 import { loginGmail, loginVerifyMessage } from "../../core/services/authService/authService";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -120,14 +121,25 @@ const Login = () => {
               setPassword(values.password);
 
               localStorage.setItem("token", response.data.token);
-              navigate("/Dashboard");
+              const toastId = toast.loading("در حال ورود به حساب شما...");
               
-              setStep(2);
+              setTimeout(()=>{
+                toast.update(toastId, {
+                    render: "با موفقیت وارد حساب خود شدید",
+                    type: "success",
+                    isLoading: false,
+                    autoClose: 1500,
+                });
+                navigate("/Dashboard", { replace: true });
+              },2000)
+              
+              // setStep(2);
             } catch(error){
               setFieldError(
                 "email",
                 error.response?.data?.message || "اطلاعات ورود اشتباه است."
               );
+              toast.error("خطا در ورود به حساب شما")
             }
             return;
           }
