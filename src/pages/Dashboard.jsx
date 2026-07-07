@@ -21,10 +21,10 @@ const DashBoard = () => {
                 render: "با موفقیت خارج شدید",
                 type: "success",
                 isLoading: false,
-                autoClose: 1500,
+                autoClose: 1200,
             });
             navigate("/Auth", { replace: true });
-        },2000)
+        },1700)
     }
 
     const [selectedItem, setSelectedItem] = useState(DashBoardMenuItems[0].id);

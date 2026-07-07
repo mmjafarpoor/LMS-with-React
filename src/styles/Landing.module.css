@@ -155,8 +155,8 @@
     align-items: center;
 }
 .landingContainer > .headerContainer > .header >.loginContainer{
-    width: 14.5%;
-    min-width: 210px;
+    /* width: 14.5%;
+    min-width: 210px; */
     height: 48px;
     display: flex;
     flex-direction: row;
@@ -195,6 +195,17 @@
 }
 .landingContainer > .headerContainer > .header >.loginContainer > .account:hover{
     background-color: var(--button-hover);
+}
+.landingContainer > .headerContainer > .header >.loginContainer > .accountProfile{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+}
+.landingContainer > .headerContainer > .header >.loginContainer > .accountProfile > .profilePicture{
+    width: 100%;
+    height: 100%;
 }
 .landingContainer > .headerContainer > .header >.loginContainer > .headerShowMoreButton{
     display: none;
@@ -257,7 +268,6 @@
     margin-top: 60px;
     width: 86%;
     height: fit-content;
-    /* border: 1px solid red; */
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -269,7 +279,6 @@
     max-width: 23%;
     min-width: 280px;
     height: fit-content;
-    /* border: 1px solid cyan; */
     display: flex;
     flex-direction: column;
     gap: 25px;
@@ -340,7 +349,7 @@
     cursor: pointer;
 }
 .landingContainer > .bottom > .bottomMain > .bottomItemsContainer > .bottomItem > .footerLink:hover{
-    color: blue;
+    color: var(--link-color);
     transition: 0.12s ease-in-out;
 }
 .landingContainer > .bottom > .bottomMain > .trustBadge{
@@ -469,8 +478,7 @@
         display: block;
     }
     .landingContainer > .headerContainer > .header >.loginContainer{
-        min-width: 240px;
-        gap: 30px;
+        gap: 10px;
     }
 }
 @media (max-width: 450px) {

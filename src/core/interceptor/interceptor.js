@@ -22,7 +22,7 @@ const apiClient = axios.create({
         if (status >= 500) {
             toast.error("خطایی در سرور رخ داده است، لطفاً بعداً دوباره تلاش کنید.");
         }
-        if (status == 400 && status == 402 && status >= 404 && status < 500) {
+        if (status >= 400 && status < 500 && status !== 401 && status !== 403) {
             toast.error("درخواست نامعتبر است.");
         }
         if (status === 401) {

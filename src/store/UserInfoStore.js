@@ -10,6 +10,10 @@ const userInfoStore = create((set) => ({
     fetchUser : async () => {
         set({ loading: true });
 
+        const token = localStorage.getItem("token");
+
+        if (!token) return;
+
         try {
             const response = await userApiData();
             

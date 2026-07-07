@@ -6,14 +6,25 @@ import "react-toastify/ReactToastify.css";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import useDarkStore from "../store/DarkStore";
+import userInfoStore from "../store/UserInfoStore";
+import { toast } from "react-toastify";
 
 	
-	const Landing = () => {
+const Landing = () => {
+
+    const user = userInfoStore((state) => state.user);
+    const fetchUser = userInfoStore((state) => state.fetchUser);
+
+    useEffect(() => {
+        fetchUser();
+    }, [fetchUser]);
 
     const navigate = useNavigate();
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	
     const location = useLocation();
+
+    const token = localStorage.getItem("token");
 
     function getActivePage() {
         const path = location.pathname;
@@ -93,8 +104,31 @@ import useDarkStore from "../store/DarkStore";
     }, [isMenuOpen]);
 
     const GoToAuth = () => {
-        navigate("/Auth");
+        const directingToast = toast.loading("در حال انتقال به بخش ورود هستید")
+        setTimeout(()=>{
+            toast.update(directingToast, {
+                render: "با موفقیت وارد صفحه لاگین شدید",
+                type: "success",
+                isLoading: false,
+                autoClose: 900,
+            });
+            navigate("/Auth");
+        },1200)
     };
+
+    const GoToDashboard = () => {
+        const directingToast = toast.loading("در حال انتقال به داشبورد هستید")
+
+        setTimeout(()=>{
+            toast.update(directingToast, {
+                render: "با موفقیت وارد پنل خود شدید",
+                type: "success",
+                isLoading: false,
+                autoClose: 1000,
+            });
+            navigate("/Dashboard");
+        },1500)
+    }
 
     function scrollToTop() {
         window.scrollTo({
@@ -146,7 +180,7 @@ import useDarkStore from "../store/DarkStore";
                         <Link to={"News"} className={Style.menuItem}>اخبار و مقالات</Link>
                         <Link to={"Contact"} className={Style.menuItem}>ارتباط با ما</Link>
                     </div>
-                    <div className={Style.loginContainer}>
+                    <div className={Style.loginContainer} style={{width: token ? "auto" : "14.5%" , minWidth: token ? "100px" : "210px"}}>
                         <div className={Style.darkModeSwitch}
                         ref={themeButtonRef} onClick={handleThemeToggle}  title={isDarkMode ? "حالت روشن" : "حالت تاریک"}>
                             <motion.img
@@ -157,7 +191,13 @@ import useDarkStore from "../store/DarkStore";
                                 transition={{ duration: 0.4 }}
                                 src={isDarkMode ? "/images/lightMode.svg" : "/images/darkMode.svg"} alt={isDarkMode ? "Light Mode" : "Dark Mode"} />
                         </div>
-                        <div className={Style.account} onClick={GoToAuth}>ورود یا ثبت نام</div>
+                        {token ? 
+                            <div className={Style.accountProfile} title="پنل کاربری" onClick={GoToDashboard}>
+                                <img src={user?.userProfilePicture} alt="Profile-Picture" className={Style.profilePicture}/>
+                            </div>  
+                        :
+                            <div className={Style.account} onClick={GoToAuth}>ورود یا ثبت نام</div>
+                        }
                         <div className={Style.headerShowMoreButton} onClick={toggleMenu}>
                             <img src={isDarkMode ? "/images/mobileMenuOpenDarkMode.svg" : "/images/mobileMenuOpenLightMode.svg"} alt="Header-Show-More-Button"/>
                         </div>
@@ -204,8 +244,8 @@ import useDarkStore from "../store/DarkStore";
                         <div className={Style.bottomItem}>
                             <span className={Style.footerItemTitle}>در تماس باشید</span>
                             <div className={Style.footerItemSeparator}></div>
-                            <a  href="tel:09109098222" className={Style.footerLink} style={{color:"#1B75D0"}}>09109098222</a>
-                            <a  href="tel:09931227310" className={Style.footerLink} style={{color:"#1B75D0"}}>09931227310</a>
+                            <a  href="tel:09109098222" className={Style.footerLink} style={{color: `var(--link-color)` , fontWeight: "500"}}>09109098222</a>
+                            <a  href="tel:09931227310" className={Style.footerLink} style={{color: `var(--link-color)` , fontWeight: "500"}}>09931227310</a>
                         </div>
                     </div>
                     <div className={Style.trustBadge}></div>
