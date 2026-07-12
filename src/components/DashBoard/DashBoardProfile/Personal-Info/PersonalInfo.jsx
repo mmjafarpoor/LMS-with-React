@@ -10,6 +10,7 @@ import { editUserApiData } from '../../../../core/services/dashBoardService/dash
 import { editUserDataMapper } from '../../../../core/services/dashBoardService/editUserDataMapper'
 import { toast } from 'react-toastify'
 import GenderRadio from '../../../common/GenderRadio/GenderRadio'
+import CircularProgressBar from '../../../common/CircularProgressBar/CircularProgressBar'
 
 const PersonalInfo = () => {
 
@@ -105,9 +106,7 @@ const PersonalInfo = () => {
                 </div>
                 <div className={Style.circularProgressBarContainer}>
                     <span className={Style.profileProgressStatus}>پروفایل تکمیل شده</span>
-                    <div className={Style.profileProgress}>
-                        <img src="/images/progressBar.svg" alt="Progress Bar" className={Style.progressBarImg} />
-                    </div>
+                    <CircularProgressBar progress={user?.userProfileProgress}/>
                 </div>
             </Form>
         </Formik>

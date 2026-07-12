@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "../styles/Teachers.module.css";
 import TeacherData from "../components/TeacherContainer/TeacherData";
 import ReactPaginate from "react-paginate";
+import { getTeachersList } from "../core/services/teachersService/teachersService";
 
 const Teachers = () => {
   const [teachersItems, setTeachersItems] = useState([]);
@@ -13,9 +14,8 @@ const Teachers = () => {
   const pageCount = Math.abs(teachersItems.length / perPage);
 
   const fetchNews = async () => {
-    const response = await fetch("http://188.121.104.25:3001/Home/GetTeachers");
-    const data = await response.json();
-    setTeachersItems(data);
+    const response = await getTeachersList();
+    setTeachersItems(response.data);
   };
 
   useEffect(() => {

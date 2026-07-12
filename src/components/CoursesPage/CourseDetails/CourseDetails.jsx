@@ -1,14 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Rating, RoundedStar } from "@smastrom/react-rating";
 import { useParams } from "react-router-dom";
 import "@smastrom/react-rating/style.css";
 import Comment from "../../NewsContainer/Comment";
 import clsx from "clsx";
+import { addCourseFavorite } from "../../../core/services/coursesService/coursesService";
+import { toast } from "react-toastify";
+import { deleteFavoriteCourse, getFavoriteCourse } from "../../../core/services/dashBoardService/dashBoardApi";
 
 const NewsDetails = () => {
-  const [fav, setFav] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
+
   const { courseId } = useParams();
+  const [fav, setFav] = useState();
   const [item, setItem] = useState(null);
+  const [favoriteList, setFavoriteList] = useState([]);
+
   const fetchItem = async () => {
     const response = await fetch(
       `http://188.121.104.25:3001/Home/GetCourseDetails?CourseId=${courseId}`,
@@ -21,6 +33,61 @@ const NewsDetails = () => {
     fetchItem();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [courseId]);
+
+  const fetchFavoriteCourses = useCallback(async() => {
+    try {
+        const response = await getFavoriteCourse();
+        console.log(response);
+        console.log(response.data);
+        if (response.data?.favoriteCourseDto) {
+            setFavoriteList(response.data.favoriteCourseDto);
+            console.log("Data Received",response.data.favoriteCourseDto);
+        }
+    } catch (error) {
+        console.log(error.response?.data);
+        toast.error("در نمایش دوره های مورد علاقه شما خطایی رخ داد");
+    }
+  },[])
+  useEffect(() => {
+    fetchFavoriteCourses();
+  }, []);
+
+  useEffect(() => {
+    const isFavorite = favoriteList.some(
+      item => item.courseId === courseId
+    );
+
+    setFav(isFavorite);
+  }, [favoriteList, courseId]);
+  
+
+  const addFavorite = async() => {
+    const favoriteStatus = favoriteList.find(item => item.courseId === courseId);
+    if(!favoriteStatus){
+        try {
+        const response = await addCourseFavorite({courseId: courseId,});
+        console.log("Favorite Response =",response);
+
+        toast.success("دوره به علاقه مندی ها افزوده شد");
+      } catch (error) {
+        console.log(error.response?.data);
+        toast.error("در افزودن دوره به علاقه مندی ها خطایی رخ داد");
+      }
+    await fetchFavoriteCourses();
+    setFav(true);
+    }
+    else{
+      try {
+        await deleteFavoriteCourse(favoriteStatus.favoriteId);
+        toast.success("دوره از علاقه مندی ها حذف شد");
+      } catch (error) {
+        console.log(error);
+        toast.error("در حذف دوره از علاقه مندی ها خطایی رخ داد");
+      }
+      await fetchFavoriteCourses();
+      setFav(false);
+    }
+  }
 
   return (
     <div className="w-full mt-10 mb-10 flex justify-center">
@@ -43,7 +110,7 @@ const NewsDetails = () => {
                 </div>
               </div>
               <div
-                onClick={() => setFav(!fav)}
+                onClick={() => {addFavorite()}}
                 className={clsx(
                   "absolute -right-58 -bottom-59 h-100 w-100 scale-45 sm:-right-77 sm:-bottom-77 sm:h-120 sm:w-120 sm:scale-60 cursor-pointer transition-all duration-500",
                   fav ? "bg-red-700" : "bg-(--input-bg) shadow-[0_0px_8px_var(--news-shadow-color)]",

@@ -36,10 +36,12 @@ const apiClient = axios.create({
             return Promise.reject(error);
         }
         if (error.response.status === 403) {
+            localStorage.removeItem("token");
             toast.error("مجوز دسترسی به این بخش را ندارید");
+            
             setTimeout(()=>{
                 window.location.href = "/auth";
-            },2000)
+            },1500);
         }
         
         return Promise.reject(error);

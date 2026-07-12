@@ -145,8 +145,12 @@ const Landing = () => {
                 <nav className={Style.mobileMenu}>
                     <div className={Style.mobileMenuHolder}>
                         <div className={Style.closeAndScreenMode}>
-                            {isDarkMode ? <div className={Style.mobileLightMode} onClick={toggleDarkMode}></div> : <div className={Style.mobileDarkMode} onClick={toggleDarkMode}></div>}
-                            <div className={Style.closeTheMobileMenu} onClick={toggleMenu}></div>
+                            <div className={Style.mobileThemeSwitch} title={isDarkMode ? "حالت روشن" : "حالت تاریک"} onClick={toggleDarkMode}>
+                                <img src={isDarkMode ? "/images/lightMode.svg" : "/images/darkMode.svg"} alt={isDarkMode ? "Light Mode" : "Dark Mode"}/>
+                            </div>
+                            <div className={Style.closeTheMobileMenu} onClick={toggleMenu}>
+                                <img src={isDarkMode ? "/images/closeMenu.svg" : "/images/closeMenuWhite.svg"} alt="Close-Mobile-Menu"/>
+                            </div>
                         </div>
                         <div className={Style.mobileMenuItemsContainer}>
                             <Link to={"Home"} className={Style.mobileMenuItem}>خانه</Link>

@@ -13,6 +13,7 @@ import { getCourseList } from '../../../core/services/get'
 import { formatPricePersian } from '../../../utils/formatPrice'
 import { toShamsiDate , toShamsiDateTime } from "../../../utils/dateFormatter";
 import apiClient from '../../../core/interceptor/interceptor'
+import CircularProgressBar from '../../common/CircularProgressBar/CircularProgressBar'
 
 const DashBoardMain = () => {
     const isDarkMode = useDarkStore((state) => state.isDarkMode);
@@ -87,9 +88,7 @@ const DashBoardMain = () => {
                     </div>
                     <div className={Style.profileProgress}>
                         <span className={Style.profileProgressStatus}>پروفایل تکمیل شده</span>
-                        <div className={Style.circularProgressBarContainer}>
-                            <img src="/images/progressBar.svg" alt="Progress Bar" className={Style.progressBarImg} />
-                        </div>
+                        <CircularProgressBar progress={user?.userProfileProgress}/>
                     </div>
                 </div>
                 <div className={Style.latestCoursesContainer}>

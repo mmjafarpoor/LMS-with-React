@@ -10,10 +10,19 @@ import WagonSlider from '../components/Home/WagonSlider/WagonSlider';
 import NewsCards from '../components/Home/NewsCards/NewsCards';
 import TeachersCards from '../components/Home/TeachersCards/TeachersCards';
 import CoursesCards from '../components/Home/CoursesCards/CoursesCards';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
-  // console.log(SliderData);
-  // console.log(SliderData.length);
+  const navigate = useNavigate();
+
+  const roadmapRef = useRef(null);
+
+  const handleScroll = () => {
+    roadmapRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
   
   const sliderRef = useRef(null);
   const intervalRef = useRef(null);
@@ -86,7 +95,7 @@ const Home = () => {
             <span className={Style.beginTheJourneyHeadingTitleSecondLine}>سریع و همیشه همراه شما</span>
           </div>
           <span className={Style.beginTheJourneyDescription}>در وب‌سایت ما می‌توانید دوره‌ها و کلاس‌هایی را پیدا کنید که به شما کمک می‌کنند مهارت بیاموزید پیشرفت کنید و در مسیر رشد شخصی و حرفه‌ای سرزنده بمانید.</span>
-          <button className={Style.beginTheJourneyButton}>
+          <button className={Style.beginTheJourneyButton} onClick={() => navigate("/courses")}>
             <span>آموزش رو شروع کنیم</span>
           </button>
         </div>
@@ -181,12 +190,12 @@ const Home = () => {
               <span className={Style.prosAboutUsDescription}>{pros.description}</span>
             </div>
           ))}
-          <div className={Style.knowMoreAboutOurTrip}>
+          <div className={Style.knowMoreAboutOurTrip} onClick={handleScroll}>
             <span className={Style.knowMoreAboutOurTripText}>درباره سفر ما بیشتر بدانید</span>
           </div>
         </div>
       </div>
-      <div className={Style.roadMapContainer}>
+      <div className={Style.roadMapContainer} ref={roadmapRef}>
         <div className={Style.roadMapHeading}>
           <div className={Style.roadMapTitleContainer}>
             <span className={Style.roadMapTitle}>نقشه راه شما</span>

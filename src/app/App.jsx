@@ -3,13 +3,14 @@ import router from "./router/router";
 import { ToastContainer , Bounce } from 'react-toastify';
 import './App.css'
 import useDarkStore from "../store/DarkStore";
-
+import { Suspense } from "react";
+import LoadingSpinner from "../components/common/LoadingSpinner/LoadingSpinner";
 
 function App() {
   const isDarkMode = useDarkStore((state) => state.isDarkMode);
   
   return (
-    <>
+    <Suspense fallback={<LoadingSpinner/>}>
       <RouterProvider router={router} />
       <ToastContainer
         position="top-right"
@@ -26,7 +27,7 @@ function App() {
         transition={Bounce}
         toastStyle={{fontFamily: "IranSans"}}
       />
-    </>
+    </Suspense>
   )
 }
 

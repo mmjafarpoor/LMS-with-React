@@ -11,6 +11,7 @@ import {
   registerLastStep,
   registerVerifyMessage,
 } from "../../core/services/authService/authService";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -164,6 +165,20 @@ const SignUp = () => {
               });
               console.log(response.data);
 
+              toast.success("حساب کاربری شما با موفقیت ساخته شد",{autoClose:500,});
+
+              const toastId = toast.loading("در حال انتقال به صفحه لاگین");
+
+              setTimeout(()=>{
+                toast.update(toastId, {
+                    render: "با موفقیت وارد حساب خود شدید",
+                    type: "success",
+                    isLoading: false,
+                    autoClose: 1500,
+                });
+                navigate("/Auth", { replace: true });
+              },1500);
+
               setPhoneNumber(values.phoneNumber);
               setPassword(values.password);
             } catch (error) {
@@ -172,7 +187,6 @@ const SignUp = () => {
                 error.response?.data?.message || "اطلاعات ثبت نام اشتباه است.",
               );
             }
-            // setStep(4);
           } else {
             setFieldError("passwordRepeat", "رمزها با یکدیگر مطابقت ندارند");
           }

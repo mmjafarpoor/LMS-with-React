@@ -67,7 +67,6 @@
     user-select: none;
 }
 .beginTheJourneyDescription{
-    user-select: none;
     color: #4F4F4F;
     font-weight: 400;
     font-size: clamp(1rem,1.1vw,1.4rem);
@@ -240,7 +239,6 @@
     height: fit-content;
     max-height: 100%;
     width: 62%;
-    /* border: 1px solid blue; */
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -666,16 +664,36 @@
 }
 @media (max-width: 600px) {
     .headingTitleFirstLineText {
-        font-size: 1.8rem;
+        font-size: clamp(1.45rem,4.8vw,1.8rem);
     }
     .headingTitleFirstLineTextBadge {
-        font-size: 1.8rem;
+        font-size: clamp(1.45rem,4.8vw,1.8rem);
         padding: 6px 9px;
+    }
+    .beginTheJourneyHeadingTitleSecondLine{
+        font-size: clamp(1.45rem,4.8vw,1.8rem);
+    }
+    .beginTheJourneyDescription{
+        font-size: clamp(0.8rem,2.67vw,1rem);
+        max-width: 70%;
     }
     .beginTheJourneyBottomSection{
         flex-direction: column;
     }
+    .beginTheJourneyButton{
+        width: 185px;
+        min-width: unset;
+        height: 45px;
+    }
+    .beginTheJourneyButton > span{
+        font-size: 1.1rem;
+    }
     .selfPresentation{
-        width: 100%;
+        display: none;
+    }
+}
+@media (max-width: 450px) {
+    .headingTitleFirstLineTextBadge {
+        padding: 4px 8px;
     }
 }

@@ -11,7 +11,7 @@
 }
 .dashboardHolder{
     width: clamp(310px,calc(100% - 50px),1870px);
-    height: clamp(750px,calc(100% - 50px),950px);
+    height: clamp(700px,calc(100% - 50px),950px);
     display: flex;
     flex-flow: row nowrap;
     gap: 25px;
@@ -263,9 +263,15 @@
         display:block;
     }
 }
+@media (max-width: 600px) {
+    .dashboardHolder{
+        width: clamp(310px,calc(100% - 20px),1870px);
+        height: clamp(700px,calc(100% - 20px),950px);
+    }
+}
 @media (max-width: 400px) {
     .dashboardHolder{
-        width: clamp(310px,calc(100% - 30px),1870px);
-        height: clamp(800px,calc(100% - 30px),950px);
+        width: clamp(310px,calc(100% - 10px),1870px);
+        height: clamp(700px,calc(100% - 10px),950px);
     }
 }

@@ -13,5 +13,6 @@ export const dashBoardDataMapper = (data) =>{
         userGender: data.gender ?? "",
         userProfilePicture: data.currentPictureAddress || "/images/defaultAvatar.webp",
         userPictureGallery: Array.isArray(data.userPicture) ? data.userPicture : [],
+        userProfileProgress: data.profileCompletionPercentage || "%",
     }
 }

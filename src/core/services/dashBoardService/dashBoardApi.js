@@ -26,3 +26,14 @@ export const deleteProfilePic = (id) => {
 
     return apiClient.delete("/SharePanel/DeleteProfileImage",{data: formData});
 };
+
+export const getFavoriteCourse = (data) =>
+    apiClient.get("/SharePanel/GetMyFavoriteCourses", data);
+
+export const deleteFavoriteCourse = (data) =>{
+    const formData = new FormData();
+    formData.append("CourseFavoriteId", data);
+
+    return apiClient.delete("/Course/DeleteCourseFavorite",{data: formData});
+};
+

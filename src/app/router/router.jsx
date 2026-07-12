@@ -1,31 +1,42 @@
 import { createBrowserRouter } from "react-router-dom";
+import { lazy } from "react";
+import ProtectedRoute from "./ProtectedRoute";
 
-import Landing from "../../pages/Landing";
-import Home from "../../pages/Home";
-import Auth from "../../pages/Auth";
+const Landing = lazy(() => import("../../pages/Landing"));
+// import Landing from "../../pages/Landing";
+const Home = lazy(() => import("../../pages/Home"));
+// import Home from "../../pages/Home";
+const Auth = lazy(() => import("../../pages/Auth"));
+// import Auth from "../../pages/Auth";
 import Login from "../../components/AuthContainer/Login";
 import SignUp from "../../components/AuthContainer/SignUp";
 import ForgetPassword from "../../components/AuthContainer/ForgetPassword";
-import Courses from "../../pages/Courses";
+const Courses = lazy(() => import("../../pages/Courses"));
+// import Courses from "../../pages/Courses";
 import CourseDetails from "../../components/CoursesPage/CourseDetails/CourseDetails";
-import Teachers from "../../pages/Teachers";
+const Teachers = lazy(() => import("../../pages/Teachers"));
+// import Teachers from "../../pages/Teachers";
 import TeacherDetails from "../../components/TeacherContainer/TeacherDetails";
-import News from "../../pages/News";
+const News = lazy(() => import("../../pages/News"));
+// import News from "../../pages/News";
 import NewsDetails from "../../components/NewsContainer/NewsDetails";
-import Contact from "../../pages/Contact";
+const Contact = lazy(() => import("../../pages/Contact"));
+// import Contact from "../../pages/Contact";
 import Error404 from "../../pages/Error404";
-import DashBoard from "../../pages/DashBoard";
+const DashBoard = lazy(() => import("../../pages/DashBoard"));
+// import DashBoard from "../../pages/DashBoard";
 import DashBoardMain from "../../components/DashBoard/DashBoardMain/DashBoardMain";
-import BookedCourses from '../../components/DashBoard/BookedCourses/BookedCourses'
-import Reserved from '../../components/DashBoard/Reserved/Reserved'
-import FavouredCourses from '../../components/DashBoard/FavouredCourses/FavouredCourses'
-import FavouredBlogs from '../../components/DashBoard/FavouredBlogs/FavouredBlogs'
-import DashBoardProfile from '../../components/DashBoard/DashBoardProfile/DashBoardProfile'
+import BookedCourses from '../../components/DashBoard/BookedCourses/BookedCourses';
+import Reserved from '../../components/DashBoard/Reserved/Reserved';
+import FavouredCourses from '../../components/DashBoard/FavouredCourses/FavouredCourses';
+import FavouredBlogs from '../../components/DashBoard/FavouredBlogs/FavouredBlogs';
+const DashBoardProfile = lazy(() => import("../../components/DashBoard/DashBoardProfile/DashBoardProfile"));
+// import DashBoardProfile from '../../components/DashBoard/DashBoardProfile/DashBoardProfile';
 import PersonalInfo from "../../components/DashBoard/DashBoardProfile/Personal-Info/PersonalInfo";
 import ProfilePicture from "../../components/DashBoard/DashBoardProfile/ProfilePicture/ProfilePicture";
 import LivingAddress from "../../components/DashBoard/DashBoardProfile/LivingAddress/LivingAddress";
 import Connections from "../../components/DashBoard/DashBoardProfile/Connections/Connections";
-import ProtectedRoute from "./ProtectedRoute";
+
 
 
 

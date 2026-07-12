@@ -131,7 +131,7 @@ const Login = () => {
                     autoClose: 1500,
                 });
                 navigate("/Dashboard", { replace: true });
-              },2000)
+              },2000);
               
               // setStep(2);
             } catch(error){

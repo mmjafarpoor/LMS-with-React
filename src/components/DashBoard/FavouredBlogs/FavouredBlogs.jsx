@@ -1,13 +1,43 @@
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Style from './FavouredBlogs.module.css'
 import DashBoardCoursesData from '../../../Data/DashBoardCoursesData'
 import ReactPaginate from 'react-paginate'
 import { Field, Form, Formik } from 'formik'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { getFavoriteNews } from '../../../core/services/newsService/newsService'
 
 const FavouredBlogs = () => {
+    const navigate = useNavigate();
+
+    const [favouredList, setFavouredList] = useState([]);
 
     const [pageIndex, setPageIndex] = useState(0);
     const [pageCount, setPageCount] = useState(0);
+
+    const itemsPerPage = 8;
+
+    const fetchFavoriteBlogs = useCallback(async() => {
+        try {
+            const response = await getFavoriteNews();
+            console.log(response);
+            console.log(response.data);
+            
+            if(response.data?.myFavoriteNews){
+                setFavouredList(response.data?.myFavoriteNews);
+                setPageCount(Math.ceil(response.data.length / itemsPerPage));
+                console.log("Data Received",response.data.myFavoriteNews);
+            }
+        } catch (error) {
+            console.log(error.response?.data);
+            toast.error("در نمایش مقالات مورد علاقه شما خطایی رخ داد");
+        }
+    },[]);
+
+    useEffect(() => {
+        fetchFavoriteBlogs();
+    }, [fetchFavoriteBlogs]);
+    
             
     const handlePageClick = async (event) => {
         const page = event.selected + 1;

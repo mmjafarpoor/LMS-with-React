@@ -25,8 +25,8 @@ const userInfoStore = create((set) => ({
                 user:mappedUser,
             });
         } catch (error) {
-            toast.error("در نمایش اطلاعات کاربر مشکلی بوجود امد")
-            console.log(error)
+            toast.error("در نمایش اطلاعات کاربر مشکلی بوجود امد");
+            console.log(error);
         }
         finally{
             set({ loading: false });

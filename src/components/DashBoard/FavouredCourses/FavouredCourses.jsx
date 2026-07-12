@@ -1,18 +1,103 @@
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Style from './FavouredCourses.module.css'
 import DashBoardCoursesData from '../../../Data/DashBoardCoursesData'
 import ReactPaginate from 'react-paginate'
 import { Field, Form, Formik } from 'formik'
 import Slider from 'rc-slider';
+import { deleteFavoriteCourse, getFavoriteCourse } from '../../../core/services/dashBoardService/dashBoardApi'
+import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 const FavouredCourses = () => {
+    const navigate = useNavigate();
 
     const [sliderValue, setSliderValue] = useState([0,10000000]);
             console.log(sliderValue);
 
+    const [favouredList, setFavouredList] = useState([]);
+
     const [pageIndex, setPageIndex] = useState(0);
     const [pageCount, setPageCount] = useState(0);
+
+    const itemsPerPage = 8;
+
+    const fetchFavoriteCourses = useCallback(async() => {
+        try {
+            const response = await getFavoriteCourse();
+            console.log(response);
+            console.log(response.data);
+            if (response.data?.favoriteCourseDto) {
+                setFavouredList(response.data.favoriteCourseDto);
+                setPageCount(Math.ceil(response.data.length / itemsPerPage));
+                console.log("Data Received",response.data.favoriteCourseDto);
+            }
+        } catch (error) {
+            console.log(error.response?.data);
+            toast.error("در نمایش دوره های مورد علاقه شما خطایی رخ داد")
+        }
+    },[])
+
+    const GoToCourseDetails = (courseId) => {
+        const courseDetail = toast.loading("در حال انتقال به صفحه دوره انتخاب شده...");
+
+        try {
+            navigate(`/Courses/${courseId}`);
+            setTimeout(()=>{
+                toast.update(courseDetail, {
+                    render: "با موفقیت به صفحه دوره انتخاب شده منتقل شدید",
+                    type: "success",
+                    isLoading: false,
+                    autoClose: 800,
+                });
+            },500);
+        } catch (error) {
+            console.log(error.response?.data);
+            setTimeout(()=>{
+                toast.update(courseDetail, {
+                    render: "در انتقال به صفحه دوره انتخاب شده خطایی رخ داد",
+                    type: "error",
+                    isLoading: false,
+                    autoClose: 800,
+                });
+            },500);
+        }
+    };
+
+    const deleteFavorite = async(id) => {
+        const deleteToast = toast.loading("در حال حذف دوره انتخاب شده...");
+
+        try {
+            await deleteFavoriteCourse(id);
+            await fetchFavoriteCourses();
+
+            setTimeout(()=>{
+                toast.update(deleteToast, {
+                    render: "دوره از علاقه مندی ها حذف شد",
+                    type: "success",
+                    isLoading: false,
+                    autoClose: 800,
+                });
+            },500)
+
+        } catch (error) {
+            console.log(error.response?.data);
+            setTimeout(()=>{
+                toast.update(deleteToast, {
+                    render: "در حذف دوره از علاقه مندی ها خطایی رخ داد",
+                    type: "error",
+                    isLoading: false,
+                    autoClose: 800,
+                });
+            },500);
+        }
+    }
         
+    useEffect(() => {
+        fetchFavoriteCourses();
+    }, [fetchFavoriteCourses])
+    
+
+
     const handlePageClick = async (event) => {
         const page = event.selected + 1;
 
@@ -49,20 +134,20 @@ const FavouredCourses = () => {
                         </div>
                     </div>
                     <div className={Style.itemsContainer}>
-                        {DashBoardCoursesData.map((course) => (
+                        {favouredList.map((course) => (
                             <div key={course.id} className={Style.item}>
                                 <div className={Style.itemImageContainer}>
-                                    <img src={course.imageURL} alt="Item-Image" className={Style.itemImage}/>
+                                    <img src={course.imageAddress || "/images/javaScriptProductCard.png"} onError={(e) => {e.target.src = "/images/javaScriptProductCard.png";}} alt="Item-Image" className={Style.itemImage}/>
                                 </div>
-                                <div className={Style.itemTitle}>{course.title}</div>
-                                <div className={Style.itemDescription}>{course.instructor}</div>
-                                <div className={Style.itemPrice}>{course.price}</div>
+                                <div className={Style.itemTitle}>{course.course?.title || "عنوان دوره"}</div>
+                                <div className={Style.itemDescription}>{course.teacheName || "اسم مدرس"}</div>
+                                <div className={Style.itemPrice}>{course.cost.toLocaleString()} تومان</div>
                                 <div className={Style.itemOpen}>شروع یادگیری</div>
                                 <div className={Style.itemAction}>
-                                    <div className={Style.viewProduct}>
+                                    <div className={Style.viewProduct} onClick={() => GoToCourseDetails(course.courseId)}>
                                         <img src="/images/viewProductWithOutBorder.svg" alt="Product-View-Icon" className={Style.viewProductIcon}/>
                                     </div>
-                                    <div className={Style.deleteProduct}>
+                                    <div className={Style.deleteProduct} onClick={() => deleteFavorite(course.id)}>
                                         <img src="/images/cancelProduct.svg" alt="Delete-Product-Icon" className={Style.viewProductIcon}/>
                                     </div>
                                 </div>

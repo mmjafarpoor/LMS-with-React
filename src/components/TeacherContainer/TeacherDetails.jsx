@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { getTeacherDetails } from "../../core/services/teachersService/teachersService";
 
 const TeachersDetails = () => {
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
+
   const { teacherId } = useParams();
   const [teacherProfile, setTeacherProfile] = useState(null);
   // const [teacherCourses, setTeacherCouses] = useState([]);
   const fetchItem = async () => {
-    const response = await fetch(
-      `http://188.121.104.25:3001/Home/GetTeacherDetails?TeacherId=${teacherId}`,
-    );
-    const data = await response.json();
-    setTeacherProfile(data);
+    const response = await getTeacherDetails(teacherId);
+    setTeacherProfile(response.data);
     // setTeacherCouses(data.courses);
   };
 

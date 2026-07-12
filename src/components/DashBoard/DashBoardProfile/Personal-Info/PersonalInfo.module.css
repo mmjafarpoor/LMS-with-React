@@ -101,15 +101,6 @@
     white-space: nowrap;
     user-select: none;
 }
-.profileProgress{
-    width: 50%;
-    height: auto;
-    aspect-ratio: 1/1;
-}
-.profileProgress > img{
-    width: 100%;
-    height: 100%;
-}
 
 
 

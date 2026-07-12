@@ -23,7 +23,6 @@ const Courses = () => {
   const [error, setError] = useState(null);
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(true);
   const [displayMode, setDisplayMode] = useState("regular");
-  console.log("DisplayMode =" , displayMode );
   const [pageIndex, setPageIndex] = useState(0);
   const [pageCount, setPageCount] = useState(0);
 
@@ -50,7 +49,8 @@ const Courses = () => {
         if (response.data?.courseFilterDtos) {
             setCourseList(response.data.courseFilterDtos);
             setPageCount(Math.ceil(response.data.totalCount / itemsPerPage));
-            console.log("Data Received",response.data.courseFilterDtos)}
+            console.log("Data Received",response.data.courseFilterDtos);
+          }
         }
         // else {throw new Error("Data structure is invalid");}
       catch (err) {
@@ -72,7 +72,7 @@ const Courses = () => {
   useEffect(() => {
       setPageIndex(0);
       fetchCourseList(1);
-  }, [courseFilters])
+  }, [courseFilters]);
 
   const fetchCourseInstructor = async() =>{
       try {

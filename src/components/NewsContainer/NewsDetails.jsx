@@ -1,27 +1,103 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Rating, RoundedStar } from "@smastrom/react-rating";
 import { useParams } from "react-router-dom";
 import "@smastrom/react-rating/style.css";
 import Comment from "./Comment";
 import clsx from "clsx";
+import { toast } from "react-toastify";
+import { addNewsFavorite, deleteFavoriteNews, getFavoriteNews, getNewsDetails } from "../../core/services/newsService/newsService";
 
 const NewsDetails = () => {
-  const [fav, setFav] = useState(false);
 
-  const { id } = useParams();
+  useEffect(() => {
+      window.scrollTo({
+        top: 0,
+      });
+    }, []);
+
+    const { id } = useParams();
+  const [fav, setFav] = useState();
+  const [favouredList, setFavouredList] = useState([]);
   const [item, setItem] = useState(null);
   const [usersRate, setUsersRate] = useState(null);
+  
   const fetchItem = async () => {
-    const response = await fetch(`http://188.121.104.25:3001/News/${id}`);
-    const data = await response.json();
-    setItem(data.detailsNewsDto);
-    setUsersRate(data.detailsNewsDto.newsRate);
+    try {
+      const response = await getNewsDetails(id);
+      setItem(response.data.detailsNewsDto);
+      setUsersRate(response.data.detailsNewsDto.newsRate);
+    } catch (error) {
+      console.log(error.response?.data);
+      toast.error("خطا در دریافت اطلاعات مقاله");
+    }
   };
 
   useEffect(() => {
     fetchItem();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
+
+  const fetchFavoriteBlogs = useCallback(async() => {
+    try {
+      const response = await getFavoriteNews();
+      console.log(response);
+      console.log(response.data);
+      
+      if(response.data?.myFavoriteNews){
+        setFavouredList(response.data?.myFavoriteNews);
+        console.log("Data Received",response.data.myFavoriteNews);
+      }
+    } catch (error) {
+        console.log(error.response?.data);
+        toast.error("در نمایش مقالات مورد علاقه شما خطایی رخ داد");
+    }
+  },[]);
+
+    useEffect(() => {
+        fetchFavoriteBlogs();
+    }, []);
+
+    useEffect(() => {
+      const isFavorite = favouredList.some(
+        item => item.newsId  === id
+      );
+  
+      setFav(isFavorite);
+    }, [favouredList, id]);
+
+    const addFavorite = async() => {
+      const favoriteStatus = favouredList.find(item => item.newsId  === id);
+
+      if(!favoriteStatus){
+        try {
+          const response = await addNewsFavorite(id);
+          console.log("Favorite Response =",response);
+          
+          toast.success("مقاله به علاقه مندی ها افزوده شد");
+
+          await fetchFavoriteBlogs();
+          setFav(true);
+        } catch (error) {
+          console.log(error.response?.data);
+          toast.error("در افزودن مقاله به علاقه مندی ها خطایی رخ داد");
+        }
+      }
+      else{
+        try {
+          console.log("favoriteStatus:", favoriteStatus);
+          console.log("favoriteId:", favoriteStatus.favoriteId);
+          await deleteFavoriteNews(favoriteStatus.favoriteId);
+
+          toast.success("مقاله از علاقه مندی ها حذف شد");
+
+          await fetchFavoriteBlogs();
+          setFav(false);
+        } catch (error) {
+          console.log(error);
+          toast.error("در حذف مقاله از علاقه مندی ها خطایی رخ داد");
+        }
+      }
+    };
 
   return (
     <div className="w-full mt-10 mb-10 flex justify-center">
@@ -44,7 +120,7 @@ const NewsDetails = () => {
                 </div>
               </div>
               <div
-                onClick={() => setFav(!fav)}
+                onClick={() => {addFavorite()}}
                 className={clsx(
                   "absolute -right-58 -bottom-59 h-100 w-100 scale-45 sm:-right-77 sm:-bottom-77 sm:h-120 sm:w-120 sm:scale-60 cursor-pointer transition-all duration-500",
                   fav

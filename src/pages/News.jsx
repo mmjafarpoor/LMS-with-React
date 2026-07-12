@@ -4,6 +4,8 @@ import NewsFilter from "../components/NewsContainer/NewsFilter";
 import NewsData from "../components/NewsContainer/NewsData";
 import clsx from "clsx";
 import ReactPaginate from "react-paginate";
+import { getNewsList } from "../core/services/newsService/newsService";
+import { toast } from "react-toastify";
 
 const News = () => {
   const [showType, setShowType] = useState("grid");
@@ -11,15 +13,27 @@ const News = () => {
   const [newsItems, setNewsItems] = useState([]);
 
   const [pageIndex, setPageIndex] = useState(0);
+  const [pageCount, setPageCount] = useState(0);
   const perPage = 9;
-  const offset = pageIndex * perPage;
-  const currentItems = newsItems.slice(offset, offset + perPage);
-  const pageCount = Math.abs(newsItems.length / perPage);
+
+  const currentItems = useMemo(() => {
+    const start = pageIndex * perPage;
+    return newsItems.slice(start, start + perPage);
+  }, [newsItems, pageIndex]);
 
   const fetchNews = async () => {
-    const response = await fetch("http://188.121.104.25:3001/News");
-    const data = await response.json();
-    setNewsItems(data.news);
+    try {
+      const response = await getNewsList();
+      console.log("resp",response);
+      
+      if(response.data?.news){
+        setNewsItems(response.data.news);
+        setPageCount(Math.ceil(response.data.totalCount / perPage));
+      }
+    } catch (error) {
+      console.log("Fetch-News-Error",error);
+      toast.error("خطا در بارگذاری مقالات");
+    }
   };
 
   useEffect(() => {
@@ -93,6 +107,7 @@ const News = () => {
             previousLabel={"<"}
             nextLabel={">"}
             pageCount={pageCount}
+            forcePage={pageIndex}
             onPageChange={(page) => setPageIndex(page.selected)}
             containerClassName={"h-12 px-2 rounded-2xl flex flex-row gap-1 items-center text-2xl bg-(--news-boxs) shadow-[0_0px_8px_var(--news-shadow-color)]"}
             pageClassName={"h-full w-12 content-center text-center text-(--text-color) text-[18px] cursor-pointer"}

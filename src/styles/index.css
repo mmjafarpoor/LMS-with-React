@@ -54,6 +54,7 @@ body > div:not([data-otp]) {
     --dashBoard-Main-Title: #4F4F4F;
     --dashboard-tab-text: #909090;
     --deselected-pic: #666666;
+    --progress-bar-trail: "rgba(12, 189, 226, 0.18)";
     --invert-color: 0;
 }
 .dark-theme {
@@ -88,6 +89,7 @@ body > div:not([data-otp]) {
     --dashBoard-Main-Title: #838383;
     --dashboard-tab-text: #FFFFFF;
     --deselected-pic: #4F4F4F;
+    --progress-bar-trail: "rgba(9, 134, 160, 0.25)";
     --invert-color: 1;
 }
 
