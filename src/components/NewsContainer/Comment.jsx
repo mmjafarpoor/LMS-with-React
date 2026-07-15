@@ -55,10 +55,18 @@ const Comment = ({ newsId , courseId }) => {
         <Formik>
           <Form className="w-[92%] flex flex-col gap-4.5">
             <TextareaAutosize
+              maxRows={1}
+              maxLength={25}
+              name="commentTitle"
+              placeholder="عنوان دیدگاه خود را وارد کنید"
+              className="w-70 p-4 rounded-2xl bg-(--input-bg) transition-all resize-none
+              outline-none border border-transparent focus:border-[#0CBDE2]"
+            />
+            <TextareaAutosize
               minRows={3}
               maxRows={12}
-              name="comment"
-              placeholder="لطفا دیدگاه خود را وارد کنید"
+              name="commentDescribe"
+              placeholder="دیدگاه خود را وارد کنید"
               className="w-full p-4 rounded-2xl bg-(--input-bg) transition-all resize-none
               outline-none border border-transparent focus:border-[#0CBDE2]"
             />
