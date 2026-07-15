@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getTeachersList } from "../../../core/services/teachersService/teachersService";
 
 const NewsCards = () => {
   const [teachersItems, setTeachersItems] = useState([]);
   const currentItems = teachersItems.slice(0, 4);
+  
   const fetchTeachers = async () => {
-    const response = await fetch("http://188.121.104.25:3001/Home/GetTeachers");
-    const data = await response.json();
-    setTeachersItems(data);
+    const response = await getTeachersList();
+    setTeachersItems(response.data);
   };
 
   useEffect(() => {

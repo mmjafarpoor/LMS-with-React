@@ -1,25 +1,51 @@
 import apiClient from "../../interceptor/interceptor";
 
-export const getNewsList = (data) =>
-    apiClient.get("/News", data);
-
+export const getNewsList = ({pageNumber , rowsOfPage , sortingCol , sortType}) =>{
+    return apiClient.get("/News",{
+        params:{
+            PageNumber:pageNumber,
+            RowsOfPage:rowsOfPage,
+            SortingCol:sortingCol,
+            SortType:sortType,
+        }
+    });
+}
 export const getNewsDetails = (id) => {
     return apiClient.get(`/News/${id}`);
 };
 
-export const getFavoriteNews = (data) =>
-    apiClient.get("/SharePanel/GetMyFavoriteNews", data);
+export const getFavoriteNews = (data) =>{
+    return apiClient.get("/SharePanel/GetMyFavoriteNews", data);
+}
 
-export const addNewsFavorite = (newsId) =>
-    apiClient.post("/News/AddFavoriteNews", null, {
+export const addNewsFavorite = (newsId) =>{
+    return apiClient.post("/News/AddFavoriteNews", null, {
         params: {
             NewsId: newsId,
         },
     });
+}
 
-export const deleteFavoriteNews = (favoriteId) =>
-    apiClient.delete("/News/DeleteFavoriteNews", {
+export const deleteFavoriteNews = (favoriteId) =>{
+    return apiClient.delete("/News/DeleteFavoriteNews", {
         data: {
             deleteEntityId: favoriteId,
         },
     });
+}
+
+export const addNewsLike = (newsId) =>{
+    return apiClient.post(`/News/NewsLike/${newsId}`);
+}
+
+export const deleteNewsLike = (deleteNewsId) =>{
+    return apiClient.delete("/News/DeleteLikeNews",{deleteEntityId : deleteNewsId});
+}
+
+export const addNewsDisLike = (newsId) =>{
+    return apiClient.post(`/News/NewsDissLike/${newsId}`);
+}
+
+export const getNewsComment = (params) =>{
+    return apiClient.get("/News/GetNewsComments",{params,});
+}

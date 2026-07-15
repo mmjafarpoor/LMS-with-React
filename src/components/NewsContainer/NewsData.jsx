@@ -8,7 +8,7 @@ const NewsData = ({
   title,
   googleTitle,
   describe,
-  // currentImageAddress,
+  currentImageAddress,
   currentView,
 }) => {
   const navigate = useNavigate();
@@ -30,8 +30,8 @@ const NewsData = ({
           position: "absolute",
           ...(showType === "grid" ? { height: "490px" } : { height: "640px" }),
         }}
-        src={"/images/PythonBig.png"}
-        
+        src={currentImageAddress || "/images/PythonBig.png"}
+        onError={(e) => {e.target.src = "/images/PythonBig.png";}}
       />
       <div className="w-[80%] mr-6 flex flex-col gap-2 absolute bottom-4 text-white">
         <p className="text-2xl font-bold!">{title}</p>

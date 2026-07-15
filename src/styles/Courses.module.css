@@ -80,7 +80,6 @@
 .productContainer{
     width: 90%;
     height: max-content;
-    /* border: 1px solid black; */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -139,14 +138,12 @@
 .productMain{
     width: 75%;
     height: max-content;
-    /* border: 1px solid purple; */
     display: flex;
     flex-flow: column nowrap;
 }
 .productsSearchAndDisplay{
     width: 100%;
     height: 48px;
-    /* border: 1px solid blue; */
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
@@ -229,7 +226,6 @@
     flex-flow: row wrap;
     justify-content: center;
     gap: 25px;
-    /* border: 1px solid green; */
 }
                                                 /* React Pagination */
 .paginationContainer{
@@ -304,12 +300,14 @@
     .productContainer{
         width: 100%;
     }
+    .productsSearchAndDisplay{
+        gap: 20px;
+    }
 }
 @media (max-width: 1000px) {
     .coursesBanner{
         flex-direction: column;
         gap: 35px;
-        
     }
     .bannerHeading{
         order: 2;
@@ -323,6 +321,12 @@
     }
     .productFilterContainer{
         display: none;
+    }
+    .productMain{
+        width: 90%;
+    }
+    .productsSearchAndDisplay{
+        gap: 30px;
     }
 }
 @media (max-width: 800px) {
@@ -345,9 +349,17 @@
     .bannerDescription{
         font-size: clamp(0.85rem,2vw,1rem);
     }
+    .productMain{
+        width: 100%;
+    }
+}
+@media (max-width: 700px) {
+    .productListDisplaySwitch{
+        display: none;
+    }
 }
 @media (max-width: 600px) {
-
+    
 }
 @media (max-width: 400px) {
     .coursesBanner{

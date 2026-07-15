@@ -26,13 +26,13 @@ const Courses = () => {
   const [pageIndex, setPageIndex] = useState(0);
   const [pageCount, setPageCount] = useState(0);
 
-    const [courseFilters, setCourseFilters] = useState({
-        priceType: "All",
-        teacherId: [],
-        costDown: 0,
-        costUp: 10000000,
-        search: "",
-    });
+  const [courseFilters, setCourseFilters] = useState({
+    priceType: "All",
+    teacherId: [],
+    costDown: 0,
+    costUp: 10000000,
+    search: "",
+  });
 
   const itemsPerPage = 12;
 
@@ -75,21 +75,21 @@ const Courses = () => {
   }, [courseFilters]);
 
   const fetchCourseInstructor = async() =>{
-      try {
-          const response = await apiClient.get("/Home/GetTeachers");
-          if(response?.data){
-              setInstructorList(response.data);
-          }
-          console.log(response.data)
-      } catch (error) {
-          const errorMsg = error.message || "خطا در بارگذاری لیست دوره‌ها";
-          toast.error(errorMsg);
+    try {
+      const response = await apiClient.get("/Home/GetTeachers");
+      if(response?.data){
+          setInstructorList(response.data);
       }
+      console.log(response.data);
+    } catch (error) {
+      const errorMsg = error.message || "خطا در بارگذاری لیست دوره‌ها";
+      toast.error(errorMsg);
     }
+  }
 
-    useEffect(() => {
-        fetchCourseInstructor();
-    }, [])
+  useEffect(() => {
+    fetchCourseInstructor();
+  }, [])
 
     
     // const startIndex = pageIndex * itemsPerPage;
@@ -112,13 +112,24 @@ const Courses = () => {
     // }
     const formatPrice = (price) => {
       if (price === null || price === undefined) return '';
-        const numberPrice = Number(price);
-        return numberPrice.toLocaleString('en-US');
+      const numberPrice = Number(price);
+      return numberPrice.toLocaleString('en-US');
     };
 
     const handleDisplayChange = (changeMode) => {
-        setDisplayMode(changeMode);
+      if (window.innerWidth <= 700) return;
+      setDisplayMode(changeMode);
     };
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 700) {
+        setDisplayMode("regular");
+      }};
+    handleResize();
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+  }, []);
     
   return (
     <div className={Style.coursesContainer}>
@@ -164,7 +175,7 @@ const Courses = () => {
               </div>
             </div>
             <div className={Style.productSearchBar}>
-              <SearchInput/>
+              <SearchInput courseFilters={courseFilters} setCourseFilters={setCourseFilters}/>
             </div>
             <div className={Style.viewAsMenu}>
               <ViewAsMenu/>

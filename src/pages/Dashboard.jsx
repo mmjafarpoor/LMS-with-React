@@ -137,8 +137,13 @@ const DashBoard = () => {
                                     </span>
                                 </div>
                             </div>
-                            <div className={Style.themeSwitch} ref={themeButtonRef} onClick={handleThemeToggle}  title={isDarkMode ? "حالت روشن" : "حالت تاریک"}>
-                                <motion.img key={isDarkMode} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }} src={isDarkMode ? "/images/lightMode.svg" : "/images/darkMode.svg"} alt={isDarkMode ? "Light Mode" : "Dark Mode"} className={Style.themeIcon}/>
+                            <div className={Style.headerAccessBar}>
+                                <div className={Style.homeButton} onClick={() => navigate("/")} title='برگشت به خانه'>
+                                    <img src={isDarkMode ? "/images/homeButton.png" : "/images/homeButtonWhite.png"} alt="Home-Button" className={Style.themeIcon}/>
+                                </div>
+                                <div className={Style.themeSwitch} ref={themeButtonRef} onClick={handleThemeToggle}  title={isDarkMode ? "حالت روشن" : "حالت تاریک"}>
+                                    <motion.img key={isDarkMode} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }} src={isDarkMode ? "/images/lightMode.svg" : "/images/darkMode.svg"} alt={isDarkMode ? "Light Mode" : "Dark Mode"} className={Style.themeIcon}/>
+                                </div>
                             </div>
                         </div>
                     </div>

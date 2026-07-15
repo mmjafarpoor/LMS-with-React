@@ -4,32 +4,38 @@ import RatingStars from '../../../common/RatingStars/RatingStars';
 import { useNavigate } from 'react-router-dom';
 
 const FullLineCard = ({courseId, title, describe, cost, currentRegistrants, imageAddress, courseRate, teacherId, teacherName}) => {
-
   const navigate = useNavigate();
+
   const GoToCourseDetails = () => {
     navigate(`/Courses/${courseId}`);
   };
+  
   const GoToTeacherDetails = (e) => {
     e.stopPropagation();
     navigate(`/Teachers/${teacherId}/${teacherName.replaceAll(" ", "-")}`);
   };
 
+  const discountCalculator = () => {
+    const price = Number(String(cost).replace(/[,.]/g, ""));
+    return Math.round(price * 1.2).toLocaleString();
+  };
+
   return (
     <div onClick={GoToCourseDetails} className={Style.fullLineCard}>
       <div className={Style.imageWrapper}>
-        <img src="/images/javaScriptProductCard.png" alt="Product Image" className={Style.productImage}/>
+        <img src={imageAddress || "/images/javaScriptProductCard.png"} onError={(e) => {e.target.src = "/images/javaScriptProductCard.png";}} alt="Product Image" className={Style.productImage}/>
       </div>
       <div className={Style.productMeta}>
         <div className={Style.productHeading}>
-          <span className={Style.productTitle}>{title}</span>
-          <span className={Style.productDescription}>{describe}</span>
+          <span className={Style.productTitle}>{title || "عنوان دوره"}</span>
+          <span className={Style.productDescription}>{describe || "توضیحات دوره"}</span>
         </div>
         <div className={Style.productInfo}>
           <div className={Style.productPrice}>
             <div className={Style.olderPrice}>
-              <span className={Style.olderPriceSpan}>40.000 تومان</span>
+              <span className={Style.olderPriceSpan}>{discountCalculator()} تومان</span>
               <div className={Style.priceOfferLine}></div>
-              <div className={Style.discountPercentage}>10%</div>
+              <div className={Style.discountPercentage}>20%</div>
             </div>
             <div className={Style.newPrice}>{cost} تومان</div>
           </div>

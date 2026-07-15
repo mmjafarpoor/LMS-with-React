@@ -11,23 +11,26 @@ import GreetingMessage from '../../common/GreetingMessage/GreetingMessage'
 import { toast } from 'react-toastify'
 import { getCourseList } from '../../../core/services/get'
 import { formatPricePersian } from '../../../utils/formatPrice'
-import { toShamsiDate , toShamsiDateTime } from "../../../utils/dateFormatter";
-import apiClient from '../../../core/interceptor/interceptor'
+import { toShamsiDate } from "../../../utils/dateFormatter";
 import CircularProgressBar from '../../common/CircularProgressBar/CircularProgressBar'
+import { useNavigate } from 'react-router-dom'
+import { getNewsList } from '../../../core/services/newsService/newsService'
 
 const DashBoardMain = () => {
+    const navigate = useNavigate();
+
     const isDarkMode = useDarkStore((state) => state.isDarkMode);
     const user = userInfoStore((state) => state.user);
 
-    const [sliderValue, setSliderValue] = useState([0,10000000]);
-        console.log(sliderValue);
+    // const [sliderValue, setSliderValue] = useState([0,10000000]);
+    //     console.log(sliderValue);
 
     const [courseList, setCourseList] = useState([]);
     const [newsList, setNewsList] = useState([]);
 
     const fetchCourseList = async (pageNumber = 1) => {
         try{
-            const response = await getCourseList({pageNumber, rowOfPage: 6, sortingCol: "lastUpdate" ,});
+            const response = await getCourseList({pageNumber, rowOfPage: 7, sortingCol: "lastUpdate" ,});
             if (response.data?.courseFilterDtos) {
                 setCourseList(response.data.courseFilterDtos);
                 console.log("Data Received",response.data.courseFilterDtos)}
@@ -38,12 +41,13 @@ const DashBoardMain = () => {
             toast.error(errorMsg);
         }
     }
+    console.log(courseList);
     const fetchNewsList = async () => {
         try {
-            const response = await apiClient("/News",{PageNumber : 1, RowsOfPage: 6, sortingCol: "insertDate" ,});
+            const response = await getNewsList({PageNumber : 1, RowsOfPage: 6, sortingCol: "insertDate" ,});
             if (response.data?.news) {
                 setNewsList(response.data.news);
-                console.log("Data Received",response.data.news)
+                console.log("Data Received",response.data.news);
             }
         }
         catch (error) {
@@ -56,6 +60,13 @@ const DashBoardMain = () => {
         fetchNewsList();
         fetchCourseList(1);
     }, [])
+
+    const GoToNewsDetail = (id , googleTitle) =>{
+        navigate(`/News/${id}/${googleTitle.replaceAll(" ", "-")}`);
+    }
+    const GoToCourseDetail = (courseId) =>{
+        navigate(`/Courses/${courseId}`);
+    }
 
     return (
         <Formik>
@@ -79,9 +90,9 @@ const DashBoardMain = () => {
                         <div className={Style.latestNewsTitle}>جدید ترین اخبار و مقالات</div>
                         <div className={Style.latestNewsItemsContainer}>
                             {newsList.map((news) => (
-                                <div key={news.id} className={Style.latestNewsItems}>
-                                    <span className={Style.newsTitle}>{news.describe}</span>
-                                    <span className={Style.newsPublishedDate}>{toShamsiDateTime(news.insertDate)}</span>
+                                <div key={news.id} className={Style.latestNewsItems} onClick={() => GoToNewsDetail(news.id, news.googleTitle)}>
+                                    <span className={Style.newsTitle}>{news?.title}</span>
+                                    <span className={Style.newsPublishedDate}>{toShamsiDate(news?.insertDate)}</span>
                                 </div>
                             ))}
                         </div>
@@ -93,7 +104,7 @@ const DashBoardMain = () => {
                 </div>
                 <div className={Style.latestCoursesContainer}>
                     <div className={Style.latestCoursesTitle}>جدید ترین دوره ها</div>
-                    <div className={Style.latestCoursesInputs}>
+                    {/* <div className={Style.latestCoursesInputs}>
                         <div className={Style.formStyle}>
                             <div className={Style.searchFilter}>
                                 <button className={Style.searchSubmit} type='submit'>
@@ -114,16 +125,16 @@ const DashBoardMain = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className={Style.latestCoursesItemContainer}>
                         {courseList.map((course) => (
-                            <div key={course.id} className={Style.latestCourses}>
+                            <div key={course.courseId} className={Style.latestCourses}>
                                 <div className={Style.latestCourseTitle}>{course.title}</div>
                                 <div className={Style.latestCourseDescription}>{course.describe}</div>
                                 <div className={Style.courseInstructors}>{course.teacherName}</div>
                                 <div className={Style.coursePublishDate}>{toShamsiDate(course.lastUpdate)}</div>
                                 <div className={Style.coursePrice}>{formatPricePersian(course.cost)}</div>
-                                <div className={Style.viewCourse}>
+                                <div className={Style.viewCourse} onClick={() => GoToCourseDetail(course.courseId)}>
                                     <img src={isDarkMode ? "/images/viewProductDark.svg" :"/images/viewProduct.svg"} alt="View-Course-Icon" className={Style.viewCourseIcon}/>
                                 </div>
                             </div>

@@ -16,14 +16,11 @@ const News = () => {
   const [pageCount, setPageCount] = useState(0);
   const perPage = 9;
 
-  const currentItems = useMemo(() => {
-    const start = pageIndex * perPage;
-    return newsItems.slice(start, start + perPage);
-  }, [newsItems, pageIndex]);
+  const currentItems = newsItems;
 
-  const fetchNews = async () => {
+  const fetchNews = async (pageNumber = 1) => {
     try {
-      const response = await getNewsList();
+      const response = await getNewsList({pageNumber , rowsOfPage : perPage});
       console.log("resp",response);
       
       if(response.data?.news){
@@ -34,6 +31,14 @@ const News = () => {
       console.log("Fetch-News-Error",error);
       toast.error("خطا در بارگذاری مقالات");
     }
+  };
+
+  const handlePageClick = async (event) => {
+    const page = event.selected + 1;
+
+    setPageIndex(event.selected);
+
+    await fetchNews(page);
   };
 
   useEffect(() => {
@@ -108,7 +113,7 @@ const News = () => {
             nextLabel={">"}
             pageCount={pageCount}
             forcePage={pageIndex}
-            onPageChange={(page) => setPageIndex(page.selected)}
+            onPageChange={handlePageClick}
             containerClassName={"h-12 px-2 rounded-2xl flex flex-row gap-1 items-center text-2xl bg-(--news-boxs) shadow-[0_0px_8px_var(--news-shadow-color)]"}
             pageClassName={"h-full w-12 content-center text-center text-(--text-color) text-[18px] cursor-pointer"}
             pageLinkClassName="block"

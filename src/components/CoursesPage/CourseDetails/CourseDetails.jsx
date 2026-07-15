@@ -4,9 +4,10 @@ import { useParams } from "react-router-dom";
 import "@smastrom/react-rating/style.css";
 import Comment from "../../NewsContainer/Comment";
 import clsx from "clsx";
-import { addCourseFavorite } from "../../../core/services/coursesService/coursesService";
+import { addCourseDisLike, addCourseFavorite, addCourseLike, getCourseDetail } from "../../../core/services/coursesService/coursesService";
 import { toast } from "react-toastify";
 import { deleteFavoriteCourse, getFavoriteCourse } from "../../../core/services/dashBoardService/dashBoardApi";
+import { toShamsiDate } from "../../../utils/dateFormatter";
 
 const NewsDetails = () => {
 
@@ -22,17 +23,22 @@ const NewsDetails = () => {
   const [favoriteList, setFavoriteList] = useState([]);
 
   const fetchItem = async () => {
-    const response = await fetch(
-      `http://188.121.104.25:3001/Home/GetCourseDetails?CourseId=${courseId}`,
-    );
-    const data = await response.json();
-    setItem(data);
+    try {
+      const response = await getCourseDetail(courseId);
+      console.log("Detail =",response.data);
+      setItem(response.data);
+    } catch (error) {
+      console.error("Fetch error:", error);
+      const errorMsg = error.message || "خطا در بارگذاری لیست دوره‌ها";
+      toast.error(errorMsg);
+    }
   };
 
   useEffect(() => {
     fetchItem();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [courseId]);
+
 
   const fetchFavoriteCourses = useCallback(async() => {
     try {
@@ -89,6 +95,31 @@ const NewsDetails = () => {
     }
   }
 
+  const handleLike = async () => {
+    try {
+      await addCourseLike(courseId);
+      toast.success("لایک ثبت شد");
+
+      await fetchItem();
+    }
+    catch (error) {
+      console.log(error.response?.data);
+      toast.error(error.response?.data?.message || "خطایی رخ داد");
+    }
+  };
+
+  const handleDisLike = async () => {
+    try {    
+      await addCourseDisLike(courseId);
+      toast.success("دیسلایک ثبت شد");
+      await fetchItem();
+    } 
+    catch (error) {
+      console.log(error.response?.data);
+      toast.error(error.response?.data?.message || "خطایی رخ داد");
+    }
+  };
+
   return (
     <div className="w-full mt-10 mb-10 flex justify-center">
       <div className="w-[97%] md:w-[90%] flex flex-row flex-wrap justify-around">
@@ -97,14 +128,15 @@ const NewsDetails = () => {
             <div className="w-fit flex justify-center relative">
               <img
                 style={{ width: "950px", borderRadius: "24px" }}
-                src="/images/JSBig.jpg"
+                src={item?.imageAddress || "/images/JSBig.jpg"}
+                onError={(e) => {e.target.src = "/images/javaScriptProductCard.png";}}
               />
               <div className="p-1 flex flex-row items-center gap-5 rounded-tr-3xl bg-(--bg-color) absolute bottom-0 left-0">
-                <div className="flex flex-row items-center">
+                <div className="flex flex-row items-center" onClick={() => handleLike()}>
                   <div className="h-10 w-10 bg-[url(/public/images/like.png)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
                   <div className="font-bold!">{item?.likeCount}</div>
                 </div>
-                <div className="flex flex-row items-center">
+                <div className="flex flex-row items-center" onClick={() => handleDisLike()}>
                   <div className="h-10 w-10 bg-[url(/public/images/disslike.png)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
                   <div className="font-bold!">{item?.dissLikeCount}</div>
                 </div>
@@ -156,14 +188,14 @@ const NewsDetails = () => {
                 <div className="h-6.5 w-6 bg-[url(/public/images/calendar-start.svg)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
                 <p className="text-(--news-description)">شروع</p>
               </div>
-              <div>1/1/1</div>
+              <div>{toShamsiDate(item?.startTime)}</div>
             </div>
             <div className="h-12 w-[85%] flex items-center justify-between border-b border-(--news-description)">
               <div className="flex flex-row gap-2">
                 <div className="h-6.5 w-6 bg-[url(/public/images/calendar-start.svg)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
                 <p className="text-(--news-description)">پایان</p>
               </div>
-              <div>12/12/12</div>
+              <div>{toShamsiDate(item?.endTime)}</div>
             </div>
             <div className="mt-4 h-12 w-[85%] flex flex-row items-center justify-between">
               <button className="py-2.5 px-6.5 lg:px-2.5 rounded-3xl bg-(--button-bg) hover:bg-(--button-hover) font-semibold! cursor-pointer transition-all duration-300 ease-in-out">

@@ -14,15 +14,20 @@ const RegularCard = ({courseId, title, describe, cost, currentRegistrants, image
         navigate(`/Teachers/${teacherId}/${teacherName.replaceAll(" ", "-")}`);
     };
 
+    const discountCalculator = () => {
+        const price = Number(String(cost).replace(/[,.]/g, ""));
+        return Math.round(price * 1.2).toLocaleString();
+    };
+
     return (
         <div className={Style.regularCard}>
             <div onClick={GoToCourseDetails} className={Style.imageWrapper}>
-                <img src="/images/javaScriptProductCard.png" className={Style.productImg} alt="ProductCard Image"/>
+                <img src={imageAddress || "/images/javaScriptProductCard.png"} onError={(e) => {e.target.src = "/images/javaScriptProductCard.png";}}  className={Style.productImg} alt="ProductCard Image"/>
             </div>
             <div onClick={GoToCourseDetails} className={Style.productMeta}>
                 <div className={Style.metaHeading}>
-                    <span className={Style.productTitle}>{title}</span>
-                    <span className={Style.productDescription}>{describe}</span>
+                    <span className={Style.productTitle}>{title || "عنوان دوره"}</span>
+                    <span className={Style.productDescription}>{describe || "توضیحات دوره"}</span>
                 </div>
                 <div className={Style.productInfo}>
                     <RatingStars courseRate={courseRate}/>
@@ -38,7 +43,7 @@ const RegularCard = ({courseId, title, describe, cost, currentRegistrants, image
                     </div>
                     <div className={Style.productPrice}>
                         <div className={Style.olderPrice}>
-                            <span className={Style.olderPriceSpan}>500.000 تومان</span>
+                            <span className={Style.olderPriceSpan}>{discountCalculator()} تومان</span>
                             <div className={Style.offerLine}></div>
                         </div>
                         <span className={Style.newPrice}>{cost} تومان</span>

@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getNewsList } from "../../../core/services/newsService/newsService";
 
 const NewsCards = () => {
+
   const [newsItems, setNewsItems] = useState([]);
-  const currentItems = newsItems.slice(0, 3);
+  // const currentItems = newsItems.slice(0, 3);
+
   const fetchNews = async () => {
-    const response = await fetch("http://188.121.104.25:3001/News");
-    const data = await response.json();
-    setNewsItems(data.news);
+    const response = await getNewsList({pageNumber : 1 , rowsOfPage : 3});
+    setNewsItems(response.data.news);
   };
 
   useEffect(() => {
@@ -34,7 +36,7 @@ const NewsCards = () => {
         </p>
       </div>
       <div className="w-full flex flex-row flex-wrap justify-center gap-5">
-        {currentItems.map((item) => (
+        {newsItems.map((item) => (
           <div
             onClick={() => GoToNewsDetails(item)}
             className="rounded-3xl overflow-hidden cursor-pointer relative w-110 md:w-125 xl:w-78.75 hover:w-150 md:hover:w-135 xl:hover:w-110  h-122.5 transition-all duration-250"

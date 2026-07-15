@@ -1,16 +1,19 @@
 import React from 'react'
 import Style from './SearchInput.module.css'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
-import * as Yup from 'yup'
-const SearchInput = () => {
-    const validationSchema = Yup.object({
-    search: Yup.string().required("نام محصول را وارد کنید"),
-});
+const SearchInput = ({ courseFilters, setCourseFilters }) => {
     return (
         <Formik
-            initialValues={{search : "",}}
-            onSubmit={(values) => {console.log(values);}}
-            validationSchema={validationSchema}
+            initialValues={{
+                search: courseFilters.search,
+            }}
+            enableReinitialize
+            onSubmit={(values) => {
+                setCourseFilters((prev) => ({
+                    ...prev,
+                    search: values.searchTheFilter,
+                }));
+            }}
         >
             {({ touched, errors }) => (
                 <Form>

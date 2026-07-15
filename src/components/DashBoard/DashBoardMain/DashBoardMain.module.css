@@ -105,7 +105,12 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
 }
+/* .latestNewsItems:hover{
+    border-bottom: 1px dashed var(--link-color);
+} */
 .newsTitle{
     font-weight: 500;
     color: var(--dashBoard-Main-Title);
@@ -114,12 +119,18 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+.latestNewsItems:hover > .newsTitle{
+    color : var(--link-color);
+}
 .newsPublishedDate{
     direction: ltr;
     color: #838383;
-    max-width: 180px;
+    max-width: 150px;
     white-space: nowrap;
 }
+/* .latestNewsItems:hover > .newsTitle + .newsPublishedDate{
+    color : var(--link-color);
+} */
 .profileProgress{
     width: calc(26% - 20px);
     height: 100%;
@@ -145,7 +156,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    /* gap: 10px; */
+    gap: 15px;
 }
 .latestCoursesTitle{
     margin-top: 15px;
@@ -160,7 +172,8 @@
 }
 .latestCoursesItemContainer{
     width: 95%;
-    height: calc(100% - 80px - 50px);
+    /* height: calc(100% - 80px - 50px); */
+    height: calc(100% - 65px);
     display: flex;
     flex-direction: column;
     gap: 3px;

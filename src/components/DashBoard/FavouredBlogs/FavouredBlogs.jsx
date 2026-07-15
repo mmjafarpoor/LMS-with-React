@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import Style from './FavouredBlogs.module.css'
-import DashBoardCoursesData from '../../../Data/DashBoardCoursesData'
 import ReactPaginate from 'react-paginate'
 import { Field, Form, Formik } from 'formik'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { getFavoriteNews } from '../../../core/services/newsService/newsService'
+import { deleteFavoriteNews, getFavoriteNews } from '../../../core/services/newsService/newsService'
+import { toShamsiDate } from '../../../utils/dateFormatter'
 
 const FavouredBlogs = () => {
     const navigate = useNavigate();
@@ -34,11 +34,65 @@ const FavouredBlogs = () => {
         }
     },[]);
 
+    const GoToNewsDetails = (newsId , googleTitle) => {
+        const courseDetail = toast.loading("در حال انتقال به مقاله انتخاب شده...");
+
+        try {
+            navigate(`/News/${newsId}/${googleTitle.replaceAll(" ", "-")}`);
+            setTimeout(()=>{
+                toast.update(courseDetail, {
+                    render: "با موفقیت به مقاله انتخاب شده منتقل شدید",
+                    type: "success",
+                    isLoading: false,
+                    autoClose: 800,
+                });
+            },500);
+        } catch (error) {
+            console.log(error.response?.data);
+            setTimeout(()=>{
+                toast.update(courseDetail, {
+                    render: "در انتقال به مقاله انتخاب شده خطایی رخ داد",
+                    type: "error",
+                    isLoading: false,
+                    autoClose: 800,
+                });
+            },500);
+        }
+    };
+
+    const deleteFavorite = async(id) => {
+        const deleteToast = toast.loading("در حال حذف دوره انتخاب شده...");
+
+        try {
+            await deleteFavoriteNews(id);
+            await fetchFavoriteBlogs();
+
+            setTimeout(()=>{
+                toast.update(deleteToast, {
+                    render: "دوره از علاقه مندی ها حذف شد",
+                    type: "success",
+                    isLoading: false,
+                    autoClose: 800,
+                });
+            },500)
+
+        } catch (error) {
+            console.log(error.response?.data);
+            setTimeout(()=>{
+                toast.update(deleteToast, {
+                    render: "در حذف دوره از علاقه مندی ها خطایی رخ داد",
+                    type: "error",
+                    isLoading: false,
+                    autoClose: 800,
+                });
+            },500);
+        }
+    };
+
     useEffect(() => {
         fetchFavoriteBlogs();
     }, [fetchFavoriteBlogs]);
-    
-            
+
     const handlePageClick = async (event) => {
         const page = event.selected + 1;
 
@@ -69,19 +123,19 @@ const FavouredBlogs = () => {
                         </div>
                     </div>
                     <div className={Style.itemsContainer}>
-                        {DashBoardCoursesData.map((course) => (
+                        {favouredList.map((course) => (
                             <div key={course.id} className={Style.item}>
                                 <div className={Style.itemImageContainer}>
-                                    <img src={course.imageURL} alt="Item-Image" className={Style.itemImage}/>
+                                    <img src={course.currentImageAddressTumb || "/images/PythonBig.png"} onError={(e) => {e.target.src = "/images/PythonBig.png";}} alt="Item-Image" className={Style.itemImage}/>
                                 </div>
                                 <div className={Style.itemTitle}>{course.title}</div>
-                                <div className={Style.itemDescription}>{course.instructor}</div>
-                                <div className={Style.itemPrice}>{course.date}</div>
+                                <div className={Style.itemDescription}>{course.auther || "اسم ناشر"}</div>
+                                <div className={Style.itemPrice}>{toShamsiDate(course.news.insertDate) || "تاریخ انتشار"}</div>
                                 <div className={Style.itemAction}>
-                                    <div className={Style.viewProduct}>
+                                    <div className={Style.viewProduct} onClick={() => GoToNewsDetails(course.newsId , course.news.googleTitle)}>
                                         <img src="/images/viewProductWithOutBorder.svg" alt="Product-View-Icon" className={Style.viewProductIcon}/>
                                     </div>
-                                    <div className={Style.deleteProduct}>
+                                    <div className={Style.deleteProduct} onClick={() => deleteFavorite(course.id)}>
                                         <img src="/images/cancelProduct.svg" alt="Delete-Product-Icon" className={Style.viewProductIcon}/>
                                     </div>
                                 </div>

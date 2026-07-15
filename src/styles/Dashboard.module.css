@@ -224,6 +224,16 @@
     text-overflow: ellipsis;
     line-height: 1.25;
 }
+.headerAccessBar{
+    width: 95px;
+    height: 40px;
+    display: flex;
+    gap: 15px;
+}
+.homeButton{
+    width: 40px;
+    height: 40px;
+}
 .themeSwitch{
     width: 40px;
     height: 40px;

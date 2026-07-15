@@ -1,24 +1,32 @@
 import { Formik, Form, Field } from "formik";
 import TextareaAutosize from "react-textarea-autosize";
 import React, { useEffect, useState } from "react";
+import { getNewsComment } from "../../core/services/newsService/newsService";
+import { getCourseComment } from "../../core/services/coursesService/coursesService";
 
-const Comment = ({ newsId, courseId }) => {
+const Comment = ({ newsId , courseId }) => {
   const ItemId = newsId ?? courseId;
+
   const [commentModalActive, isCommentModalActive] = useState(false);
   const [comments, setComments] = useState([]);
   const [showMore, setShowMore] = useState(2);
+
   const mainComment = comments
     .filter((comment) => comment.parentId === "")
     .slice(0, showMore);
+
   const replyComment = (id) =>
     comments.filter((reply) => reply.parentId === id);
 
   const fetchItem = async () => {
-    const response = await fetch(
-      `http://188.121.104.25:3001/News/GetNewsComments?NewsId=${ItemId}`,
-    );
-    const data = await response.json();
-    setComments(data);
+    if(ItemId == newsId){
+      const response = await getNewsComment({NewsId : ItemId});
+      setComments(response.data);
+    }
+    if(ItemId == courseId){
+      const courseComment = await getCourseComment(courseId);
+      setComments(courseComment.data);
+    }
   };
 
   useEffect(() => {

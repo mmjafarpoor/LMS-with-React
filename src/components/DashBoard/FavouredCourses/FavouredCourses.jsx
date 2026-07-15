@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import Style from './FavouredCourses.module.css'
-import DashBoardCoursesData from '../../../Data/DashBoardCoursesData'
 import ReactPaginate from 'react-paginate'
 import { Field, Form, Formik } from 'formik'
 import Slider from 'rc-slider';

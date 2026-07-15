@@ -5,7 +5,8 @@ import "@smastrom/react-rating/style.css";
 import Comment from "./Comment";
 import clsx from "clsx";
 import { toast } from "react-toastify";
-import { addNewsFavorite, deleteFavoriteNews, getFavoriteNews, getNewsDetails } from "../../core/services/newsService/newsService";
+import { addNewsDisLike, addNewsFavorite, addNewsLike, deleteFavoriteNews, getFavoriteNews, getNewsDetails } from "../../core/services/newsService/newsService";
+import { toShamsiDate } from "../../utils/dateFormatter";
 
 const NewsDetails = () => {
 
@@ -18,12 +19,13 @@ const NewsDetails = () => {
     const { id } = useParams();
   const [fav, setFav] = useState();
   const [favouredList, setFavouredList] = useState([]);
-  const [item, setItem] = useState(null);
+  const [item, setItem] = useState([]);
   const [usersRate, setUsersRate] = useState(null);
   
   const fetchItem = async () => {
     try {
       const response = await getNewsDetails(id);
+      console.log("Detail =",response.data);
       setItem(response.data.detailsNewsDto);
       setUsersRate(response.data.detailsNewsDto.newsRate);
     } catch (error) {
@@ -99,6 +101,32 @@ const NewsDetails = () => {
       }
     };
 
+  const handleLike = async () => {
+    try {
+      await addNewsLike(id);
+      toast.success("لایک ثبت شد");
+
+      await fetchItem();
+    }
+    catch (error) {
+      console.log(error.response?.data);
+      toast.error(error.response?.data?.message || "خطایی رخ داد");
+    } 
+  };
+    
+  const handleDisLike = async () => {
+    try {    
+      await addNewsDisLike(id);
+      toast.success("دیسلایک ثبت شد");
+
+      await fetchItem();
+    } 
+    catch (error) {
+      console.log(error.response?.data);
+      toast.error(error.response?.data?.message || "خطایی رخ داد");
+    }
+  };
+
   return (
     <div className="w-full mt-10 mb-10 flex justify-center">
       <div className="w-[97%] md:w-[90%] flex flex-row flex-wrap justify-around">
@@ -107,14 +135,14 @@ const NewsDetails = () => {
             <div className="w-fit flex justify-center relative">
               <img
                 style={{ width: "950px", borderRadius: "24px" }}
-                src="/images/PythonBig.png"
+                src={item?.currentImageAddress || "/images/PythonBig.png"}
               />
               <div className="p-1 flex flex-row items-center gap-5 rounded-tr-3xl bg-(--bg-color) absolute bottom-0 left-0">
-                <div className="flex flex-row items-center">
+                <div className="flex flex-row items-center" onClick={() => handleLike()}>
                   <div className="h-10 w-10 bg-[url(/images/like.png)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
                   <div className="font-bold!">{item?.currentLikeCount}</div>
                 </div>
-                <div className="flex flex-row items-center">
+                <div className="flex flex-row items-center" onClick={() => handleDisLike()}>
                   <div className="h-10 w-10 bg-[url(/images/disslike.png)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
                   <div className="font-bold!">{item?.currentDissLikeCount}</div>
                 </div>
@@ -163,7 +191,7 @@ const NewsDetails = () => {
                 <div className="h-6.5 w-6 bg-[url(/images/calendar-start.svg)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
                 <p className="text-(--news-description)">تاریخ</p>
               </div>
-              <div>1/1/1</div>
+              <div>{toShamsiDate(item?.insertDate)}</div>
             </div>
           </div>
           <div className="h-20 rounded-3xl bg-(--news-boxs) shadow-[0_0px_8px_var(--news-shadow-color)] flex justify-center items-center">
