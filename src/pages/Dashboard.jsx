@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Style from '../styles/Dashboard.module.css'
 import DashBoardMenuItems from '../Data/DashBoardMenuItems'
-import { Link, Outlet, useNavigate } from 'react-router-dom'
+import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import userInfoStore from '../store/UserInfoStore'
 import useDarkStore from '../store/DarkStore'
 // eslint-disable-next-line no-unused-vars
@@ -27,9 +27,9 @@ const DashBoard = () => {
         },1700)
     }
 
-    const [selectedItem, setSelectedItem] = useState(DashBoardMenuItems[0].id);
+    // const [selectedItem, setSelectedItem] = useState(DashBoardMenuItems[0].id);
     const user = userInfoStore((state) => state.user);
-    const loading = userInfoStore((state) => state.loading);
+    // const loading = userInfoStore((state) => state.loading);
     const fetchUser = userInfoStore((state) => state.fetchUser);
 
     useEffect(() => {
@@ -101,12 +101,12 @@ const DashBoard = () => {
                             </div>
                             <div className={Style.menuItemsContainer}>
                                 {DashBoardMenuItems.map((item) =>(
-                                    <Link to={item.linkTo} key={item.id} className={selectedItem === item.id  ? Style.activeMenuItem : Style.inactiveMenuItem} onClick={() => {setSelectedItem(item.id);if(window.innerWidth <= 1200){setIsMenuOpen(false);}}} >
+                                    <NavLink to={item.linkTo} key={item.id} className={({ isActive }) => isActive ? Style.activeMenuItem : Style.inactiveMenuItem} onClick={() => {if(window.innerWidth <= 1200){setIsMenuOpen(false);}}} >
                                         <div className={Style.menuItemIconContainer}>
                                             <img src={isDarkMode ? item.imageUrlDarkMode : item.imageUrlLightMode} alt={item.imageAlt} className={Style.menuItemIcon} />
                                         </div>
                                         <span className={Style.menuItemTitle}>{item.title}</span>
-                                    </Link>
+                                    </NavLink>
                                 ))}
                             </div>
                         </div>
@@ -138,7 +138,7 @@ const DashBoard = () => {
                                 </div>
                             </div>
                             <div className={Style.headerAccessBar}>
-                                <div className={Style.homeButton} onClick={() => navigate("/")} title='برگشت به خانه'>
+                                <div className={Style.homeButton} onClick={() => navigate("/Home")} title='برگشت به خانه'>
                                     <img src={isDarkMode ? "/images/homeButton.png" : "/images/homeButtonWhite.png"} alt="Home-Button" className={Style.themeIcon}/>
                                 </div>
                                 <div className={Style.themeSwitch} ref={themeButtonRef} onClick={handleThemeToggle}  title={isDarkMode ? "حالت روشن" : "حالت تاریک"}>

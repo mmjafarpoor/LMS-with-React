@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import Style from "../styles/Landing.module.css";
 import clsx from "clsx";
-import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Link, NavLink, Outlet , useNavigate } from "react-router-dom";
 import "react-toastify/ReactToastify.css";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
@@ -21,21 +21,8 @@ const Landing = () => {
 
     const navigate = useNavigate();
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
-	
-    const location = useLocation();
 
     const token = localStorage.getItem("token");
-
-    function getActivePage() {
-        const path = location.pathname;
-
-        if (path === "/") return "Home";
-        if (path.startsWith("/Courses")) return "Courses";
-        if (path.startsWith("/About")) return "About";
-        if (path.startsWith("/Contact")) return "Contact";
-
-        return "Home";
-    }
 	
 	const themeButtonRef = useRef(null);
     const isDarkMode = useDarkStore((state) => state.isDarkMode);
@@ -126,7 +113,7 @@ const Landing = () => {
                 isLoading: false,
                 autoClose: 1000,
             });
-            navigate("/Dashboard");
+            navigate("/Dashboard/Main");
         },1500)
     }
 
@@ -178,11 +165,11 @@ const Landing = () => {
                         </div>
                     </div>
                     <div className={Style.menu}>
-                        <Link to={"Home"} className={Style.menuItem}>خانه</Link>
-                        <Link to={"Courses"} className={Style.menuItem}>دوره ها</Link>
-                        <Link to={"Teachers"} className={Style.menuItem}>اساتید</Link>
-                        <Link to={"News"} className={Style.menuItem}>اخبار و مقالات</Link>
-                        <Link to={"Contact"} className={Style.menuItem}>ارتباط با ما</Link>
+                        <NavLink to={"Home"} className={({ isActive }) => isActive ? Style.menuItemActive : Style.menuItem}>خانه</NavLink>
+                        <NavLink to={"Courses"} className={({ isActive }) => isActive ? Style.menuItemActive : Style.menuItem}>دوره ها</NavLink>
+                        <NavLink to={"Teachers"} className={({ isActive }) => isActive ? Style.menuItemActive : Style.menuItem}>اساتید</NavLink>
+                        <NavLink to={"News"} className={({ isActive }) => isActive ? Style.menuItemActive : Style.menuItem}>اخبار و مقالات</NavLink>
+                        <NavLink to={"Contact"} className={({ isActive }) => isActive ? Style.menuItemActive : Style.menuItem}>ارتباط با ما</NavLink>
                     </div>
                     <div className={Style.loginContainer} style={{width: token ? "auto" : "14.5%" , minWidth: token ? "100px" : "210px"}}>
                         <div className={Style.darkModeSwitch}

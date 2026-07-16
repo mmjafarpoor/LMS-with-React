@@ -58,7 +58,6 @@
 }
 .landingContainer > .headerContainer > .header > .menu > .menuItem{
     white-space: nowrap;
-    font-family: IranSans;
     font-weight: 900;
     font-size: clamp(1.1rem,1.2vw,1.55rem);
     user-select: none;
@@ -66,12 +65,11 @@
 }
 .landingContainer > .headerContainer > .header > .menu > .menuItemActive{
     white-space: nowrap;
-    font-family: IranSans;
-    color: purple;
     font-weight: 900;
     font-size: clamp(1.1rem,1.2vw,1.55rem);
     user-select: none;
     cursor: pointer;
+    color:var(--button-bg);
 }
 .landingContainer > .mobileMenu{
     width: 100%;

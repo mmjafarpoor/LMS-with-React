@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import { lazy } from "react";
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -43,7 +43,7 @@ import Connections from "../../components/DashBoard/DashBoardProfile/Connections
 
 const router = createBrowserRouter([
     { path: "/", element: <Landing/> , children:[
-        {index: true, element: <Home/> },
+        {index: true, element: <Navigate to="Home" replace /> },
         { path: "Home", element: <Home/> },
         { path: "Courses", element: <Courses/> },
         { path: "Courses/:courseId", element: <CourseDetails/> },
@@ -67,7 +67,7 @@ const router = createBrowserRouter([
     { element: <ProtectedRoute/>,
       children: [
         {path: "/Dashboard", element: <DashBoard/>,children: [
-          {index: true, element: <DashBoardMain/> },
+          {index: true, element: <Navigate to="Main" replace />},
           { path: "Main", element: <DashBoardMain/> },
           { path: "Booked", element: <BookedCourses/> },
           { path: "Reserved", element: <Reserved/> },
