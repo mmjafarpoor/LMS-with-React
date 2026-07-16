@@ -197,12 +197,13 @@ const NewsDetails = () => {
           <div className="h-20 rounded-3xl bg-(--news-boxs) shadow-[0_0px_8px_var(--news-shadow-color)] flex justify-center items-center">
             <div className="w-[85%] flex flex-row items-center gap-2">
               <img
-                style={{ height: "64px", borderRadius: "100%" }}
-                src="/images/bob.png"
+                style={{ height: "64px", width:"64px", borderRadius: "100%" }}
+                src={item?.addUserProfileImage || "/images/bob.png"}
+                onError={(e) => {e.target.src = "/images/bob.png";}}
               />
               <div className="flex flex-col gap-1">
-                <p>باب اسفنجی</p>
-                <p className="text-(--news-description) text-[14px]">@bob</p>
+                <p>{item?.addUserFullName || "اسم ناشر"}</p>
+                <p className="text-(--news-description) text-[14px]">@userName</p>
               </div>
             </div>
           </div>

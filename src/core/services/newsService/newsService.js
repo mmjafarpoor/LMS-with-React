@@ -49,3 +49,7 @@ export const addNewsDisLike = (newsId) =>{
 export const getNewsComment = (params) =>{
     return apiClient.get("/News/GetNewsComments",{params,});
 }
+
+export const addNewsComment = (params) =>{
+    return apiClient.post("/News/CreateNewsComment",params);
+}

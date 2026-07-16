@@ -13,7 +13,7 @@ const CoursesCards = () => {
         {[1, 2, 3, 4, 5, 6].map(() => (
           <div className=" w-100 mt-5 relative flex flex-col items-center">
             <img className="" src="/images/css3.svg" />
-            <div className="h-45 w-85 -mt-15 hover:mt-1 flex flex-col items-center justify-center gap-4 rounded-2xl bg-(--header-bg) shadow-[0_0px_8px_var(--courses-cards-shadow-color)] transition-all duration-250 z-10000">
+            <div className="h-45 w-85 -translate-y-15 hover:-translate-y-5 flex flex-col items-center justify-center gap-4 rounded-2xl bg-(--header-bg) shadow-[0_0px_8px_var(--courses-cards-shadow-color)] transition-all duration-250 z-10000">
               <div className="w-[90%] font-semibold!">
                 <p>آموزش</p>
               </div>

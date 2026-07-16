@@ -1,8 +1,9 @@
 import { Formik, Form, Field } from "formik";
 import TextareaAutosize from "react-textarea-autosize";
 import React, { useEffect, useState } from "react";
-import { getNewsComment } from "../../core/services/newsService/newsService";
-import { getCourseComment } from "../../core/services/coursesService/coursesService";
+import { addNewsComment, getNewsComment } from "../../core/services/newsService/newsService";
+import { addCourseComment, getCourseComment } from "../../core/services/coursesService/coursesService";
+import { toast } from "react-toastify";
 
 const Comment = ({ newsId , courseId }) => {
   const ItemId = newsId ?? courseId;
@@ -19,13 +20,18 @@ const Comment = ({ newsId , courseId }) => {
     comments.filter((reply) => reply.parentId === id);
 
   const fetchItem = async () => {
-    if(ItemId == newsId){
-      const response = await getNewsComment({NewsId : ItemId});
-      setComments(response.data);
-    }
-    if(ItemId == courseId){
-      const courseComment = await getCourseComment(courseId);
-      setComments(courseComment.data);
+    try {
+      if(ItemId == newsId){
+        const response = await getNewsComment({NewsId : ItemId});
+        setComments(response.data);
+      }
+      if(ItemId == courseId){
+        const courseComment = await getCourseComment(courseId);
+        setComments(courseComment.data);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("در بارگیری نظرات خطایی رخ داد")
     }
   };
 
@@ -52,24 +58,66 @@ const Comment = ({ newsId , courseId }) => {
           w-full transition-all duration-700 overflow-hidden flex flex-col justify-around items-center
           ${commentModalActive ? "max-h-500 w-full py-9 rounded-3xl bg-(--news-boxs) shadow-[0_0px_8px_var(--news-shadow-color)]" : "h-0"}`}
       >
-        <Formik>
+        <Formik
+        initialValues={{
+          commentTitle: "",
+          commentDescribe: "",
+        }}
+        onSubmit={async (values , { resetForm }) => {
+          try {
+            if(ItemId == newsId){
+              await addNewsComment({
+                newsId: newsId,
+                title: values.commentTitle,
+                describe: values.commentDescribe,
+              })
+            }
+            if(ItemId == courseId){
+              await addCourseComment({
+                courseId: courseId,
+                title: values.commentTitle,
+                describe: values.commentDescribe,
+              });
+            }
+            toast.success("نظر با موفقیت ثبت شد");
+
+            await fetchItem();
+            resetForm();
+            isCommentModalActive(false);
+          } catch (error) {
+            console.log(error);
+            console.log(error.response?.status);
+            console.log(error.response?.data);
+            console.log(error.response);
+            toast.error("در افزودن نظر خطایی رخ داد");
+          }
+        }}
+        >
           <Form className="w-[92%] flex flex-col gap-4.5">
-            <TextareaAutosize
-              maxRows={1}
-              maxLength={25}
-              name="commentTitle"
-              placeholder="عنوان دیدگاه خود را وارد کنید"
-              className="w-70 p-4 rounded-2xl bg-(--input-bg) transition-all resize-none
-              outline-none border border-transparent focus:border-[#0CBDE2]"
-            />
-            <TextareaAutosize
-              minRows={3}
-              maxRows={12}
-              name="commentDescribe"
-              placeholder="دیدگاه خود را وارد کنید"
-              className="w-full p-4 rounded-2xl bg-(--input-bg) transition-all resize-none
-              outline-none border border-transparent focus:border-[#0CBDE2]"
-            />
+            <Field name="commentTitle">
+              {({ field }) => (
+                <TextareaAutosize
+                  {...field}
+                  maxRows={1}
+                  maxLength={25}
+                  placeholder="عنوان دیدگاه خود را وارد کنید"
+                  className="w-70 p-4 rounded-2xl bg-(--input-bg) transition-all resize-none
+                  outline-none border border-transparent focus:border-[#0CBDE2]"
+                />
+              )}
+            </Field>
+            <Field name="commentDescribe">
+              {({ field }) => (
+                <TextareaAutosize
+                  {...field}
+                  minRows={3}
+                  maxRows={12}
+                  placeholder="دیدگاه خود را وارد کنید"
+                  className="w-full p-4 rounded-2xl bg-(--input-bg) transition-all resize-none
+                  outline-none border border-transparent focus:border-[#0CBDE2]"
+                />
+              )}
+            </Field>
             {/* <Field
               as="textarea"
               type="text"
@@ -97,12 +145,13 @@ const Comment = ({ newsId , courseId }) => {
             <div className="pb-2 flex flex-row items-center justify-between border-b border-(--news-description)">
               <div className="flex flex-row items-center gap-2">
                 <img
-                  style={{ height: "64px", borderRadius: "100%" }}
-                  src="/images/bob.png"
+                  style={{ height: "64px", width: "64px" , borderRadius: "100%" }}
+                  src={comment.pictureAddress || "/images/bob.png"}
+                  onError={(e) => {e.target.src = "/images/bob.png";}}
                 />
                 <div className="flex flex-col gap-1 ">
                   <p>
-                    {comment?.user?.fName}
+                    {comment?.user?.fName || comment?.author} &thinsp;
                     {comment?.user?.lName}
                   </p>
                   <p className="text-(--news-description) text-[12px] sm:text-[14px]">

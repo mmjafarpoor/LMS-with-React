@@ -32,4 +32,12 @@ export const getCourseComment = (CourseId) => {
     return apiClient.get(`/Course/GetCourseCommnets/${CourseId}`);
 }
 
+export const addCourseComment = ({courseId , title , describe}) => {
+    const formData = new FormData();
+    
+    formData.append("CourseId", courseId);
+    formData.append("Title", title);
+    formData.append("Describe", describe);
 
+    return apiClient.post("/Course/AddCommentCourse", formData);
+}
