@@ -1,17 +1,33 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Style from './Reserved.module.css'
-import DashBoardCoursesData from '../../../Data/DashBoardCoursesData'
 import ReactPaginate from 'react-paginate'
 import { Field, Form, Formik } from 'formik'
 import Slider from 'rc-slider';
+import { userReserveCourse } from '../../../core/services/dashBoardService/dashBoardApi'
+import { toast } from 'react-toastify'
 
 const Reserved = () => {
 
     const [sliderValue, setSliderValue] = useState([0,10000000]);
             console.log(sliderValue);
-
+    const [reserved, setReserved] = useState([]);
     const [pageIndex, setPageIndex] = useState(0);
     const [pageCount, setPageCount] = useState(0);
+
+    const getReservedCourses = async () => {
+        try {
+            const response = await userReserveCourse();
+            console.log("Reserved =",response.data)
+            setReserved(response.data);
+        } catch (error) {
+            console.log(error);
+            toast.error("در بارگذاری رزرو شده‌ها خطایی رخ داد");
+        }
+    }
+    useEffect(() => {
+        getReservedCourses();
+    }, [])
+    
     
     const handlePageClick = async (event) => {
         const page = event.selected + 1;
@@ -49,14 +65,14 @@ const Reserved = () => {
                         </div>
                     </div>
                     <div className={Style.itemsContainer}>
-                        {DashBoardCoursesData.map((course) => (
-                            <div key={course.id} className={Style.item}>
+                        {reserved.map((course) => (
+                            <div key={course.courseId} className={Style.item}>
                                 <div className={Style.itemImageContainer}>
-                                    <img src={course.imageURL} alt="Item-Image" className={Style.itemImage}/>
+                                    <img src={course.image || "/images/javaScriptProductCard.png"} onError={(e) => {e.target.src = "/images/javaScriptProductCard.png";}} alt="Item-Image" className={Style.itemImage}/>
                                 </div>
-                                <div className={Style.itemTitle}>{course.title}</div>
-                                <div className={Style.itemDescription}>{course.instructor}</div>
-                                <div className={Style.itemPrice}>{course.price}</div>
+                                <div className={Style.itemTitle}>{course.courseName || "اسم دوره"}</div>
+                                <div className={Style.itemDescription}>{course.teacher || "نام استاد"}</div>
+                                {/* <div className={Style.itemPrice}>{course.price}</div> */}
                                 <div className={Style.itemOpen}>شروع یادگیری</div>
                                 <div className={Style.itemAction}>
                                     <div className={Style.viewProduct}>

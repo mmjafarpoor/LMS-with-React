@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import "@smastrom/react-rating/style.css";
 import Comment from "../../NewsContainer/Comment";
 import clsx from "clsx";
-import { addCourseDisLike, addCourseFavorite, addCourseLike, getCourseDetail } from "../../../core/services/coursesService/coursesService";
+import { addCourseDisLike, addCourseFavorite, addCourseLike, addCourseReserve, getCourseDetail } from "../../../core/services/coursesService/coursesService";
 import { toast } from "react-toastify";
 import { deleteFavoriteCourse, getFavoriteCourse } from "../../../core/services/dashBoardService/dashBoardApi";
 import { toShamsiDate } from "../../../utils/dateFormatter";
@@ -120,6 +120,16 @@ const NewsDetails = () => {
     }
   };
 
+  const addReserve = async (courseId) => {
+    try {
+      await addCourseReserve(courseId);
+      toast.success("دوره شما با موفقیت رزرو شد");
+    } catch (error) {
+      console.log(error.response?.data);
+      toast.error("در رزرو کردن دوره خطایی رخ داد");
+    }
+  }
+
   return (
     <div className="w-full mt-10 mb-10 flex justify-center">
       <div className="w-[97%] md:w-[90%] flex flex-row flex-wrap justify-around">
@@ -198,7 +208,7 @@ const NewsDetails = () => {
               <div>{toShamsiDate(item?.endTime)}</div>
             </div>
             <div className="mt-4 h-12 w-[85%] flex flex-row items-center justify-between">
-              <button className="py-2.5 px-6.5 lg:px-2.5 rounded-3xl bg-(--button-bg) hover:bg-(--button-hover) font-semibold! cursor-pointer transition-all duration-300 ease-in-out">
+              <button onClick={() => addReserve(item?.courseId)} className="py-2.5 px-6.5 lg:px-2.5 rounded-3xl bg-(--button-bg) hover:bg-(--button-hover) font-semibold! cursor-pointer transition-all duration-300 ease-in-out">
                 شروع یادگیری
               </button>
               <p>

@@ -6,6 +6,10 @@ export const userApiData = (data) =>
 export const editUserApiData = (data) =>
     apiClient.put("/SharePanel/UpdateProfileInfo", data);
 
+export const userReserveCourse = () => {
+    return apiClient.get("/SharePanel/GetMyCoursesReserve");
+}
+
 export const addProfilePic = (data) => {
     const formData = new FormData();
     formData.append("formFile", data);

@@ -41,3 +41,7 @@ export const addCourseComment = ({courseId , title , describe}) => {
 
     return apiClient.post("/Course/AddCommentCourse", formData);
 }
+
+export const addCourseReserve = (courseId) => {
+    return apiClient.post("/CourseReserve/ReserveAdd",{courseId});
+}
