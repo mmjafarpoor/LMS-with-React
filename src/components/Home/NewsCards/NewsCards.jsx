@@ -9,6 +9,7 @@ const NewsCards = () => {
 
   const fetchNews = async () => {
     const response = await getNewsList({pageNumber : 1 , rowsOfPage : 3});
+    console.log("Latest News =",response.data);
     setNewsItems(response.data.news);
   };
 
@@ -47,17 +48,18 @@ const NewsCards = () => {
                 position: "absolute",
                 height: "490px",
               }}
-              src="/images/PythonBig.png"
+              src={item?.currentImageAddress || "/images/PythonBig.png"}
+              onError={(e) => {e.target.src = "/images/PythonBig.png";}}
             />
             <div className="w-[80%] mr-6 flex flex-col gap-2 absolute bottom-4 text-white">
-              <p className="text-2xl font-semibold!">{item?.title}</p>
-              <h2 className="text-md font-semibold!">{item?.describe} </h2>
+              <p className="text-2xl font-semibold!">{item?.title || "عنوان مقاله"}</p>
+              <h2 className="text-md font-semibold!">{item?.miniDescribe || item?.googleDescribe || "شرح مقاله"}</h2>
               <div className="mt-2 flex flex-row gap-10 text-sm font-bold!">
                 <div className="h-6 bg-[url(/images/whiteUser.png)] bg-no-repeat bg-position-[100%_0%] indent-8 text-white font-semibold!">
                   {item?.currentView} بازدید
                 </div>
                 <div className="h-6 bg-[url(/images/book.png)] bg-no-repeat bg-position-[100%_0%] indent-12 text-white font-semibold!">
-                  دروس
+                  {item?.newsCatregoryName || "فارسی"}
                 </div>
               </div>
             </div>

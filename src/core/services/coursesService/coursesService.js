@@ -57,3 +57,7 @@ export const addCourseComment = ({courseId , title , describe}) => {
 export const addCourseReserve = (courseId) => {
     return apiClient.post("/CourseReserve/ReserveAdd",{courseId});
 }
+
+export const getCourseTop = (Count) => {
+    return apiClient.get(`/Home/GetCoursesTop`,{params:{Count}});
+}

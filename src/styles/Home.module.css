@@ -230,6 +230,8 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    border-radius: 25px;
+    overflow: hidden;
 }
 .sliderItemImage{
     width: 100%;

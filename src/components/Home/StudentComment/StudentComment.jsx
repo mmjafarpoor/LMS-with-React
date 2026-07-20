@@ -2,32 +2,54 @@ import React, { useEffect, useState } from "react";
 import { Rating, RoundedStar } from "@smastrom/react-rating";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
+import { getNewsComment } from "../../../core/services/newsService/newsService";
+import { toast } from "react-toastify";
 
 const StudentComment = () => {
-  const commentBoxes = ["A", "B", "C", "D", "E", "F"];
+
+  const [comment, setComment] = useState([]);
+
+  const fetchComments = async () => {
+    try {
+      const response = await getNewsComment();
+      console.log(response.data);
+      await setComment(response.data);
+    } catch (error) {
+      console.log(error);
+      toast.error("خطا در بارگذاری کامنت ها");
+    }
+  }
+
+  useEffect(() => {
+    fetchComments();
+  }, [])
+  
+
+  // const commentBoxes = ["A", "B", "C", "D", "E", "F"];
   const [activeBoxIndex, setActiveBoxIndex] = useState(0);
+
   const visibleIndexes = [
     {
-      index: (activeBoxIndex + 2) % commentBoxes.length,
+      index: (activeBoxIndex + 2) % comment.length,
       pos: "righter",
     },
     {
-      index: (activeBoxIndex + 1) % commentBoxes.length,
+      index: (activeBoxIndex + 1) % comment.length,
       pos: "right",
     },
     { index: activeBoxIndex, pos: "center" },
     {
-      index: (activeBoxIndex - 1 + commentBoxes.length) % commentBoxes.length,
+      index: (activeBoxIndex - 1 + comment.length) % comment.length,
       pos: "left",
     },
     {
-      index: (activeBoxIndex - 2 + commentBoxes.length) % commentBoxes.length,
+      index: (activeBoxIndex - 2 + comment.length) % comment.length,
       pos: "lefter",
     },
   ];
 
   const GoToNext = () => {
-    setActiveBoxIndex((prev) => (prev + 1) % commentBoxes.length);
+    setActiveBoxIndex((prev) => (prev + 1) % comment.length);
   };
 
   useEffect(() => {
@@ -142,7 +164,7 @@ const StudentComment = () => {
                 <div className="flex flex-col gap-1">
                   <p>الن ویک</p>
                   <p className="text-(--news-description) text-[14px]">
-                    {commentBoxes[item.index]}
+                    {/* {commentBoxes[item.index]} */}
                   </p>
                 </div>
               </div>

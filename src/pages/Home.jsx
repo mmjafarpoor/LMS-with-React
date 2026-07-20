@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Style from "../styles/Home.module.css";
-import SliderData from "../Data/SliderData"
+// import SliderData from "../Data/SliderData"
 import clsx from "clsx"
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
@@ -11,6 +11,9 @@ import NewsCards from '../components/Home/NewsCards/NewsCards';
 import TeachersCards from '../components/Home/TeachersCards/TeachersCards';
 import CoursesCards from '../components/Home/CoursesCards/CoursesCards';
 import { useNavigate } from 'react-router-dom';
+import { getCourseTop } from '../core/services/coursesService/coursesService';
+import { toast } from 'react-toastify';
+import { formatPricePersian } from '../utils/formatPrice';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -23,10 +26,28 @@ const Home = () => {
       block: "start",
     });
   };
+
+  const [sliderData, setSliderData] = useState([]);
+
+  const fetchSlider = async() => {
+    try {
+      const response = await getCourseTop(5);
+      console.log("Slider Data =",response.data);
+      await setSliderData(response.data);
+    } catch (error) {
+      console.log(error);
+      toast.error("خطا در بارگذاری اسلایدر");
+    }
+  }
+  useEffect(() => {
+    fetchSlider();
+  }, [])
+  
   
   const sliderRef = useRef(null);
   const intervalRef = useRef(null);
-  const [sliderContainerWidth, setSliderContainerWidth] = useState(0)
+  const [sliderContainerWidth, setSliderContainerWidth] = useState(0);
+
   useEffect(() => {
     const calculateWidth = () => {
       if (!sliderRef.current) return;
@@ -44,8 +65,8 @@ const Home = () => {
     };
   }, []);
 
-  const galleryWidth = sliderContainerWidth > 0 ? (SliderData.length * sliderContainerWidth) : 0;
-  const itemWidth = galleryWidth/(SliderData.length);
+  const galleryWidth = sliderContainerWidth > 0 ? (sliderData.length * sliderContainerWidth) : 0;
+  const itemWidth = galleryWidth/(sliderData.length);
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -54,7 +75,7 @@ const Home = () => {
 
     intervalRef.current = setInterval(() => {
       setCurrentSlide(prev =>
-        prev === SliderData.length - 1 ? 0 : prev + 1
+        prev === sliderData.length - 1 ? 0 : prev + 1
       );
     }, 2250);
   };
@@ -81,6 +102,10 @@ const Home = () => {
     }
   };
   
+  const discountCalculator = (price) => {
+    // const price = Number((sliderData.cost).replace(/[,.]/g, ""));
+    return Math.round(price * 1.2).toLocaleString();
+  };
 
   return (
     <div className={Style.homeContainer}>
@@ -121,37 +146,37 @@ const Home = () => {
         </div>
         <div className={Style.sliderContainer} ref={sliderRef}>
           <div className={Style.sliderGallery} style={{width : galleryWidth , transform: `translateX(+${currentSlide * sliderContainerWidth}px)`,transition: "transform 0s ease"}} onMouseEnter={stopSlider} onMouseLeave={startSlider}>
-            {SliderData.map((item) =>(
-              <div key={item.id} className={Style.sliderItem} style={{width : itemWidth}}>
+            {sliderData.map((item) =>(
+              <div key={item.courseId} className={Style.sliderItem} style={{width : itemWidth}}>
                 <div className={Style.sliderItemImageWrapper}>
                   <motion.img
                   key={currentSlide}
                   initial={imgAnimation.initial}
                   animate={imgAnimation.animate}
                   exit={imgAnimation.exit}
-                  src={item.imageURL} alt="Slider-Image" className={Style.sliderItemImage}/>
+                  src={item?.imageAddress || item?.tumbImageAddress || "/images/javaScriptProductCard.png"} onError={(e) => {e.target.src = "/images/javaScriptProductCard.png";}} alt="Slider-Image" className={Style.sliderItemImage}/>
                 </div>
                 <div className={Style.sliderItemMeta}>
                   <div className={Style.sliderItemMetaHeading}>
-                    <span className={Style.sliderItemTitle}>{item.name}</span>
-                    <span className={Style.sliderItemDescription}>Node.js یک پلتفرم قدرتمند برای توسعهٔ برنامههای سرور با استفاده از جاوااسکریپت است. با استفاده از Node.js، میتوانید اپلیکیشنهای سریع و مقیاسپذیر بسازید. یادگیری آن آسان است، بهخصوص اگر با جاوااسکریپت آشنا باشید.</span>
+                    <span className={Style.sliderItemTitle}>{item.title}</span>
+                    <span className={Style.sliderItemDescription}>{item?.describe || "شرح محصول"}</span>
                   </div>
                   <div className={Style.sliderItemPriceTagsContainer}>
                     <div className={Style.sliderItemOlderPriceContainer}>
-                      <div className={Style.sliderItemOlderPrice}>{item.olderPrice}</div>
+                      <div className={Style.sliderItemOlderPrice}>{discountCalculator(item.cost)}</div>
                       <div className={Style.sliderItemPriceOfferLine}></div>
-                      <div className={Style.sliderItemPriceOfferPercentage}>10%</div>
+                      <div className={Style.sliderItemPriceOfferPercentage}>20%</div>
                     </div>
-                    <div className={Style.newPrice}>{item.price}</div>
+                    <div className={Style.newPrice}>{formatPricePersian(item.cost)} تومان</div>
                   </div>
                   <div className={Style.sliderItemActionsContainer}>
                     <div className={Style.sliderItemReservation}>
-                      <img src="/images/addToCart.png" alt="Add-To-Cart" className={Style.sliderItemAddToCart} />
+                      <img src="/images/addToCart.png" alt="Add-To-Cart" className={Style.sliderItemAddToCart}/>
                       <span className={Style.sliderItemAddToCartText}>شروع یادگیری</span>
                     </div>
                   </div>
                   <div className={Style.carouselIndicatorsContainer}>
-                    {SliderData.map((item,index) => (
+                    {sliderData.map((item,index) => (
                       <div onClick={() => setCurrentSlide(index)} key={item.id} className={clsx(Style.carouselIndicators,currentSlide === index ? Style.carouselIndicatorsActive : null)}></div>
                     ))}
                   </div>

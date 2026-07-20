@@ -136,6 +136,7 @@ const NewsDetails = () => {
               <img
                 style={{ width: "950px", borderRadius: "24px" }}
                 src={item?.currentImageAddress || "/images/PythonBig.png"}
+                onError={(e) => {e.target.src = "/images/PythonBig.png";}}
               />
               <div className="p-1 flex flex-row items-center gap-5 rounded-tr-3xl bg-(--bg-color) absolute bottom-0 left-0">
                 <div className="flex flex-row items-center" onClick={() => handleLike()}>
