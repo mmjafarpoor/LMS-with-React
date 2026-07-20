@@ -6,59 +6,55 @@ import { getNewsComment } from "../../../core/services/newsService/newsService";
 import { toast } from "react-toastify";
 
 const StudentComment = () => {
-
   const [comment, setComment] = useState([]);
 
   const fetchComments = async () => {
     try {
       const response = await getNewsComment();
-      console.log(response.data);
-      await setComment(response.data);
+      console.log("student comment: ", response.data);
+      setComment(response.data);
     } catch (error) {
       console.log(error);
       toast.error("خطا در بارگذاری کامنت ها");
     }
-  }
-
-  useEffect(() => {
-    fetchComments();
-  }, [])
-  
-
-  // const commentBoxes = ["A", "B", "C", "D", "E", "F"];
-  const [activeBoxIndex, setActiveBoxIndex] = useState(0);
-
-  const visibleIndexes = [
-    {
-      index: (activeBoxIndex + 2) % comment.length,
-      pos: "righter",
-    },
-    {
-      index: (activeBoxIndex + 1) % comment.length,
-      pos: "right",
-    },
-    { index: activeBoxIndex, pos: "center" },
-    {
-      index: (activeBoxIndex - 1 + comment.length) % comment.length,
-      pos: "left",
-    },
-    {
-      index: (activeBoxIndex - 2 + comment.length) % comment.length,
-      pos: "lefter",
-    },
-  ];
-
-  const GoToNext = () => {
-    setActiveBoxIndex((prev) => (prev + 1) % comment.length);
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      GoToNext();
-    }, 5000);
-    return () => clearInterval(interval);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    fetchComments();
   }, []);
+
+  const [activeBoxIndex, setActiveBoxIndex] = useState(0);
+  const visibleIndexes = comment.length
+    ? [
+        {
+          index: (activeBoxIndex + 2) % comment.length,
+          pos: "righter",
+        },
+        {
+          index: (activeBoxIndex + 1) % comment.length,
+          pos: "right",
+        },
+        { index: activeBoxIndex, pos: "center" },
+        {
+          index: (activeBoxIndex - 1 + comment.length) % comment.length,
+          pos: "left",
+        },
+        {
+          index: (activeBoxIndex - 2 + comment.length) % comment.length,
+          pos: "lefter",
+        },
+      ]
+    : [];
+
+  useEffect(() => {
+    if (!comment.length) return;
+
+    const interval = setInterval(() => {
+      setActiveBoxIndex((prev) => (prev + 1) % comment.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [comment.length]);
 
   return (
     <div className="h-167.5 w-[90%] hidden md:flex flex-row items-center justify-between">
@@ -78,22 +74,22 @@ const StudentComment = () => {
           <div className="flex flex-col items-center gap-4">
             <div className="flex flex-row">
               <div className="h-13.75 w-13.75 rounded-full bg-(--button-bg) content-center text-center font-bold! border-2 border-white -ml-5 z-10004">
-                15+
+                +{comment.length - 3}
               </div>
               <img
-                style={{ height: "55px" }}
+                style={{ height: "55px", width: "55px" }}
                 className="rounded-full border-2 border-white -ml-5 z-10003"
-                src="/images/MaxPayne1.png"
+                src={comment[1]?.user?.currentPictureAddress}
               />
               <img
-                style={{ height: "55px" }}
+                style={{ height: "55px", width: "55px" }}
                 className="rounded-full border-2 border-white -ml-5 z-10002"
-                src="/images/MaxPayne2.JPG"
+                src={comment[3]?.user?.currentPictureAddress}
               />
               <img
-                style={{ height: "55px" }}
+                style={{ height: "55px", width: "55px" }}
                 className="rounded-full border-2 border-white z-10001"
-                src="/images/MaxPayne3.png"
+                src={comment[2]?.user?.currentPictureAddress}
               />
             </div>
             <Rating
@@ -116,60 +112,65 @@ const StudentComment = () => {
         lg:[-webkit-mask-image:linear-gradient(to_left,transparent,black_20%,black_80%,transparent)]"
       >
         <div className="h-full w-582 xl:w-710 hidden md:flex flex-col lg:flex-row justify-center items-center">
-          {visibleIndexes.map((item) => (
-            <motion.div
-              key={item.index}
-              layout
-              transition={{
-                layout: {
-                  duration: 0.5,
-                  ease: "easeInOut",
-                },
-              }}
-              className={
-                item.pos === "righter"
-                  ? "h-100 lg:h-full w-full lg:w-122 scale-90 px-7 py-5 -mb-5 lg:mb-0 ml-0 lg:-ml-6 rounded-2xl flex flex-col justify-around gap-12 bg-(--student-comment-box-bg) shadow-[0_0px_8px_var(--news-shadow-color)]"
-                  : item.pos === "right"
-                    ? "h-100 lg:h-full w-full lg:w-122 scale-90 px-7 py-5 -mb-5 lg:mb-0 ml-0 lg:-ml-6 rounded-2xl flex flex-col justify-around gap-12 bg-(--student-comment-box-bg) shadow-[0_0px_8px_var(--news-shadow-color)]"
-                    : item.pos === "center"
-                      ? "h-100 lg:h-full w-full lg:w-122 px-7 py-5 -my-7 lg:my-0 mx-0 lg:-mx-11 rounded-2xl flex flex-col justify-around gap-12 bg-(--student-comment-box-bg) shadow-[0_0px_8px_var(--news-shadow-color)] z-12222"
-                      : item.pos === "left"
-                        ? "h-100 lg:h-full w-full lg:w-122 scale-90 px-7 py-5 -mt-5 lg:mt-0 mr-0 lg:-mr-6 rounded-2xl flex flex-col justify-around gap-12 bg-(--student-comment-box-bg) shadow-[0_0px_8px_var(--news-shadow-color)]"
-                        : item.pos === "lefter"
-                          ? "h-100 lg:h-full w-full lg:w-122 scale-90 px-7 py-5 -mt-5 lg:mt-0 mr-0 lg:-mr-6 rounded-2xl flex flex-col justify-around gap-12 bg-(--student-comment-box-bg) shadow-[0_0px_8px_var(--news-shadow-color)]"
-                          : "hidden"
-              }
-            >
-              <Rating
-                style={{ direction: "ltr" }}
-                className="h-8 max-w-35 gap-2"
-                itemStyles={{
-                  itemShapes: RoundedStar,
-                  activeFillColor: "var(--button-bg)",
-                  inactiveFillColor: "#EAEAEA",
+          {visibleIndexes.map((item) => {
+            const currentComment = comment?.[item.index];
+            return (
+              <motion.div
+                key={item.index}
+                layout
+                transition={{
+                  layout: {
+                    duration: 0.5,
+                    ease: "easeInOut",
+                  },
                 }}
-                value={5}
-                readOnly
-              />
-              <h2 className="font-semibold! text-xl">
-                از لسی برای مربیگری، راهنمایی و دوستی که به من می‌دهی متشکرم. من
-                برای همیشه سپاسگزار خواهم بود. من دوست دارم با آلیسا کار کنم و
-                تصور می‌کردم با انگیزه از زمان با هم دور می‌شوم.»
-              </h2>
-              <div className="w-[85%] flex flex-row items-center gap-2">
-                <img
-                  style={{ height: "64px", borderRadius: "100%" }}
-                  src="/images/AlanWake.jpg"
+                className={
+                  item.pos === "righter"
+                    ? "h-100 lg:h-full w-full lg:w-122 scale-90 px-7 py-5 -mb-5 lg:mb-0 ml-0 lg:-ml-6 rounded-2xl flex flex-col justify-around gap-12 bg-(--student-comment-box-bg) shadow-[0_0px_8px_var(--news-shadow-color)]"
+                    : item.pos === "right"
+                      ? "h-100 lg:h-full w-full lg:w-122 scale-90 px-7 py-5 -mb-5 lg:mb-0 ml-0 lg:-ml-6 rounded-2xl flex flex-col justify-around gap-12 bg-(--student-comment-box-bg) shadow-[0_0px_8px_var(--news-shadow-color)]"
+                      : item.pos === "center"
+                        ? "h-100 lg:h-full w-full lg:w-122 px-7 py-5 -my-7 lg:my-0 mx-0 lg:-mx-11 rounded-2xl flex flex-col justify-around gap-12 bg-(--student-comment-box-bg) shadow-[0_0px_8px_var(--news-shadow-color)] z-12222"
+                        : item.pos === "left"
+                          ? "h-100 lg:h-full w-full lg:w-122 scale-90 px-7 py-5 -mt-5 lg:mt-0 mr-0 lg:-mr-6 rounded-2xl flex flex-col justify-around gap-12 bg-(--student-comment-box-bg) shadow-[0_0px_8px_var(--news-shadow-color)]"
+                          : item.pos === "lefter"
+                            ? "h-100 lg:h-full w-full lg:w-122 scale-90 px-7 py-5 -mt-5 lg:mt-0 mr-0 lg:-mr-6 rounded-2xl flex flex-col justify-around gap-12 bg-(--student-comment-box-bg) shadow-[0_0px_8px_var(--news-shadow-color)]"
+                            : "hidden"
+                }
+              >
+                <Rating
+                  style={{ direction: "ltr" }}
+                  className="h-8 max-w-35 gap-2"
+                  itemStyles={{
+                    itemShapes: RoundedStar,
+                    activeFillColor: "var(--button-bg)",
+                    inactiveFillColor: "#EAEAEA",
+                  }}
+                  value={5}
+                  readOnly
                 />
-                <div className="flex flex-col gap-1">
-                  <p>الن ویک</p>
-                  <p className="text-(--news-description) text-[14px]">
-                    {/* {commentBoxes[item.index]} */}
-                  </p>
+                <h2 className="font-semibold! text-xl">
+                  {currentComment?.describe}
+                </h2>
+                <div className="w-[85%] flex flex-row items-center gap-3">
+                  <img
+                    style={{
+                      height: "64px",
+                      width: "64px",
+                      borderRadius: "100%",
+                    }}
+                    src={currentComment?.user?.currentPictureAddress}
+                  />
+                  <div className="flex flex-col gap-1">
+                    <p>{currentComment?.userFullName}</p>
+                    <p className="text-(--news-description) text-[14px]">
+                      {currentComment?.user?.userName}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </div>

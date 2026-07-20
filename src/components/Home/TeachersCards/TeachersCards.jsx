@@ -17,9 +17,9 @@ const NewsCards = () => {
   }, []);
 
   const navigate = useNavigate();
-  const GoToTeacherDetails = (item) => {
+  const GoToTeacherDetails = (teacherData) => {
     navigate(
-      `/Teachers/${item.teacherId}/${item.fullName.replaceAll(" ", "-")}`,
+      `/Teachers/${teacherData.teacherId}/${teacherData.fullName.replaceAll(" ", "-")}`,
     );
   };
   const GoToTeachersPage = () => {
@@ -39,9 +39,9 @@ const NewsCards = () => {
         </p>
       </div>
       <div className="w-full flex flex-row flex-wrap justify-center gap-5">
-        {currentItems.map((item) => (
+        {currentItems.map((teacherData) => (
           <div
-            onClick={() => GoToTeacherDetails(item)}
+            onClick={() => GoToTeacherDetails(teacherData)}
             className="w-74.5 h-140 rounded-3xl overflow-hidden flex flex-col gap-4 cursor-pointer"
           >
             <img
@@ -49,9 +49,9 @@ const NewsCards = () => {
               src={"/images/teacher.png"}
             />
             <div className="w-[80%] mr-6 flex flex-col gap-2">
-              <p className="text-2xl font-bold!">{item?.fullName}</p>
+              <p className="text-2xl font-bold!">{teacherData?.fullName}</p>
               <h2 className="text-md ">طراحی وب</h2>
-              <p>تعداد دوره‌ها: {item?.courseCounts} دوره</p>
+              <p>تعداد دوره‌ها: {teacherData?.courseCounts} دوره</p>
             </div>
           </div>
         ))}
