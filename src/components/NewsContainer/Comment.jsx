@@ -1,8 +1,17 @@
 import { Formik, Form, Field } from "formik";
 import TextareaAutosize from "react-textarea-autosize";
 import React, { useEffect, useState } from "react";
-import {addNewsComment , addNewsLikeComment, getNewsComment} from "../../core/services/newsService/newsService";
-import { addCourseComment, addDisLikeComment, addLikeComment, getCourseComment} from "../../core/services/coursesService/coursesService";
+import {
+  addNewsComment,
+  addNewsLikeComment,
+  getNewsComment,
+} from "../../core/services/newsService/newsService";
+import {
+  addCourseComment,
+  addDisLikeComment,
+  addLikeComment,
+  getCourseComment,
+} from "../../core/services/coursesService/coursesService";
 import { toast } from "react-toastify";
 import clsx from "clsx";
 import { toShamsiDate } from "../../utils/dateFormatter";
@@ -26,12 +35,12 @@ const Comment = ({ newsId, courseId }) => {
     try {
       if (ItemId == newsId) {
         const response = await getNewsComment({ NewsId: ItemId });
-        console.log("News Comments =",response.data);
+        console.log("News Comments =", response.data);
         setComments(response.data);
       }
       if (ItemId == courseId) {
         const courseComment = await getCourseComment(courseId);
-        console.log("Course Comments =",courseComment.data);
+        console.log("Course Comments =", courseComment.data);
         setComments(courseComment.data);
       }
     } catch (error) {
@@ -45,12 +54,12 @@ const Comment = ({ newsId, courseId }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ItemId]);
 
-  const handleLike = async(commentId) => {
+  const handleLike = async (commentId) => {
     try {
-      if(ItemId == courseId){
+      if (ItemId == courseId) {
         await addLikeComment(commentId);
       }
-      if(ItemId == newsId){
+      if (ItemId == newsId) {
         await addNewsLikeComment(commentId, true);
       }
       toast.success("لایک ثبت شد");
@@ -59,23 +68,23 @@ const Comment = ({ newsId, courseId }) => {
       console.log(error);
       toast.error("ثبت لایک با خطایی مواجه شد");
     }
-  }
-  
+  };
+
   const handleDisLike = async (commentId) => {
-      try {
-        if(ItemId == courseId){
-          await addDisLikeComment(commentId);
-        }
-        if(ItemId == newsId){
-          await addNewsLikeComment(commentId, false);
-        }
-        toast.success("دیسلایک ثبت شد");
-        await fetchItem();
-      } catch (error) {
-        console.log(error);
-        toast.error("ثبت دیسلایک با خطایی مواجه شد");
+    try {
+      if (ItemId == courseId) {
+        await addDisLikeComment(commentId);
       }
-    };
+      if (ItemId == newsId) {
+        await addNewsLikeComment(commentId, false);
+      }
+      toast.success("دیسلایک ثبت شد");
+      await fetchItem();
+    } catch (error) {
+      console.log(error);
+      toast.error("ثبت دیسلایک با خطایی مواجه شد");
+    }
+  };
   // const replyModalAnimation = {
   //   initial: {
   //     height: 0,
@@ -227,7 +236,11 @@ const Comment = ({ newsId, courseId }) => {
                 </div>
               </div>
               <div className="flex flex-row gap-5">
-                <p className="font-semibold!">{toShamsiDate(comment.insertDate) || toShamsiDate(comment.inserDate) || "مدتی پیش"}</p>
+                <p className="font-semibold!">
+                  {toShamsiDate(comment.insertDate) ||
+                    toShamsiDate(comment.inserDate) ||
+                    "مدتی پیش"}
+                </p>
                 <div className="h-5 w-2 bg-[url(/images/3-dots.svg)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
               </div>
             </div>
@@ -235,7 +248,7 @@ const Comment = ({ newsId, courseId }) => {
           <p className="w-[90%] mt-2 font-semibold! text-xl text-(--button-bg)">
             {comment?.title}
           </p>
-          <p className="w-[90%] pb-3 font-semibold! text-(--news-description)">
+          <p className="w-[90%] pb-3 font-semibold! text-(--news-description) wrap-break-word">
             {comment?.describe}
           </p>
           <div className="w-[90%] flex justify-between items-center">
@@ -263,19 +276,31 @@ const Comment = ({ newsId, courseId }) => {
               <p className="font-semibold!">پاسخ</p>
             </div>
             <div className="flex flex-row items-center gap-2">
-              <div className="flex flex-row items-center" onClick={() => handleLike(comment?.id)}>
-                <div className="h-10 w-10 mb-2.5 bg-[url(/images/thumbs-up.svg)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
-                <div className="font-bold!">{comment?.likeCount}</div>
+              <div
+                className="flex flex-row items-center"
+                onClick={() => handleLike(comment?.id)}
+              >
+                <div
+                  className={
+                    clsx(
+                      "h-10 w-10 mb-2.5 bg-[url(/images/thumbs-up.svg)] bg-no-repeat bg-position-[50%] invert-(--invert-color) cursor-pointer",
+                    )
+                  }
+                ></div>
+                <div className="font-bold!">{comment?.likeCount || 0}</div>
               </div>
-              <div className="flex flex-row items-center" onClick={() => handleDisLike(comment?.id)}>
-                <div className="h-10 w-10 mt-1.5 bg-[url(/images/thumbs-down.svg)] bg-no-repeat bg-position-[50%] -scale-x-100 invert-(--invert-color)"></div>
-                <div className="font-bold!">{comment?.disslikeCount || comment?.dissLikeCount}</div>
+              <div
+                className="flex flex-row items-center"
+                onClick={() => handleDisLike(comment?.id)}
+              >
+                <div className="h-10 w-10 mt-1.5 bg-[url(/images/thumbs-down.svg)] bg-no-repeat bg-position-[50%] -scale-x-100 invert-(--invert-color) cursor-pointer"></div>
+                <div className="font-bold!">{comment?.disslikeCount || 0}</div>
               </div>
             </div>
           </div>
 
           {/* -----------------------------------REPLY-COMMENTS----------------------------------- */}
-          
+
           <div
             className={`relative w-[90%] -mt-3.5 transition-all duration-500 overflow-hidden flex flex-col gap-4 items-center rounded-l-3xl rounded-b-3xl bg-(--comment-reply-bg)
                 ${openedReplyId === comment.id ? "max-h-150 py-7 mb-0" : "h-0 mb-1.5"}`}
@@ -397,7 +422,7 @@ const Comment = ({ newsId, courseId }) => {
                 <p className="w-full mt-3 font-semibold! text-xl text-(--button-bg)">
                   {reply?.title}
                 </p>
-                <p className="w-[90%] mt-3 font-semibold! text-(--news-description)">
+                <p className="w-[90%] mt-3 font-semibold! text-(--news-description) wrap-break-word">
                   {reply?.describe}
                 </p>
                 <div className="w-[97%] mt-4 flex flex-row items-center justify-end gap-2">
