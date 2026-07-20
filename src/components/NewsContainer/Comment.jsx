@@ -1,16 +1,11 @@
 import { Formik, Form, Field } from "formik";
 import TextareaAutosize from "react-textarea-autosize";
 import React, { useEffect, useState } from "react";
-import {
-  addNewsComment,
-  getNewsComment,
-} from "../../core/services/newsService/newsService";
-import {
-  addCourseComment,
-  getCourseComment,
-} from "../../core/services/coursesService/coursesService";
+import {addNewsComment , addNewsLikeComment, getNewsComment} from "../../core/services/newsService/newsService";
+import { addCourseComment, addDisLikeComment, addLikeComment, getCourseComment} from "../../core/services/coursesService/coursesService";
 import { toast } from "react-toastify";
 import clsx from "clsx";
+import { toShamsiDate } from "../../utils/dateFormatter";
 
 const Comment = ({ newsId, courseId }) => {
   const ItemId = newsId ?? courseId;
@@ -31,10 +26,12 @@ const Comment = ({ newsId, courseId }) => {
     try {
       if (ItemId == newsId) {
         const response = await getNewsComment({ NewsId: ItemId });
+        console.log("News Comments =",response.data);
         setComments(response.data);
       }
       if (ItemId == courseId) {
         const courseComment = await getCourseComment(courseId);
+        console.log("Course Comments =",courseComment.data);
         setComments(courseComment.data);
       }
     } catch (error) {
@@ -48,6 +45,37 @@ const Comment = ({ newsId, courseId }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ItemId]);
 
+  const handleLike = async(commentId) => {
+    try {
+      if(ItemId == courseId){
+        await addLikeComment(commentId);
+      }
+      if(ItemId == newsId){
+        await addNewsLikeComment(commentId, true);
+      }
+      toast.success("لایک ثبت شد");
+      await fetchItem();
+    } catch (error) {
+      console.log(error);
+      toast.error("ثبت لایک با خطایی مواجه شد");
+    }
+  }
+  
+  const handleDisLike = async (commentId) => {
+      try {
+        if(ItemId == courseId){
+          await addDisLikeComment(commentId);
+        }
+        if(ItemId == newsId){
+          await addNewsLikeComment(commentId, false);
+        }
+        toast.success("دیسلایک ثبت شد");
+        await fetchItem();
+      } catch (error) {
+        console.log(error);
+        toast.error("ثبت دیسلایک با خطایی مواجه شد");
+      }
+    };
   // const replyModalAnimation = {
   //   initial: {
   //     height: 0,
@@ -190,7 +218,7 @@ const Comment = ({ newsId, courseId }) => {
                 />
                 <div className="flex flex-col gap-1 ">
                   <p className="font-semibold!">
-                    {comment?.user?.fName || comment?.author} &thinsp;
+                    {comment?.user?.fName || comment?.author || "نام"} &thinsp;
                     {comment?.user?.lName}
                   </p>
                   <p className="text-(--news-description) text-[12px] sm:text-[14px]">
@@ -199,7 +227,7 @@ const Comment = ({ newsId, courseId }) => {
                 </div>
               </div>
               <div className="flex flex-row gap-5">
-                <p className="font-semibold!">{comment.date}</p>
+                <p className="font-semibold!">{toShamsiDate(comment.insertDate) || toShamsiDate(comment.inserDate) || "مدتی پیش"}</p>
                 <div className="h-5 w-2 bg-[url(/images/3-dots.svg)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
               </div>
             </div>
@@ -235,13 +263,13 @@ const Comment = ({ newsId, courseId }) => {
               <p className="font-semibold!">پاسخ</p>
             </div>
             <div className="flex flex-row items-center gap-2">
-              <div className="flex flex-row items-center">
+              <div className="flex flex-row items-center" onClick={() => handleLike(comment?.id)}>
                 <div className="h-10 w-10 mb-2.5 bg-[url(/images/thumbs-up.svg)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
-                <div className="font-bold!">223</div>
+                <div className="font-bold!">{comment?.likeCount}</div>
               </div>
-              <div className="flex flex-row items-center">
+              <div className="flex flex-row items-center" onClick={() => handleDisLike(comment?.id)}>
                 <div className="h-10 w-10 mt-1.5 bg-[url(/images/thumbs-down.svg)] bg-no-repeat bg-position-[50%] -scale-x-100 invert-(--invert-color)"></div>
-                <div className="font-bold!">54</div>
+                <div className="font-bold!">{comment?.disslikeCount || comment?.dissLikeCount}</div>
               </div>
             </div>
           </div>
@@ -254,23 +282,23 @@ const Comment = ({ newsId, courseId }) => {
           >
             <Formik
               initialValues={{
-                commentTitle: "",
-                commentDescribe: "",
+                commentReplyTitle: "",
+                commentReplyDescribe: "",
               }}
               onSubmit={async (values, { resetForm }) => {
                 try {
                   if (ItemId == newsId) {
                     await addNewsComment({
                       newsId: newsId,
-                      title: values.commentTitle,
-                      describe: values.commentDescribe,
+                      title: values.commentReplyTitle,
+                      describe: values.commentReplyDescribe,
                     });
                   }
                   if (ItemId == courseId) {
                     await addCourseComment({
                       courseId: courseId,
-                      title: values.commentTitle,
-                      describe: values.commentDescribe,
+                      title: values.commentReplyTitle,
+                      describe: values.commentReplyDescribe,
                     });
                   }
                   toast.success("نظر با موفقیت ثبت شد");
@@ -288,7 +316,7 @@ const Comment = ({ newsId, courseId }) => {
               }}
             >
               <Form className="w-[92%] flex flex-col gap-2">
-                <Field name="commentTitle">
+                <Field name="commentReplyTitle">
                   {({ field }) => (
                     <TextareaAutosize
                       {...field}
@@ -300,7 +328,7 @@ const Comment = ({ newsId, courseId }) => {
                     />
                   )}
                 </Field>
-                <Field name="commentDescribe">
+                <Field name="commentReplyDescribe">
                   {({ field }) => (
                     <TextareaAutosize
                       {...field}

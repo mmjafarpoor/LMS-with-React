@@ -32,6 +32,10 @@ export const getCourseComment = (CourseId) => {
     return apiClient.get(`/Course/GetCourseCommnets/${CourseId}`);
 }
 
+export const getCourseReplyComment = (CourseId,CommentId) => {
+    return apiClient.get(`/Course/GetCourseReplyCommnets/${CourseId}/${CommentId}`);
+}
+
 export const addCourseComment = ({courseId , title , describe}) => {
     const formData = new FormData();
     
@@ -41,6 +45,14 @@ export const addCourseComment = ({courseId , title , describe}) => {
 
     return apiClient.post("/Course/AddCommentCourse", formData);
 }
+
+    export const addLikeComment = (CourseCommandId) => {
+        return apiClient.post(`/Course/AddCourseCommentLike?CourseCommandId=${CourseCommandId}`);
+    }
+
+    export const addDisLikeComment = (CourseCommandId) => {
+        return apiClient.post(`/Course/AddCourseCommentDissLike?CourseCommandId=${CourseCommandId}`);
+    }
 
 export const addCourseReserve = (courseId) => {
     return apiClient.post("/CourseReserve/ReserveAdd",{courseId});
