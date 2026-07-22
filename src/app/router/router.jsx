@@ -36,6 +36,7 @@ import PersonalInfo from "../../components/DashBoard/DashBoardProfile/Personal-I
 import ProfilePicture from "../../components/DashBoard/DashBoardProfile/ProfilePicture/ProfilePicture";
 import LivingAddress from "../../components/DashBoard/DashBoardProfile/LivingAddress/LivingAddress";
 import Connections from "../../components/DashBoard/DashBoardProfile/Connections/Connections";
+import Security from "../../components/DashBoard/DashBoardProfile/Security/Security";
 
 
 
@@ -74,11 +75,12 @@ const router = createBrowserRouter([
           { path: "FavouredCourses", element: <FavouredCourses/> },
           { path: "FavouredBlogs", element: <FavouredBlogs/> },
           { path: "Profile", element: <DashBoardProfile/> ,children:[
-            {index: true, element: <PersonalInfo/> },
+            {index: true, element: <Navigate to="Personal-Info" replace />},
             { path: "Personal-Info", element: <PersonalInfo/> },
             { path: "Profile-Picture", element: <ProfilePicture/> },
             { path: "Living-Address", element: <LivingAddress/> },
             { path: "Connections", element: <Connections/> },
+            { path: "Security", element: <Security/> },
           ]},
         ]}  ,
       ],

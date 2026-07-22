@@ -17,6 +17,8 @@ const NewsDetails = () => {
     });
   }, []);
 
+  const token = localStorage.getItem("token");
+
   const { courseId } = useParams();
   const [fav, setFav] = useState();
   const [item, setItem] = useState(null);
@@ -41,6 +43,7 @@ const NewsDetails = () => {
 
 
   const fetchFavoriteCourses = useCallback(async() => {
+    if(!token){return}
     try {
         const response = await getFavoriteCourse();
         console.log(response);
@@ -249,7 +252,7 @@ const NewsDetails = () => {
                   readOnly
                 />
                 <div className="text-[15px] md:text-[16px]">
-                  {item?.courseRate.toFixed(2)} امتیاز
+                  {item?.courseRate.toFixed(2) || "0"} امتیاز
                 </div>
               </div>
             </div>

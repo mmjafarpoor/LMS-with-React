@@ -3,8 +3,9 @@ import apiClient from "../../interceptor/interceptor";
 export const loginGmail = (data) =>
     apiClient.post("/Sign/Login", data);
 
-export const loginVerifyMessage = (data) =>
-    apiClient.post("/Sign/LoginTelegram/{code}/{phoneOrGmail}", data);
+export const loginVerifyMessage = (code , phoneOrGmail) => {
+    return apiClient.post(`/Sign/LoginTelegram/${code}/${phoneOrGmail}`);
+}
 
 export const registerGmail = (data) =>
     apiClient.post("/Sign/SendVerifyMessage", data);

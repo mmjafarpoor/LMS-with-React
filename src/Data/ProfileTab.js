@@ -18,5 +18,10 @@ const ProfileTab = [
         id: "Connections",
         title: "لینک ها",
         tabLink : "Connections",
+    },
+    {
+        id: "Security",
+        title: "امنیت",
+        tabLink : "Security",
     },]
 export default ProfileTab;

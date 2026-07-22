@@ -112,28 +112,32 @@ const Login = () => {
               const response = await loginGmail({
                 phoneOrGmail: values.email,
                 password: values.password,
-                rememberMe : true
+                rememberMe : true,
               });
               console.log(response.data);
               console.log(response);
 
+              if (response.data.token) {
+                localStorage.setItem("token", response.data.token);
+
+                const toastId = toast.loading("در حال ورود به حساب شما...");
+              
+                setTimeout(()=>{
+                  toast.update(toastId, {
+                      render: "با موفقیت وارد حساب خود شدید",
+                      type: "success",
+                      isLoading: false,
+                      autoClose: 1250,
+                  });
+                  navigate("/Dashboard", { replace: true });
+                },1600);
+              }
+
               setEmail(values.email);
               setPassword(values.password);
-
-              localStorage.setItem("token", response.data.token);
-              const toastId = toast.loading("در حال ورود به حساب شما...");
-              
-              setTimeout(()=>{
-                toast.update(toastId, {
-                    render: "با موفقیت وارد حساب خود شدید",
-                    type: "success",
-                    isLoading: false,
-                    autoClose: 1500,
-                });
-                navigate("/Dashboard", { replace: true });
-              },2000);
-              
-              // setStep(2);
+              if (!response.data.token) {
+                setStep(2);
+              }
             } catch(error){
               setFieldError(
                 "email",
@@ -144,13 +148,27 @@ const Login = () => {
             return;
           }
           if (!values.otp) return;
-          if (step === 2 && values.otp === "000000") {
+          if (step === 2) {
             try{
-              const response = await loginVerifyMessage({
-                code : values.otp,
-                phoneOrGmail : email,
-              });
+              const response = await loginVerifyMessage(
+                values.otp,
+                email,
+              );
               console.log(response.data);
+
+              localStorage.setItem("token", response.data.token);
+
+              const toast2Step = toast.loading("در حال ورود به حساب شما...");
+              
+              setTimeout(()=>{
+                toast.update(toast2Step, {
+                    render: "با موفقیت وارد حساب خود شدید",
+                    type: "success",
+                    isLoading: false,
+                    autoClose: 1250,
+                });
+                navigate("/Dashboard", { replace: true });
+              },1600);
 
               setOtp(values.otp);
             }
@@ -237,7 +255,7 @@ const Login = () => {
               </motion.div>
             )}
 
-            {/* STEP 2
+            {/* STEP 2 */}
             {step === 2 && (
               <motion.div
                 key={step}
@@ -276,7 +294,7 @@ const Login = () => {
                   )}
                 </AnimatePresence>
               </motion.div>
-            )} */}
+            )}
             <button
               type="submit"
               className="h-12 w-full mt-4 font-bold! text-white bg-[#0CBDE2] flex items-center justify-center rounded-xl cursor-pointer"
@@ -296,13 +314,13 @@ const Login = () => {
         </div>
       )}
 
-      {/* {step === 2 && time > 0 && (
+      {step === 2 && time > 0 && (
         <div className="h-6 w-fit mt-4 mb-8 p-2">
           {minute}:{second.toString().padStart(2, "0")}
         </div>
-      )} */}
+      )}
 
-      {/* {step === 2 && time === 0 && (
+      {step === 2 && time === 0 && (
         <button
           onClick={() => {
             setTime(120);
@@ -311,7 +329,7 @@ const Login = () => {
         >
           ارسال مجدد کد
         </button>
-      )} */}
+      )}
     </>
   );
 };

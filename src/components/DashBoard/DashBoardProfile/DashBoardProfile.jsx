@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Style from './DashBoardProfile.module.css'
 import ProfileTab from '../../../Data/ProfileTab'
-import { Link, Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import userInfoStore from '../../../store/UserInfoStore';
 const DashBoardProfile = () => {
-
-    const [selectedItem, setSelectedItem] = useState(ProfileTab[0].id);
     const user = userInfoStore((state) => state.user);
 
     return (
@@ -24,7 +22,7 @@ const DashBoardProfile = () => {
                 <div className={Style.userDetailRightSection}>
                     <div className={Style.userDetailRightSectionTop}>
                         <span className={Style.userName}>{user?.userName} {user?.userLastName}</span>
-                        <span className={Style.userRole}>( دانشجو )</span>
+                        {/* <span className={Style.userRole}>( دانشجو )</span> */}
                     </div>
                     <div className={Style.userDetailRightSectionBottom}>
                         <div className={Style.userPhoneNumberContainer}>
@@ -45,7 +43,7 @@ const DashBoardProfile = () => {
             <div className={Style.profileTabsContainer}>
                 <div className={Style.tabsContainer}>
                     {ProfileTab.map((tab) => (
-                        <Link to={tab.tabLink} key={tab.id} className={selectedItem === tab.id ? Style.activeTab : Style.inactiveTab} onClick={() => setSelectedItem(tab.id)}>{tab.title}</Link>
+                        <NavLink to={tab.tabLink} key={tab.id} className={({ isActive }) => isActive ? Style.activeTab : Style.inactiveTab}>{tab.title}</NavLink>
                     ))}
                 </div>
             </div>

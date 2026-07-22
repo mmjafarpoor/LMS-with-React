@@ -10,6 +10,10 @@ export const userReserveCourse = () => {
     return apiClient.get("/SharePanel/GetMyCoursesReserve");
 }
 
+export const deleteReserveCourse = (id) => {
+    return apiClient.delete("/CourseReserve",{data:{id}});
+}
+
 export const addProfilePic = (data) => {
     const formData = new FormData();
     formData.append("formFile", data);
@@ -40,4 +44,12 @@ export const deleteFavoriteCourse = (data) =>{
 
     return apiClient.delete("/Course/DeleteCourseFavorite",{data: formData});
 };
+
+export const getSecurity = () => {
+    return apiClient.get("/SharePanel/GetSecurityInfo");
+}
+
+export const editSecurity = (data) => {
+    return apiClient.put("/SharePanel/EditSecurity",data);
+}
 

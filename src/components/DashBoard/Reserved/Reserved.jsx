@@ -3,22 +3,31 @@ import Style from './Reserved.module.css'
 import ReactPaginate from 'react-paginate'
 import { Field, Form, Formik } from 'formik'
 import Slider from 'rc-slider';
-import { userReserveCourse } from '../../../core/services/dashBoardService/dashBoardApi'
+import { deleteReserveCourse, userReserveCourse } from '../../../core/services/dashBoardService/dashBoardApi'
 import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom';
 
 const Reserved = () => {
 
-    const [sliderValue, setSliderValue] = useState([0,10000000]);
-            console.log(sliderValue);
+    const navigate = useNavigate();
+
+    // const [sliderValue, setSliderValue] = useState([0,10000000]);
+    //         console.log(sliderValue);
+    const perPage = 6;
+
     const [reserved, setReserved] = useState([]);
     const [pageIndex, setPageIndex] = useState(0);
     const [pageCount, setPageCount] = useState(0);
+
+    const startIndex = pageIndex * perPage;
+    const currentItems = reserved.slice(startIndex, startIndex + perPage);
 
     const getReservedCourses = async () => {
         try {
             const response = await userReserveCourse();
             console.log("Reserved =",response.data)
             setReserved(response.data);
+            setPageCount(Math.ceil(response.data.length / perPage));
         } catch (error) {
             console.log(error);
             toast.error("در بارگذاری رزرو شده‌ها خطایی رخ داد");
@@ -30,11 +39,46 @@ const Reserved = () => {
     
     
     const handlePageClick = async (event) => {
-        const page = event.selected + 1;
-
         setPageIndex(event.selected);
 
         // await fetchCourseList(page);
+    };
+
+    const deleteReserve = async(id) => {
+        try {
+            await deleteReserveCourse(id);
+            toast.success("رزرو شما با موفقیت حذف شد");
+            await getReservedCourses();
+        } catch (error) {
+            console.log(error);
+            toast.error("در حذف رزرو شما خطایی رخ داد");
+        }
+    }
+
+    const GoToCourseDetails = (courseId) => {
+        const courseDetail = toast.loading("در حال انتقال به صفحه دوره انتخاب شده...");
+
+        try {
+            navigate(`/Courses/${courseId}`);
+            setTimeout(()=>{
+                toast.update(courseDetail, {
+                    render: "با موفقیت به صفحه دوره انتخاب شده منتقل شدید",
+                    type: "success",
+                    isLoading: false,
+                    autoClose: 1100,
+                });
+            },500);
+        } catch (error) {
+            console.log(error.response?.data);
+            setTimeout(()=>{
+                toast.update(courseDetail, {
+                    render: "در انتقال به صفحه دوره انتخاب شده خطایی رخ داد",
+                    type: "error",
+                    isLoading: false,
+                    autoClose: 1100,
+                });
+            },500);
+        }
     };
 
     return (
@@ -42,7 +86,7 @@ const Reserved = () => {
             <Form className={Style.bookedCoursesContainer}>
                 <div className={Style.pageTitle}>رزرو های من</div>
                 <div className={Style.mainContainer}>
-                    <div className={Style.itemsInputContainer}>
+                    {/* <div className={Style.itemsInputContainer}>
                         <div className={Style.formStyle}>
                             <div className={Style.searchFilter}>
                                 <button className={Style.searchSubmit} type='submit'>
@@ -63,9 +107,9 @@ const Reserved = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className={Style.itemsContainer}>
-                        {reserved.map((course) => (
+                        {currentItems.map((course) => (
                             <div key={course.courseId} className={Style.item}>
                                 <div className={Style.itemImageContainer}>
                                     <img src={course.image || "/images/javaScriptProductCard.png"} onError={(e) => {e.target.src = "/images/javaScriptProductCard.png";}} alt="Item-Image" className={Style.itemImage}/>
@@ -73,12 +117,12 @@ const Reserved = () => {
                                 <div className={Style.itemTitle}>{course.courseName || "اسم دوره"}</div>
                                 <div className={Style.itemDescription}>{course.teacher || "نام استاد"}</div>
                                 {/* <div className={Style.itemPrice}>{course.price}</div> */}
-                                <div className={Style.itemOpen}>شروع یادگیری</div>
+                                <div className={Style.itemOpen}>{course?.accept == true ? "انتظار پرداخت" : "انتظار تایید"}</div>
                                 <div className={Style.itemAction}>
-                                    <div className={Style.viewProduct}>
+                                    <div className={Style.viewProduct} onClick={() => {GoToCourseDetails(course?.courseId)}}>
                                         <img src="/images/viewProductWithOutBorder.svg" alt="Product-View-Icon" className={Style.viewProductIcon}/>
                                     </div>
-                                    <div className={Style.deleteProduct}>
+                                    <div className={Style.deleteProduct} onClick={() => {deleteReserve(course.reserveId)}}>
                                         <img src="/images/cancelProduct.svg" alt="Delete-Product-Icon" className={Style.viewProductIcon}/>
                                     </div>
                                 </div>

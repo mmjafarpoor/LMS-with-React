@@ -266,6 +266,9 @@
     }
 }
 @media (max-width: 400px) {
+    .userName{
+        font-size: clamp(1.2rem,6vw,1.5rem);
+    }
     .profileTabsContainer{
         height: 50px;
         min-height: 50px;
@@ -275,10 +278,10 @@
         gap: 10px;
     }
     .activeTab{
-        font-size: clamp(0.85rem,3.68vw,0.92rem);
-        padding: 6px 6px;
+        font-size: clamp(0.75rem,3.4vw,0.85rem);
+        padding: 5px 5px;
     }
     .inactiveTab{
-        font-size: clamp(0.8rem,3.52vw,0.88rem);
+        font-size: clamp(0.7rem,3.2vw,0.8rem);
     }
 }
