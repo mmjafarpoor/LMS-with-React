@@ -31,10 +31,10 @@
     gap: 15px;
     position: absolute;
     bottom: 0px;
-    transition: 0.45s ease-in-out;
+    transition: 0.4s ease-in-out;
     cursor: pointer;
 }
-.productMeta:hover{
+.regularCard:hover .productMeta{
     bottom: 25px;
 }
 .metaHeading{

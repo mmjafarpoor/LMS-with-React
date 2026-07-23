@@ -5,13 +5,15 @@ import ReactPaginate from 'react-paginate'
 import { Field, Form, Formik } from 'formik'
 import useDarkStore from '../../../store/DarkStore'
 import { userBookedCourse } from '../../../core/services/dashBoardService/dashBoardApi'
+import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 const BookedCourses = () => {
+    const navigate = useNavigate();
 
     const isDarkMode = useDarkStore((state) => state.isDarkMode);
 
     const [search, setSearch] = useState("");
-
     const [booked, setBooked] = useState([]);
 
     const [pageIndex, setPageIndex] = useState(0);
@@ -40,6 +42,11 @@ const BookedCourses = () => {
         setPageIndex(event.selected);
 
         await fetchBooked(page, search);
+    };
+
+    const GoToCourseDetails = (courseId) => {
+        navigate(`/Courses/${courseId}`);
+        toast.success("با موفقیت به صفحه دوره منتقل شدید");
     };
 
     return (
@@ -82,7 +89,7 @@ const BookedCourses = () => {
                                 <div className={Style.itemDescription}>{course?.course?.describe || "شرح دوره"}</div>
                                 <div className={Style.itemInstructors}>{course?.course?.teacher?.fName} {course?.course?.teacher?.lName}</div>
                                 <div className={Style.itemOpen}>{course?.paymentStatus}</div>
-                                <div className={Style.viewProduct}>
+                                <div className={Style.viewProduct} onClick={() => {GoToCourseDetails(course?.courseId)}}>
                                     <img src={isDarkMode ? "/images/viewProductDark.svg" :"/images/viewProduct.svg"} alt="Product-View-Icon" className={Style.viewProductIcon}/>
                                 </div>
                             </div>

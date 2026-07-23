@@ -15,6 +15,7 @@ const Teachers = () => {
 
   const fetchNews = async () => {
     const response = await getTeachersList();
+    console.log("Teacher =",response.data);
     setTeachersItems(response.data);
   };
 

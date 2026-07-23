@@ -107,6 +107,11 @@ const Home = () => {
     return Math.round(price * 1.2).toLocaleString();
   };
 
+  const GoToCourseDetails = (courseId) => {
+      navigate(`/Courses/${courseId}`);
+      toast.success("با موفقیت به صفحه دوره منتقل شدید");
+    };
+
   return (
     <div className={Style.homeContainer}>
       <div className={Style.beginTheJourney}>
@@ -147,7 +152,7 @@ const Home = () => {
         <div className={Style.sliderContainer} ref={sliderRef}>
           <div className={Style.sliderGallery} style={{width : galleryWidth , transform: `translateX(+${currentSlide * sliderContainerWidth}px)`,transition: "transform 0s ease"}} onMouseEnter={stopSlider} onMouseLeave={startSlider}>
             {sliderData.map((item) =>(
-              <div key={item.courseId} className={Style.sliderItem} style={{width : itemWidth}}>
+              <div key={item.courseId} className={Style.sliderItem} style={{width : itemWidth}} onClick={() => {GoToCourseDetails(item?.courseId)}}>
                 <div className={Style.sliderItemImageWrapper}>
                   <motion.img
                   key={currentSlide}

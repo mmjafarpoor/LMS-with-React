@@ -15,6 +15,7 @@ const TeachersDetails = () => {
   // const [teacherCourses, setTeacherCouses] = useState([]);
   const fetchItem = async () => {
     const response = await getTeacherDetails(teacherId);
+    console.log("Teachers Detail =",response.data)
     setTeacherProfile(response.data);
     // setTeacherCouses(data.courses);
   };
