@@ -16,6 +16,12 @@ import clsx from 'clsx'
 import apiClient from '../core/interceptor/interceptor'
 
 const Courses = () => {
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
   
   const [courseList, setCourseList] = useState([]);
   const [instructorList, setInstructorList] = useState([]);

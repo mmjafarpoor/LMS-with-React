@@ -8,6 +8,13 @@ import { getNewsList } from "../core/services/newsService/newsService";
 import { toast } from "react-toastify";
 
 const News = () => {
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
+
   const [showType, setShowType] = useState("grid");
 
   const [newsItems, setNewsItems] = useState([]);

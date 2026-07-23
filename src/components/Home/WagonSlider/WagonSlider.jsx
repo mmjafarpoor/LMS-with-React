@@ -1,22 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
+import { getCourseTech } from "../../../core/services/coursesService/coursesService";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const WagonSlider = () => {
-  const items = [
-    "js",
-    "pyton",
-    "react",
-    "next",
-    "c++",
-    "c#",
-    "godot",
-    "unreal engine",
-    "unity",
-    "git",
-  ];
+  const navigate = useNavigate();
 
-  const sliderLength = items.length * 180 + items.length * 12;
+  const [tech, setTech] = useState([]);
+
+  const fetchTech = async()=> {
+    try {
+      const response = await getCourseTech();
+      console.log("Tech =",response.data);
+      setTech(response.data);
+    } catch (error) {
+      console.log(error?.response?.data);
+      toast.error("در بارگذاری دسته بندی ها خطایی رخ داد");
+    }
+  }
+  useEffect(() => {
+    fetchTech();
+  }, [])
+
+  const sliderLength = tech.length * 180 + tech.length * 12;
 
   return (
     <div className="w-full flex flex-col items-center justify-between gap-10">
@@ -40,9 +48,9 @@ const WagonSlider = () => {
           }}
           className="h-[50%] max-w-fit flex flex-row items-center justify-start gap-3"
         >
-          {[...items, ...items].map((item) => (
-            <div className="relative w-45 h-[80%] rounded-4xl bg-(--news-top-filter) flex items-center shrink-0 justify-center font-semibold! cursor-pointer">
-              {item}
+          {[...tech, ...tech].map((item,index) => (
+            <div key={`${item.id}-${index}`} onClick={() => {navigate("/Courses");}} className="relative w-45 h-[80%] rounded-4xl bg-(--news-top-filter) flex items-center shrink-0 justify-center font-semibold! cursor-pointer">
+              {item?.techName || "تکنولوژی"}
               <div className="absolute -right-1 top-3.5 h-10 w-10 bg-[url(/images/api.svg)] bg-no-repeat rotate-6"></div>
               <div className="absolute left-2.5 top-3.5 h-10 w-10 bg-[url(/images/arrowLeftWithCircle.svg)] bg-no-repeat rotate-6"></div>
             </div>
@@ -59,9 +67,9 @@ const WagonSlider = () => {
           }}
           className="h-[50%] max-w-fit -mr-24 flex flex-row items-center justify-start gap-3"
         >
-          {[...items, ...items].map((item) => (
-            <div className="relative w-45 h-[80%] rounded-4xl bg-(--news-top-filter) flex items-center shrink-0 justify-center font-semibold! cursor-pointer">
-              {item}
+          {[...tech, ...tech].map((item,index) => (
+            <div key={`${item.id}-${index}`} onClick={() => {navigate("/Courses");}} className="relative w-45 h-[80%] rounded-4xl bg-(--news-top-filter) flex items-center shrink-0 justify-center font-semibold! cursor-pointer">
+              {item?.techName || "تکنولوژی"}
               <div className="absolute -right-1 top-3.5 h-10 w-10 bg-[url(/images/api.svg)] bg-no-repeat rotate-6"></div>
               <div className="absolute left-2.5 top-3.5 h-10 w-10 bg-[url(/images/arrowLeftWithCircle.svg)] bg-no-repeat rotate-6"></div>
             </div>

@@ -61,3 +61,7 @@ export const addCourseReserve = (courseId) => {
 export const getCourseTop = (Count) => {
     return apiClient.get(`/Home/GetCoursesTop`,{params:{Count}});
 }
+
+export const getCourseTech = () => {
+    return apiClient.get("/Home/GetTechnologies");
+}

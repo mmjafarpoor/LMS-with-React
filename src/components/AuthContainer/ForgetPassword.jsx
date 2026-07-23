@@ -92,7 +92,7 @@ const ForgetPassword = () => {
             try {
               const response = await forgetGmail({
                 email: values.email,
-                baseUrl: "http://localhost:5173/Auth/forget-password",
+                baseUrl: `${window.location.origin}/Auth/forget-password`,
               });
               console.log(response);
               console.log(response.data);

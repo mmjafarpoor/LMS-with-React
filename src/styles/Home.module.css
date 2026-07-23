@@ -260,7 +260,7 @@
 .sliderItemDescription{
     max-height: 70px;
     font-weight: 600;
-    overflow: auto;
+    overflow: hidden;
     text-overflow: ellipsis;
     scrollbar-width: thin;
 }
