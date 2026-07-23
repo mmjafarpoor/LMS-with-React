@@ -26,7 +26,7 @@ const Security = () => {
     <Formik
         enableReinitialize
         initialValues={{
-            TelegramId: securityInfo?.userTelegrams || "",
+            TelegramId: securityInfo?.userTelegrams?.telegramId || "",
             twoStepAuth: securityInfo?.twoStepAuth ?? false,
             RecoveryMail: securityInfo?.recoveryEmail || "",
         }}
