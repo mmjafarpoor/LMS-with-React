@@ -17,6 +17,9 @@ const FavouredBlogs = () => {
 
     const itemsPerPage = 8;
 
+    const startIndex = pageIndex * itemsPerPage;
+    const currentItems = favouredList.slice(startIndex, startIndex + itemsPerPage);
+
     const fetchFavoriteBlogs = useCallback(async() => {
         try {
             const response = await getFavoriteNews();
@@ -25,8 +28,8 @@ const FavouredBlogs = () => {
             
             if(response.data?.myFavoriteNews){
                 setFavouredList(response.data?.myFavoriteNews);
-                setPageCount(Math.ceil(response.data.length / itemsPerPage));
-                console.log("Data Received",response.data.myFavoriteNews);
+                setPageCount(Math.ceil(response.data?.myFavoriteNews?.length / itemsPerPage));
+                console.log("Favoured Blogs =",response.data.myFavoriteNews);
             }
         } catch (error) {
             console.log(error.response?.data);
@@ -94,7 +97,7 @@ const FavouredBlogs = () => {
     }, [fetchFavoriteBlogs]);
 
     const handlePageClick = async (event) => {
-        const page = event.selected + 1;
+        // const page = event.selected + 1;
 
         setPageIndex(event.selected);
 
@@ -106,7 +109,7 @@ const FavouredBlogs = () => {
             <Form className={Style.bookedCoursesContainer}>
                 <div className={Style.pageTitle}>مقاله های مورد علاقه من</div>
                 <div className={Style.mainContainer}>
-                    <div className={Style.itemsInputContainer}>
+                    {/* <div className={Style.itemsInputContainer}>
                         <div className={Style.formStyle}>
                             <div className={Style.searchFilter}>
                                 <button className={Style.searchSubmit} type='submit'>
@@ -121,9 +124,9 @@ const FavouredBlogs = () => {
                                 <Field className={Style.searchInput} type="search" name="searchTheInstructors" autoComplete="off" placeholder="جستجوی اساتید"></Field>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className={Style.itemsContainer}>
-                        {favouredList.map((course) => (
+                        {currentItems.map((course) => (
                             <div key={course.id} className={Style.item}>
                                 <div className={Style.itemImageContainer}>
                                     <img src={course.currentImageAddressTumb || "/images/PythonBig.png"} onError={(e) => {e.target.src = "/images/PythonBig.png";}} alt="Item-Image" className={Style.itemImage}/>

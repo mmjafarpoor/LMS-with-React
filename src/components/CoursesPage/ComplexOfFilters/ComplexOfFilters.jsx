@@ -11,8 +11,8 @@ import InstructorFilter from '../InstructorFilter/InstructorFilter';
 
 const ComplexOfFilters = ({instructorList , courseFilters ,setCourseFilters}) => {
 
-    const [sliderValue , setSliderValue] = useState([0,10000000]);
-    console.log(sliderValue);
+    // const [sliderValue , setSliderValue] = useState([0,10000000]);
+    // console.log(sliderValue);
 
     const [isPriceFilterOpen, setIsPriceFilterOpen] = useState(true);
     const [isInstructorFilterOpen, setIsInstructorFilterOpen] = useState(true);

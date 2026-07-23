@@ -1,17 +1,8 @@
 import { Formik, Form, Field } from "formik";
 import TextareaAutosize from "react-textarea-autosize";
 import React, { useEffect, useState } from "react";
-import {
-  addNewsComment,
-  addNewsLikeComment,
-  getNewsComment,
-} from "../../core/services/newsService/newsService";
-import {
-  addCourseComment,
-  addDisLikeComment,
-  addLikeComment,
-  getCourseComment,
-} from "../../core/services/coursesService/coursesService";
+import {addNewsComment, addNewsLikeComment , getNewsComment, getNewsCommentReply} from "../../core/services/newsService/newsService";
+import {addCourseComment , addDisLikeComment , addLikeComment , getCourseComment} from "../../core/services/coursesService/coursesService";
 import { toast } from "react-toastify";
 import clsx from "clsx";
 import { toShamsiDate } from "../../utils/dateFormatter";
@@ -21,6 +12,7 @@ const Comment = ({ newsId, courseId }) => {
 
   const [commentModalActive, isCommentModalActive] = useState(false);
   const [comments, setComments] = useState([]);
+  const [reply, setReply] = useState([]);
   const [showMore, setShowMore] = useState(2);
   const [openedReplyId, setOpenedReplyId] = useState(null);
 
@@ -49,8 +41,25 @@ const Comment = ({ newsId, courseId }) => {
     }
   };
 
+  const fetchReply = async () => {
+    try {
+      if (ItemId == newsId) {
+        const response = await getNewsCommentReply();
+        console.log("News Reply =",response.data);
+        setReply(response.data);
+      }
+      if (ItemId == courseId) {
+        return;
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("در بارگیری پاسخ نظرات خطایی رخ داد");
+    }
+  }
+
   useEffect(() => {
     fetchItem();
+    fetchReply();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ItemId]);
 

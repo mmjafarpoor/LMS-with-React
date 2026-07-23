@@ -57,3 +57,7 @@ export const addNewsComment = (params) =>{
 export const addNewsLikeComment = (CommentId ,LikeType) =>{
     return apiClient.post(`/News/CommentLike/${CommentId}`,null,{params:{LikeType}});
 }
+
+export const getNewsCommentReply = (params) =>{
+    return apiClient.get("/News/GetRepliesComments",{params});
+}

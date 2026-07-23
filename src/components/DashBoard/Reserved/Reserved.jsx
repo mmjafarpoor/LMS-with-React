@@ -3,13 +3,18 @@ import Style from './Reserved.module.css'
 import ReactPaginate from 'react-paginate'
 import { Field, Form, Formik } from 'formik'
 import Slider from 'rc-slider';
-import { deleteReserveCourse, userReserveCourse } from '../../../core/services/dashBoardService/dashBoardApi'
+import { coursePaymentFirst, coursePaymentSecond, deleteReserveCourse, userReserveCourse } from '../../../core/services/dashBoardService/dashBoardApi'
 import { toast } from 'react-toastify'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const Reserved = () => {
 
     const navigate = useNavigate();
+    
+    const [searchParams] = useSearchParams();
+
+    const authority = searchParams.get("Authority");
+    const status = searchParams.get("Status");
 
     // const [sliderValue, setSliderValue] = useState([0,10000000]);
     //         console.log(sliderValue);
@@ -43,6 +48,41 @@ const Reserved = () => {
 
         // await fetchCourseList(page);
     };
+
+    const pay = async (reserveId) => {
+        try {
+            localStorage.setItem("reserveId", reserveId);
+            const response = await coursePaymentFirst(reserveId , `${window.location.origin}/Dashboard/Reserved`);
+            window.open(response.data.link, "_self");
+        } catch (error) {
+            console.log(error);
+            console.log(error.response?.data);
+        }
+    }
+    const verifyPayment = async () => {
+        try {
+            const reserveId = localStorage.getItem("reserveId");
+
+            const response = await coursePaymentSecond(
+            reserveId,
+            authority
+            );
+
+            toast.success(response.data.message);
+
+            localStorage.removeItem("reserveId");
+
+            await getReservedCourses();
+        } catch (error) {
+            console.log(error.response?.data);
+            toast.error(error.response?.data?.message);
+        }
+    };
+    useEffect(() => {
+        if (status === "OK" && authority) {
+            verifyPayment();
+        }
+    }, [status, authority]);
 
     const deleteReserve = async(id) => {
         try {
@@ -117,7 +157,10 @@ const Reserved = () => {
                                 <div className={Style.itemTitle}>{course.courseName || "اسم دوره"}</div>
                                 <div className={Style.itemDescription}>{course.teacher || "نام استاد"}</div>
                                 {/* <div className={Style.itemPrice}>{course.price}</div> */}
-                                <div className={Style.itemOpen}>{course?.accept == true ? "انتظار پرداخت" : "انتظار تایید"}</div>
+                                {course?.accept == true ?
+                                    <div className={Style.itemOpen} onClick={() => {pay(course?.reserveId)}}>انتظار پرداخت</div> :
+                                    <div className={Style.itemOpen}> انتظار تایید</div>
+                                }
                                 <div className={Style.itemAction}>
                                     <div className={Style.viewProduct} onClick={() => {GoToCourseDetails(course?.courseId)}}>
                                         <img src="/images/viewProductWithOutBorder.svg" alt="Product-View-Icon" className={Style.viewProductIcon}/>

@@ -6,6 +6,16 @@ export const userApiData = (data) =>
 export const editUserApiData = (data) =>
     apiClient.put("/SharePanel/UpdateProfileInfo", data);
 
+export const userBookedCourse = (PageNumber,RowsOfPage,SortingCol,SortType,Query) => {
+    return apiClient.get("/SharePanel/GetMyCourses",{params:{
+        PageNumber,
+        RowsOfPage,
+        SortingCol,
+        SortType,
+        Query,
+    }});
+}
+
 export const userReserveCourse = () => {
     return apiClient.get("/SharePanel/GetMyCoursesReserve");
 }
@@ -52,4 +62,12 @@ export const getSecurity = () => {
 export const editSecurity = (data) => {
     return apiClient.put("/SharePanel/EditSecurity",data);
 }
+
+export const coursePaymentFirst = (reserveId, callbackUrl) => {
+    return apiClient.patch(`/NewVersion/CoursePayment/StepOneToPay/${reserveId}`,{callbackUrl,});
+};
+
+export const coursePaymentSecond = (reserveId, Authority) => {
+    return apiClient.patch(`/NewVersion/CoursePayment/StepTwoToPay/${reserveId}`,{Authority,});
+};
 

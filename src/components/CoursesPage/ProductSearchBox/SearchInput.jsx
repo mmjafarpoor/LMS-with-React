@@ -1,6 +1,7 @@
 import React from 'react'
 import Style from './SearchInput.module.css'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
+
 const SearchInput = ({ courseFilters, setCourseFilters }) => {
     return (
         <Formik

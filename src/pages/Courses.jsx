@@ -19,10 +19,13 @@ const Courses = () => {
   
   const [courseList, setCourseList] = useState([]);
   const [instructorList, setInstructorList] = useState([]);
+
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(true);
   const [displayMode, setDisplayMode] = useState("regular");
+  
   const [pageIndex, setPageIndex] = useState(0);
   const [pageCount, setPageCount] = useState(0);
 

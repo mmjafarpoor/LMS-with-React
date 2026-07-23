@@ -10,15 +10,18 @@ import { useNavigate } from 'react-router-dom'
 const FavouredCourses = () => {
     const navigate = useNavigate();
 
-    const [sliderValue, setSliderValue] = useState([0,10000000]);
-            console.log(sliderValue);
+    // const [sliderValue, setSliderValue] = useState([0,10000000]);
+    //         console.log(sliderValue);
 
     const [favouredList, setFavouredList] = useState([]);
 
     const [pageIndex, setPageIndex] = useState(0);
     const [pageCount, setPageCount] = useState(0);
 
-    const itemsPerPage = 8;
+    const itemsPerPage = 6;
+
+    const startIndex = pageIndex * itemsPerPage;
+    const currentItems = favouredList.slice(startIndex, startIndex + itemsPerPage);
 
     const fetchFavoriteCourses = useCallback(async() => {
         try {
@@ -27,8 +30,8 @@ const FavouredCourses = () => {
             console.log(response.data);
             if (response.data?.favoriteCourseDto) {
                 setFavouredList(response.data.favoriteCourseDto);
-                setPageCount(Math.ceil(response.data.length / itemsPerPage));
-                console.log("Data Received",response.data.favoriteCourseDto);
+                setPageCount(Math.ceil(response.data.favoriteCourseDto.length / itemsPerPage));
+                console.log("Favoured Courses =",response.data.favoriteCourseDto);
             }
         } catch (error) {
             console.log(error.response?.data);
@@ -96,10 +99,7 @@ const FavouredCourses = () => {
     }, [fetchFavoriteCourses])
     
 
-
     const handlePageClick = async (event) => {
-        const page = event.selected + 1;
-
         setPageIndex(event.selected);
 
         // await fetchCourseList(page);
@@ -110,7 +110,7 @@ const FavouredCourses = () => {
             <Form className={Style.bookedCoursesContainer}>
                 <div className={Style.pageTitle}>دوره های مورد علاقه من</div>
                 <div className={Style.mainContainer}>
-                    <div className={Style.itemsInputContainer}>
+                    {/* <div className={Style.itemsInputContainer}>
                         <div className={Style.formStyle}>
                             <div className={Style.searchFilter}>
                                 <button className={Style.searchSubmit} type='submit'>
@@ -131,9 +131,9 @@ const FavouredCourses = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className={Style.itemsContainer}>
-                        {favouredList.map((course) => (
+                        {currentItems.map((course) => (
                             <div key={course.id} className={Style.item}>
                                 <div className={Style.itemImageContainer}>
                                     <img src={course.imageAddress || "/images/javaScriptProductCard.png"} onError={(e) => {e.target.src = "/images/javaScriptProductCard.png";}} alt="Item-Image" className={Style.itemImage}/>

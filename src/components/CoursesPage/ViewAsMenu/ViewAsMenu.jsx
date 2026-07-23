@@ -23,6 +23,7 @@ const ViewAsMenu = () => {
 
     return (
         <div className={Style.viewAsMenuContainer} onClick={() => setIsOpen((prev) => !prev)}>
+            <span className={Style.mobileMenuTitle}>ترتیب و فیلتر</span>
             <div className={Style.listSortIconContainer}>
                 <img src={isDarkMode ? "/images/listsortWhite.png" : "/images/listsort.png"} alt="List Sort Icon" className={Style.listSortIcon} />
             </div>

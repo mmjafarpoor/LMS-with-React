@@ -316,6 +316,17 @@
         order: 1;
         width: clamp(360px,75%,637px);
     }
+    .viewAsMenu{
+        width: 137px;
+        min-width: 137px;
+        height: 48px;
+        background-color: var(--button-bg);
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+    }
+    .viewAsMenu:hover{
+        background-color: var(--button-hover);
+    }
     .productContainer{
         justify-content: center;
     }
@@ -349,19 +360,25 @@
     .bannerDescription{
         font-size: clamp(0.85rem,2vw,1rem);
     }
-    .productMain{
-        width: 100%;
-    }
 }
 @media (max-width: 700px) {
     .productListDisplaySwitch{
         display: none;
+    }
+    .productSearchBar{
+        width: calc(100% - 170px);
     }
 }
 @media (max-width: 600px) {
     
 }
 @media (max-width: 400px) {
+    .productsSearchAndDisplay{
+        gap: 15px;
+    }
+    .productSearchBar{
+        width: calc(100% - 150px);
+    }
     .coursesBanner{
         width: 100%;
     }
