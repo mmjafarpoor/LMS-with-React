@@ -316,12 +316,12 @@ const NewsDetails = () => {
             <div className="relative transition-all">
               <h2
                 ref={textRef}
-                className={`px-8 py-5 rounded-3xl font-semibold! text-[17px] text-(--news-description) bg-(--news-boxs) shadow-[0_0px_8px_var(--news-shadow-color)]
+                className={`px-8 py-5 rounded-3xl overflow-hidden font-semibold! text-[17px] text-(--news-description) bg-(--news-boxs) shadow-[0_0px_8px_var(--news-shadow-color)]
               ${
                 hasMore &&
                 (showMore
-                  ? "max-h-fit pb-20"
-                  : "max-h-150 overflow-hidden [display:-webkit-box] [-webkit-line-clamp:20] [-webkit-box-orient:vertical] mask-[linear-gradient(to_bottom,black_75%,transparent)] [-webkit-mask-image:linear-gradient(to_bottom,black_75%,transparent)]")
+                  ? "max-h-fit pb-20 [display:-webkit-box] [-webkit-box-orient:vertical]"
+                  : "max-h-150 [display:-webkit-box] [-webkit-line-clamp:20] [-webkit-box-orient:vertical] mask-[linear-gradient(to_bottom,black_75%,transparent)] [-webkit-mask-image:linear-gradient(to_bottom,black_75%,transparent)]")
               }`}
               >
                 {item?.describe}

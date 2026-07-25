@@ -35,16 +35,16 @@ const CoursesCards = () => {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <div className="h-20 w-50 flex flex-col gap-6 items-center lg:bg-[url(/images/blueLine.png)] bg-no-repeat bg-position-[50%_30px]">
-        <h1 className="lg:text-[30px] sm:text-[26px] text-[20px] font-semibold!">
+      <div className="h-20 w-50 mb-7 sm:mb-0 flex flex-col gap-6 items-center lg:bg-[url(/images/blueLine.png)] bg-no-repeat bg-position-[50%_30px]">
+        <h1 className="lg:text-[30px] text-[26px] font-semibold!">
           برترین دوره‌ها
         </h1>
       </div>
-      <div className="h-fit w-[90%] flex flex-row flex-wrap items-center justify-center gap-x-15 gap-y-0">
+      <div className="h-fit w-[90%] flex flex-row flex-wrap items-center justify-center gap-x-15">
         {courseList.map((top) => (
           <div
             key={top?.courseId}
-            className=" w-100 mt-5 relative flex flex-col items-center"
+            className=" w-100 scale-85 sm:scale-100 -mt-15 sm:mt-0 relative flex flex-col items-center "
           >
             <div onClick={() => GoToCourseDetails(top?.courseId)} className="overflow-hidden h-54 w-95 rounded-2xl flex items-center justify-center cursor-pointer">
               <img

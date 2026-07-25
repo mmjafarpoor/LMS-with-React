@@ -16,7 +16,7 @@ const TeacherCourses = (courses) => {
       {courses?.courses?.map((top) => (
         <div
           key={top?.courseId}
-          className=" w-100 mt-5 relative flex flex-col items-center"
+          className=" w-100 scale-85 sm:scale-100 -mt-15 sm:mt-0 relative flex flex-col items-center "
         >
           <div
             onClick={() => GoToCourseDetails(top?.courseId)}
@@ -29,7 +29,7 @@ const TeacherCourses = (courses) => {
               }}
             />
           </div>
-          <div className="h-50 w-95.5 -translate-y-10 flex flex-col items-center justify-center gap-4 rounded-2xl bg-(--header-bg) shadow-[0_0px_8px_var(--courses-cards-shadow-color)] transition-all duration-250 z-10000">
+          <div className="h-45 w-90 -translate-y-10 hover:-translate-y-5 flex flex-col items-center justify-center gap-4 rounded-2xl bg-(--header-bg) shadow-[0_0px_8px_var(--courses-cards-shadow-color)] transition-all duration-250 z-10000">
             <p className="w-[85%] font-semibold!">
               {top?.title || "عنوان محصول"}
             </p>
