@@ -3,13 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { getNewsList } from "../../../core/services/newsService/newsService";
 
 const NewsCards = () => {
-
   const [newsItems, setNewsItems] = useState([]);
   // const currentItems = newsItems.slice(0, 3);
 
   const fetchNews = async () => {
-    const response = await getNewsList({pageNumber : 1 , rowsOfPage : 3});
-    console.log("Latest News =",response.data);
+    const response = await getNewsList({ pageNumber: 1, rowsOfPage: 3 });
+    console.log("Latest News =", response.data);
     setNewsItems(response.data.news);
   };
 
@@ -40,7 +39,7 @@ const NewsCards = () => {
         {newsItems.map((item) => (
           <div
             onClick={() => GoToNewsDetails(item)}
-            className="rounded-3xl overflow-hidden cursor-pointer relative w-110 md:w-125 xl:w-78.75 hover:w-150 md:hover:w-135 xl:hover:w-110  h-122.5 transition-all duration-250"
+            className="rounded-3xl overflow-hidden cursor-pointer relative w-80 md:w-125 xl:w-78.75 md:hover:w-135 xl:hover:w-110 h-105 sm:h-122.5 transition-all duration-250"
           >
             <img
               style={{
@@ -49,17 +48,34 @@ const NewsCards = () => {
                 height: "490px",
               }}
               src={item?.currentImageAddress || "/images/PythonBig.png"}
-              onError={(e) => {e.target.src = "/images/PythonBig.png";}}
+              onError={(e) => {
+                e.target.src = "/images/PythonBig.png";
+              }}
             />
-            <div className="w-[80%] mr-6 flex flex-col gap-2 absolute bottom-4 text-white">
-              <p className="text-2xl font-semibold!">{item?.title || "عنوان مقاله"}</p>
-              <h2 className="text-md font-semibold!">{item?.miniDescribe || item?.googleDescribe || "شرح مقاله"}</h2>
-              <div className="mt-2 flex flex-row gap-10 text-sm font-bold!">
+            <div className="w-full px-5 flex flex-col gap-2 absolute bottom-4 text-white">
+              <p className="text-2xl font-semibold!">
+                {item?.title || "عنوان مقاله"}
+              </p>
+              <h2 className="max-h-20 text-md font-bold! overflow-hidden [display:-webkit-box] [-webkit-line-clamp:3] [-webkit-box-orient:vertical]">
+                {item?.miniDescribe || item?.googleDescribe || "شرح مقاله"}
+              </h2>
+              <div className="mt-2 flex flex-row justify-between text-sm font-bold!">
                 <div className="h-6 bg-[url(/images/whiteUser.png)] bg-no-repeat bg-position-[100%_0%] indent-8 text-white font-semibold!">
                   {item?.currentView} بازدید
                 </div>
-                <div className="h-6 bg-[url(/images/book.png)] bg-no-repeat bg-position-[100%_0%] indent-12 text-white font-semibold!">
-                  {item?.newsCatregoryName || "فارسی"}
+                <div className="flex flex-row items-center gap-2">
+                  <div className="flex flex-row items-center">
+                    <div className="h-6 w-10 mb-2.5 bg-[url(/images/thumbs-up.svg)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
+                    <div className="font-bold!">
+                      {item?.currentLikeCount || 0}
+                    </div>
+                  </div>
+                  <div className="flex flex-row items-center">
+                    <div className="h-6 w-10 mt-1.5 bg-[url(/images/thumbs-down.svg)] bg-no-repeat bg-position-[50%] -scale-x-100 invert-(--invert-color)"></div>
+                    <div className="font-bold!">
+                      {item?.currentDissLikeCount || 0}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

@@ -56,9 +56,6 @@ const NewsData = ({
               <div className="font-bold!">{currentDissLikeCount || 0}</div>
             </div>
           </div>
-          {/* <div className="h-6 bg-[url(/images/book.png)] bg-no-repeat bg-position-[100%_0%] indent-12 text-white font-bold!">
-            دروس
-          </div> */}
         </div>
       </div>
     </div>

@@ -35,6 +35,7 @@ body > div:not([data-otp]) {
     --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --button-bg: #0CBDE2;
     --button-hover: #099BB8;
+    --button-hover-transparent: #0cbee215;
     --input-text-color: #6D6C80;
     --link-color: #1a73e8;
     --socialMedia-container-bg: #8FE1F2;
@@ -70,6 +71,7 @@ body > div:not([data-otp]) {
     --box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
     --button-bg :#0986A0;
     --button-hover: #055063;
+    --button-hover-transparent: #0987a015;
     --input-text-color: #FFFFFF;
     --link-color: #8ab4f8;
     --socialMedia-container-bg: #2E2E2E;

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getTeacherDetails } from "../../core/services/teachersService/teachersService";
+import TeacherCourses from "./TeacherCourses";
 
 const TeachersDetails = () => {
-
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -15,7 +15,7 @@ const TeachersDetails = () => {
   // const [teacherCourses, setTeacherCouses] = useState([]);
   const fetchItem = async () => {
     const response = await getTeacherDetails(teacherId);
-    console.log("Teachers Detail =",response.data)
+    console.log("Teachers Detail =", response.data);
     setTeacherProfile(response.data);
     // setTeacherCouses(data.courses);
   };
@@ -25,7 +25,7 @@ const TeachersDetails = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [teacherId]);
 
-  console.log(teacherProfile)
+  console.log(teacherProfile);
 
   return (
     <div className="w-full flex items-center justify-center">
@@ -89,6 +89,7 @@ const TeachersDetails = () => {
             دوره‌های استاد
           </h1>
         </div>
+        <TeacherCourses courses={teacherProfile?.courses} />
       </div>
     </div>
   );
