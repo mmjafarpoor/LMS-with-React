@@ -152,21 +152,25 @@ const Home = () => {
         <div className={Style.sliderContainer} ref={sliderRef}>
           <div className={Style.sliderGallery} style={{width : galleryWidth , transform: `translateX(+${currentSlide * sliderContainerWidth}px)`,transition: "transform 0s ease"}} onMouseEnter={stopSlider} onMouseLeave={startSlider}>
             {sliderData.map((item) =>(
-              <div key={item.courseId} className={Style.sliderItem} style={{width : itemWidth}} onClick={() => {GoToCourseDetails(item?.courseId)}}>
+              <div key={item.courseId} className={Style.sliderItem} style={{width : itemWidth}}>
                 <div className={Style.sliderItemImageWrapper}>
                   <motion.img
-                  key={currentSlide}
-                  initial={imgAnimation.initial}
-                  animate={imgAnimation.animate}
-                  exit={imgAnimation.exit}
-                  src={item?.imageAddress || item?.tumbImageAddress || "/images/javaScriptProductCard.png"} onError={(e) => {e.target.src = "/images/javaScriptProductCard.png";}} alt="Slider-Image" className={Style.sliderItemImage}/>
+                    key={currentSlide}
+                    initial={imgAnimation.initial}
+                    animate={imgAnimation.animate}
+                    exit={imgAnimation.exit}
+                    src={item?.imageAddress || item?.tumbImageAddress || "/images/javaScriptProductCard.png"} 
+                    onError={(e) => {e.target.src = "/images/javaScriptProductCard.png";}} alt="Slider-Image" 
+                    className={Style.sliderItemImage}
+                    onClick={() => {GoToCourseDetails(item?.courseId)}}
+                  />
                 </div>
                 <div className={Style.sliderItemMeta}>
-                  <div className={Style.sliderItemMetaHeading}>
-                    <span className={Style.sliderItemTitle}>{item.title}</span>
+                  <div className={Style.sliderItemMetaHeading} onClick={() => {GoToCourseDetails(item?.courseId)}}>
+                    <span className={Style.sliderItemTitle}>{item?.title}</span>
                     <span className={Style.sliderItemDescription}>{item?.describe || "شرح محصول"}</span>
                   </div>
-                  <div className={Style.sliderItemPriceTagsContainer}>
+                  <div className={Style.sliderItemPriceTagsContainer} onClick={() => {GoToCourseDetails(item?.courseId)}}>
                     <div className={Style.sliderItemOlderPriceContainer}>
                       <div className={Style.sliderItemOlderPrice}>{discountCalculator(item.cost)}</div>
                       <div className={Style.sliderItemPriceOfferLine}></div>
@@ -174,7 +178,7 @@ const Home = () => {
                     </div>
                     <div className={Style.newPrice}>{formatPricePersian(item.cost)} تومان</div>
                   </div>
-                  <div className={Style.sliderItemActionsContainer}>
+                  <div className={Style.sliderItemActionsContainer} onClick={() => {GoToCourseDetails(item?.courseId)}}>
                     <div className={Style.sliderItemReservation}>
                       <img src="/images/addToCart.png" alt="Add-To-Cart" className={Style.sliderItemAddToCart}/>
                       <span className={Style.sliderItemAddToCartText}>شروع یادگیری</span>

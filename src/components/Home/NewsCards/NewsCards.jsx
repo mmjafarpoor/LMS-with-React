@@ -84,7 +84,7 @@ const NewsCards = () => {
       </div>
       <p
         onClick={GoToNewsPage}
-        className="px-5 py-4 bg-(--button-bg) rounded-4xl font-semibold! cursor-pointer"
+        className="px-5 py-4 bg-(--button-bg) rounded-4xl font-semibold! cursor-pointer text-white"
       >
         دوست داری بیشتر ببینی؟
       </p>

@@ -116,10 +116,7 @@ const Reserved = () => {
                                 <div className={Style.itemTitle}>{course.courseName || "اسم دوره"}</div>
                                 <div className={Style.itemDescription}>{course.teacher || "نام استاد"}</div>
                                 {/* <div className={Style.itemPrice}>{course.price}</div> */}
-                                {course?.accept == true ?
-                                    <div className={Style.itemOpen}>تایید شده</div> :
-                                    <div className={Style.itemOpen}> انتظار تایید</div>
-                                }
+                                <div className={course?.accept == true ? Style.itemOpen : Style.waitForPay}>{course?.accept == true ? "تایید شده" : "انتظار تایید"}</div>
                                 <div className={Style.itemAction}>
                                     <div className={Style.viewProduct} onClick={() => {GoToCourseDetails(course?.courseId)}}>
                                         <img src="/images/viewProductWithOutBorder.svg" alt="Product-View-Icon" className={Style.viewProductIcon}/>

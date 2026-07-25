@@ -58,7 +58,7 @@ const NewsCards = () => {
       </div>
       <p
         onClick={GoToTeachersPage}
-        className="-mt-5 px-5 py-4 bg-(--button-bg) rounded-4xl font-semibold! cursor-pointer"
+        className="-mt-5 px-5 py-4 bg-(--button-bg) rounded-4xl font-semibold! cursor-pointer text-white"
       >
         دوست داری بیشتر ببینی؟
       </p>

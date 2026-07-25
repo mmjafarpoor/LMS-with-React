@@ -21,6 +21,25 @@
     justify-content: center;
     z-index: 300;
 }
+.landingContainer > .headerFixed{
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    z-index: 1000;
+    animation: headerAppear 0.35s ease;
+    backdrop-filter: blur(18px);
+}
+@keyframes headerAppear{
+    from{
+        transform: translate(-50%, -25px);
+        opacity: 0;
+    }
+    to{
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+}
 .landingContainer > .headerContainer > .header{
     width: 98%;
     height: fit-content;

@@ -36,6 +36,8 @@ body > div:not([data-otp]) {
     --button-bg: #0CBDE2;
     --button-hover: #099BB8;
     --button-hover-transparent: #0cbee215;
+    --payment-bg: #F59E0B;
+    --payment-hover: #D97706;
     --input-text-color: #6D6C80;
     --link-color: #1a73e8;
     --socialMedia-container-bg: #8FE1F2;
@@ -72,6 +74,8 @@ body > div:not([data-otp]) {
     --button-bg :#0986A0;
     --button-hover: #055063;
     --button-hover-transparent: #0987a015;
+    --payment-bg: #D97706;
+    --payment-hover: #B45309;
     --input-text-color: #FFFFFF;
     --link-color: #8ab4f8;
     --socialMedia-container-bg: #2E2E2E;

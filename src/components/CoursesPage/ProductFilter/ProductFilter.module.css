@@ -1,0 +1,85 @@
+.productFilterContainer{
+    width: 21%;
+    min-width: 235px;
+    height: max-content;
+    background-color: var(--header-bg);
+    box-shadow: var(--box-shadow); 
+    border-radius: 16px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    gap: 25px;
+    overflow: hidden;
+}
+.searchTheFilters{
+    width: 92%;
+    height: 40px;
+    margin-top: 8px;
+    background-color: var(--input-bg);
+    border-radius: 16px;
+}
+.filtersContainer{
+    width: 92%;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 25px;
+    border-bottom: 1px solid #CCCCCC;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+.filtersDisplaySwitch{
+    width: 100%;
+    height: 40px;
+    min-height: 40px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.filterTitle{
+    font-weight: 600;
+    font-size: 1.1rem;
+    white-space: nowrap;
+    user-select: none;
+}
+.filterDisplaySwitchIcon{
+    width: 25px;
+    height: 25px;
+    transition: 0.35s ease-in-out;
+    user-select: none;
+}
+.showMoreFilters{
+    width: max-content;
+    height: 45px;
+    border-radius: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    transition: 0.22s ease-in;
+    border: 2px solid transparent;
+}
+.showMoreFilters:hover{
+    border: 2.5px solid #0CBDE2;
+}
+.showMoreFiltersText{
+    padding: 0rem 0.5rem;
+    color: #0CBDE2;
+    font-weight: 900;
+    font-size: 0.95rem;
+    user-select: none;
+}
+
+
+
+
+
+@media (max-width: 1000px) {
+    .productFilterContainer{
+        position: absolute;
+        width: 300px;
+        z-index: 990;
+    }
+}

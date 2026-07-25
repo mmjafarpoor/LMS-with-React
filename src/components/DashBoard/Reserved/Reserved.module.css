@@ -118,6 +118,26 @@
 .itemOpen:hover{
     background-color: var(--button-hover);
 }
+.waitForPay{
+    width: 13%;
+    min-width: 115px;
+    height: 45px;
+    background-color: var(--payment-bg);
+    border-radius: 18px;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1.1rem;
+    white-space: nowrap;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.35s ease-in-out;
+}
+.waitForPay:hover{
+    background-color: var(--payment-hover);
+}
 .itemAction{
     margin-left: 5px;
     width: 72px;

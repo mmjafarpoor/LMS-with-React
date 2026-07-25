@@ -299,7 +299,7 @@ const Login = () => {
               type="submit"
               className="h-12 w-full mt-4 font-bold! text-white bg-[#0CBDE2] flex items-center justify-center rounded-xl cursor-pointer"
             >
-              {step === 1 ? "ارسال کد یکبار مصرف" : "تایید کد یکبار مصرف"}
+              {step === 1 ? "ورود به حساب کاربری" : "تایید کد یکبار مصرف"}
             </button>
           </Form>
         )}

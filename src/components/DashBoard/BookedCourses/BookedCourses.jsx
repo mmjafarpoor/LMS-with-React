@@ -8,7 +8,6 @@ import { coursePaymentFirst, coursePaymentSecond, userBookedCourse } from '../..
 import { toast } from 'react-toastify'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 
-
 const BookedCourses = () => {
     const navigate = useNavigate();
 
@@ -129,7 +128,7 @@ const BookedCourses = () => {
                                 <div className={Style.itemTitle}>{course?.course?.title || "عنوان دوره"}</div>
                                 <div className={Style.itemDescription}>{course?.course?.describe || "شرح دوره"}</div>
                                 <div className={Style.itemInstructors}>{course?.course?.teacher?.fName} {course?.course?.teacher?.lName}</div>
-                                <div className={Style.itemOpen} onClick={course?.paymentStatus === "پرداخت نشده" ? () => pay(course.reserveId) : undefined}>{course?.paymentStatus === "پرداخت نشده" ? "پرداخت" : "یادگیری"}</div>
+                                <div className={course?.paymentStatus === "پرداخت نشده" ? Style.waitForPay : Style.itemOpen} onClick={course?.paymentStatus === "پرداخت نشده" ? () => pay(course.reserveId) : undefined}>{course?.paymentStatus === "پرداخت نشده" ? "پرداخت" : "یادگیری"}</div>
                                 <div className={Style.viewProduct} onClick={() => {GoToCourseDetails(course?.courseId)}}>
                                     <img src={isDarkMode ? "/images/viewProductDark.svg" :"/images/viewProduct.svg"} alt="Product-View-Icon" className={Style.viewProductIcon}/>
                                 </div>

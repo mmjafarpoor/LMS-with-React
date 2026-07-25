@@ -6,7 +6,7 @@ import useDarkStore from "../store/DarkStore";
 function AuthContainer() {
   const navigate = useNavigate();
   const GoToHome = () => {
-    navigate("/");
+    navigate("/Home");
   };
   const isDarkMode = useDarkStore((state) => state.isDarkMode);
   useEffect(() => {

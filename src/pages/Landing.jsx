@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 
 	
 const Landing = () => {
+    const navigate = useNavigate();
 
     const user = userInfoStore((state) => state.user);
     const fetchUser = userInfoStore((state) => state.fetchUser);
@@ -19,10 +20,20 @@ const Landing = () => {
         fetchUser();
     }, [fetchUser]);
 
-    const navigate = useNavigate();
-	const [isMenuOpen, setIsMenuOpen] = useState(false);
-
     const token = localStorage.getItem("token");
+
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isHeaderFixed, setIsHeaderFixed] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsHeaderFixed(window.scrollY > 180);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 	
 	const themeButtonRef = useRef(null);
     const isDarkMode = useDarkStore((state) => state.isDarkMode);
@@ -154,7 +165,7 @@ const Landing = () => {
                     </div>
                 </nav>
             )}
-            <div className={Style.headerContainer}>
+            <div className={clsx(Style.headerContainer, isHeaderFixed && Style.headerFixed)}>
                 <div className={Style.header}>
                     <div className={Style.logoContainer}>
                         <div className={Style.logo}>
@@ -195,7 +206,7 @@ const Landing = () => {
                     </div>
                 </div>
             </div>
-            <main className={Style.outlet}>
+            <main className={Style.outlet} style={{paddingTop: isHeaderFixed ? "125px" : "0"}}>
                 <Outlet />
             </main>
             <div className={Style.bottom}>

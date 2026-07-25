@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Style from '../styles/Courses.module.css'
 import SearchInput from '../components/CoursesPage/ProductSearchBox/SearchInput'
-import SearchFilterInput from '../components/CoursesPage/SearchTheFilter/SearchFilterInput'
-import ComplexOfFilters from '../components/CoursesPage/ComplexOfFilters/ComplexOfFilters'
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
 import RegularCard from '../components/CoursesPage/ProductCards/RegularCard/RegularCard'
@@ -14,6 +12,7 @@ import ReactPaginate from 'react-paginate'
 import useDarkStore from '../store/DarkStore'
 import clsx from 'clsx'
 import apiClient from '../core/interceptor/interceptor'
+import ProductFilter from '../components/CoursesPage/ProductFilter/ProductFilter'
 
 const Courses = () => {
 
@@ -22,6 +21,8 @@ const Courses = () => {
       top: 0,
     });
   }, []);
+
+  const isDarkMode = useDarkStore((state) => state.isDarkMode);
   
   const [courseList, setCourseList] = useState([]);
   const [instructorList, setInstructorList] = useState([]);
@@ -31,9 +32,16 @@ const Courses = () => {
 
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(true);
   const [displayMode, setDisplayMode] = useState("regular");
-  
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
+  const [currentPos, setCurrentPos] = useState(null);
+
+  const itemsPerPage = 12;
   const [pageIndex, setPageIndex] = useState(0);
   const [pageCount, setPageCount] = useState(0);
+
+  const [sortingCol,setSortingCol] = useState("");
+  const [sortType,setSortType] = useState("");
 
   const [courseFilters, setCourseFilters] = useState({
     priceType: "All",
@@ -43,9 +51,12 @@ const Courses = () => {
     search: "",
   });
 
-  const itemsPerPage = 12;
-
-  const isDarkMode = useDarkStore((state) => state.isDarkMode);
+  const [sortingOptions, setSortingOptions] = useState([
+      {title: "مرتبط‌ ترین", sortingCol: "courseId", sortType: "asc" , id: "relatable"},
+      {title: "محبوب ترین", sortingCol: "likeCount", sortType: "desc" , id: "favoured"},
+      {title: "گران ترین", sortingCol: "cost", sortType: "desc" ,  id: "mostExpensive"},
+      {title: "ارزان ترین", sortingCol: "cost", sortType: "asc" , id: "cheapest"}
+  ]);
 
   const toggleFiltersHandler = () => {
     setIsCategoriesOpen(prev => !prev)
@@ -54,7 +65,7 @@ const Courses = () => {
     setIsLoading(true);
     setError(null);
     try{
-      const response = await getCourseList({pageNumber , rowOfPage: itemsPerPage , costDown: courseFilters.costDown , costUp: courseFilters.costUp , teacherId: courseFilters.teacherId , priceType: courseFilters.priceType , query: courseFilters.search,});
+      const response = await getCourseList({pageNumber , rowOfPage: itemsPerPage , sortingCol: sortingCol , sortType: sortType , costDown: courseFilters.costDown , costUp: courseFilters.costUp , teacherId: courseFilters.teacherId , priceType: courseFilters.priceType , query: courseFilters.search,});
         if (response.data?.courseFilterDtos) {
             setCourseList(response.data.courseFilterDtos);
             setPageCount(Math.ceil(response.data.totalCount / itemsPerPage));
@@ -81,7 +92,7 @@ const Courses = () => {
   useEffect(() => {
       setPageIndex(0);
       fetchCourseList(1);
-  }, [courseFilters]);
+  }, [courseFilters, sortingCol , sortType]);
 
   const fetchCourseInstructor = async() =>{
     try {
@@ -100,15 +111,10 @@ const Courses = () => {
     fetchCourseInstructor();
   }, [])
 
-    
     // const startIndex = pageIndex * itemsPerPage;
     // const endIndex = startIndex + itemsPerPage;
     // const currentItems = courseList.slice(startIndex, endIndex);
     // const pageCount = Math.ceil(courseList.length / itemsPerPage);
-    
-
-    
-    
 
     // if (isLoading) {
     //     return <div className="text-blue-800"> در حال بارگذاری...</div>;
@@ -132,12 +138,23 @@ const Courses = () => {
 
   useEffect(() => {
     const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1000);
+
+      if (window.innerWidth > 1000) {
+        setIsFilterOpen(false);
+      }
       if (window.innerWidth <= 700) {
         setDisplayMode("regular");
-      }};
+      }
+    };
+
     handleResize();
-      window.addEventListener("resize", handleResize);
-      return () => window.removeEventListener("resize", handleResize);
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
     
   return (
@@ -158,21 +175,9 @@ const Courses = () => {
         </div>
       </div>
       <div className={Style.productContainer}>
-        <div className={Style.productFilterContainer}>
-          <div className={Style.searchTheFilters}>
-            <SearchFilterInput/>
-          </div>
-          <motion.div className={Style.filtersContainer}  animate={{height: isCategoriesOpen ? "auto" : 40}} transition={{duration : 0.7}}>
-            <div className={Style.filtersDisplaySwitch} onClick={toggleFiltersHandler}>
-              <span className={Style.filterTitle}>دسته بندی ها</span>
-              <img src={isDarkMode ? "/images/displayArrowWhite.png" : "/images/displayArrow.png"} style={{transform: isCategoriesOpen ? 'rotate(0deg)' : 'rotate(180deg)'}} alt="Filter-Display-Switch" className={Style.filterDisplaySwitchIcon}/>
-            </div>
-            <ComplexOfFilters instructorList={instructorList} courseFilters={courseFilters} setCourseFilters={setCourseFilters}/>
-            <div className={Style.showMoreFilters}>
-              <span className={Style.showMoreFiltersText}>مشاهده‌ بیشتر</span>
-            </div>
-          </motion.div>
-        </div>
+        {(!isMobile || isFilterOpen) && ( 
+          <ProductFilter instructorList={instructorList} courseFilters={courseFilters} setCourseFilters={setCourseFilters} toggleFiltersHandler={toggleFiltersHandler} isCategoriesOpen={isCategoriesOpen} currentPos={currentPos} isMobile={isMobile}/>
+        )}
         <div className={Style.productMain}>
           <div className={Style.productsSearchAndDisplay}>
             <div className={Style.productListDisplaySwitch}>
@@ -187,7 +192,7 @@ const Courses = () => {
               <SearchInput courseFilters={courseFilters} setCourseFilters={setCourseFilters}/>
             </div>
             <div className={Style.viewAsMenu}>
-              <ViewAsMenu/>
+              <ViewAsMenu options={sortingOptions} setSortingCol={setSortingCol} setSortType={setSortType} openFilter={() => setIsFilterOpen(prev => !prev)} setCurrentPos={setCurrentPos}/>
             </div>
           </div>
           <div className={Style.itemsContainer}>
