@@ -456,15 +456,15 @@ const Comment = ({ newsId, courseId }) => {
             : () => setShowMore(2)
         }
         className={`
-            w-40 p-2 rounded-2xl transition-all duration-300
+            px-5 p-2 rounded-xl transition-all duration-300
             ${
               comments.length == 0
                 ? "w-fit text-(--button-bg) font-semibold! border-none"
                 : comments.length < 3
                   ? "hidden"
                   : showMore < comments.length && comments.length >= 3
-                    ? "text-(--button-bg) border border-(--button-bg) cursor-pointer"
-                    : "text-white font-semibold! bg-(--button-bg) cursor-pointer"
+                    ? "border border-(--button-bg) text-(--button-bg) hover:bg-(--button-hover-transparent) cursor-pointer"
+                    : "text-white font-semibold! bg-(--button-bg) hover:bg-(--button-hover) cursor-pointer"
             }`}
       >
         {comments.length == 0

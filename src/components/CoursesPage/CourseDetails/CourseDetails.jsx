@@ -1,16 +1,24 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Rating, RoundedStar } from "@smastrom/react-rating";
 import { useParams } from "react-router-dom";
 import "@smastrom/react-rating/style.css";
 import Comment from "../../NewsContainer/Comment";
 import clsx from "clsx";
-import { addCourseDisLike, addCourseFavorite, addCourseLike, addCourseReserve, getCourseDetail } from "../../../core/services/coursesService/coursesService";
+import {
+  addCourseDisLike,
+  addCourseFavorite,
+  addCourseLike,
+  addCourseReserve,
+  getCourseDetail,
+} from "../../../core/services/coursesService/coursesService";
 import { toast } from "react-toastify";
-import { deleteFavoriteCourse, getFavoriteCourse } from "../../../core/services/dashBoardService/dashBoardApi";
+import {
+  deleteFavoriteCourse,
+  getFavoriteCourse,
+} from "../../../core/services/dashBoardService/dashBoardApi";
 import { toShamsiDate } from "../../../utils/dateFormatter";
 
 const NewsDetails = () => {
-
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -27,7 +35,7 @@ const NewsDetails = () => {
   const fetchItem = async () => {
     try {
       const response = await getCourseDetail(courseId);
-      console.log("Detail =",response.data);
+      console.log("Detail =", response.data);
       setItem(response.data);
     } catch (error) {
       console.error("Fetch error:", error);
@@ -41,51 +49,65 @@ const NewsDetails = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [courseId]);
 
-
-  const fetchFavoriteCourses = useCallback(async() => {
-    if(!token){return}
-    try {
-        const response = await getFavoriteCourse();
-        console.log(response);
-        console.log(response.data);
-        if (response.data?.favoriteCourseDto) {
-            setFavoriteList(response.data.favoriteCourseDto);
-            console.log("Data Received",response.data.favoriteCourseDto);
-        }
-    } catch (error) {
-        console.log(error.response?.data);
-        toast.error("در نمایش دوره های مورد علاقه شما خطایی رخ داد");
+  const fetchFavoriteCourses = useCallback(async () => {
+    if (!token) {
+      return;
     }
-  },[])
+    try {
+      const response = await getFavoriteCourse();
+      console.log(response);
+      console.log(response.data);
+      if (response.data?.favoriteCourseDto) {
+        setFavoriteList(response.data.favoriteCourseDto);
+        console.log("Data Received", response.data.favoriteCourseDto);
+      }
+    } catch (error) {
+      console.log(error.response?.data);
+      toast.error("در نمایش دوره های مورد علاقه شما خطایی رخ داد");
+    }
+  }, []);
   useEffect(() => {
     fetchFavoriteCourses();
   }, []);
 
   useEffect(() => {
-    const isFavorite = favoriteList.some(
-      item => item.courseId === courseId
-    );
+    const isFavorite = favoriteList.some((item) => item.courseId === courseId);
 
     setFav(isFavorite);
   }, [favoriteList, courseId]);
-  
 
-  const addFavorite = async() => {
-    const favoriteStatus = favoriteList.find(item => item.courseId === courseId);
-    if(!favoriteStatus){
-        try {
-        const response = await addCourseFavorite({courseId: courseId,});
-        console.log("Favorite Response =",response);
+  const [hasMore, setHasMore] = useState(false);
+  const [showMore, setShowMore] = useState(false);
+  const textRef = useRef(null);
+
+  useEffect(() => {
+    const el = textRef.current;
+
+    if (!el) return;
+
+    const lineHeight = parseFloat(getComputedStyle(el).lineHeight);
+    const lines = el.scrollHeight / lineHeight;
+
+    setHasMore(lines > 7);
+  }, [item?.describe]);
+
+  const addFavorite = async () => {
+    const favoriteStatus = favoriteList.find(
+      (item) => item.courseId === courseId,
+    );
+    if (!favoriteStatus) {
+      try {
+        const response = await addCourseFavorite({ courseId: courseId });
+        console.log("Favorite Response =", response);
 
         toast.success("دوره به علاقه مندی ها افزوده شد");
       } catch (error) {
         console.log(error.response?.data);
         toast.error("در افزودن دوره به علاقه مندی ها خطایی رخ داد");
       }
-    await fetchFavoriteCourses();
-    setFav(true);
-    }
-    else{
+      await fetchFavoriteCourses();
+      setFav(true);
+    } else {
       try {
         await deleteFavoriteCourse(favoriteStatus.favoriteId);
         toast.success("دوره از علاقه مندی ها حذف شد");
@@ -96,7 +118,7 @@ const NewsDetails = () => {
       await fetchFavoriteCourses();
       setFav(false);
     }
-  }
+  };
 
   const handleLike = async () => {
     try {
@@ -104,20 +126,18 @@ const NewsDetails = () => {
       toast.success("لایک ثبت شد");
 
       await fetchItem();
-    }
-    catch (error) {
+    } catch (error) {
       console.log(error.response?.data);
       toast.error(error.response?.data?.message || "خطایی رخ داد");
     }
   };
 
   const handleDisLike = async () => {
-    try {    
+    try {
       await addCourseDisLike(courseId);
       toast.success("دیسلایک ثبت شد");
       await fetchItem();
-    } 
-    catch (error) {
+    } catch (error) {
       console.log(error.response?.data);
       toast.error(error.response?.data?.message || "خطایی رخ داد");
     }
@@ -131,34 +151,59 @@ const NewsDetails = () => {
       console.log(error.response?.data);
       toast.error("در رزرو کردن دوره خطایی رخ داد");
     }
-  }
+  };
 
   return (
     <div className="w-full mt-10 mb-10 flex justify-center">
       <div className="w-[97%] md:w-[90%] flex flex-row flex-wrap justify-around">
         <div className="w-[90%] lg:w-[70%]">
           <div className="w-full flex justify-center">
-            <div className="w-fit flex justify-center relative">
-              <img
-                style={{ width: "950px", borderRadius: "24px" }}
-                src={item?.imageAddress || "/images/JSBig.jpg"}
-                onError={(e) => {e.target.src = "/images/javaScriptProductCard.png";}}
-              />
+            <div className="w-full flex justify-center relative">
+              <div
+                style={{
+                  width: "100%",
+                  aspectRatio: "950/617",
+                  maxHeight: "617px",
+                  borderRadius: "24px",
+                  display: "flex",
+                  alignItems: "center",
+                  overflow: "hidden",
+                }}
+              >
+                <img
+                  style={{ width: "100%" }}
+                  src={item?.imageAddress || "/images/JSBig.jpg"}
+                  onError={(e) => {
+                    e.target.src = "/images/javaScriptProductCard.png";
+                  }}
+                />
+              </div>
+
               <div className="p-1 flex flex-row items-center gap-5 rounded-tr-3xl bg-(--bg-color) absolute bottom-0 left-0">
-                <div className="flex flex-row items-center" onClick={() => handleLike()}>
+                <div
+                  className="flex flex-row items-center"
+                  onClick={() => handleLike()}
+                >
                   <div className="h-10 w-10 bg-[url(/public/images/like.png)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
                   <div className="font-bold!">{item?.likeCount}</div>
                 </div>
-                <div className="flex flex-row items-center" onClick={() => handleDisLike()}>
+                <div
+                  className="flex flex-row items-center"
+                  onClick={() => handleDisLike()}
+                >
                   <div className="h-10 w-10 bg-[url(/public/images/disslike.png)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
                   <div className="font-bold!">{item?.dissLikeCount}</div>
                 </div>
               </div>
               <div
-                onClick={() => {addFavorite()}}
+                onClick={() => {
+                  addFavorite();
+                }}
                 className={clsx(
                   "absolute -right-58 -bottom-59 h-100 w-100 scale-45 sm:-right-77 sm:-bottom-77 sm:h-120 sm:w-120 sm:scale-60 cursor-pointer transition-all duration-500",
-                  fav ? "bg-red-700" : "bg-(--input-bg) shadow-[0_0px_8px_var(--news-shadow-color)]",
+                  fav
+                    ? "bg-red-700"
+                    : "bg-(--input-bg) shadow-[0_0px_8px_var(--news-shadow-color)]",
                 )}
                 style={{
                   clipPath:
@@ -172,8 +217,8 @@ const NewsDetails = () => {
               <p className="font-bold! text-[24px] text-center lg:text-start lg:indent-8">
                 {item?.title}
               </p>
-              <h2 className="text-[15px] text-(--news-description) text-center lg:text-start lg:mr-8">
-                {item?.describe}
+              <h2 className="max-h-20 overflow-hidden [display:-webkit-box] [-webkit-line-clamp:3] [-webkit-box-orient:vertical] text-[15px] text-(--news-description) text-center lg:text-start lg:mr-8">
+                {item?.miniDescribe}
               </h2>
             </div>
           </div>
@@ -211,7 +256,10 @@ const NewsDetails = () => {
               <div>{toShamsiDate(item?.endTime)}</div>
             </div>
             <div className="mt-4 h-12 w-[85%] flex flex-row items-center justify-between">
-              <button onClick={() => addReserve(item?.courseId)} className="py-2.5 px-6.5 lg:px-2.5 rounded-3xl bg-(--button-bg) hover:bg-(--button-hover) font-semibold! cursor-pointer transition-all duration-300 ease-in-out">
+              <button
+                onClick={() => addReserve(item?.courseId)}
+                className="py-2.5 px-6.5 lg:px-2.5 rounded-3xl bg-(--button-bg) hover:bg-(--button-hover) font-semibold! cursor-pointer transition-all duration-300 ease-in-out"
+              >
                 شروع یادگیری
               </button>
               <p>
@@ -264,9 +312,34 @@ const NewsDetails = () => {
             <p className="font-bold! text-[24px] text-center lg:text-start lg:mr-8">
               توضیحات
             </p>
-            <h2 className="p-5 rounded-3xl font-semibold! text-[15px] text-(--news-description) bg-(--news-boxs) shadow-[0_0px_8px_var(--news-shadow-color)]">
-              {item?.describe}
-            </h2>
+            <div className="relative transition-all">
+              <h2
+                ref={textRef}
+                className={`px-8 py-5 rounded-3xl font-semibold! text-[17px] text-(--news-description) bg-(--news-boxs) shadow-[0_0px_8px_var(--news-shadow-color)]
+              ${
+                hasMore &&
+                (showMore
+                  ? "max-h-fit pb-20"
+                  : "max-h-150 overflow-hidden [display:-webkit-box] [-webkit-line-clamp:20] [-webkit-box-orient:vertical] mask-[linear-gradient(to_bottom,black_75%,transparent)] [-webkit-mask-image:linear-gradient(to_bottom,black_75%,transparent)]")
+              }`}
+              >
+                {item?.describe}
+              </h2>
+
+              {hasMore && (
+                <button
+                  onClick={() => setShowMore(!showMore)}
+                  className={`px-5 py-2 absolute left-[43%] rounded-xl transition-all duration-300 cursor-pointer
+              ${
+                showMore
+                  ? "text-white font-semibold! bg-(--button-bg) hover:bg-(--button-hover) bottom-5"
+                  : "border border-(--button-bg) text-(--button-bg) hover:bg-(--button-hover-transparent) bottom-0"
+              }`}
+                >
+                  {showMore ? "بستن توضیحات" : "نمایش بیشتر"}
+                </button>
+              )}
+            </div>
           </div>
           <Comment courseId={courseId} />
         </div>
