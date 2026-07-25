@@ -15,7 +15,7 @@ const FavouredBlogs = () => {
     const [pageIndex, setPageIndex] = useState(0);
     const [pageCount, setPageCount] = useState(0);
 
-    const itemsPerPage = 8;
+    const itemsPerPage = 7;
 
     const startIndex = pageIndex * itemsPerPage;
     const currentItems = favouredList.slice(startIndex, startIndex + itemsPerPage);

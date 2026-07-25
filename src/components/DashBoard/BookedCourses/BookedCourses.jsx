@@ -4,12 +4,18 @@ import ReactPaginate from 'react-paginate'
 // import DashBoardCoursesData from '../../../Data/DashBoardCoursesData'
 import { Field, Form, Formik } from 'formik'
 import useDarkStore from '../../../store/DarkStore'
-import { userBookedCourse } from '../../../core/services/dashBoardService/dashBoardApi'
+import { coursePaymentFirst, coursePaymentSecond, userBookedCourse } from '../../../core/services/dashBoardService/dashBoardApi'
 import { toast } from 'react-toastify'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
+
 
 const BookedCourses = () => {
     const navigate = useNavigate();
+
+    const [searchParams] = useSearchParams();
+
+    const authority = searchParams.get("Authority");
+    const status = searchParams.get("Status");
 
     const isDarkMode = useDarkStore((state) => state.isDarkMode);
 
@@ -43,6 +49,41 @@ const BookedCourses = () => {
 
         await fetchBooked(page, search);
     };
+
+    const pay = async (reserveId) => {
+        try {
+            localStorage.setItem("reserveId", reserveId);
+            const response = await coursePaymentFirst(reserveId , `${window.location.origin}/Dashboard/Booked`);
+            window.open(response.data.link, "_self");
+        } catch (error) {
+            console.log(error);
+            console.log(error.response?.data);
+        }
+    }
+    const verifyPayment = async () => {
+        try {
+            const reserveId = localStorage.getItem("reserveId");
+
+            const response = await coursePaymentSecond(
+            reserveId,
+            authority
+            );
+
+            toast.success(response.data.message);
+
+            localStorage.removeItem("reserveId");
+
+            await fetchBooked();
+        } catch (error) {
+            console.log(error.response?.data);
+            toast.error(error.response?.data?.message);
+        }
+    };
+    useEffect(() => {
+        if (status === "OK" && authority) {
+            verifyPayment();
+        }
+    }, [status, authority]);
 
     const GoToCourseDetails = (courseId) => {
         navigate(`/Courses/${courseId}`);
@@ -88,7 +129,7 @@ const BookedCourses = () => {
                                 <div className={Style.itemTitle}>{course?.course?.title || "عنوان دوره"}</div>
                                 <div className={Style.itemDescription}>{course?.course?.describe || "شرح دوره"}</div>
                                 <div className={Style.itemInstructors}>{course?.course?.teacher?.fName} {course?.course?.teacher?.lName}</div>
-                                <div className={Style.itemOpen}>{course?.paymentStatus}</div>
+                                <div className={Style.itemOpen} onClick={course?.paymentStatus === "پرداخت نشده" ? () => pay(course.reserveId) : undefined}>{course?.paymentStatus === "پرداخت نشده" ? "پرداخت" : "یادگیری"}</div>
                                 <div className={Style.viewProduct} onClick={() => {GoToCourseDetails(course?.courseId)}}>
                                     <img src={isDarkMode ? "/images/viewProductDark.svg" :"/images/viewProduct.svg"} alt="Product-View-Icon" className={Style.viewProductIcon}/>
                                 </div>

@@ -182,8 +182,8 @@
     overflow: hidden;
 }
 .userProfile{
-    width: 59px;
-    height: 59px;
+    width: 100%;
+    height: 100%;
 }
 .userNameContainer{
     height: 100%;
@@ -277,6 +277,26 @@
     .dashboardHolder{
         width: clamp(310px,calc(100% - 20px),1870px);
         height: clamp(700px,calc(100% - 20px),950px);
+    }
+    .dashboardHeaderContainer{
+        height: 65px;
+    }
+    .userInfoBox{
+        height: 50px;
+        gap: 8px;
+    }
+    .userProfileContainer{
+        width: 50px;
+        height: 50px;
+    }
+    .userNameContainer{
+        justify-content: center;
+    }
+    .userNameText{
+        font-size: clamp(1.03rem,3.2vw,1.2rem);
+    }
+    .userId{
+        display: none;
     }
 }
 @media (max-width: 400px) {

@@ -30,10 +30,10 @@
     height: 40px;
 } */
 .itemsContainer{
-    margin-top: 30px;
     width: 95%;
     /* height: calc(100% - 40px - 65px); */
-    height: calc(100% - 65px);
+    margin-top: 9px;
+    height: calc(100% - 18px);
     display: flex;
     flex-direction: column;
     gap: 20px;

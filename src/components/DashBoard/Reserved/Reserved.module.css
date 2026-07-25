@@ -32,8 +32,8 @@
 .itemsContainer{
     width: 95%;
     /* height: calc(100% - 40px - 65px); */
-    margin-top: 50px;
-    height: calc(100% - 40px);
+    margin-top: 9px;
+    height: calc(100% - 18px);
     display: flex;
     flex-direction: column;
     gap: 20px;
