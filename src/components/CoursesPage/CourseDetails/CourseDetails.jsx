@@ -88,7 +88,7 @@ const NewsDetails = () => {
     const lineHeight = parseFloat(getComputedStyle(el).lineHeight);
     const lines = el.scrollHeight / lineHeight;
 
-    setHasMore(lines > 7);
+    setHasMore(lines > 20);
   }, [item?.describe]);
 
   const addFavorite = async () => {
