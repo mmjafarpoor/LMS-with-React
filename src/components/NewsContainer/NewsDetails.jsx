@@ -152,6 +152,7 @@ const NewsDetails = () => {
               <div
                 style={{
                   width: "100%",
+                  height: "auto",
                   aspectRatio: "950/617",
                   maxHeight: "617px",
                   borderRadius: "24px",
@@ -161,8 +162,8 @@ const NewsDetails = () => {
                 }}
               >
                 <img
-                  style={{ width: "100%" }}
-                  src={item?.currentImageAddress || "/images/PythonVeryBig.jpg"}
+                  style={{ width: "100%" , height: "100%"}}
+                  src={item?.currentImageAddress || "/images/PythonBig.png"}
                   onError={(e) => {
                     e.target.src = "/images/PythonBig.png";
                   }}

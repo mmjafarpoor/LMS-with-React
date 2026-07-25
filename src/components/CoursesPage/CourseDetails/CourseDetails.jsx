@@ -162,6 +162,7 @@ const NewsDetails = () => {
               <div
                 style={{
                   width: "100%",
+                  height : "auto",
                   aspectRatio: "950/617",
                   maxHeight: "617px",
                   borderRadius: "24px",
@@ -171,8 +172,8 @@ const NewsDetails = () => {
                 }}
               >
                 <img
-                  style={{ width: "100%" }}
-                  src={item?.imageAddress || "/images/JSBig.jpg"}
+                  style={{ width: "100%" , height: "100%"}}
+                  src={item?.imageAddress || "/images/javaScriptProductCard.png"}
                   onError={(e) => {
                     e.target.src = "/images/javaScriptProductCard.png";
                   }}
@@ -243,14 +244,14 @@ const NewsDetails = () => {
             </div>
             <div className="h-12 w-[85%] flex items-center justify-between border-b border-(--news-description)">
               <div className="flex flex-row gap-2">
-                <div className="h-6.5 w-6 bg-[url(/public/images/calendar-start.svg)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
+                <div className="h-6.5 w-6 bg-[url(/images/calendar-start.svg)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
                 <p className="text-(--news-description)">شروع</p>
               </div>
               <div>{toShamsiDate(item?.startTime)}</div>
             </div>
             <div className="h-12 w-[85%] flex items-center justify-between border-b border-(--news-description)">
               <div className="flex flex-row gap-2">
-                <div className="h-6.5 w-6 bg-[url(/public/images/calendar-start.svg)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
+                <div className="h-6.5 w-6 bg-[url(/images/calendar-start.svg)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
                 <p className="text-(--news-description)">پایان</p>
               </div>
               <div>{toShamsiDate(item?.endTime)}</div>
