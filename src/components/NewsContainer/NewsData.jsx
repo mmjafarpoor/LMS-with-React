@@ -10,6 +10,8 @@ const NewsData = ({
   describe,
   currentImageAddress,
   currentView,
+  currentLikeCount,
+  currentDissLikeCount,
 }) => {
   const navigate = useNavigate();
   const GoToNewsDetails = () => {
@@ -31,18 +33,32 @@ const NewsData = ({
           ...(showType === "grid" ? { height: "490px" } : { height: "640px" }),
         }}
         src={currentImageAddress || "/images/PythonBig.png"}
-        onError={(e) => {e.target.src = "/images/PythonBig.png";}}
+        onError={(e) => {
+          e.target.src = "/images/PythonBig.png";
+        }}
       />
-      <div className="w-[80%] mr-6 flex flex-col gap-2 absolute bottom-4 text-white">
+      <div className="w-full px-5 flex flex-col gap-2 absolute bottom-4 text-white">
         <p className="text-2xl font-bold!">{title}</p>
-        <h2 className="text-md font-bold!">{describe} </h2>
-        <div className="mt-2 flex flex-row gap-10 text-sm font-bold!">
+        <h2 className="max-h-20 text-md font-bold! overflow-hidden [display:-webkit-box] [-webkit-line-clamp:3] [-webkit-box-orient:vertical]">{describe} </h2>
+        <div className="mt-2 flex flex-row justify-between items-center text-sm font-bold!">
           <div className="h-6 bg-[url(/images/whiteUser.png)] bg-no-repeat bg-position-[100%_0%] indent-8 text-white font-bold!">
             {currentView} بازدید
           </div>
-          <div className="h-6 bg-[url(/images/book.png)] bg-no-repeat bg-position-[100%_0%] indent-12 text-white font-bold!">
-            دروس
+          <div className="flex flex-row items-center gap-2">
+            <div className="flex flex-row items-center">
+              <div
+                className="h-6 w-10 mb-2.5 bg-[url(/images/thumbs-up.svg)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"
+              ></div>
+              <div className="font-bold!">{currentLikeCount || 0}</div>
+            </div>
+            <div className="flex flex-row items-center">
+              <div className="h-6 w-10 mt-1.5 bg-[url(/images/thumbs-down.svg)] bg-no-repeat bg-position-[50%] -scale-x-100 invert-(--invert-color)"></div>
+              <div className="font-bold!">{currentDissLikeCount || 0}</div>
+            </div>
           </div>
+          {/* <div className="h-6 bg-[url(/images/book.png)] bg-no-repeat bg-position-[100%_0%] indent-12 text-white font-bold!">
+            دروس
+          </div> */}
         </div>
       </div>
     </div>
