@@ -29,7 +29,7 @@ const NewsCards = () => {
   return (
     <div className="h-full w-full flex flex-col justify-center items-center gap-10">
       <div className="flex flex-col gap-6 items-center lg:bg-[url(/images/blueLine.png)] bg-no-repeat bg-position-[50%_30px]">
-        <h1 className="lg:text-[30px] sm:text-[26px] text-[20px] font-semibold!">
+        <h1 className="lg:text-[34px] sm:text-[30px] text-[20px] font-semibold!">
           اساتید برتر
         </h1>
         <p className="flex items-center text-center lg:text-[16px] sm:text-[14px] text-[10px] w-[60%] text-(--news-description)">

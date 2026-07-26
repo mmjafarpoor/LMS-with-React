@@ -28,7 +28,7 @@ const NewsCards = () => {
   return (
     <div className="h-full w-full flex flex-col justify-center items-center gap-10">
       <div className="flex flex-col gap-6 items-center lg:bg-[url(/images/blueLine.png)] bg-no-repeat bg-position-[50%_30px]">
-        <h1 className="lg:text-[30px] sm:text-[26px] text-[20px] font-semibold!">
+        <h1 className="lg:text-[34px] sm:text-[26px] text-[20px] font-semibold!">
           جدیدترین اخبار
         </h1>
         <p className="flex items-center text-center lg:text-[16px] sm:text-[14px] text-[10px] w-fit text-(--news-description)">
@@ -65,13 +65,13 @@ const NewsCards = () => {
                 </div>
                 <div className="flex flex-row items-center gap-2">
                   <div className="flex flex-row items-center">
-                    <div className="h-6 w-10 mb-2.5 bg-[url(/images/thumbs-up.svg)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
+                    <div className="h-6 w-10 mb-2.5 bg-[url(/images/thumbs-up.svg)] bg-no-repeat bg-position-[50%] invert-100"></div>
                     <div className="font-bold!">
                       {item?.currentLikeCount || 0}
                     </div>
                   </div>
                   <div className="flex flex-row items-center">
-                    <div className="h-6 w-10 mt-1.5 bg-[url(/images/thumbs-down.svg)] bg-no-repeat bg-position-[50%] -scale-x-100 invert-(--invert-color)"></div>
+                    <div className="h-6 w-10 mt-1.5 bg-[url(/images/thumbs-down.svg)] bg-no-repeat bg-position-[50%] -scale-x-100 invert-100"></div>
                     <div className="font-bold!">
                       {item?.currentDissLikeCount || 0}
                     </div>

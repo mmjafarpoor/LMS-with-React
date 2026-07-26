@@ -29,7 +29,7 @@ const TeacherCourses = (courses) => {
               }}
             />
           </div>
-          <div className="h-45 w-90 -translate-y-10 hover:-translate-y-5 flex flex-col items-center justify-center gap-4 rounded-2xl bg-(--header-bg) shadow-[0_0px_8px_var(--courses-cards-shadow-color)] transition-all duration-250 z-10000">
+          <div className="h-45 w-90 -translate-y-10 hover:-translate-y-5 flex flex-col items-center justify-center gap-4 rounded-2xl bg-(--header-bg) shadow-[0_0px_8px_var(--news-shadow-color)] transition-all duration-250 z-10000">
             <p className="w-[85%] font-semibold!">
               {top?.title || "عنوان محصول"}
             </p>

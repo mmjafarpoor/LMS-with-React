@@ -29,7 +29,7 @@ const WagonSlider = () => {
   return (
     <div className="w-full flex flex-col items-center justify-between gap-10">
       <div className="flex flex-col gap-6 items-center lg:bg-[url(/images/blueLine.png)] bg-no-repeat bg-position-[50%_30px]">
-        <h1 className="lg:text-[30px] sm:text-[26px] text-[20px] font-semibold!">
+        <h1 className="lg:text-[34px] sm:text-[26px] text-[20px] font-semibold!">
           محبوب‌ترین دسته‌بندی‌ها
         </h1>
         <p className="flex items-center text-center lg:text-[16px] sm:text-[14px] text-[10px] w-[80%] xl:w-fit text-(--news-description)">

@@ -47,12 +47,12 @@ const NewsData = ({
           <div className="flex flex-row items-center gap-2">
             <div className="flex flex-row items-center">
               <div
-                className="h-6 w-10 mb-2.5 bg-[url(/images/thumbs-up.svg)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"
+                className="h-6 w-10 mb-2.5 bg-[url(/images/thumbs-up.svg)] bg-no-repeat bg-position-[50%] invert-100"
               ></div>
               <div className="font-bold!">{currentLikeCount || 0}</div>
             </div>
             <div className="flex flex-row items-center">
-              <div className="h-6 w-10 mt-1.5 bg-[url(/images/thumbs-down.svg)] bg-no-repeat bg-position-[50%] -scale-x-100 invert-(--invert-color)"></div>
+              <div className="h-6 w-10 mt-1.5 bg-[url(/images/thumbs-down.svg)] bg-no-repeat bg-position-[50%] -scale-x-100 invert-100"></div>
               <div className="font-bold!">{currentDissLikeCount || 0}</div>
             </div>
           </div>
