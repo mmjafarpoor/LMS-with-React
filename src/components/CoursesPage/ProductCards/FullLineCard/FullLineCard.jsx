@@ -3,7 +3,7 @@ import Style from './FullLineCard.module.css'
 import RatingStars from '../../../common/RatingStars/RatingStars';
 import { useNavigate } from 'react-router-dom';
 
-const FullLineCard = ({courseId, title, describe, cost, currentRegistrants, imageAddress, courseRate, teacherId, teacherName}) => {
+const FullLineCard = ({courseId, title, describe , miniDescribe , cost, currentRegistrants, imageAddress, courseRate, teacherId, teacherName}) => {
   const navigate = useNavigate();
 
   const GoToCourseDetails = () => {
@@ -28,7 +28,7 @@ const FullLineCard = ({courseId, title, describe, cost, currentRegistrants, imag
       <div className={Style.productMeta}>
         <div className={Style.productHeading}>
           <span className={Style.productTitle}>{title || "عنوان دوره"}</span>
-          <span className={Style.productDescription}>{describe || "توضیحات دوره"}</span>
+          <span className={Style.productDescription}>{miniDescribe || describe || "توضیحات دوره"}</span>
         </div>
         <div className={Style.productInfo}>
           <div className={Style.productPrice}>

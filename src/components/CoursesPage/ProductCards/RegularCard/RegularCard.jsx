@@ -3,7 +3,7 @@ import Style from './RegularCard.module.css'
 import RatingStars from '../../../common/RatingStars/RatingStars'
 import { useNavigate } from 'react-router-dom'
 
-const RegularCard = ({courseId, title, describe, cost, currentRegistrants, imageAddress, courseRate, teacherId, teacherName}) => { 
+const RegularCard = ({courseId, title, describe , miniDescribe , cost, currentRegistrants, imageAddress, courseRate, teacherId, teacherName}) => { 
     
     const navigate = useNavigate();
     const GoToCourseDetails = () => {
@@ -27,7 +27,7 @@ const RegularCard = ({courseId, title, describe, cost, currentRegistrants, image
             <div onClick={GoToCourseDetails} className={Style.productMeta}>
                 <div className={Style.metaHeading}>
                     <span className={Style.productTitle}>{title || "عنوان دوره"}</span>
-                    <span className={Style.productDescription}>{describe || "توضیحات دوره"}</span>
+                    <span className={Style.productDescription}>{miniDescribe || describe || "توضیحات دوره"}</span>
                 </div>
                 <div className={Style.productInfo}>
                     <RatingStars courseRate={courseRate}/>

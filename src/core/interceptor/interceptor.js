@@ -40,7 +40,7 @@ const apiClient = axios.create({
             toast.error("مجوز دسترسی به این بخش را ندارید");
             
             setTimeout(()=>{
-                window.location.href = "/auth";
+                window.location.href = "/Auth";
             },1500);
         }
         
