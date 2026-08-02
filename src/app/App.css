@@ -1,5 +1,6 @@
 body{
     background-color: var(--bg-color);
+    font-weight: 400;
 }
 .clusterIcon{
     height: 3rem;

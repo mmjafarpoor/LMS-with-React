@@ -5,7 +5,6 @@
   direction: rtl;
   line-height: 1.5;
   font-family: IranSans;
-  font-weight: 400;
 }
 html, body, #root{
   height: 100%;
@@ -115,10 +114,12 @@ body > div:not([data-otp]) {
 input[type='checkbox'],input[type='radio']{
   accent-color: var(--button-bg);
 }
-img{
+
+/* img{
   width: fit-content;
   height: fit-content;
-}
+} */
+
 @font-face {
   font-family: IranSans;
   src: url(/fonts/persian-fonts/iran-sans/IRANSans_Bold.ttf);
