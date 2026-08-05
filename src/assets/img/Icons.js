@@ -1,0 +1,1 @@
+export {default as NotFoundArrow} from './icons/not-found-arrow.svg'

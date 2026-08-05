@@ -1,0 +1,1 @@
+export {default as NotFoundBg} from './images/not-found.svg'

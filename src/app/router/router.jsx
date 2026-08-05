@@ -22,7 +22,7 @@ const News = lazy(() => import("../../pages/News"));
 import NewsDetails from "../../components/NewsContainer/NewsDetails";
 const Contact = lazy(() => import("../../pages/Contact"));
 // import Contact from "../../pages/Contact";
-import Error404 from "../../pages/Error404";
+import NotFound from "../../pages/NotFound";
 const DashBoard = lazy(() => import("../../pages/DashBoard"));
 // import DashBoard from "../../pages/DashBoard";
 import DashBoardMain from "../../components/DashBoard/DashBoardMain/DashBoardMain";
@@ -53,7 +53,7 @@ const router = createBrowserRouter([
         { path: "News", element: <News/> },
         { path: "News/:id/:NewsName", element: <NewsDetails /> },
         { path: "Contact", element: <Contact/> },
-        { path: "*", element: <Error404/> },
+        { path: "*", element: <NotFound/> },
     ]},
     {
       path: "/Auth",

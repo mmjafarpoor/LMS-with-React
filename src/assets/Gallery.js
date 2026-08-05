@@ -1,2 +1,3 @@
-export * from './images/Banners'
-export * from './images/Icons'
+export * from './img/Banners'
+export * from './img/Icons'
+export * from './img/Images'
