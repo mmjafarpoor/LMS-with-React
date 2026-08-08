@@ -1,0 +1,32 @@
+{
+    "menu":{
+        "home": "Home" ,
+        "courses": "Courses" ,
+        "teachers": "Teachers" ,
+        "news": "News & Blogs" ,
+        "contact": "Contact Us"
+    },
+    "account":"Login / Sign Up" ,
+    "footerDescription": "With over a decade of experience and a unique approach, the Ahan-e Yek Trading Group meets the needs of all clients regarding the supply and distribution of various steel sections, plates, fittings, industrial valves, and other equipment for the oil, gas, petrochemical, construction, and water supply sectors. Operating through branches in the Shad-Abad and Punak iron markets—and offering both online and in-person services—the group facilitates the procurement of industrial supplies that meet current global standards.",
+    "footerMenu": [
+        { "title": "Useful Links", "items": [
+            { "label": "our values" , "link": "/#" } ,
+            { "label": "our advisors" , "link": "/#" } ,
+            { "label": "our partners" , "link": "/#" } ,
+            { "label": "cooperate" , "link": "/#" } ,
+            { "label": "work here" , "link": "/#" }
+        ]} , 
+        { "title": "Our Company", "items": [
+            { "label": "contact with us" , "link": "/#" } ,
+            { "label": "become a teacher" , "link": "/#" } ,
+            { "label": "weblog" , "link": "/#" } ,
+            { "label": "teachers" , "link": "/#" } ,
+            { "label": "events" , "link": "/#" }
+        ]} ,
+        { "title": "Contact Us", "items": [
+            { "label": "09109098222" , "link": "tel:09109098222" } ,
+            { "label": "09931227310" , "link": "tel:09931227310" }
+        ]}
+    ] ,
+    "copyRight": "All material and intellectual rights to this design belong to Amir Mohammad Kheirabadi."
+}

@@ -5,9 +5,12 @@ import './App.css'
 import useDarkStore from "../store/DarkStore";
 import { Suspense } from "react";
 import LoadingSpinner from "../components/common/LoadingSpinner/LoadingSpinner";
+import useDirection from "../hooks/useDirection";
 
 function App() {
   const isDarkMode = useDarkStore((state) => state.isDarkMode);
+
+  const { isRTL } = useDirection();
   
   return (
     <Suspense fallback={<LoadingSpinner/>}>
@@ -18,7 +21,8 @@ function App() {
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick={false}
-        rtl
+        rtl={isRTL}
+        stacked
         pauseOnFocusLoss
         draggable
         pauseOnHover

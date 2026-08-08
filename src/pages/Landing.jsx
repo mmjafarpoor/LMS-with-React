@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import useDarkStore from "../store/DarkStore";
 import userInfoStore from "../store/UserInfoStore";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 	
 const Landing = () => {
@@ -21,6 +22,8 @@ const Landing = () => {
     }, [fetchUser]);
 
     const token = localStorage.getItem("token");
+
+    const { t } = useTranslation("landing");
 
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isHeaderFixed, setIsHeaderFixed] = useState(false);
@@ -176,7 +179,7 @@ const Landing = () => {
                         </div>
                     </div>
                     <div className={Style.menu}>
-                        <NavLink to={"Home"} className={({ isActive }) => isActive ? Style.menuItemActive : Style.menuItem}>خانه</NavLink>
+                        <NavLink to={"Home"} className={({ isActive }) => isActive ? Style.menuItemActive : Style.menuItem}>{t("menu.home")}</NavLink>
                         <NavLink to={"Courses"} className={({ isActive }) => isActive ? Style.menuItemActive : Style.menuItem}>دوره ها</NavLink>
                         <NavLink to={"Teachers"} className={({ isActive }) => isActive ? Style.menuItemActive : Style.menuItem}>اساتید</NavLink>
                         <NavLink to={"News"} className={({ isActive }) => isActive ? Style.menuItemActive : Style.menuItem}>اخبار و مقالات</NavLink>

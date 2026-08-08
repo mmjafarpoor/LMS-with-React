@@ -3,7 +3,7 @@
 
 *{
   box-sizing: border-box;
-  direction: rtl;
+  /* direction: rtl; */
   line-height: 1.5;
   font-family: IranSans;
 }
@@ -14,13 +14,13 @@ html, body, #root{
   /* direction: rtl; */
 }
 
-body > div:not([data-otp]) {
+/* body > div:not([data-otp]) {
   direction: rtl;
-}
+} */
 
-[data-otp="true"] * {
+/* [data-otp="true"] * {
   direction: ltr !important;
-}
+} */
 
 :root {
     --bg-color: #FFFFFF;
