@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Style from './DashBoardMain.module.css'
 import UserStats from '../../../Data/UserStats'
-import LatestNewsDashBoard from '../../../Data/LatestNewsDashBoard'
-import LatestCourseDashBoard from '../../../Data/LatestCoursesDashBoard'
+import LatestNewsDashBoard from '../../../Data/Mock-Api/LatestNewsDashBoard'
+import LatestCourseDashBoard from '../../../Data/Mock-Api/LatestCoursesDashBoard'
 import { Field, Form, Formik } from 'formik'
 import Slider from 'rc-slider';
 import useDarkStore from '../../../store/DarkStore'

@@ -1,18 +1,18 @@
 import React, { useEffect, useState, useRef } from "react";
 import Style from "../styles/Landing.module.css";
 import clsx from "clsx";
-import { Link, NavLink, Outlet , useNavigate } from "react-router-dom";
+import { NavLink, Outlet , useNavigate } from "react-router-dom";
 import "react-toastify/ReactToastify.css";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import useDarkStore from "../store/DarkStore";
 import userInfoStore from "../store/UserInfoStore";
 import { toast } from "react-toastify";
+import MenuItems from '../Data/MenuItems'
+import BottomMenu from "../Data/BottomMenu";
 
-	
 const Landing = () => {
     const navigate = useNavigate();
-
     const user = userInfoStore((state) => state.user);
     const fetchUser = userInfoStore((state) => state.fetchUser);
 
@@ -137,7 +137,6 @@ const Landing = () => {
     }
 
     return (
-
         <div className={Style.landingContainer}>
             {isMenuOpen &&(
                 <nav className={Style.mobileMenu}>
@@ -151,11 +150,9 @@ const Landing = () => {
                             </div>
                         </div>
                         <div className={Style.mobileMenuItemsContainer}>
-                            <Link to={"Home"} className={Style.mobileMenuItem}>خانه</Link>
-                            <Link to={"Courses"} className={Style.mobileMenuItem}>دوره ها</Link>
-                            <Link to={"Teachers"} className={Style.mobileMenuItem}>اساتید</Link>
-                            <Link to={"News"} className={Style.mobileMenuItem}>اخبار و مقالات</Link>
-                            <Link to={"Contact"} className={Style.mobileMenuItem}>ارتباط باما</Link>
+                            {MenuItems.map((item) => (
+                                <NavLink key={item.id} to={item.linkTo} className={Style.mobileMenuItem}>{item.title}</NavLink>
+                            ))}
                         </div>
                         <div className={Style.mobileMenuSeparator}></div>
                         <div className={Style.academyLogoInMobileMenu}>
@@ -176,11 +173,9 @@ const Landing = () => {
                         </div>
                     </div>
                     <div className={Style.menu}>
-                        <NavLink to={"Home"} className={({ isActive }) => isActive ? Style.menuItemActive : Style.menuItem}>خانه</NavLink>
-                        <NavLink to={"Courses"} className={({ isActive }) => isActive ? Style.menuItemActive : Style.menuItem}>دوره ها</NavLink>
-                        <NavLink to={"Teachers"} className={({ isActive }) => isActive ? Style.menuItemActive : Style.menuItem}>اساتید</NavLink>
-                        <NavLink to={"News"} className={({ isActive }) => isActive ? Style.menuItemActive : Style.menuItem}>اخبار و مقالات</NavLink>
-                        <NavLink to={"Contact"} className={({ isActive }) => isActive ? Style.menuItemActive : Style.menuItem}>ارتباط با ما</NavLink>
+                        {MenuItems.map((item) => (
+                            <NavLink to={item.linkTo} key={item.id} className={({ isActive }) => isActive ? Style.menuItemActive : Style.menuItem}>{item.title}</NavLink>
+                        ))}
                     </div>
                     <div className={Style.loginContainer} style={{width: token ? "auto" : "14.5%" , minWidth: token ? "100px" : "210px"}}>
                         <div className={Style.darkModeSwitch}
@@ -223,32 +218,16 @@ const Landing = () => {
                         </div>
                         <span className={Style.academyPresentation}>گروه بازرگانی آهن یک با بیش از یک دهه سابقه ، با نگاهی متفاوت پاسخگوی نیاز تمامی مشتریان در زمینه تامین و توزیع انواع مقاطع و ورق فولادی ، اتصالات ، شیرآلات صنعتی و سایر تجهیزات در صنایع نفت و گاز و پتروشیمی ، ساختمانی و آبرسانی با دو شعبه فعال در بازار آهن شاد آباد و پونک ، به دو صورت آنلاین و حضوری ، امکان تامین کالاهای مورد نیاز صنایع مطابق با استاندارد های روز دنیا را فراهم نموده است.</span>
                     </div>
-                    
                     <div className={Style.bottomItemsContainer}>
-                        <div className={clsx(Style.bottomItem,Style.disappearBottomItem)}>
-                            <span className={Style.footerItemTitle}>لینک های مفید</span>
-                            <div className={Style.footerItemSeparator}></div>
-                            <span className={Style.footerLink}>ارزش های ما</span>
-                            <span className={Style.footerLink}>هیئت مشاوران ما</span>
-                            <span className={Style.footerLink}>شرکای ما</span>
-                            <span className={Style.footerLink}>شریک شدن</span>
-                            <span className={Style.footerLink}>در  پژوهشگاه کار کنید</span>
-                        </div>
-                        <div className={clsx(Style.bottomItem,Style.disappearBottomItem)}>
-                            <span className={Style.footerItemTitle}>شرکت ما</span>
-                            <div className={Style.footerItemSeparator}></div>
-                            <span className={Style.footerLink}>با ما تماس بگیرید</span>
-                            <span className={Style.footerLink}>معلم شوید</span>
-                            <span className={Style.footerLink}>وبلاگ</span>
-                            <span className={Style.footerLink}>مربی</span>
-                            <span className={Style.footerLink}>مناسبت ها</span>
-                        </div>
-                        <div className={Style.bottomItem}>
-                            <span className={Style.footerItemTitle}>در تماس باشید</span>
-                            <div className={Style.footerItemSeparator}></div>
-                            <a  href="tel:09109098222" className={Style.footerLink} style={{color: `var(--link-color)` , fontWeight: "500"}}>09109098222</a>
-                            <a  href="tel:09931227310" className={Style.footerLink} style={{color: `var(--link-color)` , fontWeight: "500"}}>09931227310</a>
-                        </div>
+                        {BottomMenu.map((menu) => (
+                            <div key={menu.id} className={clsx(Style.bottomItem , menu.variant === "default" && Style.disappearBottomItem)}>
+                                <span className={Style.footerItemTitle}>{menu.title}</span>
+                                <div className={Style.footerItemSeparator}></div>
+                                {menu.items.map((item) => (
+                                    <a key={item.id} href={item.link} className={Style.footerLink} style={menu.variant === "contact" ? {color: "var(--link-color)",fontWeight: "500",} : undefined}>{item.title}</a>
+                                ))}
+                            </div>
+                        ))}
                     </div>
                     <div className={Style.trustBadge}></div>
                 </div>
