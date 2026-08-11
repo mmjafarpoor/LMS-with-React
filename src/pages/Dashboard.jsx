@@ -7,6 +7,7 @@ import useDarkStore from '../store/DarkStore'
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { toast } from 'react-toastify'
+import { themeAnimation } from '@/ui/animations/themeAnimation'
 
 const DashBoard = () => {
 
@@ -36,46 +37,12 @@ const DashBoard = () => {
         fetchUser();
     }, [fetchUser]);
 
-
-
     const themeButtonRef = useRef(null);
     const isDarkMode = useDarkStore((state) => state.isDarkMode);
     const toggleDarkMode = useDarkStore((state) => state.toggleDarkMode);
 
-    const handleThemeToggle = async () => {
-        const rect = themeButtonRef.current.getBoundingClientRect();
-
-        const themeSwitch_X = rect.left + rect.width / 2;
-        const themeSwitch_Y = rect.top + rect.height / 2;
-
-        const endRadius = Math.hypot(
-            Math.max(themeSwitch_X, window.innerWidth - themeSwitch_X),
-            Math.max(themeSwitch_Y, window.innerHeight - themeSwitch_Y)
-        );
-
-        if (!document.startViewTransition) {
-            toggleDarkMode();
-            return;
-        }
-        const transition = document.startViewTransition(() => {
-            toggleDarkMode();
-        });
-
-        await transition.ready;
-
-        document.documentElement.animate(
-            {
-                clipPath: [
-                    `circle(0px at ${themeSwitch_X}px ${themeSwitch_Y}px)`,
-                    `circle(${endRadius}px at ${themeSwitch_X}px ${themeSwitch_Y}px)`,
-                ],
-            },
-            {
-                duration: 700,
-                easing: "ease-in-out",
-                pseudoElement: "::view-transition-new(root)",
-            }
-        );
+    const handleThemeToggle = () => {
+        themeAnimation({ themeButtonRef , toggleDarkMode });
     };
 
     useEffect(() => {

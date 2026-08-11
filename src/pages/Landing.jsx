@@ -7,12 +7,14 @@ import "react-toastify/ReactToastify.css";
 import { motion } from "framer-motion";
 import useDarkStore from "../store/DarkStore";
 import userInfoStore from "../store/UserInfoStore";
-import { toast } from "react-toastify";
 import MenuItems from '../Data/MenuItems'
 import BottomMenu from "../Data/BottomMenu";
+import { themeAnimation } from "@/ui/animations/themeAnimation";
+import MobileMenuOpen from "@/ui/svg/MobileMenuOpen";
 
 const Landing = () => {
     const navigate = useNavigate();
+
     const user = userInfoStore((state) => state.user);
     const fetchUser = userInfoStore((state) => state.fetchUser);
 
@@ -39,40 +41,8 @@ const Landing = () => {
     const isDarkMode = useDarkStore((state) => state.isDarkMode);
     const toggleDarkMode = useDarkStore((state) => state.toggleDarkMode);
 
-    const handleThemeToggle = async () => {
-        const rect = themeButtonRef.current.getBoundingClientRect();
-
-        const themeSwitch_X = rect.left + rect.width / 2;
-        const themeSwitch_Y = rect.top + rect.height / 2;
-
-        const endRadius = Math.hypot(
-            Math.max(themeSwitch_X, window.innerWidth - themeSwitch_X),
-            Math.max(themeSwitch_Y, window.innerHeight - themeSwitch_Y)
-        );
-
-        if (!document.startViewTransition) {
-            toggleDarkMode();
-            return;
-        }
-        const transition = document.startViewTransition(() => {
-            toggleDarkMode();
-        });
-
-        await transition.ready;
-
-        document.documentElement.animate(
-            {
-                clipPath: [
-                    `circle(0px at ${themeSwitch_X}px ${themeSwitch_Y}px)`,
-                    `circle(${endRadius}px at ${themeSwitch_X}px ${themeSwitch_Y}px)`,
-                ],
-            },
-            {
-                duration: 700,
-                easing: "ease-in-out",
-                pseudoElement: "::view-transition-new(root)",
-            }
-        );
+    const handleThemeToggle = () => {
+        themeAnimation({ themeButtonRef , toggleDarkMode });
     };
 
     useEffect(() => {
@@ -102,30 +72,11 @@ const Landing = () => {
     }, [isMenuOpen]);
 
     const GoToAuth = () => {
-        const directingToast = toast.loading("در حال انتقال به بخش ورود هستید")
-        setTimeout(()=>{
-            toast.update(directingToast, {
-                render: "با موفقیت وارد صفحه لاگین شدید",
-                type: "success",
-                isLoading: false,
-                autoClose: 900,
-            });
-            navigate("/Auth");
-        },1200)
+        navigate("/Auth");
     };
 
     const GoToDashboard = () => {
-        const directingToast = toast.loading("در حال انتقال به داشبورد هستید")
-
-        setTimeout(()=>{
-            toast.update(directingToast, {
-                render: "با موفقیت وارد پنل خود شدید",
-                type: "success",
-                isLoading: false,
-                autoClose: 1000,
-            });
-            navigate("/Dashboard/Main");
-        },1500)
+        navigate("/Dashboard/Main");
     }
 
     function scrollToTop() {
@@ -196,7 +147,11 @@ const Landing = () => {
                             <div className={Style.account} onClick={GoToAuth}>ورود یا ثبت نام</div>
                         }
                         <div className={Style.headerShowMoreButton} onClick={toggleMenu}>
-                            <img src={isDarkMode ? "/images/mobileMenuOpenDarkMode.svg" : "/images/mobileMenuOpenLightMode.svg"} alt="Header-Show-More-Button"/>
+                            <MobileMenuOpen
+                                color={isDarkMode ? "#3C3C3C" : "white"}
+                                secondaryColor={isDarkMode ? "white" : "#272727"}
+                                border={isDarkMode ? "none" : "#B5B5B5"}
+                            />
                         </div>
                     </div>
                 </div>
