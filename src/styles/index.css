@@ -60,7 +60,7 @@ body > div:not([data-otp]) {
     --progress-bar-trail: rgba(12, 189, 226, 0.18);
     --invert-color: 0;
 }
-.dark-theme {
+:root.dark-theme {
     --bg-color: #212121;
     --invert-bg: #FFFFFF;
     --text-color: #FFFFFF;

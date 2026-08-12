@@ -35,7 +35,7 @@ export const themeAnimation = async ({ themeButtonRef , toggleDarkMode }) => {
             ],
         },
         {
-            duration: 700,
+            duration: 600,
             easing: "ease-in-out",
             pseudoElement: "::view-transition-new(root)",
         }

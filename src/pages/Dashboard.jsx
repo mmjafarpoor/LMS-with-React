@@ -4,8 +4,6 @@ import DashBoardMenuItems from '../Data/DashBoardMenuItems'
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import userInfoStore from '../store/UserInfoStore'
 import useDarkStore from '../store/DarkStore'
-// eslint-disable-next-line no-unused-vars
-import { motion } from "framer-motion";
 import { toast } from 'react-toastify'
 import { themeAnimation } from '@/ui/animations/themeAnimation'
 
@@ -44,14 +42,6 @@ const DashBoard = () => {
     const handleThemeToggle = () => {
         themeAnimation({ themeButtonRef , toggleDarkMode });
     };
-
-    useEffect(() => {
-        if (isDarkMode) {
-        document.body.classList.add("dark-theme");
-    } else {
-        document.body.classList.remove("dark-theme");
-    }
-    }, [isDarkMode])
 
     // const updateUser = useUserInfoStore((state) => state.updateUser);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -109,7 +99,7 @@ const DashBoard = () => {
                                     <img src={isDarkMode ? "/images/homeButton.png" : "/images/homeButtonWhite.png"} alt="Home-Button" className={Style.themeIcon}/>
                                 </div>
                                 <div className={Style.themeSwitch} ref={themeButtonRef} onClick={handleThemeToggle}  title={isDarkMode ? "حالت روشن" : "حالت تاریک"}>
-                                    <motion.img key={isDarkMode} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }} src={isDarkMode ? "/images/lightMode.svg" : "/images/darkMode.svg"} alt={isDarkMode ? "Light Mode" : "Dark Mode"} className={Style.themeIcon}/>
+                                    <img src={isDarkMode ? "/images/lightMode.svg" : "/images/darkMode.svg"} alt={isDarkMode ? "Light Mode" : "Dark Mode"} className={Style.themeIcon}/>
                                 </div>
                             </div>
                         </div>
