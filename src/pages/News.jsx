@@ -99,7 +99,7 @@ const News = () => {
             <input
               type="text"
               placeholder="متن ورودی"
-              className="flex-1 min-w-0 h-full rounded-xl bg-[url(/images/search.png)] bg-no-repeat bg-position-[97%_50%] bg-(--news-top-filter) indent-12 2xl:indent-16"
+              className="flex-1 min-w-0 h-full rounded-xl bg-[url(/images/search.png)] bg-no-repeat bg-position-[97%_50%] bg-(--news-top-filter) indent-12 2xl:indent-16 outline-none"
             />
             <div className="w-fit h-full pr-2 pl-2 rounded-2xl hidden lg:flex flex-row items-center justify-around gap-2 bg-(--news-top-filter)  cursor-pointer">
               <div className="w-7 h-9 bg-[url(/images/listsort.png)] bg-no-repeat bg-position-[50%] invert-(--invert-color)"></div>
@@ -110,7 +110,7 @@ const News = () => {
               ترتیب و فیلتر
             </div>
           </div>
-          <div className="w-full h-fit mt-6 flex flex-row flex-wrap justify-around gap-2 gap-y-8">
+          <div className="w-full h-fit mt-6 flex flex-row flex-wrap justify-center gap-4 gap-y-8">
             {currentItems.map((item) => (
               <NewsData key={item.id} {...item} showType={showType} />
             ))}

@@ -14,6 +14,7 @@ import {
   getNewsDetails,
 } from "../../core/services/newsService/newsService";
 import { toShamsiDate } from "../../utils/dateFormatter";
+import { NewsFallBack } from "@/assets/Gallery";
 
 const NewsDetails = () => {
   useEffect(() => {
@@ -27,6 +28,7 @@ const NewsDetails = () => {
   const [favouredList, setFavouredList] = useState([]);
   const [item, setItem] = useState([]);
   const [usersRate, setUsersRate] = useState(null);
+  const token = localStorage.getItem("token");
 
   const fetchItem = async () => {
     try {
@@ -46,6 +48,9 @@ const NewsDetails = () => {
   }, [id]);
 
   const fetchFavoriteBlogs = useCallback(async () => {
+    if (!token) {
+      return;
+    }
     try {
       const response = await getFavoriteNews();
       console.log(response);
@@ -163,9 +168,10 @@ const NewsDetails = () => {
               >
                 <img
                   style={{ width: "100%" , height: "100%"}}
-                  src={item?.currentImageAddress || "/images/PythonBig.png"}
+                  src={item?.currentImageAddress || NewsFallBack}
                   onError={(e) => {
-                    e.target.src = "/images/PythonBig.png";
+                    e.currentTarget.onerror = null;
+                    e.target.src = NewsFallBack;
                   }}
                 />
               </div>

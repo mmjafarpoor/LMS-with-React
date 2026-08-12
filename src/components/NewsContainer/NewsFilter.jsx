@@ -22,7 +22,7 @@ const NewsFilters = ({categories}) => {
       </div>
       <div className="w-full flex flex-col items-center gap-4">
         <input
-          className="w-[92%] h-10 rounded-xl bg-[url(/images/search.png)] bg-no-repeat bg-position-[97%_50%] bg-(--input-bg) indent-10 2xl:indent-[12%]"
+          className="w-[92%] h-10 rounded-xl bg-[url(/images/search.png)] bg-no-repeat bg-position-[97%_50%] bg-(--input-bg) indent-10 2xl:indent-[12%] outline-none"
           type="text"
           placeholder="جست‌وجو در فیلتر"
         />

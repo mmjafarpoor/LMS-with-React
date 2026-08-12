@@ -161,7 +161,7 @@ const SignUp = () => {
               const response = await registerLastStep({
                 password: values.password,
                 gmail: email,
-                phoneNumber: email,
+                phoneNumber: values.phoneNumber,
               });
               console.log(response.data);
 
