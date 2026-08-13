@@ -36,7 +36,7 @@ const CoursesCards = () => {
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="h-20 w-50 mb-7 sm:mb-0 flex flex-col gap-6 items-center lg:bg-[url(/images/blueLine.png)] bg-no-repeat bg-position-[50%_30px]">
-        <h1 className="lg:text-[30px] text-[26px] font-semibold!">
+        <h1 className="lg:text-[30px] text-[26px] font-black">
           برترین دوره‌ها
         </h1>
       </div>
@@ -48,6 +48,7 @@ const CoursesCards = () => {
           >
             <div onClick={() => GoToCourseDetails(top?.courseId)} className="overflow-hidden h-54 w-95 rounded-2xl flex items-center justify-center cursor-pointer">
               <img
+                className="w-full h-full overflow-hidden"
                 src={top?.imageAddress || "/images/css3.svg"}
                 onError={(e) => {
                   e.target.src = "/images/css3.svg";
@@ -70,7 +71,7 @@ const CoursesCards = () => {
                   value={top?.courseRate?.avg}
                   readOnly
                 />
-                <p onClick={() => GoToTeacherDetails(top?.teacherId, top?.teacherName)} className="w-fit py-2 pl-4 indent-12 rounded-xl lg:text-[14px] text-xs text-white font-semibold! bg-[url(/images/teaching.svg)] bg-no-repeat bg-position-[90%_50%] bg-(--button-bg) cursor-pointer">
+                <p onClick={() => GoToTeacherDetails(top?.teacherId, top?.teacherName)} className="w-fit py-2 pl-4 indent-12 rounded-xl lg:text-[14px] text-xs text-white font-black bg-[url(/images/teaching.svg)] bg-no-repeat bg-position-[90%_50%] bg-(--button-bg) cursor-pointer transition-colors duration-300 hover:bg-(--button-hover)">
                   {top?.teacherName || "مدرس دوره"}
                 </p>
               </div>

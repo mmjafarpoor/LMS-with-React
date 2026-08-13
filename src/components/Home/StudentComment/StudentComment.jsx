@@ -62,7 +62,7 @@ const StudentComment = () => {
         <p className="text-(--button-bg) font-semibold! text-xl">
           نظرات دانشجویان
         </p>
-        <h1 className="font-bold! text-3xl">
+        <h1 className="font-black text-3xl">
           برای مزایا به برنامه آموزشی هوشمند دسترسی پیدا کنید.
         </h1>
         <h3 className="text-(--news-description) font-semibold!">

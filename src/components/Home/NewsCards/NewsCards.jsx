@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getNewsList } from "../../../core/services/newsService/newsService";
+import { NewsFallBack } from "@/assets/Gallery";
 
 const NewsCards = () => {
   const [newsItems, setNewsItems] = useState([]);
@@ -28,10 +29,10 @@ const NewsCards = () => {
   return (
     <div className="h-full w-full flex flex-col justify-center items-center gap-10">
       <div className="flex flex-col gap-6 items-center lg:bg-[url(/images/blueLine.png)] bg-no-repeat bg-position-[50%_30px]">
-        <h1 className="lg:text-[34px] sm:text-[26px] text-[20px] font-semibold!">
+        <h1 className="lg:text-[34px] sm:text-[26px] text-[20px] font-black">
           جدیدترین اخبار
         </h1>
-        <p className="flex items-center text-center lg:text-[16px] sm:text-[14px] text-[10px] w-fit text-(--news-description)">
+        <p className="flex items-center text-center font-semibold lg:text-[16px] sm:text-[14px] text-[10px] w-fit text-(--news-description)">
           محبوب ترین دوره های آموزشی نویسندگان متخصص ما را بررسی کنید.
         </p>
       </div>
@@ -43,37 +44,43 @@ const NewsCards = () => {
           >
             <img
               style={{
-                maxWidth: "none",
+                width: "100%",
+                maxWidth: "100%",
+                height: "100%",
                 position: "absolute",
-                height: "490px",
               }}
-              src={item?.currentImageAddress || "/images/PythonBig.png"}
+              src={item?.currentImageAddress || NewsFallBack}
               onError={(e) => {
-                e.target.src = "/images/PythonBig.png";
+                e.currentTarget.onerror = null;
+                e.target.src = NewsFallBack;
               }}
             />
-            <div className="w-full px-5 flex flex-col gap-2 absolute bottom-4 text-white">
-              <p className="text-2xl font-semibold!">
-                {item?.title || "عنوان مقاله"}
-              </p>
-              <h2 className="max-h-20 text-md font-bold! overflow-hidden [display:-webkit-box] [-webkit-line-clamp:3] [-webkit-box-orient:vertical]">
-                {item?.miniDescribe || item?.googleDescribe || "شرح مقاله"}
-              </h2>
-              <div className="mt-2 flex flex-row justify-between text-sm font-bold!">
-                <div className="h-6 bg-[url(/images/whiteUser.png)] bg-no-repeat bg-position-[100%_0%] indent-8 text-white font-semibold!">
-                  {item?.currentView} بازدید
-                </div>
-                <div className="flex flex-row items-center gap-2">
-                  <div className="flex flex-row items-center">
-                    <div className="h-6 w-10 mb-2.5 bg-[url(/images/thumbs-up.svg)] bg-no-repeat bg-position-[50%] invert-100"></div>
-                    <div className="font-bold!">
-                      {item?.currentLikeCount || 0}
-                    </div>
+            {/* overlay */}
+            <div className="absolute inset-0 bg-linear-to-t from-black/65 via-black/25 to-transparent pointer-events-none">
+              {/* content */}
+              <div className="w-full px-5 flex flex-col gap-2 absolute bottom-4 text-white z-10">
+                <p className="text-2xl font-black truncate drop-shadow-[0_2px_5px_rgba(0,0,0,0.8)]">
+                  {item?.title || "عنوان مقاله"}
+                </p>
+                <h2 className="max-h-20 text-md font-black overflow-hidden [display:-webkit-box] [-webkit-line-clamp:3] [-webkit-box-orient:vertical] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                  {item?.miniDescribe || item?.googleDescribe || "شرح مقاله"}
+                </h2>
+                <div className="mt-2 flex flex-row justify-between text-sm font-bold!">
+                  <div className="h-6 bg-[url(/images/whiteUser.png)] bg-no-repeat bg-position-[100%_0%] indent-8 text-white font-black drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                    {item?.currentView} بازدید
                   </div>
-                  <div className="flex flex-row items-center">
-                    <div className="h-6 w-10 mt-1.5 bg-[url(/images/thumbs-down.svg)] bg-no-repeat bg-position-[50%] -scale-x-100 invert-100"></div>
-                    <div className="font-bold!">
-                      {item?.currentDissLikeCount || 0}
+                  <div className="flex flex-row items-center gap-2">
+                    <div className="flex flex-row items-center">
+                      <div className="h-6 w-10 mb-2.5 bg-[url(/images/thumbs-up.svg)] bg-no-repeat bg-position-[50%] invert-100"></div>
+                      <div className="font-bold! drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                        {item?.currentLikeCount || 0}
+                      </div>
+                    </div>
+                    <div className="flex flex-row items-center">
+                      <div className="h-6 w-10 mt-1.5 bg-[url(/images/thumbs-down.svg)] bg-no-repeat bg-position-[50%] -scale-x-100 invert-100"></div>
+                      <div className="font-bold! drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                        {item?.currentDissLikeCount || 0}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -84,7 +91,7 @@ const NewsCards = () => {
       </div>
       <p
         onClick={GoToNewsPage}
-        className="px-5 py-4 bg-(--button-bg) rounded-4xl font-semibold! cursor-pointer text-white"
+        className="px-5 py-4 bg-(--button-bg) rounded-4xl font-semibold! cursor-pointer transition-colors duration-300 text-white hover:bg-(--button-hover)"
       >
         دوست داری بیشتر ببینی؟
       </p>

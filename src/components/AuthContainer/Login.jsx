@@ -11,8 +11,9 @@ import { toast } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
+  
   const GoToHome = () => {
-    navigate("/");
+    navigate("/Home");
   };
 
   const [step, setStep] = useState(1);

@@ -29,10 +29,10 @@ const NewsCards = () => {
   return (
     <div className="h-full w-full flex flex-col justify-center items-center gap-10">
       <div className="flex flex-col gap-6 items-center lg:bg-[url(/images/blueLine.png)] bg-no-repeat bg-position-[50%_30px]">
-        <h1 className="lg:text-[34px] sm:text-[30px] text-[20px] font-semibold!">
+        <h1 className="lg:text-[34px] sm:text-[30px] text-[20px] font-black">
           اساتید برتر
         </h1>
-        <p className="flex items-center text-center lg:text-[16px] sm:text-[14px] text-[10px] w-[60%] text-(--news-description)">
+        <p className="flex items-center text-center font-semibold lg:text-[16px] sm:text-[14px] text-[10px] w-[60%] text-(--news-description)">
           کلاس های مسترلایف توسط رهبران صنعت آموزش داده می شود که هیجان زده
           هستند ابزارها، تکنیک ها و سفرهای حرفه ای خود را با شما به اشتراک
           بگذارند.
@@ -50,15 +50,15 @@ const NewsCards = () => {
             />
             <div className="w-[80%] mr-6 flex flex-col gap-2">
               <p className="text-2xl font-bold!">{teacherData?.fullName}</p>
-              <h2 className="text-md ">طراحی وب</h2>
-              <p>تعداد دوره‌ها: {teacherData?.courseCounts} دوره</p>
+              <h2 className="text-md font-semibold">طراحی وب</h2>
+              <p className="font-semibold">تعداد دوره‌ها: {teacherData?.courseCounts} دوره</p>
             </div>
           </div>
         ))}
       </div>
       <p
         onClick={GoToTeachersPage}
-        className="-mt-5 px-5 py-4 bg-(--button-bg) rounded-4xl font-semibold! cursor-pointer text-white"
+        className="-mt-5 px-5 py-4 bg-(--button-bg) rounded-4xl font-semibold! cursor-pointer transition-colors duration-300 text-white hover:bg-(--button-hover)"
       >
         دوست داری بیشتر ببینی؟
       </p>
