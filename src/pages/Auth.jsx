@@ -1,11 +1,10 @@
 import { Outlet } from "react-router-dom";
-import styles from "../styles/Auth.module.css";
 
-function AuthContainer() {
-
+const AuthContainer = () => {
   return (
-    <div className={styles.whole_box}>
-      <div className={styles.main_box}>
+    <div
+      className="w-full h-full flex justify-center items-center bg-(--auth-bg) bg-[url('../assets/img/banners/auth-banner.svg')] bg-no-repeat bg-center bg-contain">
+      <div className="h-max w-125 max-w-full bg-(--auth-main-bg) rounded-[20px] text-(--text-color) flex flex-col items-center relative">
         <Outlet />
       </div>
     </div>
