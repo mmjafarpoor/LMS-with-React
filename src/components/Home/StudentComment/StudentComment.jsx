@@ -160,7 +160,7 @@ const StudentComment = () => {
                       borderRadius: "100%",
                     }}
                     src={currentComment?.user?.currentPictureAddress || "/images/drTenma.jpg"}
-                    onError={(e) => {e.target.src = "/images/drTenma.jpg";}}
+                    onError={(e) => { e.currentTarget.onerror = null; e.target.src = "/images/drTenma.jpg"; }}
                   />
                   <div className="flex flex-col gap-1">
                     <p>{currentComment?.userFullName}</p>

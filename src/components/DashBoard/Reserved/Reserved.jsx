@@ -6,6 +6,7 @@ import Slider from 'rc-slider';
 import { deleteReserveCourse, userReserveCourse } from '../../../core/services/dashBoardService/dashBoardApi'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom';
+import { CourseFallBack } from '@/assets/Gallery';
 
 const Reserved = () => {
     const navigate = useNavigate();
@@ -111,7 +112,7 @@ const Reserved = () => {
                         {currentItems.map((course) => (
                             <div key={course.courseId} className={Style.item}>
                                 <div className={Style.itemImageContainer}>
-                                    <img src={course.image || "/images/javaScriptProductCard.png"} onError={(e) => {e.target.src = "/images/javaScriptProductCard.png";}} alt="Item-Image" className={Style.itemImage}/>
+                                    <img src={course.image || CourseFallBack} onError={(e) => { e.currentTarget.onerror = null; e.target.src = CourseFallBack; }} alt="Item-Image" className={Style.itemImage}/>
                                 </div>
                                 <div className={Style.itemTitle}>{course.courseName || "اسم دوره"}</div>
                                 <div className={Style.itemDescription}>{course.teacher || "نام استاد"}</div>

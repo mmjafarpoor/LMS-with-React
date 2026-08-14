@@ -120,7 +120,7 @@
     white-space: nowrap;
 }
 .latestNewsItems:hover > .newsTitle{
-    color : var(--link-color);
+    color : var(--button-bg);
 }
 .newsPublishedDate{
     direction: ltr;

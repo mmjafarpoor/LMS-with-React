@@ -7,7 +7,7 @@ import useDarkStore from "../store/DarkStore";
 import userInfoStore from "../store/UserInfoStore";
 import MenuItems from '../Data/MenuItems'
 import BottomMenu from "../Data/BottomMenu";
-import { themeAnimation } from "@/ui/animations/themeAnimation";
+import { themeAnimation } from "@/components/Theme/themeAnimation";
 import MobileMenuOpen from "@/ui/svg/MobileMenuOpen";
 
 const Landing = () => {

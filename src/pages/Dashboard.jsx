@@ -5,7 +5,7 @@ import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import userInfoStore from '../store/UserInfoStore'
 import useDarkStore from '../store/DarkStore'
 import { toast } from 'react-toastify'
-import { themeAnimation } from '@/ui/animations/themeAnimation'
+import { themeAnimation } from '@/components/Theme/themeAnimation'
 
 const DashBoard = () => {
 

@@ -2,13 +2,15 @@ import React from 'react'
 import Style from './RegularCard.module.css'
 import RatingStars from '../../../common/RatingStars/RatingStars'
 import { useNavigate } from 'react-router-dom'
+import { CourseFallBack } from '@/assets/Gallery'
 
 const RegularCard = ({courseId, title, describe , miniDescribe , cost, currentRegistrants, imageAddress, courseRate, teacherId, teacherName}) => { 
-    
     const navigate = useNavigate();
+
     const GoToCourseDetails = () => {
         navigate(`/Courses/${courseId}`);
     };
+    
     const GoToTeacherDetails = (e) => {
         e.stopPropagation();
         navigate(`/Teachers/${teacherId}/${teacherName.replaceAll(" ", "-")}`);
@@ -22,7 +24,12 @@ const RegularCard = ({courseId, title, describe , miniDescribe , cost, currentRe
     return (
         <div className={Style.regularCard}>
             <div onClick={GoToCourseDetails} className={Style.imageWrapper}>
-                <img src={imageAddress || "/images/javaScriptProductCard.png"} onError={(e) => {e.target.src = "/images/javaScriptProductCard.png";}}  className={Style.productImg} alt="ProductCard Image"/>
+                <img 
+                    src={imageAddress || CourseFallBack} 
+                    onError={(e) => { e.currentTarget.onerror = null; e.target.src = CourseFallBack; }} 
+                    className={Style.productImg} 
+                    alt="ProductCard Image"
+                />
             </div>
             <div onClick={GoToCourseDetails} className={Style.productMeta}>
                 <div className={Style.metaHeading}>

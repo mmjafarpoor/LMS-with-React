@@ -17,6 +17,7 @@ import {
   getFavoriteCourse,
 } from "../../../core/services/dashBoardService/dashBoardApi";
 import { toShamsiDate } from "../../../utils/dateFormatter";
+import { CourseFallBack } from "@/assets/Gallery";
 
 const NewsDetails = () => {
   useEffect(() => {
@@ -172,10 +173,11 @@ const NewsDetails = () => {
                 }}
               >
                 <img
-                  style={{ width: "100%" , height: "100%"}}
-                  src={item?.imageAddress || "/images/javaScriptProductCard.png"}
+                  style={{ width: "100%" , height: "100%" }}
+                  src={item?.imageAddress || CourseFallBack}
                   onError={(e) => {
-                    e.target.src = "/images/javaScriptProductCard.png";
+                    e.currentTarget.onerror = null;
+                    e.target.src = CourseFallBack;
                   }}
                 />
               </div>

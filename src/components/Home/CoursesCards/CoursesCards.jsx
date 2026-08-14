@@ -3,6 +3,7 @@ import { Rating, RoundedStar } from "@smastrom/react-rating";
 import { getCourseTop } from "../../../core/services/coursesService/coursesService";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { CourseFallBack } from "@/assets/Gallery";
 
 const CoursesCards = () => {
   const navigate = useNavigate()
@@ -49,9 +50,10 @@ const CoursesCards = () => {
             <div onClick={() => GoToCourseDetails(top?.courseId)} className="overflow-hidden h-54 w-95 rounded-2xl flex items-center justify-center cursor-pointer">
               <img
                 className="w-full h-full overflow-hidden"
-                src={top?.imageAddress || "/images/css3.svg"}
+                src={top?.imageAddress || CourseFallBack}
                 onError={(e) => {
-                  e.target.src = "/images/css3.svg";
+                  e.currentTarget.onerror = null;
+                  e.target.src = CourseFallBack;
                 }}
               />
             </div>

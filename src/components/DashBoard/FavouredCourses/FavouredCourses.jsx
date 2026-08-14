@@ -6,6 +6,7 @@ import Slider from 'rc-slider';
 import { deleteFavoriteCourse, getFavoriteCourse } from '../../../core/services/dashBoardService/dashBoardApi'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
+import { CourseFallBack } from '@/assets/Gallery';
 
 const FavouredCourses = () => {
     const navigate = useNavigate();
@@ -136,7 +137,7 @@ const FavouredCourses = () => {
                         {currentItems.map((course) => (
                             <div key={course.id} className={Style.item}>
                                 <div className={Style.itemImageContainer}>
-                                    <img src={course.imageAddress || "/images/javaScriptProductCard.png"} onError={(e) => {e.target.src = "/images/javaScriptProductCard.png";}} alt="Item-Image" className={Style.itemImage}/>
+                                    <img src={course.imageAddress || CourseFallBack} onError={(e) => { e.currentTarget.onerror = null; e.target.src = CourseFallBack; }} alt="Item-Image" className={Style.itemImage}/>
                                 </div>
                                 <div className={Style.itemTitle}>{course.course?.title || "عنوان دوره"}</div>
                                 <div className={Style.itemDescription}>{course.teacheName || "اسم مدرس"}</div>

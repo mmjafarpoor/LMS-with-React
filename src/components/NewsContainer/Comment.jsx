@@ -94,17 +94,6 @@ const Comment = ({ newsId, courseId }) => {
       toast.error("ثبت دیسلایک با خطایی مواجه شد");
     }
   };
-  // const replyModalAnimation = {
-  //   initial: {
-  //     height: 0,
-  //   },
-  //   animate: {
-  //     height: "100%",
-  //   },
-  //   exit: {
-  //     height: 0,
-  //   },
-  // };
 
   return (
     <div className="w-full flex flex-col items-center gap-5 mb-5">
@@ -198,22 +187,6 @@ const Comment = ({ newsId, courseId }) => {
         </Formik>
       </div>
       {mainComment.map((comment) => (
-        // {[
-        //   {
-        //     id: 1,
-        //     pictureAddress:
-        //       "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Alan_turing_header.jpg/500px-Alan_turing_header.jpg",
-        //     user: {
-        //       fName: "Alan",
-        //       lName: "Turing",
-        //       userName: "mahdinoorani@gmail.com",
-        //     },
-        //     date: "04/07/1403",
-        //     describe:
-        //       "امروز اینجام تا درمورد بازی آرژانتین و اسپانیا حرف بزنم بازی خیل خوبی بود ",
-        //     title: "بازی آرژانتین و اسپانیا",
-        //   },
-        // ].map((comment) => (
         <div
           key={comment.id}
           className={
@@ -386,22 +359,6 @@ const Comment = ({ newsId, courseId }) => {
           </div>
 
           {replyComment(comment.id).map((reply) => (
-            // {[
-            //   {
-            //     id: 1,
-            //     pictureAddress:
-            //       "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Alan_turing_header.jpg/500px-Alan_turing_header.jpg",
-            //     user: {
-            //       fName: "Alan",
-            //       lName: "Turing",
-            //       userName: "mahdinoorani@gmail.com",
-            //     },
-            //     date: "04/07/1403",
-            //     describe:
-            //       "امروز اینجام تا درمورد بازی آرژانتین و اسپانیا حرف بزنم بازی خیل خوبی بود ",
-            //     title: "بازی آرژانتین و اسپانیا",
-            //   },
-            // ].map((reply) => (
             <div
               key={reply.id}
               className="w-[90%] md:w-[90%] mt-3 rounded-2xl bg-(--button-bg)"

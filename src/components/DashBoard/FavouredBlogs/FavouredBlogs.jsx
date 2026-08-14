@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { deleteFavoriteNews, getFavoriteNews } from '../../../core/services/newsService/newsService'
 import { toShamsiDate } from '../../../utils/dateFormatter'
+import { NewsFallBack } from '@/assets/Gallery'
 
 const FavouredBlogs = () => {
     const navigate = useNavigate();
@@ -129,7 +130,7 @@ const FavouredBlogs = () => {
                         {currentItems.map((course) => (
                             <div key={course.id} className={Style.item}>
                                 <div className={Style.itemImageContainer}>
-                                    <img src={course.currentImageAddressTumb || "/images/PythonBig.png"} onError={(e) => {e.target.src = "/images/PythonBig.png";}} alt="Item-Image" className={Style.itemImage}/>
+                                    <img src={course.currentImageAddressTumb || NewsFallBack} onError={(e) => { e.currentTarget.onerror = null; e.target.src = NewsFallBack; }} alt="Item-Image" className={Style.itemImage}/>
                                 </div>
                                 <div className={Style.itemTitle}>{course.title}</div>
                                 <div className={Style.itemDescription}>{course.auther || "اسم ناشر"}</div>

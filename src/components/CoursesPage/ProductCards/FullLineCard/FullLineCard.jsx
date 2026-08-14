@@ -2,6 +2,7 @@ import React from 'react'
 import Style from './FullLineCard.module.css'
 import RatingStars from '../../../common/RatingStars/RatingStars';
 import { useNavigate } from 'react-router-dom';
+import { CourseFallBack } from '@/assets/Gallery';
 
 const FullLineCard = ({courseId, title, describe , miniDescribe , cost, currentRegistrants, imageAddress, courseRate, teacherId, teacherName}) => {
   const navigate = useNavigate();
@@ -23,7 +24,12 @@ const FullLineCard = ({courseId, title, describe , miniDescribe , cost, currentR
   return (
     <div onClick={GoToCourseDetails} className={Style.fullLineCard}>
       <div className={Style.imageWrapper}>
-        <img src={imageAddress || "/images/javaScriptProductCard.png"} onError={(e) => {e.target.src = "/images/javaScriptProductCard.png";}} alt="Product Image" className={Style.productImage}/>
+        <img 
+          src={imageAddress || CourseFallBack}
+          onError={(e) => { e.currentTarget.onerror = null; e.target.src = CourseFallBack; }}
+          alt="Product Image" 
+          className={Style.productImage}
+        />
       </div>
       <div className={Style.productMeta}>
         <div className={Style.productHeading}>

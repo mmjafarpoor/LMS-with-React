@@ -7,6 +7,7 @@ import useDarkStore from '../../../store/DarkStore'
 import { coursePaymentFirst, coursePaymentSecond, userBookedCourse } from '../../../core/services/dashBoardService/dashBoardApi'
 import { toast } from 'react-toastify'
 import { useNavigate, useSearchParams } from 'react-router-dom'
+import { CourseFallBack } from '@/assets/Gallery'
 
 const BookedCourses = () => {
     const navigate = useNavigate();
@@ -123,7 +124,7 @@ const BookedCourses = () => {
                         {booked.map((course) => (
                             <div key={course.id} className={Style.item}>
                                 <div className={Style.itemImageContainer}>
-                                    <img src={course?.course?.imageAddress || "/images/javaScriptProductCard.png"} onError={(e) => {e.target.src = "/images/javaScriptProductCard.png";}} alt="Item-Image" className={Style.itemImage}/>
+                                    <img src={course?.course?.imageAddress || CourseFallBack} onError={(e) => { e.currentTarget.onerror = null; e.target.src = CourseFallBack; }} alt="Item-Image" className={Style.itemImage}/>
                                 </div>
                                 <div className={Style.itemTitle}>{course?.course?.title || "عنوان دوره"}</div>
                                 <div className={Style.itemDescription}>{course?.course?.describe || "شرح دوره"}</div>
