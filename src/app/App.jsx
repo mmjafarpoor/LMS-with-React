@@ -6,32 +6,36 @@ import useDarkStore from "../store/DarkStore";
 import { Suspense } from "react";
 import LoadingSpinner from "../components/common/LoadingSpinner/LoadingSpinner";
 import { ThemeManager } from "@/components/Theme/ThemeManager";
+import { QueryClientProvider } from "@tanstack/react-query"
+import queryClient from "@/core/config/queryClient"
 
 function App() {
   const isDarkMode = useDarkStore((state) => state.isDarkMode);
   
   return (
     <>
-      <ThemeManager/>
-      <Suspense fallback={<LoadingSpinner/>}>
-        <RouterProvider router={router} />
-        <ToastContainer
-          position="top-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick={false}
-          rtl
-          stacked
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme={isDarkMode ? "dark" : "light"}
-          fontFamily="IranSans" 
-          transition={Bounce}
-          toastStyle={{fontFamily: "IranSans"}}
-        />
-      </Suspense>
+      <QueryClientProvider client={queryClient}>
+        <ThemeManager/>
+        <Suspense fallback={<LoadingSpinner/>}>
+          <RouterProvider router={router} />
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick={false}
+            rtl
+            stacked
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme={isDarkMode ? "dark" : "light"}
+            fontFamily="IranSans" 
+            transition={Bounce}
+            toastStyle={{fontFamily: "IranSans"}}
+          />
+        </Suspense>
+      </QueryClientProvider>
     </>
   )
 }
