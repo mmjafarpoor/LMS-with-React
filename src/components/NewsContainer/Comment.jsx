@@ -157,9 +157,9 @@ const Comment = ({ newsId, courseId }) => {
                 <TextareaAutosize
                   {...field}
                   maxRows={1}
-                  maxLength={25}
+                  maxLength={100}
                   placeholder="عنوان دیدگاه خود را وارد کنید"
-                  className="w-70 h-fit p-2 rounded-xl bg-(--comment-reply-bg) transition-all resize-none
+                  className="w-150 h-fit p-2 rounded-xl bg-(--comment-reply-bg) transition-all resize-none
                   outline-none border border-transparent focus:border-[#0CBDE2]"
                 />
               )}

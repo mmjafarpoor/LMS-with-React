@@ -22,6 +22,7 @@ function App() {
           newestOnTop={false}
           closeOnClick={false}
           rtl
+          stacked
           pauseOnFocusLoss
           draggable
           pauseOnHover
