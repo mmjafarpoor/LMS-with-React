@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Style from './BookedCourses.module.css'
-import ReactPaginate from 'react-paginate'
 // import DashBoardCoursesData from '../../../Data/DashBoardCoursesData'
 import { Field, Form, Formik } from 'formik'
 import useDarkStore from '../../../store/DarkStore'
@@ -8,6 +7,7 @@ import { coursePaymentFirst, coursePaymentSecond, userBookedCourse } from '../..
 import { toast } from 'react-toastify'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { CourseFallBack } from '@/assets/Gallery'
+import Pagination from '@/components/common/Pagination/Pagination'
 
 const BookedCourses = () => {
     const navigate = useNavigate();
@@ -137,35 +137,10 @@ const BookedCourses = () => {
                         ))}
                     </div>
                 </div>
-                <ReactPaginate
-                    previousLabel={
-                        <span className={Style.prevPaginationIcon}>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                            </svg>
-                        </span>
-                    }
-                    breakLabel="..."
-                    nextLabel={
-                        <span className={Style.nextPaginationIcon}>
-                            <svg style={{ transform: 'scaleX(-1)' }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                            </svg>
-                        </span>
-                    }
+                <Pagination
                     pageCount={pageCount}
+                    pageIndex={pageIndex}
                     onPageChange={handlePageClick}
-                    forcePage={pageIndex}
-                    containerClassName={Style.paginationContainer}
-                    pageClassName={Style.pageItem}
-                    pageLinkClassName="block"
-                    previousLinkClassName="block"
-                    nextLinkClassName="block"
-                    activeClassName={Style.activePageItem}
-                    disabledClassName={Style.disabledArrow}
-                    disableInitialClassNames={true}
-                    previousClassName={Style.paginationButton}
-                    nextClassName={Style.paginationButton}
                 />
             </Form>
         </Formik>

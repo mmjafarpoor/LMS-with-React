@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import Style from '../styles/Courses.module.css'
 import SearchInput from '../components/CoursesPage/ProductSearchBox/SearchInput'
-// eslint-disable-next-line no-unused-vars
-import { motion } from 'framer-motion'
 import RegularCard from '../components/CoursesPage/ProductCards/RegularCard/RegularCard'
 import { getCourseList } from '../core/services/get'
 import FullLineCard from '../components/CoursesPage/ProductCards/FullLineCard/FullLineCard'
 import { toast } from 'react-toastify'
 import ViewAsMenu from '../components/CoursesPage/ViewAsMenu/ViewAsMenu'
-import ReactPaginate from 'react-paginate'
 import useDarkStore from '../store/DarkStore'
 import clsx from 'clsx'
 import apiClient from '../core/interceptor/interceptor'
 import ProductFilter from '../components/CoursesPage/ProductFilter/ProductFilter'
+import Pagination from '@/components/common/Pagination/Pagination'
 
 const Courses = () => {
 
@@ -116,15 +114,6 @@ const Courses = () => {
     // const currentItems = courseList.slice(startIndex, endIndex);
     // const pageCount = Math.ceil(courseList.length / itemsPerPage);
 
-    // if (isLoading) {
-    //     return <div className="text-blue-800"> در حال بارگذاری...</div>;
-    // }
-    // if (error) {
-    //     return <div className="text-red-700"> خطا در بارگذاری: {error}</div>;
-    // }
-    // if (!courseList || courseList.length === 0) {
-    //     return <div className={Style.noData}> محصولی یافت نشد.</div>;
-    // }
     const formatPrice = (price) => {
       if (price === null || price === undefined) return '';
       const numberPrice = Number(price);
@@ -203,35 +192,10 @@ const Courses = () => {
               )
             }
           </div>
-          <ReactPaginate
-            previousLabel={
-              <span className={Style.prevPaginationIcon}>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                </svg>
-              </span>
-            }
-            breakLabel="..."
-            nextLabel={
-              <span className={Style.nextPaginationIcon}>
-                <svg style={{ transform: 'scaleX(-1)' }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                </svg>
-              </span>
-            }
+          <Pagination
             pageCount={pageCount}
+            pageIndex={pageIndex}
             onPageChange={handlePageClick}
-            forcePage={pageIndex}
-            containerClassName={Style.paginationContainer}
-            pageClassName={Style.pageItem}
-            pageLinkClassName="block"
-            previousLinkClassName="block"
-            nextLinkClassName="block"
-            activeClassName={Style.activePageItem}
-            disabledClassName={Style.disabledArrow}
-            disableInitialClassNames={true}
-            previousClassName={Style.paginationButton}
-            nextClassName={Style.paginationButton}
           />
         </div>
       </div>

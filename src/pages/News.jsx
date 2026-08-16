@@ -3,9 +3,9 @@ import styles from "../styles/News.module.css";
 import NewsFilter from "../components/NewsContainer/NewsFilter";
 import NewsData from "../components/NewsContainer/NewsData";
 import clsx from "clsx";
-import ReactPaginate from "react-paginate";
 import { getNewsList } from "../core/services/newsService/newsService";
 import { toast } from "react-toastify";
+import Pagination from "@/components/common/Pagination/Pagination";
 
 const News = () => {
 
@@ -115,20 +115,10 @@ const News = () => {
               <NewsData key={item.id} {...item} showType={showType} />
             ))}
           </div>
-          <ReactPaginate
-            previousLabel={"<"}
-            nextLabel={">"}
+          <Pagination
             pageCount={pageCount}
-            forcePage={pageIndex}
+            pageIndex={pageIndex}
             onPageChange={handlePageClick}
-            containerClassName={"h-12 px-2 rounded-2xl flex flex-row gap-1 items-center text-2xl bg-(--news-boxs) shadow-[0_0px_8px_var(--news-shadow-color)]"}
-            pageClassName={"h-full w-12 content-center text-center text-(--text-color) text-[18px] cursor-pointer"}
-            pageLinkClassName="block"
-            previousLinkClassName="block"
-            nextLinkClassName="block"
-            activeClassName={"text-white rounded-lg bg-(--button-bg) cursor-none"}
-            previousClassName={"mx-3 cursor-pointer"}
-            nextClassName={"mx-3 cursor-pointer"}
           />
         </div>
       </div>

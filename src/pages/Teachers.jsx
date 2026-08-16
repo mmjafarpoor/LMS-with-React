@@ -1,28 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "../styles/Teachers.module.css";
 import TeacherData from "../components/TeacherContainer/TeacherData";
-import ReactPaginate from "react-paginate";
 import { getTeachersList } from "../core/services/teachersService/teachersService";
+import { useQuery } from "@tanstack/react-query";
+import Pagination from "@/components/common/Pagination/Pagination";
 
 const Teachers = () => {
-  const [teachersItems, setTeachersItems] = useState([]);
-
   const [pageIndex, setPageIndex] = useState(0);
   const perPage = 8;
   const offset = pageIndex * perPage;
-  const currentItems = teachersItems.slice(offset, offset + perPage);
-  const pageCount = Math.abs(teachersItems.length / perPage);
 
-  const fetchNews = async () => {
-    const response = await getTeachersList();
-    console.log("Teacher =",response.data);
-    setTeachersItems(response.data);
+  const { data: teachers } = useQuery({
+    queryFn: () => getTeachersList(),
+    queryKey: ["teachers"],
+  });
+
+  const currentItems = teachers?.data?.slice(offset, offset + perPage) ?? [];
+  const pageCount = Math.ceil(teachers?.data?.length / perPage);
+
+  const handlePageClick = (event) => {
+    setPageIndex(event.selected);
   };
-
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    fetchNews();
-  }, []);
 
   return (
     <div className={styles.whole_box}>
@@ -54,24 +52,15 @@ const Teachers = () => {
           </p>
         </div>
         <div className="w-full h-fit mt-6 flex flex-row flex-wrap justify-around gap-2 gap-y-8">
-          {currentItems.map((teacherItem) => (
+          {currentItems?.map((teacherItem) => (
             <TeacherData key={teacherItem.teacherId} {...teacherItem}/>
           ))}
         </div>
-        <ReactPaginate
-            previousLabel={"<"}
-            nextLabel={">"}
-            pageCount={pageCount}
-            onPageChange={(page) => setPageIndex(page.selected)}
-            containerClassName={"h-12 px-2 -mt-6 rounded-2xl flex flex-row gap-1 items-center text-2xl bg-(--news-boxs) shadow-[0_0px_8px_var(--news-shadow-color)]"}
-            pageClassName={"h-full w-12 content-center text-center text-(--text-color) text-[18px] cursor-pointer"}
-            pageLinkClassName="block"
-            previousLinkClassName="block"
-            nextLinkClassName="block"
-            activeClassName={"text-white rounded-lg bg-(--button-bg) cursor-none"}
-            previousClassName={"mx-3 cursor-pointer"}
-            nextClassName={"mx-3 cursor-pointer"}
-          />
+        <Pagination
+          pageCount={pageCount}
+          pageIndex={pageIndex}
+          onPageChange={handlePageClick}
+        />
       </div>
     </div>
   );
