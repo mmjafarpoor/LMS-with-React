@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import styles from "../styles/Teachers.module.css";
 import TeacherData from "../components/TeacherContainer/TeacherData";
 import { getTeachersList } from "../core/services/teachersService/teachersService";
 import { useQuery } from "@tanstack/react-query";
 import Pagination from "@/components/common/Pagination/Pagination";
+import { TeachersBanner } from "@/assets/Gallery";
 
 const Teachers = () => {
   const [pageIndex, setPageIndex] = useState(0);
@@ -23,8 +23,8 @@ const Teachers = () => {
   };
 
   return (
-    <div className={styles.whole_box}>
-      <div className={styles.title_box}>
+    <div className="h-auto flex flex-col items-center justify-center">
+      <div className="w-9/10 xl:w-[85%] h-max min-w-75 mt-12.5 flex flex-wrap-reverse justify-around items-center gap-6">
         <div className="flex flex-col gap-4 items-center lg:w-[50%] xl:w-[40%] lg:bg-[url(/images/blueLine.png)] bg-no-repeat bg-position-[50%_30px]">
           <h1 className="lg:text-[30px] sm:text-[26px] text-[20px] font-bold!">
             آموزش برنامه‌نویسی با بهترین‌ها
@@ -36,10 +36,10 @@ const Teachers = () => {
           </p>
         </div>
         <div className="w-100 lg:w-[50%] xl:w-150">
-          <img src="/images/teachers.png" />
+          <img src={TeachersBanner}/>
         </div>
       </div>
-      <div className={styles.data_container}>
+      <div className="w-9/10 min-w-75 mt-12.5 mb-12.5 flex flex-col items-center gap-10">
         <div className="hidden lg:flex flex-col gap-4 items-center lg:w-[50%] xl:w-[40%] bg-[url(/images/blueLine.png)] bg-no-repeat bg-position-[50%_30px]">
           <h1 className="lg:text-[30px] sm:text-[26px] text-[20px] font-bold!">
             رهبری ما

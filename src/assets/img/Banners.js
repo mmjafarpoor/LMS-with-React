@@ -3,3 +3,4 @@ export {default as ContactUsBannerMobile} from './banners/contact-us-banner-mobi
 export {default as AboutUsBanner} from './banners/about-us-banner.svg'
 export {default as AboutUsBannerMobile} from './banners/about-us-banner-mobile.svg'
 export {default as AuthBanner} from './banners/auth-banner.svg'
+export {default as TeachersBanner} from './banners/teachers-banner.png'
