@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useMemo } from "react";
-import styles from "../styles/News.module.css";
 import NewsFilter from "../components/NewsContainer/NewsFilter";
 import NewsData from "../components/NewsContainer/NewsData";
 import clsx from "clsx";
@@ -59,8 +58,9 @@ const News = () => {
   }, [newsItems]);
 
   return (
-    <div className={styles.whole_box}>
-      <div className={styles.title_box}>
+    <div className="h-auto flex flex-col items-center justify-center gap-12.5">
+      {/* Banner Container */}
+      <div className="w-[90%] xl:w-[85%] h-max min-w-75 mt-12.5 flex flex-wrap-reverse justify-around items-center gap-6">
         <div className="flex flex-col gap-4 items-center lg:w-[50%] xl:w-[40%] lg:bg-[url(/images/blueLine.png)] bg-no-repeat bg-position-[50%_30px]">
           <h1 className="lg:text-[30px] sm:text-[26px] text-[20px] font-bold!">
             آموزش برنامه‌نویسی با بهترین‌ها
@@ -75,7 +75,8 @@ const News = () => {
           <img src="/images/courseBanner.png" />
         </div>
       </div>
-      <div className={styles.data_container}>
+      {/* Main Container */}
+      <div className="h-max w-[90%] mb-12.5 flex justify-around gap-2.5">
         <NewsFilter categories={categories} />
 
         <div className="w-full sm:w-[95%] lg:w-[72.5%] h-auto flex flex-col items-center gap-8">
