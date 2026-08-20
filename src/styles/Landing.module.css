@@ -68,7 +68,6 @@
     width: fit-content;
     min-width: 390px;
     height: fit-content;
-    /* border: 1px solid blue; */
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -327,7 +326,6 @@
 .landingContainer > .bottom > .bottomMain > .bottomItemsContainer{
     width: clamp(360px,42%,690px);
     height: fit-content;
-    /* border: 1px solid brown; */
     display: flex;
     flex-direction: row;
     justify-content: space-between;

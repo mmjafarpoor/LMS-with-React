@@ -2,44 +2,51 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import { lazy } from "react";
 import ProtectedRoute from "./ProtectedRoute";
 
+// Layouts
 const Landing = lazy(() => import("../../pages/Landing"));
-// import Landing from "../../pages/Landing";
-const Home = lazy(() => import("../../pages/Home"));
-// import Home from "../../pages/Home";
 const Auth = lazy(() => import("../../pages/Auth"));
-// import Auth from "../../pages/Auth";
+const DashBoard = lazy(() => import("../../pages/DashBoard"));
+
+// Home
+const Home = lazy(() => import("../../pages/Home"));
+
+// Courses
+const Courses = lazy(() => import("../../pages/Courses"));
+import CourseDetails from "../../components/CoursesPage/CourseDetails/CourseDetails";
+
+// Teachers 
+const Teachers = lazy(() => import("../../pages/Teachers"));
+import TeacherDetails from "../../components/TeacherContainer/TeacherDetails";
+
+// News 
+const News = lazy(() => import("../../pages/News"));
+import NewsDetails from "../../components/NewsContainer/NewsDetails";
+
+// Contact 
+const Contact = lazy(() => import("../../pages/Contact"));
+
+// NotFound
+import NotFound from "../../pages/NotFound";
+
+// Auth
 import Login from "../../components/AuthContainer/Login";
 import SignUp from "../../components/AuthContainer/SignUp";
 import ForgetPassword from "../../components/AuthContainer/ForgetPassword";
-const Courses = lazy(() => import("../../pages/Courses"));
-// import Courses from "../../pages/Courses";
-import CourseDetails from "../../components/CoursesPage/CourseDetails/CourseDetails";
-const Teachers = lazy(() => import("../../pages/Teachers"));
-// import Teachers from "../../pages/Teachers";
-import TeacherDetails from "../../components/TeacherContainer/TeacherDetails";
-const News = lazy(() => import("../../pages/News"));
-// import News from "../../pages/News";
-import NewsDetails from "../../components/NewsContainer/NewsDetails";
-const Contact = lazy(() => import("../../pages/Contact"));
-// import Contact from "../../pages/Contact";
-import NotFound from "../../pages/NotFound";
-const DashBoard = lazy(() => import("../../pages/DashBoard"));
-// import DashBoard from "../../pages/DashBoard";
+
+// Dashboard
 import DashBoardMain from "../../components/DashBoard/DashBoardMain/DashBoardMain";
 import BookedCourses from '../../components/DashBoard/BookedCourses/BookedCourses';
 import Reserved from '../../components/DashBoard/Reserved/Reserved';
 import FavouredCourses from '../../components/DashBoard/FavouredCourses/FavouredCourses';
 import FavouredBlogs from '../../components/DashBoard/FavouredBlogs/FavouredBlogs';
+
+// Dashboard Profile
 const DashBoardProfile = lazy(() => import("../../components/DashBoard/DashBoardProfile/DashBoardProfile"));
-// import DashBoardProfile from '../../components/DashBoard/DashBoardProfile/DashBoardProfile';
 import PersonalInfo from "../../components/DashBoard/DashBoardProfile/Personal-Info/PersonalInfo";
 import ProfilePicture from "../../components/DashBoard/DashBoardProfile/ProfilePicture/ProfilePicture";
 import LivingAddress from "../../components/DashBoard/DashBoardProfile/LivingAddress/LivingAddress";
 import Connections from "../../components/DashBoard/DashBoardProfile/Connections/Connections";
 import Security from "../../components/DashBoard/DashBoardProfile/Security/Security";
-
-
-
 
 
 const router = createBrowserRouter([

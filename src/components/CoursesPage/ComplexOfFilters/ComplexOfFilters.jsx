@@ -45,14 +45,14 @@ const ComplexOfFilters = ({instructorList , courseFilters ,setCourseFilters}) =>
                                 <div className={Style.priceRangeSliderValue}>
                                     <p className={Style.priceRangeSliderValueText}>از <span className={Style.priceRangeSliderValueNumber}>{values.costDown.toLocaleString()}</span> تا <span className={Style.priceRangeSliderValueNumber}>{values.costUp.toLocaleString()}</span> تومان</p>
                                 </div>
-                                {/* <div className={Style.priceRangeSliderFilters}>
+                                <div className={Style.priceRangeSliderFilters}>
                                     {[  {name : "رایگان" , id : "Free" , value : "Free"},
                                         {name : "پولی" , id : "Paid" , value : "Paid"},
                                         {name : "همه" , id : "All" , value : "All"},
                                     ].map((item)=>(
                                         <RadioTag key={item.id} id={item.id} name={item.name} value={item.value}  checkBoxStatus={item.checkBoxStatus}/>
                                     ))}
-                                </div> */}
+                                </div>
                             </div>
                         </motion.div>
                         <motion.div className={Style.filterContainer} animate={{height: isInstructorFilterOpen ? "auto" : 40}} transition={{duration : 0.5}}>
