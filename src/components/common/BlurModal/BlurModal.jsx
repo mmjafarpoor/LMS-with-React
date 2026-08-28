@@ -2,11 +2,18 @@ import React from 'react'
 
 const BlurModal = ({preview , confirm , discard}) => {
     return (
-        <div className="w-screen h-screen fixed top-0 left-0 flex items-center justify-center bg-black/25 backdrop-blur-[12px] backdrop-saturate-[180%] z-99999">
+        <div className="
+                w-screen h-screen 
+                fixed top-0 left-0 
+                flex items-center justify-center
+                bg-black/25 backdrop-blur-[12px] backdrop-saturate-[180%] 
+                z-99999
+            "
+        >
             {/* Preview Container */}
             <div className="
-                w-[90%] max-w-175 h-auto 
-                aspect-square p-8 rounded-4xl
+                w-[92%] sm:w-[90%] max-w-180 h-auto min-h-120
+                aspect-square p-4.5 sm:p-8 rounded-4xl
                 bg-white/8 backdrop-blur-[20px] backdrop-saturate-[190%]
                 border border-white/20 
                 shadow-[0_30px_60px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.05)_inset]
@@ -16,7 +23,7 @@ const BlurModal = ({preview , confirm , discard}) => {
             >
                 {/* Heading Title */}
                 <h2 className="
-                    text-[1.7rem] sm:text-[2.1rem] font-semibold
+                    text-[1.6rem] sm:text-[2.1rem] font-semibold
                     mb-3 px-[1.2rem] py-[0.1rem] inline-block
                     backdrop-blur-xs bg-white/4
                     border border-white/8 rounded-[60px]
@@ -29,7 +36,7 @@ const BlurModal = ({preview , confirm , discard}) => {
                     <img src={preview} alt="Preview-Image" className="w-full h-full"/>
                 </div>
                 {/* Actions */}
-                <div className="w-full max-w-100 flex items-center justify-between">
+                <div className="w-full max-w-100 mt-2 flex items-center justify-between">
                     {/* Confirm */}
                     <div className="
                             w-12.5 h-12.5 rounded-full
